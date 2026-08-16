@@ -1,0 +1,97 @@
+---
+title: Full Stack Application
+type: project
+num: 2
+draft: 0
+assigned_date: 2026-11-19
+due_date: 2026-12-04
+heading_max_level: 3
+points: 100
+---
+
+This guide will walk you through building a complete full-stack application from scratch. Follow each section in order, and verify your work at each checkpoint.
+
+<blockquote class="info">
+{% collapsible %}
+## Collaboration & AI Policy
+
+
+**You may:**
+- Work in **pairs** or individually on this assignment -- your choice. 
+- If you work with a partner:
+    - both parties must have their own individual repo and deploy their own repo on Railway
+    - Any extra credit earned will be split evenly between the two partners to ensure fairness (e.g., if 10 extra credit points are awarded, each person will receive 5 points)
+- Discuss concepts, approaches, and debugging strategies with classmates
+- Share links to documentation, tutorials, or Stack Overflow posts
+- Help each other understand error messages or explain how technologies work
+- Use AI tools (ChatGPT, GitHub Copilot, etc.) to help understand concepts, debug errors, or generate small code snippets
+
+**You may NOT:**
+- Share, copy, or view another student's code (including via screenshots, GitHub repos), unless it is with your partner
+- Submit code written by someone else (including AI-generated code that you don't understand)
+- Use AI tools to generate large portions of your application without understanding what the code does
+- Post your code publicly or share it in a way that others can copy it
+
+**Remember:** The goal is for you to learn and demonstrate your understanding. If you can't explain how your code works, you haven't learned it. All submitted code must be your own work, even if you received help understanding concepts or debugging issues.
+
+</blockquote>
+
+## Table of Contents
+
+### Part 1. Build Your System
+1. [Introduction](/assignments/project02-00-intro)
+1. [Project Setup & Git](/assignments/project02-01-setup)
+1. [Database](/assignments/project02-02-database)
+1. [Backend](/assignments/project02-03-backend)
+1. ["Starter" Frontend](/assignments/project02-04-starter-ui)
+1. [Build Your Containers with the Docker Compose File](/assignments/project02-05-docker)
+
+### Part 2. Get React to Communicate with FastAPI
+1. [Implement Frontend <> Backend Communication](/assignments/project02-06-enhanced-ui)
+1. [Before Moving On: How to work with your containers](/assignments/project02-07-working-with-your-containers)
+1. [Add Continuous Integration on GitHub](/assignments/project02-08-cicd)
+
+### Part 3. Extending the App
+1. [Backend + Frontend Extensions](/assignments/project02-09-enhancements) (complete all required tasks)
+
+### Part 4. Deployment
+1. [Railway Deployment](/assignments/project02-10-railway)
+
+
+## What To Submit
+
+### Before You Submit
+
+Before submitting, verify you have completed all of the following:
+
+**<span class="badge info">20 pts</span> Part 1: Build Your System**
+- Project setup with Git repository 
+- Database container created and configured
+- Backend API with CRUD endpoints working
+- Basic React frontend running
+- Docker containers built and running locally
+{:.checkbox-list}
+
+**<span class="badge info">25 pts</span> Part 2: React ↔ FastAPI Communication**
+- Frontend successfully communicates with backend API
+- Can create, read, update, and delete items from the UI
+- GitHub Actions CI/CD pipeline configured and passing
+{:.checkbox-list}
+
+**<span class="badge info">35 pts</span> Part 3: Required Enhancements**
+- One required backend enhancement (Option 1 or Option 2)
+- One required frontend enhancement (component library integration)
+{:.checkbox-list}
+
+**<span class="badge info">20 pts</span> Part 4: Deployment**
+- Application deployed to Railway
+- Production database configured
+- Application accessible via public URL
+{:.checkbox-list}
+
+**Optional:** Complete any [extra credit enhancements](project02-09-enhancements#ec) for additional points.
+
+
+### Submit
+Once you have verified that your project is done, paste a link to your GitHub Repo and to your Railway deployment into the Moodle submission checkbox.
+
