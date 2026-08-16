@@ -99,7 +99,7 @@ const QuizReport = forwardRef<QuizReportHandle, QuizReportProps>(({
   let badgeText = '';
   let badgeColor = '';
   
-  if (scorePercentage === 100) {
+  if (score === totalQuestions && totalQuestions > 0) {
     badgeText = 'Perfect Score!';
     badgeColor = '#f59e0b';
   } else if (scorePercentage >= 90) {
@@ -156,7 +156,7 @@ const QuizReport = forwardRef<QuizReportHandle, QuizReportProps>(({
             <strong>Score:</strong> {score} / {totalQuestions} ({scorePercentage}%)
           </div>
           
-          {incorrectQuestions.length === 0 ? (
+          {score === totalQuestions && totalQuestions > 0 ? (
             <div style={{ padding: '5px 5px 20px 5px', backgroundColor: '#d1fae5', borderRadius: '8px', marginTop: '20px', textAlign: 'center', fontSize: '18px' }}>
               Perfect score! All answers correct.
             </div>

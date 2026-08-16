@@ -375,7 +375,7 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
   const getIncorrectQuestions = () => {
     return shuffledQuestions.filter(question => {
       const savedAnswer = selectedAnswers[question.id];
-      if (savedAnswer === undefined) return false;
+      if (savedAnswer === undefined) return true;
       
       // Handle JavaScript DOM questions
       if (question.type === 'javascript-dom') {
@@ -404,11 +404,10 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
         // Question is incorrect if arrays don't match exactly
         return !(allCorrectSelected && noIncorrectSelected && sameLength);
       } else {
-        // Single-select: check if selected matches correct
-        if (typeof savedAnswer !== 'string') return true; // Wrong type
-        const selectedIndex = findOptionIndex(savedAnswer, question.options!);
-        if (selectedIndex === -1) return true; // Option not found
-        return selectedIndex !== question.correct;
+        // Single-select: same check as score (compare option text)
+        if (typeof savedAnswer !== 'string') return true;
+        const correctOptionText = question.correct !== undefined ? question.options![question.correct] : undefined;
+        return savedAnswer !== correctOptionText;
       }
     });
   };

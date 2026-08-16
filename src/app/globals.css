@@ -1059,6 +1059,31 @@ pre code {
     @apply inline-block px-2 py-0.5 text-xs font-medium rounded uppercase bg-green-50 border border-green-200 text-gray-700;
   }
 
+.os-icon {
+  @apply inline-flex items-center align-middle mr-1.5;
+}
+
+.os-icon i {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.os-icon.mac {
+  color: #334155; /* slate-700 */
+}
+
+.os-icon.windows {
+  color: #0284c7; /* sky-600 */
+}
+
+.dark .os-icon.mac {
+  color: #e2e8f0;
+}
+
+.dark .os-icon.windows {
+  color: #7dd3fc;
+}
+
 .dark .badge {
   background-color: #374151; /* gray-700 */
   color: #9ca3af; /* gray-400 */

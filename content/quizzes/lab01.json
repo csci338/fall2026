@@ -1,0 +1,174 @@
+{
+  "quizName": "Lab 1: Command Line Review",
+  "start_date": "2026-08-20",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What does `pwd` tell you?",
+      "options": [
+        "The contents of the current folder",
+        "The full path of the folder you are in right now",
+        "Your username",
+        "A list of recent commands"
+      ],
+      "correct": 1,
+      "explanation": "`pwd` means print working directory. It prints the full path of the folder you are currently in."
+    },
+    {
+      "id": "q2",
+      "question": "What happens if you type `cd` with nothing after it?",
+      "options": [
+        "The terminal closes",
+        "You go up one folder",
+        "You go to your home folder (`~`)",
+        "Nothing — you need a folder name"
+      ],
+      "correct": 2,
+      "explanation": "`cd` with no argument takes you home. That is the same place `~` refers to (`/home/yourname` on WSL, `/Users/yourname` on a Mac)."
+    },
+    {
+      "id": "q3",
+      "question": "Which command creates a new folder named `lab01`?",
+      "options": [
+        "`touch lab01`",
+        "`cat lab01`",
+        "`mkdir lab01`",
+        "`ls lab01`"
+      ],
+      "correct": 2,
+      "explanation": "`mkdir` (make directory) creates a folder. `touch` creates an empty file, `cat` reads a file, and `ls` lists what is already there."
+    },
+    {
+      "id": "q4",
+      "question": "What does `touch notes.txt` do?",
+      "options": [
+        "Opens `notes.txt` in VS Code",
+        "Creates an empty file named `notes.txt` (or updates its timestamp if it already exists)",
+        "Prints the contents of `notes.txt`",
+        "Deletes `notes.txt`"
+      ],
+      "correct": 1,
+      "explanation": "`touch` creates an empty file if it does not exist. It does not open or edit the file."
+    },
+    {
+      "id": "q5",
+      "question": "How is `ls -la ~` different from `ls ~`?",
+      "options": [
+        "`ls -la ~` only lists folders, not files",
+        "`ls -la ~` includes hidden files (names starting with `.`) and extra details",
+        "`ls -la ~` lists files on your Windows `C:` drive",
+        "They do the same thing"
+      ],
+      "correct": 1,
+      "explanation": "The `-l` flag is a detailed listing and `-a` includes hidden files such as `.zshrc` and `.bashrc`. `~` means your home folder."
+    },
+    {
+      "id": "q6",
+      "question": "You run `echo \"Hello World\" >> index.html` twice, then `cat index.html`. What do you see?",
+      "options": [
+        "The file is empty",
+        "`Hello World` once (the second command replaced the first)",
+        "`Hello World` twice",
+        "An error, because `>>` cannot write to an existing file"
+      ],
+      "correct": 2,
+      "explanation": "`>>` appends. Each `echo` adds another line. `>` (one arrow) would overwrite the file instead."
+    },
+    {
+      "id": "q7",
+      "question": "What is the difference between `>` and `>>`?",
+      "options": [
+        "`>` appends; `>>` overwrites",
+        "`>` overwrites the whole file; `>>` adds to the end",
+        "They are identical",
+        "`>>` only works on folders"
+      ],
+      "correct": 1,
+      "explanation": "`>` replaces the file's contents. `>>` adds onto the end. Both can also create a file if it does not exist yet. There is no undo, so be careful with `>` and `rm`."
+    },
+    {
+      "id": "q8",
+      "question": "Which command copies `notes.txt` to a new file named `notes-copy.txt` (leaving `notes.txt` in place)?",
+      "options": [
+        "`mv notes.txt notes-copy.txt`",
+        "`rm notes.txt notes-copy.txt`",
+        "`cd notes.txt notes-copy.txt`",
+        "`cp notes.txt notes-copy.txt`"
+      ],
+      "correct": 3,
+      "explanation": "`cp` copies. `mv` would rename or move `notes.txt`, so the original name would be gone."
+    },
+    {
+      "id": "q9",
+      "question": "Which command searches the current folder (and folders inside it) for the text `Goodbye`?",
+      "options": [
+        "`cat Goodbye`",
+        "`ls Goodbye`",
+        "`grep \"Goodbye\" ./ -r`",
+        "`pwd Goodbye`"
+      ],
+      "correct": 2,
+      "explanation": "`grep` searches file contents. The `-r` flag means recursive (this folder and its descendants). `./` means the current directory."
+    },
+    {
+      "id": "q10",
+      "question": "What is a bash script (a `.sh` file)?",
+      "options": [
+        "A VS Code extension that formats JavaScript",
+        "A file that lists shell commands so you can run them together",
+        "A backup of your home folder",
+        "The same thing as an alias"
+      ],
+      "correct": 1,
+      "explanation": "A bash script is a text file of commands the shell can run in order. In lab you ran `bash ./start-web-prj.sh`, which created a folder and starter HTML/CSS files. An alias is a one-line shortcut, not a whole list of steps."
+    },
+    {
+      "id": "q11",
+      "question": "How do you run a script named `start-web-prj.sh` that is in your current folder?",
+      "options": [
+        "`open start-web-prj.sh`",
+        "`cat start-web-prj.sh`",
+        "`bash ./start-web-prj.sh`",
+        "`mkdir start-web-prj.sh`"
+      ],
+      "correct": 2,
+      "explanation": "`bash ./start-web-prj.sh` asks bash to execute that file. `cat` would only print the script. `open` is for opening files in an app (on a Mac)."
+    },
+    {
+      "id": "q12",
+      "question": "You want typing `338` to take you to your `csci338` folder. What kind of shortcut is that?",
+      "options": [
+        "A bash script",
+        "An alias in your shell config file",
+        "A VS Code extension",
+        "A `grep` pattern"
+      ],
+      "correct": 1,
+      "explanation": "An alias is a short name for a longer command, such as `alias 338='cd /your/path/to/csci338'`. You add that line to `~/.zshrc` (zsh) or `~/.bashrc` (bash)."
+    },
+    {
+      "id": "q13",
+      "question": "You added an alias to `~/.zshrc` (or `~/.bashrc`), but `338` does not work yet. What did you probably forget?",
+      "options": [
+        "`source ~/.zshrc` or `source ~/.bashrc` (whichever file you edited)",
+        "`mkdir 338`",
+        "`rm ~/.zshrc`",
+        "`git commit`"
+      ],
+      "correct": 0,
+      "explanation": "Editing the file saves it on disk, but your current terminal is still using the old settings. `source` reloads the file into this terminal session. Opening a new terminal also loads it."
+    },
+    {
+      "id": "q14",
+      "question": "How do you know whether to edit `~/.zshrc` or `~/.bashrc`?",
+      "options": [
+        "Always edit `.zshrc` on Windows and `.bashrc` on a Mac",
+        "Run `echo $SHELL` — if it ends with `zsh`, edit `.zshrc`; if it ends with `bash`, edit `.bashrc`",
+        "Whichever file `ls` prints first",
+        "You must edit both or the alias will not work"
+      ],
+      "correct": 1,
+      "explanation": "This is about your shell, not your OS. Mac often uses zsh; WSL Ubuntu often uses bash. `echo $SHELL` tells you which one you have. Then `source` the same file you edited."
+    }
+  ]
+}
