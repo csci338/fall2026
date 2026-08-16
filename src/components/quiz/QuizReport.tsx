@@ -191,7 +191,7 @@ const QuizReport = forwardRef<QuizReportHandle, QuizReportProps>(({
                   return (
                     <div key={question.id} style={{ marginBottom: '30px', padding: '20px' }}>
                       <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
-                        Question {index + 1}: {stripMarkdown(question.question)}
+                        Question {index + 1}: {stripMarkdown(question.question ?? '')}
                       </div>
                       
                       <div style={{ marginBottom: '10px' }}>
@@ -240,7 +240,7 @@ const QuizReport = forwardRef<QuizReportHandle, QuizReportProps>(({
                 return (
                   <div key={question.id} style={{ marginBottom: '30px', padding: '20px' }}>
                     <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
-                      Question {index + 1}: {stripMarkdown(question.question)}
+                      Question {index + 1}: {stripMarkdown(question.question ?? '')}
                     </div>
                     
                     <div style={{ marginBottom: '10px' }}>

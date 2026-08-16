@@ -75,7 +75,7 @@ export default function QuizQuestionView({
     <div className="px-6 pt-6 pb-0 rounded-lg" style={isDark ? { backgroundColor: 'rgba(30, 58, 138, 0.15)', borderColor: '#1e3a8a' } : undefined}>
       <div className="mb-4 flex items-start justify-between gap-4">
         <div className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex-1" style={isDark ? { color: '#f9fafb' } : undefined}>
-          {questionNumber}. {formatQuestionText(question.question, isDark)}
+          {questionNumber}. {formatQuestionText(question.question ?? '', isDark)}
         </div>
         {/* Check Answer button for all questions */}
         {!isRevealed && !showSummary && onRevealAnswer && (

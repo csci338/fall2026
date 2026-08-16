@@ -1,0 +1,115 @@
+{
+  "quizName": "Java Methods and Conditionals Self-Check",
+  "draft": 1,
+  "languages": [
+    "java",
+    "python"
+  ],
+  "defaultLanguage": "java",
+  "questions": [
+    {
+      "id": "m1-q1",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "What does `canPlant` return for this call?\n\n```java\nstatic boolean canPlant(int prev, int curr, int next) {\n    return curr == 0 && prev == 0 && next == 0;\n}\ncanPlant(1, 0, 0);\n```",
+          "options": [
+            "true",
+            "false"
+          ],
+          "correct": 1,
+          "explanation": "curr is empty, but prev is already planted, so the helper returns false."
+        },
+        "python": {
+          "question": "What does `can_plant` return for this call?\n\n```python\ndef can_plant(prev, curr, next):\n    return curr == 0 and prev == 0 and next == 0\n\ncan_plant(1, 0, 0)\n```",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 1,
+          "explanation": "curr is empty, but prev is already planted, so the helper returns False."
+        }
+      }
+    },
+    {
+      "id": "m1-q2",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "What does `canPlant(0, 0, 0)` return?\n\n```java\nstatic boolean canPlant(int prev, int curr, int next) {\n    return curr == 0 && prev == 0 && next == 0;\n}\n```",
+          "options": [
+            "true",
+            "false"
+          ],
+          "correct": 0,
+          "explanation": "The plot and both neighbors are empty, so planting is allowed."
+        },
+        "python": {
+          "question": "What does `can_plant(0, 0, 0)` return?\n\n```python\ndef can_plant(prev, curr, next):\n    return curr == 0 and prev == 0 and next == 0\n```",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 0,
+          "explanation": "The plot and both neighbors are empty, so planting is allowed."
+        }
+      }
+    },
+    {
+      "id": "m1-q3",
+      "strand": "R1",
+      "variants": {
+        "java": {
+          "question": "For the first plot, missing neighbors are treated as empty. What is `canPlant` at index 0?\n\n```java\nint[] bed = {0, 0, 1};\nint i = 0;\nint prev = (i == 0) ? 0 : bed[i - 1];\nint next = (i == bed.length - 1) ? 0 : bed[i + 1];\nboolean canPlant = bed[i] == 0 && prev == 0 && next == 0;\n```",
+          "options": [
+            "true, because prev is treated as 0 but next is bed[1] which is 0",
+            "false, because the array starts with 0",
+            "false, because index 0 has no previous plot",
+            "true, because next is the 1"
+          ],
+          "correct": 0,
+          "explanation": "At the left edge prev is 0, curr is 0, and next is bed[1] which is 0, so canPlant is true. The 1 at index 2 is not a neighbor of index 0."
+        },
+        "python": {
+          "question": "For the first plot, missing neighbors are treated as empty. What is `can_plant` at index 0?\n\n```python\nbed = [0, 0, 1]\ni = 0\nprev = 0 if i == 0 else bed[i - 1]\nnext = 0 if i == len(bed) - 1 else bed[i + 1]\ncan_plant = bed[i] == 0 and prev == 0 and next == 0\n```",
+          "options": [
+            "True, because prev is treated as 0 and next is bed[1] which is 0",
+            "False, because the list starts with 0",
+            "False, because index 0 has no previous plot",
+            "True, because next is the 1"
+          ],
+          "correct": 0,
+          "explanation": "At the left edge prev is 0, curr is 0, and next is bed[1] which is 0, so can_plant is True. The 1 at index 2 is not a neighbor of index 0."
+        }
+      }
+    },
+    {
+      "id": "m1-q4",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "Which call is false because the plot is already filled?\n\n```java\nstatic boolean canPlant(int prev, int curr, int next) {\n    return curr == 0 && prev == 0 && next == 0;\n}\n```",
+          "options": [
+            "canPlant(0, 0, 0)",
+            "canPlant(0, 1, 0)",
+            "canPlant(0, 0, 1) is the only false call",
+            "canPlant(1, 0, 0) is true"
+          ],
+          "correct": 1,
+          "explanation": "curr == 1 means the plot is already planted, so the method returns false even though both neighbors are empty."
+        },
+        "python": {
+          "question": "Which call is False because the plot is already filled?\n\n```python\ndef can_plant(prev, curr, next):\n    return curr == 0 and prev == 0 and next == 0\n```",
+          "options": [
+            "can_plant(0, 0, 0)",
+            "can_plant(0, 1, 0)",
+            "can_plant(0, 0, 1) is the only False call",
+            "can_plant(1, 0, 0) is True"
+          ],
+          "correct": 1,
+          "explanation": "curr == 1 means the plot is already planted, so the function returns False even though both neighbors are empty."
+        }
+      }
+    }
+  ]
+}

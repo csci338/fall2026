@@ -2,11 +2,18 @@
 title: Python Practice
 type: activity
 draft: 0
-start_date: 2026-09-22
-date: 2026-09-22
+start_date: 2026-09-17
+date: 2026-09-17
 ---
 
-Most of you know Java but are new to Python. Given this, we're going to do a translation activity, so that you can think about how the languages are similar and different. You will have to solve simple problems using both Python and Java.
+This is **Practice**, not Programming Readiness Verification. Complete or review the corresponding Java solution first; then translate the same reasoning into Python so you can separate programming concepts from language syntax. If your Java readiness work is still incomplete, prioritize your assigned Java remediation module before this activity.
+
+For each exercise:
+
+1. Trace the Java version with one example.
+1. Confirm that you can explain the Java logic.
+1. Translate it into Python.
+1. Run at least two tests in each language and compare the results.
 
 
 ## 1. Python Basics vs Java
@@ -146,6 +153,17 @@ deposit(amount)
 withdraw(amount)
 getBalance()
 ```
+
+## 4. Testing and Debugging Across Languages
+Choose one function from Section 2 and intentionally introduce an off-by-one or incorrect-condition bug.
+
+1. Write a test that exposes the bug in Java.
+1. Write the equivalent test in Python.
+1. Record the expected and actual results.
+1. Repair both versions.
+1. Explain which part of the reasoning transferred directly and which syntax changed.
+
+This activity helps prepare you for R5 and R6, but only the individual paper Verification can earn a Satisfactory mark.
 
 
 ## Midterm Exam Study Questions

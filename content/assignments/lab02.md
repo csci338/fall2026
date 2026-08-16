@@ -13,6 +13,9 @@ Today we will be configuring your lab repo using **git** and **GitHub**. Next we
 
 Here are the <a href="https://docs.google.com/presentation/d/1iBYAdOWcRUqr_Oc0O0ss0F0PFG2ulR9g/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true" target="_blank">Lab 2 slides</a>.
 
+{:.info}
+> **Programming Readiness: Practice**
+> The Java and Python exercises in this lab help you prepare for R2–R4, but they do not satisfy a readiness specification. Only the individual paper Verification can earn a Satisfactory result. Complete the Java work yourself so the practice gives you accurate information about what to review.
 
 ## Your Tasks
 
@@ -71,32 +74,54 @@ Now, on your laptop, make a copy of your repo locally (using the **SSH** protoco
 1. Verify that you are now on the `lab02-b` branch (see cheatsheet)
 
 
-### 6. Write some code
+### 6. Write some code (Java Practice)
 1. Open the entire `class-exercises-fall2025` folder in VS Code.
 1. Create a folder named `lab02`
 1. Inside of your `lab02` folder, create a text file called `ContainsPair.java`
-1. Within the `ContainsPair.java` file, implement one of the "contains pair" solutions we discussed in class (ideally the fastest one). Here's a stub to help you:
+1. Within the `ContainsPair.java` file, implement both a nested-loop solution and a set-based solution to determine whether a list contains a repeated value. Here's a stub to help you:
 
-    ```java
-    import java.util.ArrayList;
-    import java.util.Arrays;
-    import java.util.List;
+```java
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-    public class ContainsPair {
+public class ContainsPair {
 
-        public static void main(String[] args) {
-            List<Integer> list1 = Arrays.asList(1, 2, 3, 2);
-            List<Integer> list2 = Arrays.asList(5, 2, -10, 44, 90);
-            System.out.println(ContainsPair.check(list1)); // should print true
-            System.out.println(ContainsPair.check(list2)); // should print false
-        }
-        public static boolean check(List<Integer> l) {
-            // replace this with your code:
-            return false;
+    public static void main(String[] args) {
+        checkCase(Arrays.asList(), false, "empty");
+        checkCase(Arrays.asList(3), false, "singleton");
+        checkCase(Arrays.asList(1, 2, 3, 2), true, "duplicate");
+        checkCase(Arrays.asList(5, 2, -10, 44, 90), false, "no duplicate");
+        checkCase(Arrays.asList(-2, 4, -2), true, "negative duplicate");
+        checkCase(Arrays.asList(7, 7, 7), true, "repeated more than twice");
+    }
+
+    public static boolean checkNestedLoops(List<Integer> values) {
+        // TODO: compare values using nested loops
+        return false;
+    }
+
+    public static boolean checkWithSet(List<Integer> values) {
+        // TODO: use a Set to remember values already seen
+        return false;
+    }
+
+    private static void checkCase(List<Integer> values, boolean expected, String label) {
+        boolean nestedResult = checkNestedLoops(values);
+        boolean setResult = checkWithSet(values);
+        if (nestedResult == expected && setResult == expected) {
+            System.out.println("PASS: " + label);
+        } else {
+            System.out.println(
+                "FAIL: " + label + " expected " + expected
+                + " but got nested=" + nestedResult + ", set=" + setResult
+            );
         }
     }
-    ```
-1. Compile it on the command line using the `javac` command (e.g., `javac ContainsPair.java`). See the Lecture 3 slides for potential solutions. Make sure you're in the right directory. This should generate the compiled `Java.class` file.
+}
+```
+1. Compile it on the command line using the `javac` command (e.g., `javac ContainsPair.java`). See the Lecture 3 slides for potential solutions. Make sure you're in the right directory. This should generate the compiled `ContainsPair.class` file.
     * If you're on WSL and `javac` is not installed, you can install it using the apt package manager as follows:<br>`sudo apt install default-jdk`
 1. Run your program on the command line by typing `java ContainsPair`
 
@@ -111,7 +136,7 @@ From the command line
 
 If you did it correctly, git is now ignoring your `*.class` file.
 
-### 8. Write some code in Python
+### 8. Write some code in Python (Language-Transfer Practice)
 First, check if python is installed:
 
 #### Windows
@@ -141,7 +166,7 @@ On some systems, the python executable is invoked with a different alias (see be
 * `python contains_pair.py`
 * `py3 contains_pair.py`
 
-New to python? Try writing the solution in Java and then asking ChatGPT to help you translate it into python. We'll be learning more about Python in the coming weeks.
+New to Python? Begin from your working Java solution and compare the two languages. For this **Practice** section, you may ask ChatGPT to explain Python syntax or help translate your own Java code, but disclose that use in a comment. You remain responsible for tracing and explaining the Python result. This translation does not count as readiness Verification.
 
 ### 9. Stage and commit your changes
 1. Stage your changes using `git add .` (the dot indicates that you want to stage all of the files that have been added / deleted / edited).

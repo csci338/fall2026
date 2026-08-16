@@ -1,0 +1,240 @@
+{
+  "quizName": "Programming Readiness Diagnostic",
+  "draft": 1,
+  "languages": [
+    "java",
+    "python"
+  ],
+  "defaultLanguage": "java",
+  "showStrandResults": true,
+  "strandThreshold": 0.6666666666666666,
+  "strandLabels": {
+    "R1": "Trace and reason",
+    "R2": "Methods and control flow",
+    "R3": "Lists and arrays",
+    "R4": "Maps, sets, and algorithms",
+    "R5": "Tests and debugging"
+  },
+  "questions": [
+    {
+      "id": "r1-q1",
+      "strand": "R1",
+      "variants": {
+        "java": {
+          "question": "For `bed = {1, 0, 0, 0, 1}` and `i = 1`, what is `canPlant`?\n\n```java\nint[] bed = {1, 0, 0, 0, 1};\nint i = 1;\nboolean leftEmpty = (i == 0) || bed[i - 1] == 0;\nboolean rightEmpty = (i == bed.length - 1) || bed[i + 1] == 0;\nboolean canPlant = bed[i] == 0 && leftEmpty && rightEmpty;\n```",
+          "options": [
+            "true",
+            "false"
+          ],
+          "correct": 1,
+          "explanation": "bed[1] is empty, but the left neighbor bed[0] is already 1, so canPlant is false."
+        },
+        "python": {
+          "question": "For `bed = [1, 0, 0, 0, 1]` and `i = 1`, what is `can_plant`?\n\n```python\nbed = [1, 0, 0, 0, 1]\ni = 1\nleft_empty = (i == 0) or bed[i - 1] == 0\nright_empty = (i == len(bed) - 1) or bed[i + 1] == 0\ncan_plant = bed[i] == 0 and left_empty and right_empty\n```",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 1,
+          "explanation": "bed[1] is empty, but the left neighbor bed[0] is already 1, so can_plant is False."
+        }
+      }
+    },
+    {
+      "id": "r2-q1",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "What is `n` after this loop finishes?\n\n```java\nint[] bed = {1, 0, 0, 0, 1};\nint n = 0;\nfor (int i = 0; i < bed.length; i++) {\n    boolean left = i == 0 || bed[i - 1] == 0;\n    boolean right = i == bed.length - 1 || bed[i + 1] == 0;\n    if (bed[i] == 0 && left && right) {\n        bed[i] = 1;\n        n++;\n    }\n}\n```",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "correct": 1,
+          "explanation": "Only index 2 can be planted. Planting there turns the bed into {1, 0, 1, 0, 1}, so indexes 1 and 3 stay blocked. n is 1."
+        },
+        "python": {
+          "question": "What is `n` after this loop finishes?\n\n```python\nbed = [1, 0, 0, 0, 1]\nn = 0\nfor i in range(len(bed)):\n    left = i == 0 or bed[i - 1] == 0\n    right = i == len(bed) - 1 or bed[i + 1] == 0\n    if bed[i] == 0 and left and right:\n        bed[i] = 1\n        n += 1\n```",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "correct": 1,
+          "explanation": "Only index 2 can be planted. Planting there turns the bed into [1, 0, 1, 0, 1], so indexes 1 and 3 stay blocked. n is 1."
+        }
+      }
+    },
+    {
+      "id": "r3-q1",
+      "strand": "R3",
+      "variants": {
+        "java": {
+          "question": "What does `found` become?\n\n```java\nint[] nums = {2, 0, 5, 6, 4};\nint target = 12;\nboolean found = false;\nfor (int i = 0; i < nums.length; i++) {\n    for (int j = i + 1; j < nums.length; j++) {\n        if (nums[i] + nums[j] == target) {\n            found = true;\n        }\n    }\n}\n```",
+          "options": [
+            "true, because 6 + 6 would work",
+            "true, because 12 is in the list",
+            "false, because no two different indexes add to 12",
+            "false, because the inner loop starts at i + 1"
+          ],
+          "correct": 2,
+          "explanation": "j starts at i + 1, so each pair uses two different indexes. The largest pair is 6 + 5 = 11. found stays false."
+        },
+        "python": {
+          "question": "What does `found` become?\n\n```python\nnums = [2, 0, 5, 6, 4]\ntarget = 12\nfound = False\nfor i in range(len(nums)):\n    for j in range(i + 1, len(nums)):\n        if nums[i] + nums[j] == target:\n            found = True\n```",
+          "options": [
+            "True, because 6 + 6 would work",
+            "True, because 12 is in the list",
+            "False, because no two different indexes add to 12",
+            "False, because the inner loop starts at i + 1"
+          ],
+          "correct": 2,
+          "explanation": "j starts at i + 1, so each pair uses two different indexes. The largest pair is 6 + 5 = 11. found stays False."
+        }
+      }
+    },
+    {
+      "id": "r3-q2",
+      "strand": "R3",
+      "variants": {
+        "java": {
+          "question": "If the inner loop starts at `j = i` instead of `j = i + 1`, what does this return?\n\n```java\nint[] nums = {3};\nint target = 6;\nfor (int i = 0; i < nums.length; i++) {\n    for (int j = i; j < nums.length; j++) {\n        if (nums[i] + nums[j] == target) return true;\n    }\n}\nreturn false;\n```",
+          "options": [
+            "true, because 3 + 3 is allowed when j == i",
+            "false, because the list has only one value",
+            "true, because empty pairs count",
+            "false, because 3 is odd"
+          ],
+          "correct": 0,
+          "explanation": "When j starts at i, the single value 3 is paired with itself. A correct pair search must not reuse the same index."
+        },
+        "python": {
+          "question": "If the inner loop starts at `j = i` instead of `j = i + 1`, what does this return?\n\n```python\nnums = [3]\ntarget = 6\nfor i in range(len(nums)):\n    for j in range(i, len(nums)):\n        if nums[i] + nums[j] == target:\n            return True\nreturn False\n```",
+          "options": [
+            "True, because 3 + 3 is allowed when j == i",
+            "False, because the list has only one value",
+            "True, because empty pairs count",
+            "False, because 3 is odd"
+          ],
+          "correct": 0,
+          "explanation": "When j starts at i, the single value 3 is paired with itself. A correct pair search must not reuse the same index."
+        }
+      }
+    },
+    {
+      "id": "r4-q1",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "After this loop, what does `groups` contain?\n\n```java\nMap<Character, List<String>> groups = new LinkedHashMap<>();\nfor (String word : List.of(\"banana\", \"apple\", \"cat\", \"bear\", \"ant\")) {\n    char key = word.charAt(0);\n    if (!groups.containsKey(key)) {\n        groups.put(key, new ArrayList<>());\n    }\n    groups.get(key).add(word);\n}\n```",
+          "options": [
+            "{b=[bear], a=[ant], c=[cat]}",
+            "{b=[banana, bear], a=[apple, ant], c=[cat]}",
+            "{a=[banana, apple, cat, bear, ant]}",
+            "{3=[cat, ant], 4=[bear], 5=[apple], 6=[banana]}"
+          ],
+          "correct": 1,
+          "explanation": "Each word is appended. Keys appear in first-seen order: b, then a, then c. banana and bear go under b; apple and ant under a; cat under c."
+        },
+        "python": {
+          "question": "After this loop, what does `groups` contain?\n\n```python\ngroups = {}\nfor word in [\"banana\", \"apple\", \"cat\", \"bear\", \"ant\"]:\n    key = word[0]\n    if key not in groups:\n        groups[key] = []\n    groups[key].append(word)\n```",
+          "options": [
+            "{'b': ['bear'], 'a': ['ant'], 'c': ['cat']}",
+            "{'b': ['banana', 'bear'], 'a': ['apple', 'ant'], 'c': ['cat']}",
+            "{'a': ['banana', 'apple', 'cat', 'bear', 'ant']}",
+            "{3: ['cat', 'ant'], 4: ['bear'], 5: ['apple'], 6: ['banana']}"
+          ],
+          "correct": 1,
+          "explanation": "Each word is appended. Keys appear in first-seen order: b, then a, then c. banana and bear go under b; apple and ant under a; cat under c."
+        }
+      }
+    },
+    {
+      "id": "r4-q2",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "Each `Card` has a `rank` (for example `\"9\"` or `\"K\"`). After the loop processes the third card, what is in `counts`, and does the method return then?\n\n```java\nList<Card> cards = List.of(\n    new Card(\"9\", \"Hearts\"),\n    new Card(\"9\", \"Diamonds\"),\n    new Card(\"9\", \"Hearts\"),\n    new Card(\"K\", \"Clubs\")\n);\nMap<String, Integer> counts = new HashMap<>();\nfor (Card card : cards) {\n    if (!counts.containsKey(card.rank)) {\n        counts.put(card.rank, 1);\n    } else {\n        counts.put(card.rank, counts.get(card.rank) + 1);\n    }\n    if (counts.get(card.rank) == 3) {\n        return true;\n    }\n}\nreturn false;\n```",
+          "options": [
+            "{9=2, K=1}, already returned true",
+            "{9=3}, returns true on the third card",
+            "{9=1}, because put overwrites",
+            "{9=3, K=1}, returns false until the loop ends"
+          ],
+          "correct": 1,
+          "explanation": "The first two cards make counts {9=2}. The third card is also rank 9, so the count becomes 3 and the method returns true before the King is seen."
+        },
+        "python": {
+          "question": "Each `Card` has a `.rank` (for example `\"9\"` or `\"K\"`). After the loop processes the third card, what is in `counts`, and does the function return then?\n\n```python\ncards = [\n    Card(\"9\", \"Hearts\"),\n    Card(\"9\", \"Diamonds\"),\n    Card(\"9\", \"Hearts\"),\n    Card(\"K\", \"Clubs\"),\n]\ncounts = {}\nfor card in cards:\n    if card.rank not in counts:\n        counts[card.rank] = 1\n    else:\n        counts[card.rank] += 1\n    if counts[card.rank] == 3:\n        return True\nreturn False\n```",
+          "options": [
+            "{'9': 2, 'K': 1}, already returned True",
+            "{'9': 3}, returns True on the third card",
+            "{'9': 1}, because assignment overwrites",
+            "{'9': 3, 'K': 1}, returns False until the loop ends"
+          ],
+          "correct": 1,
+          "explanation": "The first two cards make counts {'9': 2}. The third card is also rank 9, so the count becomes 3 and the function returns True before the King is seen."
+        }
+      }
+    },
+    {
+      "id": "r4-q3",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "What does this return for `{1, 3, 5, 3, 8, 5, 2}` and for `{}`?\n\n```java\nSet<Integer> seen = new HashSet<>();\nfor (int n : numbers) {\n    seen.add(n);\n}\nreturn seen.size();\n```",
+          "options": [
+            "7 and 0",
+            "5 and 0",
+            "5 and 1",
+            "2 and 0"
+          ],
+          "correct": 1,
+          "explanation": "The set keeps unique values: 1, 3, 5, 8, 2. An empty list leaves the set empty, so the size is 0."
+        },
+        "python": {
+          "question": "What does this return for `[1, 3, 5, 3, 8, 5, 2]` and for `[]`?\n\n```python\nseen = set()\nfor n in numbers:\n    seen.add(n)\nreturn len(seen)\n```",
+          "options": [
+            "7 and 0",
+            "5 and 0",
+            "5 and 1",
+            "2 and 0"
+          ],
+          "correct": 1,
+          "explanation": "The set keeps unique values: 1, 3, 5, 8, 2. An empty list leaves the set empty, so the length is 0."
+        }
+      }
+    },
+    {
+      "id": "r5-q1",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "A test calls this method with three 9s and a King, and expects `true`. What does it actually return, and why?\n\n```java\npublic static boolean hasThreeOfAKind(List<Card> cards) {\n    Map<String, Integer> rankCounts = new HashMap<>();\n    for (Card card : cards) {\n        rankCounts.put(card.rank, 1);\n        if (rankCounts.get(card.rank) == 3) {\n            return true;\n        }\n    }\n    return false;\n}\n\nList<Card> cards = List.of(\n    new Card(\"9\", \"Hearts\"),\n    new Card(\"9\", \"Diamonds\"),\n    new Card(\"9\", \"Spades\"),\n    new Card(\"K\", \"Clubs\")\n);\nhasThreeOfAKind(cards);\n```",
+          "options": [
+            "true, because three 9s are present",
+            "false, because every put stores 1, so the count never reaches 3",
+            "true, because HashMap counts automatically",
+            "false, because K appears once"
+          ],
+          "correct": 1,
+          "explanation": "put(rank, 1) overwrites instead of adding. The failing test is evidence; the defect is the missing increment."
+        },
+        "python": {
+          "question": "A test calls this function with three 9s and a King, and expects `True`. What does it actually return, and why?\n\n```python\ndef has_three_of_a_kind(cards):\n    rank_counts = {}\n    for card in cards:\n        rank_counts[card.rank] = 1\n        if rank_counts[card.rank] == 3:\n            return True\n    return False\n\ncards = [\n    Card(\"9\", \"Hearts\"),\n    Card(\"9\", \"Diamonds\"),\n    Card(\"9\", \"Spades\"),\n    Card(\"K\", \"Clubs\"),\n]\nhas_three_of_a_kind(cards)\n```",
+          "options": [
+            "True, because three 9s are present",
+            "False, because every assignment stores 1, so the count never reaches 3",
+            "True, because dicts count automatically",
+            "False, because K appears once"
+          ],
+          "correct": 1,
+          "explanation": "Assigning 1 overwrites instead of adding. The failing test is evidence; the defect is the missing increment."
+        }
+      }
+    }
+  ]
+}

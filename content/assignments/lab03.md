@@ -180,6 +180,10 @@ describe each of them in your own words.
 
 ### Practice
 
+{:.info}
+> **Programming Readiness: Practice (R2, R3, and R5)**
+> This is formative practice, not Verification, so it cannot earn a Satisfactory readiness mark. Complete it without GenAI to get an accurate picture of what you can do before the next paper attempt.
+
 **DO NOT USE CHAT GPT FOR THIS SECTION**
 
 You may use Google, but you may not cut and paste any code.
@@ -222,6 +226,8 @@ You can compile and run your code using:
 javac FindDuplicates.java
 java FindDuplicates
 ```
+
+Before committing, add and run checks for an empty list, a one-element list, no duplicates, one duplicate, multiple duplicates, and negative values. For each check, compare the actual and expected lists and print `PASS` or `FAIL`. Use any failure to revise your method, then record one correction in `answers.md`.
 
 Once you have that working, let's add it and commit it to the
 repository.
@@ -399,6 +405,10 @@ Describe in english what happened here.
 
 ### Still More Practice
 
+{:.info}
+> **Programming Readiness: Practice (R4 and R6)**
+> Implement the Java version first. After it works, you may optionally translate your own solution into Python to practice language transfer.
+
 **DO NOT USE CHAT GPT FOR THIS SECTION**
 
 You may use Google, but you may not cut and paste any code. It's much
@@ -407,8 +417,7 @@ Set](https://docs.python.org/3/tutorial/datastructures.html#sets) or
 the [Java
 Set](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html).
 
-Now we're going to solve the question one using a dictionary (or hashmap) data structure
-instead of nested loops. You may do this in either your Python file or in the Java file that you've already made.
+Now we're going to solve question one using a set or hashmap data structure instead of nested loops. Implement this version in the Java file you already made and run the same edge-case checks. In `README.md`, explain why this strategy changes the expected runtime and identify any memory tradeoff.
 
 Once you're done, commit your changes to the `one-set` branch. Double
 check you're on the right branch before committing.

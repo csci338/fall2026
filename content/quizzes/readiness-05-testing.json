@@ -1,0 +1,123 @@
+{
+  "quizName": "Simple Algorithms and Edge Cases Self-Check",
+  "draft": 1,
+  "languages": [
+    "java",
+    "python"
+  ],
+  "defaultLanguage": "java",
+  "questions": [
+    {
+      "id": "m5-q1",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "Should `isAnagram` return true? The implementation counts every character, including spaces.\n\n```java\nisAnagram(\"abc\", \"ab c\");\n```",
+          "options": [
+            "true, the letters match if spaces are ignored",
+            "false, because the space makes the counts differ",
+            "true, because both contain a, b, and c only",
+            "false, because anagrams cannot have spaces"
+          ],
+          "correct": 1,
+          "explanation": "If spaces are not removed, Counter-style maps differ. Ignoring spaces is required for phrases such as rail safety / fairy tales."
+        },
+        "python": {
+          "question": "Should `is_anagram` return True? The implementation counts every character, including spaces.\n\n```python\nis_anagram(\"abc\", \"ab c\")\n```",
+          "options": [
+            "True, the letters match if spaces are ignored",
+            "False, because the space makes the counts differ",
+            "True, because both contain a, b, and c only",
+            "False, because anagrams cannot have spaces"
+          ],
+          "correct": 1,
+          "explanation": "If spaces are not removed, the counters differ. Ignoring spaces is required for phrases such as rail safety / fairy tales."
+        }
+      }
+    },
+    {
+      "id": "m5-q2",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "Using a seen-set, when does this return true for `{2, 3, 5, 9, 12}` and target `5`?\n\n```java\nSet<Integer> seen = new HashSet<>();\nfor (int n : nums) {\n    if (seen.contains(target - n)) return true;\n    seen.add(n);\n}\nreturn false;\n```",
+          "options": [
+            "on 2, because 5 - 2 is 3",
+            "on 3, because 2 is already in seen",
+            "on 5, because 5 is in the list",
+            "never"
+          ],
+          "correct": 1,
+          "explanation": "2 is stored first. When 3 arrives, target - 3 is 2, which is already in the set."
+        },
+        "python": {
+          "question": "Using a seen-set, when does this return True for `[2, 3, 5, 9, 12]` and target `5`?\n\n```python\nseen = set()\nfor n in nums:\n    if (target - n) in seen:\n        return True\n    seen.add(n)\nreturn False\n```",
+          "options": [
+            "on 2, because 5 - 2 is 3",
+            "on 3, because 2 is already in seen",
+            "on 5, because 5 is in the list",
+            "never"
+          ],
+          "correct": 1,
+          "explanation": "2 is stored first. When 3 arrives, target - 3 is 2, which is already in the set."
+        }
+      }
+    },
+    {
+      "id": "m5-q3",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "What must `targetSum({3}, 6)` return, and why?\n\n```java\ntargetSum(List.of(3), 6);\n```",
+          "options": [
+            "true, 3 + 3 = 6",
+            "false, the same index cannot supply both addends",
+            "true if a set contains 3",
+            "false only because the list is odd"
+          ],
+          "correct": 1,
+          "explanation": "A pair needs two indexes. With one element, even a set solution must add after the complement check so 3 is not paired with itself."
+        },
+        "python": {
+          "question": "What must `target_sum([3], 6)` return, and why?\n\n```python\ntarget_sum([3], 6)\n```",
+          "options": [
+            "True, 3 + 3 = 6",
+            "False, the same index cannot supply both addends",
+            "True if a set contains 3",
+            "False only because the list is odd"
+          ],
+          "correct": 1,
+          "explanation": "A pair needs two indexes. With one element, even a set solution must add after the complement check so 3 is not paired with itself."
+        }
+      }
+    },
+    {
+      "id": "m5-q4",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "After ignoring spaces, are these anagrams?\n\n```java\nisAnagram(\"rail safety\", \"fairy tales\");\n```",
+          "options": [
+            "true",
+            "false, the words are different",
+            "false, one has a space in a different place",
+            "true only if case is ignored and spaces are kept"
+          ],
+          "correct": 0,
+          "explanation": "Removing spaces leaves the same letters with the same counts: a, a, e, f, i, l, r, s, t, y."
+        },
+        "python": {
+          "question": "After ignoring spaces, are these anagrams?\n\n```python\nis_anagram(\"rail safety\", \"fairy tales\")\n```",
+          "options": [
+            "True",
+            "False, the words are different",
+            "False, one has a space in a different place",
+            "True only if case is ignored and spaces are kept"
+          ],
+          "correct": 0,
+          "explanation": "Removing spaces leaves the same letters with the same counts: a, a, e, f, i, l, r, s, t, y."
+        }
+      }
+    }
+  ]
+}

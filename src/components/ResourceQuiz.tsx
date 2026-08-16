@@ -81,6 +81,8 @@ export default function ResourceQuiz({ quizData, resourceSlug, variant = 'deskto
     setCurrentQuestionIndex,
     shuffledQuestions,
     randomMode,
+    language,
+    handleLanguageChange,
     studentName,
     setStudentName,
     circleWindowStart,
@@ -453,6 +455,7 @@ export default function ResourceQuiz({ quizData, resourceSlug, variant = 'deskto
               hasCompleted={hasCompletedFromStorage || completed}
               previousScore={hasCompletedFromStorage || completed ? score : undefined}
               totalQuestions={hasCompletedFromStorage || completed ? shuffledQuestions.length : undefined}
+              languages={quizData.languages}
             />
           ) : (
             <>
@@ -460,6 +463,7 @@ export default function ResourceQuiz({ quizData, resourceSlug, variant = 'deskto
               {showSummary ? (
                 <QuizSummary
                   quizData={quizData}
+                  questions={shuffledQuestions}
                   score={score}
                   totalQuestions={shuffledQuestions.length}
                   scorePercentage={scorePercentage}
@@ -506,6 +510,9 @@ export default function ResourceQuiz({ quizData, resourceSlug, variant = 'deskto
           onStartQuiz={handleNext}
           isDark={isDark}
           hasCompleted={hasCompletedFromStorage || completed}
+          languages={quizData.languages}
+          language={language}
+          onLanguageChange={handleLanguageChange}
         />
       )}
       

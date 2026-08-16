@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { QuizData, QuizState, QuizQuestion } from './types';
+import { QuizData, QuizState, QuizQuestion, resolveQuestionForLanguage } from './types';
 import { shuffleArray, findOptionIndex, getOptionText } from './utils';
 import { TestResults } from './javascript-dom/types';
 
@@ -12,6 +12,8 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(-1);
   const [shuffledQuestions, setShuffledQuestions] = useState<QuizQuestion[]>([]);
   const [randomMode, setRandomMode] = useState<boolean>(false);
+  const defaultLanguage = quizData.defaultLanguage ?? quizData.languages?.[0] ?? 'java';
+  const [language, setLanguage] = useState<string>(defaultLanguage);
   const [studentName, setStudentName] = useState<string>('');
   const [circleWindowStart, setCircleWindowStart] = useState<number>(0);
   
@@ -23,6 +25,7 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
   
   const storageKey = `quiz-${resourceSlug}`;
   const randomModeKey = `quiz-random-${resourceSlug}`;
+  const languageKey = `quiz-language-${resourceSlug}`;
 
   // Load random mode preference from localStorage
   useEffect(() => {
@@ -36,13 +39,30 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
     }
   }, [randomModeKey]);
 
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(languageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed === 'string' && (!quizData.languages || quizData.languages.includes(parsed))) {
+          setLanguage(parsed);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading quiz language preference:', error);
+    }
+  }, [languageKey, quizData.languages]);
+
   // Prepare questions based on random mode
   useEffect(() => {
+    const resolvedQuestions = quizData.questions.map(question =>
+      resolveQuestionForLanguage(question, language)
+    );
     let questionsToUse: QuizQuestion[];
     
     if (randomMode) {
       // Shuffle questions
-      const shuffled = shuffleArray(quizData.questions);
+      const shuffled = shuffleArray(resolvedQuestions);
       
       // Shuffle options within each question and update correct index
       questionsToUse = shuffled.map(question => {
@@ -69,13 +89,13 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
       });
     } else {
       // Use original order without shuffling
-      questionsToUse = quizData.questions.map(question => ({ ...question }));
+      questionsToUse = resolvedQuestions.map(question => ({ ...question }));
     }
     
     setShuffledQuestions(questionsToUse);
     // Reset circle window when questions change
     setCircleWindowStart(0);
-  }, [quizData.questions, randomMode]);
+  }, [quizData.questions, randomMode, language]);
 
   // Load quiz state from localStorage on mount (after questions are shuffled)
   useEffect(() => {
@@ -261,6 +281,26 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
       localStorage.removeItem(storageKey);
     } catch (error) {
       console.error('Error clearing quiz state:', error);
+    }
+  };
+
+  const handleLanguageChange = (nextLanguage: string) => {
+    if (nextLanguage === language) return;
+    setLanguage(nextLanguage);
+    try {
+      localStorage.setItem(languageKey, JSON.stringify(nextLanguage));
+    } catch (error) {
+      console.error('Error saving quiz language preference:', error);
+    }
+    setSelectedAnswers({});
+    setScore(0);
+    setCompleted(false);
+    setCurrentQuestionIndex(-1);
+    setStudentName('');
+    try {
+      localStorage.removeItem(storageKey);
+    } catch (error) {
+      console.error('Error clearing quiz state after language change:', error);
     }
   };
 
@@ -451,6 +491,8 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
     setCurrentQuestionIndex,
     shuffledQuestions,
     randomMode,
+    language,
+    handleLanguageChange,
     studentName,
     setStudentName,
     circleWindowStart,

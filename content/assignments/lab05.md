@@ -147,6 +147,10 @@ If it worked, an `google.html` file should have been created to your local direc
 ## Part 2 (Everyone): Poetry (Python)
 **Poetry** is a dependency manager for Python projects that handles dependencies and packaging.
 
+{:.info}
+> **Language-Transfer Practice**
+> The Python work in this lab applies programming ideas after they have been practiced in Java. It is not Programming Readiness Verification. Because the crawler is scaffolded and GenAI is permitted for the stated lookup below, it cannot earn a Satisfactory readiness mark. If you still have a Not Yet specification, complete the assigned [Java readiness module](/resources/programming-readiness) before the optional extension.
+
 ### 3. Creating a Python Project with Poetry
 1. Verify that you're on a local branch called `lab05-b` (`git branch`). If you're not, jump to the top and re-read the "Before You Begin" section.
 1. Check if poetry is already installed by typing `poetry` at your Terminal / WSL command prompt.
@@ -264,6 +268,15 @@ from bs4 import BeautifulSoup
 soup = BeautifulSoup(response.content, 'html.parser')
     ```
 * Use the built-in BeautifulSoup functions to extract all of the links. Feel free to ask Google or Chat GPT something like: "How to I extract URLs using beautiful soup?"
+
+#### Optional readiness extension (Practice)
+After the basic crawler works, choose one:
+
+1. Deduplicate the links while preserving their original order.
+1. Count how many links point to each domain using a Python dictionary.
+1. Filter the output to include only links whose domain ends in `unca.edu`.
+
+Write at least two small tests for the transformation logic using a hand-written list of URLs; do not make your tests depend on the live website. In a comment, name the Java collection you would use for the same algorithm and explain why.
 
 
 ### 7. Removing Dependencies

@@ -8,6 +8,14 @@ order: 3
 ## Download
 * [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
 
+## Turn off Copilot and other AI
+
+VS Code will try to install Copilot and show chat / ghost-text prompts. To turn that off for every project, see [Turn Off Editor AI](/resources/disable-editor-ai). You can run:
+
+```bash
+python3 toggle-editor-ai.py off
+```
+
 ## Useful Extensions
 * [Video: Intro to Using VS Code Extensions](https://code.visualstudio.com/docs/introvideos/extend)
 

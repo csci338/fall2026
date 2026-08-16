@@ -15,6 +15,7 @@ Welcome to your first CSCI 338 lab! The goal of today's lab is to get you a litt
 1. [Command Line Exercises](#command-line)
 1. [OS Environment Exercises](#dot-files)
 1. [Vim / Emacs Exercises](#vim-emacs)
+1. [Java Readiness Check](#java-check)
 
 **I have curated a list of useful resources on the [course resources page](/resources/).** Please see the "Command Line" and "Code Editors" sections.
 
@@ -91,6 +92,18 @@ function foo(a, b) {
 [ ] Saving `test.js` autoformats it
 
 </div>
+
+#### Optional: turn off editor AI
+
+VS Code often pops up Copilot, Codex, Claude, and similar tools. That is noisy, and it is not allowed during Programming Readiness Verification.
+
+If you want them **off in every folder**, follow [Turn Off Editor AI](/resources/disable-editor-ai). Download [toggle-editor-ai.py](/starter-code/vs-code/toggle-editor-ai.py), then:
+
+```bash
+python3 toggle-editor-ai.py off
+```
+
+Then Command Palette → **Developer: Reload Window**. Run the same script with `on` when you want AI back.
 
 {:#command-line}
 ## Part 3. Complete the Command Line Exercises
@@ -329,12 +342,47 @@ Then `cat notes.txt` to confirm your sentence is there.
 
 </div>
 
+{:#java-check}
+## Part 6. Java Readiness Check
+The programming-readiness verification will use Java because Java is the language used in the prerequisite courses. Before leaving today, make sure your computer can compile and run a Java program.
+
+This environment check is **Practice**, not Verification. It confirms that your tools work; it does not earn a readiness specification.
+
+1. From the command line, check for the Java compiler: `javac --version`
+1. If `javac` is not installed:
+    * <span class="os-icon windows" title="Windows"><i class="fa-brands fa-windows" aria-hidden="true"></i><span class="sr-only">Windows</span></span> in WSL, run `sudo apt install default-jdk`
+    * <span class="os-icon mac" title="Mac"><i class="fa-brands fa-apple" aria-hidden="true"></i><span class="sr-only">Mac</span></span> install a current JDK, then reopen Terminal
+1. In `lab01`, create `ReadinessCheck.java`:
+
+```java
+public class ReadinessCheck {
+    public static void main(String[] args) {
+        System.out.println("Java is ready");
+    }
+}
+```
+
+1. Compile and run it:
+
+```bash
+javac ReadinessCheck.java
+java ReadinessCheck
+```
+
+<div class="info">
+
+**Before moving on**
+
+[ ] The terminal prints `Java is ready`
+
+</div>
+
 {:#turn-in}
 ## What do I turn in?
 Under Lab 1 on Moodle, paste the command line history from today's lab (`history`). If the dump is huge, the last ~80–100 lines that include this lab is enough.
 
 ### What to study / have done after completing this lab...
 * If you are a Windows user, make sure your WSL is installed and configured
-* Make sure your VS Code editor is set up
+* Make sure your VS Code editor is set up. If Copilot or other AI tools keep popping up, [turn them off](/resources/disable-editor-ai).
 * Make sure you know some basic shell commands, and specifically how to navigate, search, create, delete, copy, read, and move files. Practice with the quiz at the bottom of this page, or these [sample command line quiz questions](https://docs.google.com/document/d/1cBdqsCEobdzdNiGrISZip3Xm45bs0VgfWyM9rJM7M8A/edit?usp=sharing).
 * Make sure you know how to open, edit, save, and exit either vim or emacs.

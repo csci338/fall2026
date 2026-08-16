@@ -11,6 +11,7 @@ interface QuizInstructionsProps {
   hasCompleted?: boolean;
   previousScore?: number;
   totalQuestions?: number;
+  languages?: string[];
 }
 
 export default function QuizInstructions({
@@ -24,6 +25,7 @@ export default function QuizInstructions({
   hasCompleted,
   previousScore,
   totalQuestions,
+  languages,
 }: QuizInstructionsProps) {
   const scorePercentage = previousScore !== undefined && totalQuestions !== undefined && totalQuestions > 0
     ? Math.round((previousScore / totalQuestions) * 100)
@@ -55,6 +57,9 @@ export default function QuizInstructions({
             <li>Read each question carefully before selecting your answer</li>
             <li>You can navigate between questions using the Previous and Next buttons</li>
             <li>After completing all questions, you'll see your score and can review incorrect answers</li>
+            {languages && languages.length > 1 && (
+              <li>Choose Java or Python; the code snippets match the language you select</li>
+            )}
           </ul>
         </blockquote>
       </div>
@@ -81,6 +86,9 @@ export function QuizInstructionsFooter({
   onStartQuiz,
   isDark,
   hasCompleted,
+  languages,
+  language,
+  onLanguageChange,
 }: {
   randomMode: boolean;
   onToggleRandomMode: () => void;
@@ -88,11 +96,44 @@ export function QuizInstructionsFooter({
   onStartQuiz: () => void;
   isDark: boolean;
   hasCompleted?: boolean;
+  languages?: string[];
+  language?: string;
+  onLanguageChange?: (language: string) => void;
 }) {
+  const languageLabel = (value: string) => value === 'java' ? 'Java' : value === 'python' ? 'Python' : value;
+
   return (
     <div className="border-t border-gray-200 dark:border-gray-800" style={isDark ? { borderColor: '#374151' } : undefined}>
       <div className="max-w-4xl mx-auto w-full px-6 flex items-center justify-between py-4">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
+          {languages && languages.length > 1 && language && onLanguageChange && (
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-600 dark:text-gray-400" style={isDark ? { color: '#9ca3af' } : undefined}>
+                Language
+              </span>
+              <div className="inline-flex rounded-md border border-gray-300 dark:border-gray-700 p-0.5" role="group" aria-label="Quiz language">
+                {languages.map((option) => {
+                  const selected = option === language;
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => onLanguageChange(option)}
+                      className={`px-3 py-1 text-sm font-medium rounded ${
+                        selected
+                          ? 'bg-blue-600 text-white dark:bg-blue-500'
+                          : 'text-gray-700 dark:text-gray-200'
+                      }`}
+                      aria-pressed={selected}
+                    >
+                      {languageLabel(option)}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+          <div className="flex items-center gap-2">
           <span className="text-sm text-gray-600 dark:text-gray-400" style={isDark ? { color: '#9ca3af' } : undefined}>
             Shuffle
           </span>
@@ -114,6 +155,7 @@ export function QuizInstructionsFooter({
               }`}
             />
           </button>
+          </div>
         </div>
         <div className="flex items-center gap-3">
           <button

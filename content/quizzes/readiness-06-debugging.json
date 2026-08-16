@@ -1,0 +1,123 @@
+{
+  "quizName": "Testing and Debugging Self-Check",
+  "draft": 1,
+  "languages": [
+    "java",
+    "python"
+  ],
+  "defaultLanguage": "java",
+  "questions": [
+    {
+      "id": "m6-q1",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "Tests expect `true` for three 9s. What is the actual return?\n\n```java\ncounts.put(card.rank, 1);\nif (counts.get(card.rank) == 3) return true;\n```",
+          "options": [
+            "true",
+            "false",
+            "NullPointerException",
+            "3"
+          ],
+          "correct": 1,
+          "explanation": "The count is always 1, so the method returns false. Do not change the expected value; repair the increment."
+        },
+        "python": {
+          "question": "Tests expect `True` for three 9s. What is the actual return?\n\n```python\ncounts[card.rank] = 1\nif counts[card.rank] == 3:\n    return True\n```",
+          "options": [
+            "True",
+            "False",
+            "KeyError",
+            "3"
+          ],
+          "correct": 1,
+          "explanation": "The count is always 1, so the function returns False. Do not change the expected value; repair the increment."
+        }
+      }
+    },
+    {
+      "id": "m6-q2",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "Which test best exposes planting next to an existing flower?\n\n```java\ncanPlace(new int[]{1, 0, 1}, 1); // expected false\n```",
+          "options": [
+            "only {0, 0, 0}, n = 1",
+            "{1, 0, 1}, n = 1 expected false, because the middle plot touches flowers",
+            "{1, 0, 0, 0, 1}, n = 1 expected false",
+            "an empty flowerbed"
+          ],
+          "correct": 1,
+          "explanation": "The middle 0 is adjacent to two 1s. A correct implementation cannot plant there, so n = 1 must be false."
+        },
+        "python": {
+          "question": "Which test best exposes planting next to an existing flower?\n\n```python\ncan_place([1, 0, 1], 1)  # expected False\n```",
+          "options": [
+            "only [0, 0, 0], n = 1",
+            "[1, 0, 1], n = 1 expected False, because the middle plot touches flowers",
+            "[1, 0, 0, 0, 1], n = 1 expected False",
+            "an empty flowerbed"
+          ],
+          "correct": 1,
+          "explanation": "The middle 0 is adjacent to two 1s. A correct implementation cannot plant there, so n = 1 must be False."
+        }
+      }
+    },
+    {
+      "id": "m6-q3",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "A flowerbed test expected `true` for `{1, 0, 0, 0, 1}, n = 1` but got `false`. The loop uses `i <= bed.length`. What happens?\n\n```java\nfor (int i = 0; i <= bed.length; i++) { ... bed[i] ... }\n```",
+          "options": [
+            "It skips index 0",
+            "It reads one past the last index and crashes or misses the middle plant",
+            "It plants two flowers",
+            "It always returns true"
+          ],
+          "correct": 1,
+          "explanation": "i <= length allows i == 5 on a length-5 array. The off-by-one is the defect; the middle plot is the intended plant."
+        },
+        "python": {
+          "question": "A flowerbed test expected `True` for `[1, 0, 0, 0, 1], n = 1` but got an error. The loop uses `range(len(bed) + 1)`. What happens?\n\n```python\nfor i in range(len(bed) + 1):\n    ... bed[i] ...\n```",
+          "options": [
+            "It skips index 0",
+            "It reads one past the last index and raises IndexError",
+            "It plants two flowers",
+            "It always returns True"
+          ],
+          "correct": 1,
+          "explanation": "range(len + 1) includes i == 5 on a length-5 list. The off-by-one is the defect; the middle plot is the intended plant."
+        }
+      }
+    },
+    {
+      "id": "m6-q4",
+      "strand": "R6",
+      "variants": {
+        "java": {
+          "question": "Which explanation matches a real repair of the three-of-a-kind bug?",
+          "options": [
+            "It was broken.",
+            "put stored 1 every time; changing to getOrDefault(rank, 0) + 1 lets the third 9 reach 3, and the three-9s test now passes.",
+            "I rewrote the method.",
+            "HashMap was the wrong type."
+          ],
+          "correct": 1,
+          "explanation": "A useful explanation names the failing evidence, the cause, the smallest revision, and the test that now passes."
+        },
+        "python": {
+          "question": "Which explanation matches a real repair of the three-of-a-kind bug?",
+          "options": [
+            "It was broken.",
+            "Assignment stored 1 every time; changing to counts.get(rank, 0) + 1 lets the third 9 reach 3, and the three-9s test now passes.",
+            "I rewrote the function.",
+            "A dict was the wrong type."
+          ],
+          "correct": 1,
+          "explanation": "A useful explanation names the failing evidence, the cause, the smallest revision, and the test that now passes."
+        }
+      }
+    }
+  ]
+}

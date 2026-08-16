@@ -7,6 +7,7 @@ import { TestResults } from './javascript-dom/types';
 
 interface QuizSummaryProps {
   quizData: QuizData;
+  questions?: QuizQuestion[];
   score: number;
   totalQuestions: number;
   scorePercentage: number;
@@ -24,6 +25,7 @@ interface QuizSummaryProps {
 
 export default function QuizSummary({
   quizData,
+  questions,
   score,
   totalQuestions,
   scorePercentage,
@@ -43,6 +45,49 @@ export default function QuizSummary({
   const handleGenerateReport = async () => {
     await reportRef.current?.generateReport();
   };
+
+  const isQuestionCorrect = (question: QuizQuestion): boolean => {
+    const answer = selectedAnswers[question.id];
+
+    if (question.type === 'javascript-dom') {
+      return (
+        typeof answer === 'object' &&
+        answer !== null &&
+        !Array.isArray(answer) &&
+        answer.testResults?.allPassed === true
+      );
+    }
+
+    if (!question.options || question.correct === undefined) return false;
+    const correctAnswers = (Array.isArray(question.correct) ? question.correct : [question.correct])
+      .map(index => question.options?.[index])
+      .filter((option): option is string => option !== undefined);
+
+    if (Array.isArray(question.correct)) {
+      return (
+        Array.isArray(answer) &&
+        answer.length === correctAnswers.length &&
+        correctAnswers.every(option => answer.includes(option))
+      );
+    }
+
+    return typeof answer === 'string' && answer === correctAnswers[0];
+  };
+
+  const strandSource = questions ?? quizData.questions;
+  const strandResults = quizData.showStrandResults
+    ? Array.from(
+        strandSource.reduce((results, question) => {
+          if (!question.strand) return results;
+          const current = results.get(question.strand) ?? { correct: 0, total: 0 };
+          current.total += 1;
+          if (isQuestionCorrect(question)) current.correct += 1;
+          results.set(question.strand, current);
+          return results;
+        }, new Map<string, { correct: number; total: number }>())
+      )
+    : [];
+
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-lg shadow-sm dark:shadow-none" style={isDark ? { backgroundColor: '#1f2937', borderColor: '#1f2937' } : undefined}>
       <div className="text-center mb-6">
@@ -77,6 +122,33 @@ export default function QuizSummary({
               : 'Keep practicing! 💪'}
         </p>
       </div>
+
+      {strandResults.length > 0 && (
+        <div className="mb-6 rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+          <h4 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Readiness profile
+          </h4>
+          <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
+            This profile guides practice only; it does not satisfy the official Programming Readiness Bundle.
+          </p>
+          <ul className="space-y-2">
+            {strandResults.map(([strand, result]) => {
+              const threshold = quizData.strandThreshold ?? 1;
+              const likelySatisfactory = result.total > 0 && result.correct / result.total >= threshold;
+              return (
+                <li key={strand} className="flex items-start justify-between gap-4 text-sm">
+                  <span className="font-medium text-gray-800 dark:text-gray-200">
+                    {quizData.strandLabels?.[strand] ?? strand}
+                  </span>
+                  <span className={likelySatisfactory ? 'text-green-700 dark:text-green-400' : 'text-amber-700 dark:text-amber-400'}>
+                    {likelySatisfactory ? 'Likely Satisfactory' : 'Needs Practice'} ({result.correct}/{result.total})
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
       
       {/* Name Input */}
       <div className="mb-6">

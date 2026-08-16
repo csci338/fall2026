@@ -11,6 +11,7 @@ export const baseTopics = [
           activities: [
             { title: "Intro to the Course", url: "https://docs.google.com/presentation/d/1NO-Wl5fCOtgggDkwjqFbNeFTSLmQXtPs/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
             { title: "Warm Up", url: "https://docs.google.com/document/d/1Gtxjhx6DO9LlDaCnOieB-K6Rvv14EtPH/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Programming Readiness Self-Diagnostic", url: "/resources/programming-readiness-diagnostic", draft: 0 },
           ],
           discussionQuestions: [
             { question: "How is software engineering different from programming?" },
@@ -34,6 +35,7 @@ export const baseTopics = [
             { citation: "Chapter 1. What is Software Engineering?", url: "https://abseil.io/resources/swe-book/html/ch01.html" },
           ],
           optionalReadings: [
+            { citation: "Programming Readiness Modules", url: "/resources/programming-readiness" },
             { citation: "Configuring WSL", url: "/resources/wsl" },
             { citation: "Command line cheat sheet", url: "/resources/command-line" },
             { citation: "Configuring zsh/bash", url: "https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/" },
@@ -81,7 +83,7 @@ export const baseTopics = [
         },
         {
           date: "Th, Aug 27",
-          topic: "Introduction to Lab 2",
+          topic: "Programming Readiness Verification 1 + Introduction to Lab 2",
           activities: [
             { title: "Introduction to Lab 2", url: "https://docs.google.com/presentation/d/1iBYAdOWcRUqr_Oc0O0ss0F0PFG2ulR9g/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
@@ -128,6 +130,7 @@ export const baseTopics = [
           activities: [
             { title: "Version Control Wrap", url: "https://docs.google.com/presentation/d/1s3y_CCh3H1InClBD659LOSIY39pFNKX_/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
             { title: "Coding Practice", url: "https://docs.google.com/document/d/1xio34-aAAFzljgeVkWKnbla0nyEzTXIh/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Targeted Programming Readiness Remediation", url: "/resources/programming-readiness", draft: 0 },
           ],
           readings: [
             { citation: "Everything as Code", url: "https://youtu.be/HcmPi7-IVQo" },
@@ -146,7 +149,7 @@ export const baseTopics = [
         },
         {
           date: "Th, Sep 10",
-          topic: "Everything as Code",
+          topic: "Programming Readiness Verification 2 + Everything as Code",
           activities: [
             { title: "Everything as Code", url: "https://docs.google.com/presentation/d/1jUycpTRuO-qw-wokBCKUh3MvJQcEc0uF/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
@@ -190,6 +193,13 @@ export const baseTopics = [
             { question: "Different dependency management systems are used for different parts of the software stack. What are some examples of dependency managers that are used for: <em>operating systems</em>, <em>software languages (e.g., python, node.js, ruby, etc.</em>, <em>server configuration</em>?" },
           ],
         },
+        {
+          date: "Th, Sep 17",
+          topic: "Lab 5 + Programming Language Transfer",
+          activities: [
+            { title: "Python Practice (after Java readiness practice)", url: "/activities/python-practice", draft: 0 },
+          ],
+        },
       ],
     },
 
@@ -204,6 +214,7 @@ export const baseTopics = [
           description: "Continuous integration (CI), static analysis, and testing are complementary software development techniques that ensure that teams can deploy software continuously with a high degree of confidence in the quality of their code. In this unit, we will learn about ways you and your team can automate code testing and validation procedures before merging code updates into the main branch. By setting up a few tools up front, you will save time and energy and increase the reliability of your code base.",
           activities: [
             { title: "Intro to Testing", url: "https://docs.google.com/presentation/d/18N6d1HKbHKsgR-maWlt2Pp2sZp7A8XTP/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Readiness Testing and Debugging Practice", url: "/resources/readiness-06-debugging", draft: 0 },
           ],
           readings: [
             { citation: "High-level overview of unit v. integration testing", url: "https://circleci.com/blog/unit-testing-vs-integration-testing" },
@@ -228,6 +239,13 @@ export const baseTopics = [
             { question: "<span class=\"badge-dark\">CI</span> Can you still use CI if you're working on a really big feature that’s not ready for prime time?" },
             { question: "<span class=\"badge-dark\">CI</span> What happens in the \"presubmit\" phase?" },
             { question: "<span class=\"badge-dark\">CI</span> What is release candidate testing? How is it similar / different from the \"presubmit\" phase?" },
+          ],
+        },
+        {
+          date: "Th, Sep 24",
+          topic: "Programming Readiness Final Verification + Testing Practice",
+          activities: [
+            { title: "Programming Readiness Modules", url: "/resources/programming-readiness", draft: 0 },
           ],
         },
         {

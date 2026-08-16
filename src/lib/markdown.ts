@@ -588,16 +588,30 @@ export function getAllPosts(subdirectory?: string): PostData[] {
   });
 }
 
+export interface QuizQuestionVariant {
+  question: string;
+  options?: string[];
+  correct?: number | number[];
+  explanation?: string;
+}
+
 export interface QuizQuestion {
   id: string;
-  question: string;
-  options: string[];
-  correct: number;
+  question?: string;
+  strand?: string;
+  options?: string[];
+  correct?: number | number[];
   explanation?: string;
+  variants?: Record<string, QuizQuestionVariant>;
 }
 
 export interface QuizData {
   quizName?: string;
+  showStrandResults?: boolean;
+  strandThreshold?: number;
+  strandLabels?: Record<string, string>;
+  languages?: string[];
+  defaultLanguage?: string;
   start_date?: string;
   draft?: number;
   folder?: string;

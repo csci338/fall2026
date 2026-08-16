@@ -1,0 +1,123 @@
+{
+  "quizName": "Maps/Sets and Frequency Counting Self-Check",
+  "draft": 1,
+  "languages": [
+    "java",
+    "python"
+  ],
+  "defaultLanguage": "java",
+  "questions": [
+    {
+      "id": "m4-q1",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "After two words, what is in `groups`?\n\n```java\nMap<Character, List<String>> groups = new LinkedHashMap<>();\nfor (String word : List.of(\"apple\", \"ant\")) {\n    char key = word.charAt(0);\n    groups.putIfAbsent(key, new ArrayList<>());\n    groups.get(key).add(word);\n}\n```",
+          "options": [
+            "{a=[ant]}",
+            "{a=[apple, ant]}",
+            "{a=[apple]}",
+            "{5=[apple], 3=[ant]}"
+          ],
+          "correct": 1,
+          "explanation": "Both words share key a. The second add appends, so the list is apple then ant."
+        },
+        "python": {
+          "question": "After two words, what is in `groups`?\n\n```python\ngroups = {}\nfor word in [\"apple\", \"ant\"]:\n    key = word[0]\n    if key not in groups:\n        groups[key] = []\n    groups[key].append(word)\n```",
+          "options": [
+            "{'a': ['ant']}",
+            "{'a': ['apple', 'ant']}",
+            "{'a': ['apple']}",
+            "{5: ['apple'], 3: ['ant']}"
+          ],
+          "correct": 1,
+          "explanation": "Both words share key a. The second append keeps apple then ant."
+        }
+      }
+    },
+    {
+      "id": "m4-q2",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "What does grouping by length produce?\n\n```java\nfor (String word : List.of(\"apple\", \"ant\", \"banana\", \"bear\", \"cat\")) {\n    int key = word.length();\n    groups.putIfAbsent(key, new ArrayList<>());\n    groups.get(key).add(word);\n}\n```",
+          "options": [
+            "{3=[ant, cat], 4=[bear], 5=[apple], 6=[banana]}",
+            "{a=[apple, ant], b=[banana, bear], c=[cat]}",
+            "{3=[cat], 5=[apple]}",
+            "{5=[apple, banana]}"
+          ],
+          "correct": 0,
+          "explanation": "ant and cat have length 3, bear 4, apple 5, banana 6. Encounter order is preserved inside each list."
+        },
+        "python": {
+          "question": "What does grouping by length produce?\n\n```python\nfor word in [\"apple\", \"ant\", \"banana\", \"bear\", \"cat\"]:\n    key = len(word)\n    groups.setdefault(key, []).append(word)\n```",
+          "options": [
+            "{3: ['ant', 'cat'], 4: ['bear'], 5: ['apple'], 6: ['banana']}",
+            "{'a': ['apple', 'ant'], 'b': ['banana', 'bear'], 'c': ['cat']}",
+            "{3: ['cat'], 5: ['apple']}",
+            "{5: ['apple', 'banana']}"
+          ],
+          "correct": 0,
+          "explanation": "ant and cat have length 3, bear 4, apple 5, banana 6. Encounter order is preserved inside each list."
+        }
+      }
+    },
+    {
+      "id": "m4-q3",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "This update is wrong. What does `groups` contain after `apple` then `ant`?\n\n```java\ngroups.put(word.charAt(0), List.of(word));\n```",
+          "options": [
+            "{a=[apple, ant]}",
+            "{a=[ant]}",
+            "{a=[apple]}",
+            "{}"
+          ],
+          "correct": 1,
+          "explanation": "Each put replaces the previous list. After ant, apple is gone."
+        },
+        "python": {
+          "question": "This update is wrong. What does `groups` contain after `apple` then `ant`?\n\n```python\ngroups[word[0]] = [word]\n```",
+          "options": [
+            "{'a': ['apple', 'ant']}",
+            "{'a': ['ant']}",
+            "{'a': ['apple']}",
+            "{}"
+          ],
+          "correct": 1,
+          "explanation": "Each assignment replaces the previous list. After ant, apple is gone."
+        }
+      }
+    },
+    {
+      "id": "m4-q4",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "After `{\"red\", \"blue\", \"red\"}`, what is in the frequency map?\n\n```java\nMap<String, Integer> counts = new LinkedHashMap<>();\nfor (String word : words) {\n    counts.put(word, counts.getOrDefault(word, 0) + 1);\n}\n```",
+          "options": [
+            "{red=1, blue=1}",
+            "{red=2, blue=1}",
+            "{red=2}",
+            "{red=1, blue=1, red=2}"
+          ],
+          "correct": 1,
+          "explanation": "red is incremented twice and blue once. getOrDefault uses 0 the first time a key appears."
+        },
+        "python": {
+          "question": "After `['red', 'blue', 'red']`, what is in the frequency dict?\n\n```python\ncounts = {}\nfor word in words:\n    counts[word] = counts.get(word, 0) + 1\n```",
+          "options": [
+            "{'red': 1, 'blue': 1}",
+            "{'red': 2, 'blue': 1}",
+            "{'red': 2}",
+            "{'red': 1, 'blue': 1, 'red': 2}"
+          ],
+          "correct": 1,
+          "explanation": "red is incremented twice and blue once. get uses 0 the first time a key appears."
+        }
+      }
+    }
+  ]
+}

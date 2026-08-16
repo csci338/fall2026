@@ -45,6 +45,22 @@ Our hope is that the experience will help you develop more perspective around ho
 ### Labs
 Labs are intended to be completed during class on Thursdays (unless otherwise specified), so that we can help you with any questions (or configuration issues) you make have. Each lab is designed to give you practice with a tool, technique, or workflow relevant to building collaborative software.
 
+### Programming Readiness Requirement
+CSCI 202 and CSCI 235 are prerequisites for this course. Before joining a Project 1 team, each student must complete the [Programming Readiness Bundle](/resources/programming-readiness) by demonstrating the following prerequisite skills in Java:
+
+* **R1 — Trace and reason:** accurately trace conditionals and loops and explain variable state.
+* **R2 — Control flow:** write a method using appropriate conditionals, loops, counters, or accumulators.
+* **R3 — Lists / arrays:** traverse and transform a list or array correctly, including relevant edge cases.
+* **R4 — Maps / sets and algorithms:** use a map or set appropriately in a simple algorithm and explain the strategy.
+* **R5 — Test and debug:** design useful tests, interpret a failure, and repair basic logic.
+* **R6 — Explain and revise:** explain your own code and make a small requested modification.
+
+This requirement uses **specifications grading**. Each specification is marked **Satisfactory** or **Not Yet**; there are no points and strengths in one specification do not offset a Not Yet in another. A Satisfactory specification remains complete. If a specification is Not Yet, you will receive a targeted self-paced module and may reassess only that specification on a later form.
+
+The scheduled verification dates are **August 27, September 10, and September 24**. Core verification is completed individually on paper with devices put away. An instructor-provided Java reference sheet is allowed. Afterward, you will type one of your collected paper solutions into a supplied test harness, correct any problems, and explain one revision without GenAI or outside assistance. Minor syntax slips do not prevent a Satisfactory result when the intended logic is clear, but each required programming competency must be demonstrated.
+
+Students who complete R1–R6 by September 24 are eligible for Project 1 team assignment. A student whose bundle is incomplete on that date will not yet be assigned to a project team and must meet with the instructor to determine the available reassessment and course-completion pathway. Approved accommodations may change assessment time, format, or setting, but not the required competencies.
+
 ### Exams
 There will also be a midterm and a final exam to assess your understanding of some of the methods we are learning about (e.g., version control, tradeoffs, CI/CD, managing trade-offs, navigating constraints and uncertainty, dependency management, etc.).
 
@@ -83,6 +99,8 @@ Your course grade is calculated based on projects, labs, exams, and attendance /
 | **Midterm Project** | 20% |
 | **Final Exam** | 15% |
 | **Final Project** | 20% |
+
+The Programming Readiness Bundle is an unweighted prerequisite gate, not another points-based grade category. Its Satisfactory/Not Yet results determine project-team eligibility as described above.
 
 > Please also see the attendance policy below: poor attendance will severely impact your grade.
 
@@ -161,6 +179,11 @@ In this class, I encourage you to explore the broader Internet for tutorials, co
 The appropriate use of GenAI and other tools and resources will vary by assignment. Regardless of what you use, you are responsible for understanding, evaluating, and explaining the work you submit. These tools and resources should support your learning rather than substitute for the knowledge, reasoning, programming, or analysis an assignment is designed to assess.
 
 Specific expectations regarding permitted tools and resources will be provided with individual assignments. When in doubt, ask before using a tool or resource for an assignment.
+
+Programming-readiness work is labeled as one of two types:
+
+* **Practice:** formative work intended to help you learn. GenAI may be used only when the activity explicitly permits it, and any required disclosure still applies. Practice cannot satisfy a readiness specification.
+* **Verification:** individual work used to demonstrate a readiness specification. GenAI, assistance from another person, and unapproved materials are not permitted. Only Verification work can earn a Satisfactory result for R1–R6.
 
 ### Class Cancellation Policy
 If a class meeting is canceled or due dates are moved due to inclement weather or any other reason, we will inform you via campus email (ending with unca.edu).
