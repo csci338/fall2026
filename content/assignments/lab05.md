@@ -2,7 +2,7 @@
 title: Understanding Package Managers
 type: lab
 num: 5
-draft: 0
+draft: 1
 assigned_date: 2026-09-17
 due_date: 2026-09-23
 points: 6

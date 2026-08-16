@@ -109,7 +109,7 @@ export default function QuickLinksNavClient({ resources, assignments, readings }
     <div className="quick-links-nav h-full overflow-y-auto p-4 hidden lg:block">
       {/* Quick Links Section */}
       {(resources.length > 0) && (
-        <div className="mb-6 rounded-2xl bg-gray-100 dark:bg-gray-800 p-4">
+        <div className="mb-6 bg-gray-100 dark:bg-gray-800 p-4">
           <h2 className="!text-lg !font-normal text-gray-800 dark:text-gray-100 !m-0 !mb-4">Quick Links</h2>
           <div className="space-y-2">
             {resources.map((resource) => {
@@ -130,7 +130,7 @@ export default function QuickLinksNavClient({ resources, assignments, readings }
 
       {/* Upcoming Due Dates Section */}
       {upcomingAssignments.length > 0 && (
-        <div className="mb-8 rounded-2xl bg-blue-50 dark:bg-blue-950 p-4">
+        <div className="mb-8 bg-gray-100 dark:bg-gray-800 p-4">
           <h2 className="!text-lg !font-normal text-gray-800 dark:text-gray-100 !m-0 !mb-4">Upcoming Due Dates</h2>
           <div className="space-y-1">
             {upcomingAssignments.map((assignment, index) => {
@@ -213,7 +213,7 @@ export default function QuickLinksNavClient({ resources, assignments, readings }
         };
 
         return (
-          <div className="mb-6 rounded-2xl bg-amber-50 dark:bg-gray-700 p-4">
+          <div className="mb-6 bg-gray-100 dark:bg-gray-800 p-4">
             <h2 className="!text-lg !font-normal text-gray-800 dark:text-gray-100 !m-0 !mb-4">Upcoming Readings</h2>
             <div className="space-y-4">
               {Object.entries(readingsByDate).map(([date, dateReadings]) => {

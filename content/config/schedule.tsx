@@ -9,9 +9,9 @@ export const baseTopics = [
           topic: "Intro to the Course",
           description: "This unit introduces the idea of software engineering, including how it is similar and different from programming, and a host of considerations for building software that is scalable and maintainable over time.",
           activities: [
-            { title: "Intro to the Course", url: "https://docs.google.com/presentation/d/1NO-Wl5fCOtgggDkwjqFbNeFTSLmQXtPs/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
-            { title: "Warm Up", url: "https://docs.google.com/document/d/1Gtxjhx6DO9LlDaCnOieB-K6Rvv14EtPH/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
-            { title: "Programming Readiness Self-Diagnostic", url: "/resources/programming-readiness-diagnostic", draft: 0 },
+            { title: "Intro to the Course", url: "https://docs.google.com/presentation/d/1NO-Wl5fCOtgggDkwjqFbNeFTSLmQXtPs/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Warm Up", url: "https://docs.google.com/document/d/1Gtxjhx6DO9LlDaCnOieB-K6Rvv14EtPH/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Programming Readiness Self-Diagnostic", url: "/resources/programming-readiness-diagnostic", draft: 1 },
           ],
           discussionQuestions: [
             { question: "How is software engineering different from programming?" },
@@ -28,7 +28,7 @@ export const baseTopics = [
           date: "Th, Aug 20",
           topic: "What is Software Engineering?",
           activities: [
-            { title: "What is Software Engineering?", url: "https://docs.google.com/presentation/d/1R-kcV7qoy0EA924nqrB8W2doX5VJFHEC/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "What is Software Engineering?", url: "https://docs.google.com/presentation/d/1R-kcV7qoy0EA924nqrB8W2doX5VJFHEC/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "Preface. Software Engineering at Google", url: "https://abseil.io/resources/swe-book/html/pr01.html" },
@@ -61,7 +61,7 @@ export const baseTopics = [
           topic: "Intro to Version Control",
           description: "Version control is perhaps one of the most important topics in software engineering. Version control systems allow teams to collaborate on projects, review one another's code, experiment with new features and ideas, and revert to previous versions when needed. In this unit, we will explore different approaches that teams might take to organize their code repositories. We will also do various hands-on activities so that you can familiarize yourself with bash and git commands.",
           activities: [
-            { title: "Intro to Version Control", url: "https://docs.google.com/presentation/d/1CJeCcZvtlv50V5THh3DxDZvRROZXIno9/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Intro to Version Control", url: "https://docs.google.com/presentation/d/1CJeCcZvtlv50V5THh3DxDZvRROZXIno9/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "Chapter 16. Version Control and Branch Management", url: "https://abseil.io/resources/swe-book/html/ch16.html" },
@@ -85,14 +85,14 @@ export const baseTopics = [
           date: "Th, Aug 27",
           topic: "Programming Readiness Verification 1 + Introduction to Lab 2",
           activities: [
-            { title: "Introduction to Lab 2", url: "https://docs.google.com/presentation/d/1iBYAdOWcRUqr_Oc0O0ss0F0PFG2ulR9g/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Introduction to Lab 2", url: "https://docs.google.com/presentation/d/1iBYAdOWcRUqr_Oc0O0ss0F0PFG2ulR9g/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
         },
         {
           date: "Tu, Sep 1",
           topic: "Version Control and Collaborative Workflows",
           activities: [
-            { title: "Version Control and Collaborative Workflows", url: "https://docs.google.com/presentation/d/1-hRdUlYno040jHsVn3H1urpkMpDp58As/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Version Control and Collaborative Workflows", url: "https://docs.google.com/presentation/d/1-hRdUlYno040jHsVn3H1urpkMpDp58As/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "<a href=\"https://en.wikipedia.org/wiki/git\" target=\"_blank\">Git Wikipedia article </a><br>Read the \"History\" and \"Characteristics\" sections." },
@@ -105,7 +105,7 @@ export const baseTopics = [
           date: "Th, Sep 3",
           topic: "Intro to Lab 3",
           activities: [
-            { title: "Intro to Lab 3", url: "https://docs.google.com/presentation/d/1ucN6atlHcSLyE7n6Tcdj2fo4X_8rqDig/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Intro to Lab 3", url: "https://docs.google.com/presentation/d/1ucN6atlHcSLyE7n6Tcdj2fo4X_8rqDig/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "Collaborating with git and GitHub (video)", url: "https://www.youtube.com/watch?v=_wQdY_5Tb5Q" },
@@ -128,9 +128,9 @@ export const baseTopics = [
           topic: "Version Control Wrap",
           description: "In this unit, we will explore the idea of formalizing your entire software stack using code (e.g. operating system configurations, dependencies, documentation, and more). Even if your team is collaborating on the same codebase, if each team member is developing software with a different compiler, interpreter, language version, operating system, etc., you will likely run into conflicts and inconsistencies. Give this, you will learn about why \"everything as code\" is such an important idea, and some tools and strategies for managing your system stack over time.",
           activities: [
-            { title: "Version Control Wrap", url: "https://docs.google.com/presentation/d/1s3y_CCh3H1InClBD659LOSIY39pFNKX_/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
-            { title: "Coding Practice", url: "https://docs.google.com/document/d/1xio34-aAAFzljgeVkWKnbla0nyEzTXIh/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
-            { title: "Targeted Programming Readiness Remediation", url: "/resources/programming-readiness", draft: 0 },
+            { title: "Version Control Wrap", url: "https://docs.google.com/presentation/d/1s3y_CCh3H1InClBD659LOSIY39pFNKX_/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Coding Practice", url: "https://docs.google.com/document/d/1xio34-aAAFzljgeVkWKnbla0nyEzTXIh/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Targeted Programming Readiness Remediation", url: "/resources/programming-readiness", draft: 1 },
           ],
           readings: [
             { citation: "Everything as Code", url: "https://youtu.be/HcmPi7-IVQo" },
@@ -151,7 +151,7 @@ export const baseTopics = [
           date: "Th, Sep 10",
           topic: "Programming Readiness Verification 2 + Everything as Code",
           activities: [
-            { title: "Everything as Code", url: "https://docs.google.com/presentation/d/1jUycpTRuO-qw-wokBCKUh3MvJQcEc0uF/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Everything as Code", url: "https://docs.google.com/presentation/d/1jUycpTRuO-qw-wokBCKUh3MvJQcEc0uF/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           optionalReadings: [
             { citation: "Docker cheat sheet reference", url: "https://docs.docker.com/get-started/docker_cheatsheet.pdf" },
@@ -170,7 +170,7 @@ export const baseTopics = [
           topic: "Package & Dependency Management",
           description: "When developing software, it is common to rely on dependencies -- code that has been developed by other people. However, <em>your code</em> isn't the only code that changes. Dependencies (and their dependencies, and their dependencies' dependencies) also evolve over time as new features are added and bugs are patched. Given this, in this unit we will examine some tools, approaches, and considerations for managing code dependencies. We will also experiment with a few different dependency management tools, such as npm, poetry, and apt.",
           activities: [
-            { title: "Package & Dependency Management", url: "https://docs.google.com/presentation/d/1p3iEMGavYPvR6LiItAfsUHaiWbSnsy2s/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Package & Dependency Management", url: "https://docs.google.com/presentation/d/1p3iEMGavYPvR6LiItAfsUHaiWbSnsy2s/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "Chapter 21. Dependency Management", url: "https://abseil.io/resources/swe-book/html/ch21.html" },
@@ -197,7 +197,7 @@ export const baseTopics = [
           date: "Th, Sep 17",
           topic: "Lab 5 + Programming Language Transfer",
           activities: [
-            { title: "Python Practice (after Java readiness practice)", url: "/activities/python-practice", draft: 0 },
+            { title: "Python Practice (after Java readiness practice)", url: "/activities/python-practice", draft: 1 },
           ],
         },
       ],
@@ -213,8 +213,8 @@ export const baseTopics = [
           topic: "Intro to Testing",
           description: "Continuous integration (CI), static analysis, and testing are complementary software development techniques that ensure that teams can deploy software continuously with a high degree of confidence in the quality of their code. In this unit, we will learn about ways you and your team can automate code testing and validation procedures before merging code updates into the main branch. By setting up a few tools up front, you will save time and energy and increase the reliability of your code base.",
           activities: [
-            { title: "Intro to Testing", url: "https://docs.google.com/presentation/d/18N6d1HKbHKsgR-maWlt2Pp2sZp7A8XTP/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
-            { title: "Readiness Testing and Debugging Practice", url: "/resources/readiness-06-debugging", draft: 0 },
+            { title: "Intro to Testing", url: "https://docs.google.com/presentation/d/18N6d1HKbHKsgR-maWlt2Pp2sZp7A8XTP/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Readiness Testing and Debugging Practice", url: "/resources/readiness-06-debugging", draft: 1 },
           ],
           readings: [
             { citation: "High-level overview of unit v. integration testing", url: "https://circleci.com/blog/unit-testing-vs-integration-testing" },
@@ -245,15 +245,15 @@ export const baseTopics = [
           date: "Th, Sep 24",
           topic: "Programming Readiness Final Verification + Testing Practice",
           activities: [
-            { title: "Programming Readiness Modules", url: "/resources/programming-readiness", draft: 0 },
+            { title: "Programming Readiness Modules", url: "/resources/programming-readiness", draft: 1 },
           ],
         },
         {
           date: "Tu, Sep 29",
           topic: "Static Analysis & Continuous Integration",
           activities: [
-            { title: "Static Analysis & Continuous Integration", url: "https://docs.google.com/presentation/d/1IUBjHLwGkYh-8xpPIC05Xahmj34cqPDd/edit?usp=sharing&rtpof=true&sd=true", draft: 0 },
-            { title: "Team Preferences", url: "https://docs.google.com/document/d/1vD70DFplPXg6YxEaYDHPFGWznhVuDlgH/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Static Analysis & Continuous Integration", url: "https://docs.google.com/presentation/d/1IUBjHLwGkYh-8xpPIC05Xahmj34cqPDd/edit?usp=sharing&rtpof=true&sd=true", draft: 1 },
+            { title: "Team Preferences", url: "https://docs.google.com/document/d/1vD70DFplPXg6YxEaYDHPFGWznhVuDlgH/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "Chapter 20. Static Analysis", url: "https://abseil.io/resources/swe-book/html/ch20.html" },
@@ -281,8 +281,8 @@ export const baseTopics = [
           date: "Th, Oct 8",
           topic: "Mid-Semester Review",
           activities: [
-            { title: "Mid-Semester Review", url: "https://docs.google.com/presentation/d/1gpnnmQMhnbPIN9LNTKmgwA9xCRFfC3cA/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
-            { title: "Mid Semester Review Cheat Sheet", url: "https://docs.google.com/document/d/1ndbJIzzeThLWx43AvMR9wdzi0HVCeWHQ/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Mid-Semester Review", url: "https://docs.google.com/presentation/d/1gpnnmQMhnbPIN9LNTKmgwA9xCRFfC3cA/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Mid Semester Review Cheat Sheet", url: "https://docs.google.com/document/d/1ndbJIzzeThLWx43AvMR9wdzi0HVCeWHQ/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "Please review all of the readings and study questions assigned thus far, in preparation for the mid-term review." },
@@ -304,7 +304,7 @@ export const baseTopics = [
           date: "Th, Oct 15",
           topic: "AsyncIO + MVC",
           activities: [
-            { title: "AsyncIO + MVC", url: "https://docs.google.com/presentation/d/1dB3iqBd20_sxRJStpBi9uSMdzA80xZdX/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "AsyncIO + MVC", url: "https://docs.google.com/presentation/d/1dB3iqBd20_sxRJStpBi9uSMdzA80xZdX/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "<a href=\"https://medium.com/@moraneus/mastering-pythons-asyncio-a-practical-guide-0a673265cf04\" target=\"_blank\">Mastering Python’s Asyncio: A Practical Guide</a>" },
@@ -317,7 +317,7 @@ export const baseTopics = [
           date: "Tu, Oct 20",
           topic: "MVC Lab Slides",
           activities: [
-            { title: "MVC Lab Slides", url: "https://docs.google.com/presentation/d/1Phlll9bNNabM4nyGMQGWq4sEAW8w4Ncq/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "MVC Lab Slides", url: "https://docs.google.com/presentation/d/1Phlll9bNNabM4nyGMQGWq4sEAW8w4Ncq/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
         },
       ],
@@ -336,7 +336,7 @@ export const baseTopics = [
           date: "Tu, Oct 27",
           topic: "Intro to Databases & Object-Relational Mappings",
           activities: [
-            { title: "Intro to Databases & Object-Relational Mappings", url: "https://docs.google.com/presentation/d/1qeEZ3FX3itqv7Miuho-KqqmEvrIOBX5T/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Intro to Databases & Object-Relational Mappings", url: "https://docs.google.com/presentation/d/1qeEZ3FX3itqv7Miuho-KqqmEvrIOBX5T/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "<strong>SQL Readings</strong>: Please review the reference materials on SQL: <ul> <li><a href=\"resources/databases\">Database resources page</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-select.html\" target=\"_blank\">Querying a Table</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-join.html\" target=\"_blank\">Joins Between Tables</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-agg.html\" target=\"_blank\">Aggregate Functions</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-populate.html\" target=\"_blank\">Inserts</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-update.html\" target=\"_blank\">Updates</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-delete.html\" target=\"_blank\">Deletions</a></li> </ul>" },
@@ -356,7 +356,7 @@ export const baseTopics = [
           topic: "Client-Side Engineering (Part I)",
           description: "In this unit, we will explore some software engineering ideas that are specific to client-side engineering. To do this, we're going to learn some HTML, CSS, JavaScript, and React concepts <em>as a means of learning</em> various client-side software engineering principles",
           activities: [
-            { title: "Client-Side Engineering (Part I)", url: "https://docs.google.com/presentation/d/1l8UaFjXBidZNg-s3j-mYWcce-4iWU2nQ/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Client-Side Engineering (Part I)", url: "https://docs.google.com/presentation/d/1l8UaFjXBidZNg-s3j-mYWcce-4iWU2nQ/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "Ask ChatGPT to answer the study questions (Be ready to have a conversation about the discussion questions, including what you learned from ChatGPT (and whether you think ChatGPT got it right).)", url: "https://chat.openai.com/" },
@@ -382,7 +382,7 @@ export const baseTopics = [
           date: "Th, Nov 5",
           topic: "React",
           activities: [
-            { title: "React", url: "https://docs.google.com/presentation/d/1hpqJ1g0SB3JeD8rqU8u82rf9wvX-uLXW/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "React", url: "https://docs.google.com/presentation/d/1hpqJ1g0SB3JeD8rqU8u82rf9wvX-uLXW/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           optionalReadings: [
             { citation: "React Docs: Thinking in React", url: "https://beta.reactjs.org/learn/thinking-in-react" },
@@ -394,7 +394,7 @@ export const baseTopics = [
           date: "Tu, Nov 10",
           topic: "Communicating over HTTP",
           activities: [
-            { title: "Communicating over HTTP", url: "https://docs.google.com/presentation/d/1RaREuV6tA5Q1enX4qUxoCMzUIgAwEdgn/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Communicating over HTTP", url: "https://docs.google.com/presentation/d/1RaREuV6tA5Q1enX4qUxoCMzUIgAwEdgn/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
         },
       ],
@@ -409,14 +409,14 @@ export const baseTopics = [
           date: "Th, Nov 19",
           topic: "Introduction to Project 2",
           activities: [
-            { title: "Introduction to Project 2", draft: 0 },
+            { title: "Introduction to Project 2", draft: 1 },
           ],
         },
         {
           date: "Tu, Nov 24",
           topic: "Project 2 work: Ideally, you'll begin customizing your vertical feature today",
           activities: [
-            { title: "Project 2 work: Ideally, you'll begin customizing your vertical feature today", draft: 0 },
+            { title: "Project 2 work: Ideally, you'll begin customizing your vertical feature today", draft: 1 },
           ],
         },
       ],
@@ -444,7 +444,7 @@ export const baseTopics = [
           date: "Tu, Dec 1",
           topic: "Scaling an App",
           activities: [
-            { title: "Scaling an App", url: "https://docs.google.com/presentation/d/1XUxfaWeoV7K7REbVr2kYpL5SjERiKpGe5J02BMzMTaM/edit?usp=sharing", draft: 0 },
+            { title: "Scaling an App", url: "https://docs.google.com/presentation/d/1XUxfaWeoV7K7REbVr2kYpL5SjERiKpGe5J02BMzMTaM/edit?usp=sharing", draft: 1 },
           ],
           optionalReadings: [
             { citation: "Kubernetes Basics (Tutorial)", url: "https://kubernetes.io/docs/tutorials/kubernetes-basics/" },

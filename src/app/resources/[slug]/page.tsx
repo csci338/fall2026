@@ -111,7 +111,7 @@ export default async function ResourcePage({ params }: PageProps) {
               {previousResource ? (
                 <Link
                   href={`/resources/${previousResource.id}`}
-                  className="flex items-center gap-3 px-4 py-3 !border bg-white dark:bg-gray-900 !border-gray-300 dark:!border-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 hover:border-blue-500 dark:hover:border-blue-600 transition-all group no-underline w-full sm:w-auto"
+                  className="flex items-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 transition-all group no-underline w-full sm:w-auto"
                 >
                   <ChevronLeftIcon className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 flex-shrink-0" />
                   <div className="flex flex-col min-w-0">
@@ -126,7 +126,7 @@ export default async function ResourcePage({ params }: PageProps) {
               {nextResource ? (
                 <Link
                   href={`/resources/${nextResource.id}`}
-                  className="flex items-center gap-3 px-4 py-3 bg-white dark:bg-gray-900 !border !border-gray-300 dark:!border-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 hover:border-blue-500 dark:hover:border-blue-600 transition-all group sm:text-right sm:ml-auto no-underline w-full sm:w-auto"
+                  className="flex items-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 transition-all group sm:text-right sm:ml-auto no-underline w-full sm:w-auto"
                 >
                   <div className="flex flex-col min-w-0 flex-1 sm:flex-none">
                     <span className="text-xs text-gray-500 dark:text-gray-300 uppercase tracking-wide">Next</span>

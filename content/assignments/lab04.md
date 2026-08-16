@@ -2,7 +2,7 @@
 title: Intro to Docker
 type: lab
 num: 4
-draft: 0
+draft: 1
 assigned_date: 2026-09-10
 due_date: 2026-09-16
 points: 6

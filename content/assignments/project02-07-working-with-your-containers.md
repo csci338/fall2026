@@ -2,7 +2,7 @@
 title: Working with Your Containers
 type: partial
 num: 2
-draft: 0
+draft: 1
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 hide_from_list: 1

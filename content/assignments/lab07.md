@@ -2,7 +2,7 @@
 title: AsyncIO + MVC
 type: lab
 num: 7
-draft: 0
+draft: 1
 assigned_date: 2026-10-20
 due_date: 2026-10-27
 points: 6

@@ -140,7 +140,7 @@ export default function QuizzesList({ quizzes, onOpenQuiz }: QuizzesListProps) {
         return (
           <li
             key={quiz.slug}
-            className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:border-blue-500 dark:hover:border-blue-600 transition-colors cursor-pointer"
+            className="p-4 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
             style={isDark ? { borderColor: '#374151' } : undefined}
             onClick={() => onOpenQuiz(quiz.slug)}
           >
@@ -157,7 +157,7 @@ export default function QuizzesList({ quizzes, onOpenQuiz }: QuizzesListProps) {
               </div>
               <div className="ml-4">
                 <button
-                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 rounded-md transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
                   onClick={(e) => {
                     e.stopPropagation();
                     onOpenQuiz(quiz.slug);

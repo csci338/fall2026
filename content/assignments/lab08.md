@@ -2,7 +2,7 @@
 title: Database + ORM Lab
 type: lab
 num: 8
-draft: 0
+draft: 1
 assigned_date: 2026-10-29
 due_date: 2026-11-06
 points: 6

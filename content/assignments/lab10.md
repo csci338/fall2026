@@ -2,7 +2,7 @@
 title: Design Systems & External Data
 type: lab
 num: 10
-draft: 0
+draft: 1
 assigned_date: 2026-11-12
 due_date: 2026-11-19
 points: 6

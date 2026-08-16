@@ -89,7 +89,7 @@ export default function QuizSummary({
     : [];
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-lg shadow-sm dark:shadow-none" style={isDark ? { backgroundColor: '#1f2937', borderColor: '#1f2937' } : undefined}>
+    <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-gray-800" style={isDark ? { backgroundColor: '#1f2937', borderColor: '#1f2937' } : undefined}>
       <div className="text-center mb-6">
         {quizData.quizName && (
           <h2 
@@ -124,7 +124,7 @@ export default function QuizSummary({
       </div>
 
       {strandResults.length > 0 && (
-        <div className="mb-6 rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+        <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-900">
           <h4 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
             Readiness profile
           </h4>

@@ -85,7 +85,7 @@ export default function ResourcesNav({ resourcePages }: ResourcesNavProps) {
       {/* Mobile: Collapsible accordion navigation */}
       <div className="lg:hidden">
         <button 
-          className="w-full p-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg mb-4 flex justify-between items-center transition-colors"
+          className="w-full p-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 mb-4 flex justify-between items-center transition-colors"
           onClick={() => setNavOpen(!navOpen)}
         >
           <span className="font-medium">Resource Pages</span>
@@ -93,7 +93,7 @@ export default function ResourcesNav({ resourcePages }: ResourcesNavProps) {
         </button>
         {navOpen && (
           <div className="mb-6">
-            <nav className="resources-nav w-full border rounded-lg bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+            <nav className="resources-nav w-full bg-white dark:bg-gray-900">
               {renderNavigation()}
             </nav>
           </div>

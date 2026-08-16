@@ -2,7 +2,7 @@
 title: Midterm Exam
 type: exam
 num: 1
-draft: 0
+draft: 1
 due_date: 2026-10-13
 ---
 

@@ -8,6 +8,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --primary: #3b82f6;
+  --link: #0081B8;
   --secondary: #22c55e;
   --accent: transparent;
   --border: #e5e7eb;
@@ -21,6 +22,7 @@
 /* Dark mode variables */
 .dark {
   --primary: #b8e6fe;
+  --link: #0081B8;
   --accent: #b8e6fe;
   --background: #0a0a0a;
   --foreground: #ededed;
@@ -39,7 +41,7 @@ h1 {
 
 /* Page title banner: full width of main column (incl. TOC), scrolls with page */
 .page-header-banner {
-  @apply w-full border-b border-blue-100 bg-blue-50 px-4 py-10 dark:border-blue-900 dark:bg-blue-950 lg:px-8 lg:py-18;
+  @apply w-full border-b border-sky-100 bg-[#D6F3FF66] px-4 py-10 dark:border-sky-900 dark:bg-sky-950 lg:px-8 lg:py-18;
 }
 
 .page-header-banner h1 {
@@ -83,12 +85,27 @@ h5 {
     color: var(--foreground);
 }
 
+/* Side margins must be subtracted from width. A 100%-wide table plus
+   left/right margin overflows; overflow-x: hidden then clips the right side. */
+table,
+.prose table {
+  @apply border-collapse mt-12 mb-6;
+  display: table;
+  box-sizing: border-box;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  width: calc(100% - 1.5rem);
+  max-width: calc(100% - 1.5rem);
+  table-layout: auto;
+  border: none;
+}
 
-table {
-  @apply w-full border-collapse mb-6 rounded-lg overflow-hidden border;
-  border-color: var(--border);
-  table-layout: auto;  
-  box-shadow: 0 0 7px rgba(0, 0, 0, .1);
+table.indented,
+.prose table.indented {
+    margin-left: 6rem;
+    margin-right: 6rem;
+    width: calc(100% - 12rem);
+    max-width: calc(100% - 12rem);
 }
 
 table.width-auto {
@@ -97,24 +114,34 @@ table.width-auto {
 
 th,
 td {
-  @apply border-b p-2;
-  background: var(--background);
-  border-color: var(--border);
+  @apply py-2 px-3 text-left bg-transparent;
+  border: none;
   color: var(--foreground);
   word-wrap: break-word;
   vertical-align: top;
 }
 
 th {
-  @apply text-left border-b;
-  border-color: var(--border);
-  background: var(--table-header);
-  color: var(--foreground);
+  @apply font-semibold;
+  border-top: 2px solid #111827;
+  border-bottom: 2px solid #111827;
+}
+
+td {
+  border-bottom: 1px solid #d1d5db;
+}
+
+.dark th {
+  border-top-color: #e5e7eb;
+  border-bottom-color: #e5e7eb;
+}
+
+.dark td {
+  border-bottom-color: #4b5563;
 }
 
 .wireframe-rules-table td,
 .wireframe-rules-table th {
-  border-left: solid 1px var(--border) !important;
   vertical-align: top;
   width: 50%;
 }
@@ -162,7 +189,8 @@ li {
 }
 
 blockquote {
-  @apply mt-8 bg-yellow-50 dark:bg-yellow-800 border border-yellow-200 dark:border-yellow-800 p-4 !mb-10;
+  @apply mt-8 bg-[#a3e6ff44] dark:bg-sky-950 p-4 !mb-10 !border-l-12 !border-[#8eddff];
+  border: none;
 }
 
 blockquote h2, blockquote h3, blockquote h4, blockquote h5 {
@@ -187,8 +215,6 @@ blockquote .hljs, blockquote code {
 }
 
 .dark blockquote {
-  background-color: #1f2937 !important;
-  border-color: #4b5563 !important;
   color: #e5e7eb;
 }
 
@@ -196,7 +222,8 @@ blockquote .hljs, blockquote code {
 .info,
 div.info,
 blockquote.info {
-  @apply bg-green-50 p-4 rounded-lg border border-green-300 dark:!border-green-500 dark:!bg-green-900;
+  @apply bg-[#a3e6ff44] p-4 dark:!bg-sky-950 !border-l-12 !border-[#8eddff];
+  border: none;
 }
 
 .blockquote-no-margin {
@@ -204,7 +231,8 @@ blockquote.info {
 }
 
 blockquote.info.new {
-  @apply bg-yellow-50 border-yellow-400 dark:!bg-yellow-950 dark:!border-yellow-600;
+  @apply bg-[#a3e6ff44] dark:!bg-sky-950 !border-l-12 !border-[#8eddff];
+  border: none;
 }
 
 table.small {
@@ -231,7 +259,8 @@ ol.compact {
 }
 
 blockquote.reference {
-    @apply bg-blue-50 p-4 rounded-lg border-blue-300 dark:!border-blue-900 dark:!bg-blue-950;
+    @apply bg-[#a3e6ff44] p-4 dark:!bg-sky-950 !border-l-12 !border-[#8eddff];
+    border: none;
   }
   
 ul + blockquote.info,
@@ -268,11 +297,11 @@ ol ul li {
 }
   
 .extra-list-spacing li {
-    @apply mb-12;
+    @apply !mb-12;
 }
   
 .list-spaced li {
-    @apply mb-4;
+    @apply !mb-4;
 }
 
 .alpha-list {
@@ -348,17 +377,14 @@ li:has(input[type="checkbox"]) {
 }
 
 .syllabus-page {
-  h2 {
-    color: var(--primary);
-    @apply border-b-2 pb-2;
-    border-color: var(--primary);
+  h2:not(blockquote h2) {
+    @apply text-gray-900 dark:text-gray-300 border-gray-900 dark:border-gray-300 border-b-4 pb-2 mb-4 uppercase;
   }
-  h3 {
-    @apply border-b pb-2;
+  h3:not(blockquote h3) {
+    @apply text-xl md:text-2xl text-gray-800 dark:text-gray-300 pb-0 mb-2;
   }
-  h4 {
-    @apply border-b pb-2;
-    border-color: #ccc;
+  h4:not(blockquote h4) {
+    @apply border-b-1 border-gray-400 dark:border-gray-600 pb-0 mb-1;
   }
   ul li::marker,
   ol li::marker {
@@ -376,8 +402,9 @@ li:has(input[type="checkbox"]) {
     @apply !my-0;
   }
   blockquote {
-    @apply bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-4 !mb-10;
-    border-width: 1px;
+    @apply !bg-[#a3e6ff44] dark:bg-blue-950 px-4 py-8 !mb-10 !border-l-12 !border-[#8eddff];
+    /* border: none;
+    border-left: 4px solid #60a5fa; */
   }
 }
 
@@ -386,25 +413,8 @@ li:has(input[type="checkbox"]) {
 .activity-content {
   /* Enhanced blockquotes for callouts */
   blockquote {
-    @apply border-l-4 rounded-r-lg p-4 my-6;
-    background: linear-gradient(
-      to right,
-      rgba(59, 130, 246, 0.05),
-      transparent
-    );
-    border-color: var(--primary);
-    position: relative;
-  }
-
-  blockquote::before {
-    content: "";
-    position: absolute;
-    left: -4px;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--primary);
-    border-radius: 2px 0 0 2px;
+    @apply p-4 my-6 bg-[#a3e6ff44] dark:bg-sky-950 !border-l-12 !border-[#8eddff];
+    border: none;
   }
 
   /* Enhanced checklists */
@@ -435,10 +445,8 @@ li:has(input[type="checkbox"]) {
 
   /* Enhanced code blocks */
   pre {
-    @apply rounded-lg p-4 my-6 overflow-x-auto;
+    @apply p-4 my-6 overflow-x-auto;
     background: var(--card);
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
   .dark pre {
@@ -458,7 +466,7 @@ li:has(input[type="checkbox"]) {
 
   /* Inline code with better styling */
   code:not(pre code) {
-    @apply px-2 py-1 rounded text-sm;
+    @apply px-2 py-1 text-sm;
     background: var(--card);
     border: 1px solid var(--border);
     font-size: 0.875em;
@@ -518,15 +526,11 @@ li:has(input[type="checkbox"]) {
   /* Enhanced links */
   a {
     @apply transition-colors duration-200;
-    color: #2563eb; /* blue-600 */
+    color: var(--link);
   }
 
   a:hover {
     @apply opacity-80;
-  }
-
-  .dark .prose a {
-    color: #60a5fa; /* blue-400 */
   }
 }
 
@@ -556,16 +560,31 @@ li:has(input[type="checkbox"]) {
 }
 
 /* Prose links styling for all pages (syllabus, assignments, etc.) */
-.prose a {
-  color: #2563eb; /* blue-600 */
+.prose a,
+.schedule-content a,
+a.text-blue-600,
+a.text-blue-400,
+a.text-blue-200,
+.dark .prose a,
+.dark .schedule-content a,
+.dark a.text-blue-600,
+.dark a.text-blue-400,
+.dark a.text-blue-200 {
+  color: var(--link);
 }
 
-.dark .prose a {; /* blue-400 */
+.prose a:hover,
+.schedule-content a:hover,
+a.hover\:text-blue-600:hover,
+a.hover\:text-blue-400:hover,
+a.dark\:hover\:text-blue-400:hover,
+a.dark\:hover\:text-blue-300:hover,
+a.dark\:hover\:text-blue-200:hover,
+a.dark\:hover\:text-blue-100:hover {
+  color: var(--link);
 }
 
-/* Schedule page links styling - make all links blue with hover underline */
 .schedule-content a {
-  color: #2563eb; /* blue-600 */
   text-decoration: none;
   transition: text-decoration 0.2s ease;
 }
@@ -574,8 +593,24 @@ li:has(input[type="checkbox"]) {
   text-decoration: underline;
 }
 
-.dark .schedule-content a {
-  color: #60a5fa; /* blue-400 */
+.toc-link,
+.toc-link:hover,
+.dark .toc-link,
+.dark .toc-link:hover {
+  color: var(--link) !important;
+}
+
+.toc-link:not(.toc-active) {
+  color: #6b7280 !important;
+}
+
+.dark .toc-link:not(.toc-active) {
+  color: #f3f4f6 !important;
+}
+
+.toc-link:not(.toc-active):hover,
+.dark .toc-link:not(.toc-active):hover {
+  color: var(--link) !important;
 }
 
 
@@ -696,8 +731,8 @@ main > div.relative {
 }
 
 img.frame {
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
+    border-left: 4px solid #ccc;
     padding: 10px;
     @apply mb-4;
 }
@@ -721,7 +756,7 @@ img.large {
 
 
 code {
-  @apply bg-gray-100 dark:bg-gray-800 p-1 rounded-md text-sm;
+  @apply bg-gray-100 dark:bg-gray-800 p-1 text-sm;
   color: inherit;
   font-size: 0.875em;
 }
@@ -729,14 +764,12 @@ code {
 .dark code {
   background-color: #1e293b !important;
   color: #e2e8f0 !important;
-  border: 1px solid #334155;
 }
 
 /* Ensure code tags in prose content are dark-friendly */
 .dark .prose code {
   background-color: #1e293b !important;
   color: #e2e8f0 !important;
-  border: 1px solid #334155;
   padding: 0.125rem 0.375rem;
 }
 
@@ -748,9 +781,8 @@ code {
 .dark div code {
   background-color: #1e293b !important;
   color: #e2e8f0 !important;
-  border: 1px solid #334155;
   padding: 0.125rem 0.375rem;
-  border-radius: 0.25rem;
+  border-radius: 0;
 }
 
 /* Syntax highlighting styles */
@@ -759,7 +791,7 @@ code {
   overflow-x: auto;
   padding: 0.5em;
   background: #f6f8fa;
-  border-radius: 6px;
+  border-radius: 0;
   font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   font-size: 14px;
   line-height: 1.45;
@@ -814,8 +846,8 @@ pre code {
   gap: 4px;
   padding: 6px 12px;
   background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border: none;
+  border-radius: 0;
   font-size: 12px;
   font-weight: 500;
   color: #374151;
@@ -823,7 +855,6 @@ pre code {
   transition: all 0.2s ease;
   z-index: 10;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .copy-code-button:hover {
@@ -1039,8 +1070,6 @@ pre code {
 .codepen-frame {
   width: 100%;
   height: 500px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -1052,11 +1081,11 @@ pre code {
 
 /* Badge style for optional items */
 .badge {
-  @apply inline-block px-2 py-0.5 text-xs font-medium rounded uppercase bg-amber-50 border border-amber-200 text-gray-700;
+  @apply inline-block px-2 py-0.5 text-xs font-medium uppercase bg-amber-50 text-gray-700;
 }
 
 .badge.success {
-    @apply inline-block px-2 py-0.5 text-xs font-medium rounded uppercase bg-green-50 border border-green-200 text-gray-700;
+    @apply inline-block px-2 py-0.5 text-xs font-medium uppercase bg-green-50 text-gray-700;
   }
 
 .os-icon {
@@ -1092,7 +1121,7 @@ pre code {
 
 /* Download button styling */
 .button, .nu-button {
-  @apply inline-flex items-center gap-2 px-4 py-2 rounded-md font-medium !text-black dark:!text-white bg-gray-200 dark:bg-gray-800;
+  @apply inline-flex items-center gap-2 px-4 py-2 font-medium !text-black dark:!text-white bg-gray-200 dark:bg-gray-800;
 }
 
 .button:hover,.nu-button:hover {
@@ -1121,15 +1150,15 @@ pre code {
 }
 
 .cheatsheet-content table.cheatsheet-table thead {
-  @apply bg-gray-100 dark:bg-gray-800;
+  @apply bg-transparent;
 }
 
 .cheatsheet-content table.cheatsheet-table th {
-  @apply px-4 py-3 text-left font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-300 dark:border-gray-700;
+  @apply px-4 py-3 text-left font-semibold text-gray-900 dark:text-gray-100 bg-transparent;
 }
 
 .cheatsheet-content table.cheatsheet-table td {
-  @apply px-4 py-3 text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-800;
+  @apply px-4 py-3 text-gray-700 dark:text-gray-300 bg-transparent;
 }
 
 .cheatsheet-content table.cheatsheet-table td:first-child {
@@ -1143,22 +1172,30 @@ pre code {
 }
 
 .answer-sm {
-    @apply mb-4 border border-black dark:border-white p-4 rounded-lg;
+    @apply mb-4 p-4;
+    border: none;
+    border-bottom: 2px solid currentColor;
     height: 50px;
 }
 
 .answer-md {
-    @apply mb-4 border border-black dark:border-white p-4 rounded-lg;
+    @apply mb-4 p-4;
+    border: none;
+    border-bottom: 2px solid currentColor;
     height: 150px;
 }
 
 .answer-lg {
-    @apply mb-4 border border-black dark:border-white p-4 rounded-lg;
+    @apply mb-4 p-4;
+    border: none;
+    border-bottom: 2px solid currentColor;
     height: 300px;
 }
 
 .answer-xl {
-    @apply mb-4 border border-black dark:border-white p-4 rounded-lg;
+    @apply mb-4 p-4;
+    border: none;
+    border-bottom: 2px solid currentColor;
     height: 450px;
 }
 
@@ -1294,3 +1331,17 @@ pre code {
     }
 }
 
+/* Sharp corners: keep circular controls (toggles, dots) */
+.rounded,
+.rounded-sm,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl,
+.rounded-t-lg,
+.rounded-r-lg,
+.rounded-l-lg,
+.rounded-b-lg {
+  border-radius: 0 !important;
+}

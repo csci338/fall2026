@@ -2,7 +2,7 @@
 title: "Final Exam (8:00AM)"
 type: exam
 num: 2
-draft: 0
+draft: 1
 due_date: 2026-12-08
 ---
 

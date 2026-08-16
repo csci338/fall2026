@@ -2,7 +2,7 @@
 title: A Tour of git Commands
 type: lab
 num: 3
-draft: 0
+draft: 1
 assigned_date: 2026-09-03
 due_date: 2026-09-09
 points: 6

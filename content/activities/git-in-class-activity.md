@@ -1,7 +1,7 @@
 ---
 title: Git Collaboration Activity
 type: activity
-draft: 0
+draft: 1
 start_date: 2026-09-01
 date: 2026-09-01
 ---

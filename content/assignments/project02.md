@@ -2,7 +2,7 @@
 title: Full Stack Application
 type: project
 num: 2
-draft: 0
+draft: 1
 assigned_date: 2026-11-19
 due_date: 2026-12-04
 heading_max_level: 3

@@ -2,7 +2,7 @@
 title: Testing & Static Analysis
 type: lab
 num: 6
-draft: 0
+draft: 1
 assigned_date: 2026-09-24
 due_date: 2026-09-30
 heading_max_level: 5

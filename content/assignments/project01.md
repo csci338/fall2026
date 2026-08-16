@@ -2,7 +2,7 @@
 title: UNCA Course Lookup
 type: project
 num: 1
-draft: 0
+draft: 1
 assigned_date: 2026-10-01
 due_date: 2026-10-29
 heading_max_level: 3

@@ -22,10 +22,5 @@
   {
     "href": "/quizzes",
     "label": "Quizzes"
-  },
-  {
-    "href": "https://drive.google.com/drive/folders/1iI-Iz85UpjGyuu9q_reuq4vT6hC4AEQq?usp=drive_link",
-    "label": "Videos",
-    "external": true
   }
 ]
