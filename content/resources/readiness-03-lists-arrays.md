@@ -2,6 +2,7 @@
 title: Lists/Arrays and Traversal
 group: Programming Readiness
 group_order: 0
+hide_from_list: 1
 order: 5
 quizzes:
   - readiness-03-lists-arrays

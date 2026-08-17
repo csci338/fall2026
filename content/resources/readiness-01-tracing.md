@@ -2,6 +2,7 @@
 title: Java Methods and Conditionals
 group: Programming Readiness
 group_order: 0
+hide_from_list: 1
 order: 3
 quizzes:
   - readiness-01-tracing

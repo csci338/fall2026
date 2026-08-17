@@ -2,6 +2,7 @@
 title: Simple Algorithms and Edge Cases
 group: Programming Readiness
 group_order: 0
+hide_from_list: 1
 order: 7
 quizzes:
   - readiness-05-testing

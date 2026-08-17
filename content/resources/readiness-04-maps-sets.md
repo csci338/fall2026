@@ -2,6 +2,7 @@
 title: Maps/Sets and Frequency Counting
 group: Programming Readiness
 group_order: 0
+hide_from_list: 1
 order: 6
 quizzes:
   - readiness-04-maps-sets

@@ -85,11 +85,11 @@ export default function ContentTable({ items, contentType }: ContentTableProps) 
       <thead>
         <tr>
           <th className="w-[50px]"></th>
-          <th className="hidden md:table-cell md:w-[100px]">Week</th>
-          <th className="md:w-[150px]">Link</th>
+          <th className="hidden md:table-cell md:min-w-[100px]">Week</th>
+          <th className="md:min-w-[150px]">Link</th>
           <th className="hidden md:table-cell md:w-[400px]">Title</th>
-          <th className="md:w-[120px]">Due</th>
-          <th className="md:w-[100px]">Days Left</th>
+          <th className="md:min-w-[140px]">Due</th>
+          <th className="md:min-w-[100px]">Days Left</th>
         </tr> 
       </thead>
       <tbody>

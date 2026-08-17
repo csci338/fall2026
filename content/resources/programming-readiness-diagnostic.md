@@ -2,6 +2,7 @@
 title: Programming Readiness Diagnostic
 group: Programming Readiness
 group_order: 0
+hide_from_list: 1
 order: 2
 quizzes:
   - programming-readiness-diagnostic

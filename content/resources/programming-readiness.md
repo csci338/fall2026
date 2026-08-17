@@ -2,6 +2,7 @@
 title: Programming Readiness
 group: Programming Readiness
 group_order: 0
+hide_from_list: 1
 order: 1
 ---
 

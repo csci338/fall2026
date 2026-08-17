@@ -2,6 +2,7 @@
 title: Testing and Debugging
 group: Programming Readiness
 group_order: 0
+hide_from_list: 1
 order: 8
 quizzes:
   - readiness-06-debugging

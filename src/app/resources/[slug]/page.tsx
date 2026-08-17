@@ -56,7 +56,7 @@ export default async function ResourcePage({ params }: PageProps) {
     // Get all resources for navigation
     const resourcePosts = getAllPosts('resources');
     const resourcePages = resourcePosts
-      .filter(post => post.draft !== 1 && !post.excluded && post.id !== 'overview')
+      .filter(post => post.draft !== 1 && !post.excluded && post.hide_from_list !== 1 && post.id !== 'overview')
       .map(post => ({
         slug: post.id,
         title: post.title || post.id.charAt(0).toUpperCase() + post.id.slice(1).replace(/-/g, ' '),

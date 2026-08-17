@@ -2,6 +2,7 @@
 title: Loops, Counters, and Accumulators
 group: Programming Readiness
 group_order: 0
+hide_from_list: 1
 order: 4
 quizzes:
   - readiness-02-methods-control-flow
