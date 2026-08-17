@@ -28,6 +28,7 @@ export interface Quiz {
   slug: string;
   quizData?: QuizData;
   cheatsheetContent?: string | null;
+  notes?: string;
   draft?: number;
 }
 
@@ -406,6 +407,7 @@ async function enrichTopicsWithMarkdown(baseTopics: BaseTopicsArray): Promise<To
           slug: quiz.slug,
           quizData: quizData || undefined,
           cheatsheetContent: cheatsheetContent || undefined,
+          notes: quiz.notes || quizData?.notes,
           draft: 0
         };
       });

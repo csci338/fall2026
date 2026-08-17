@@ -27,6 +27,7 @@ export interface Quiz {
   slug: string;
   quizData?: QuizData;
   cheatsheetContent?: string | null;
+  notes?: string;
   draft?: number;
 }
 

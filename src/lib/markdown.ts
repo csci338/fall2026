@@ -613,6 +613,7 @@ export interface QuizData {
   languages?: string[];
   defaultLanguage?: string;
   start_date?: string;
+  notes?: string;
   draft?: number;
   folder?: string;
   cheatsheet?: string;
@@ -623,6 +624,7 @@ export interface QuizMetadata {
   slug: string;
   quizName: string;
   start_date?: string;
+  notes?: string;
   draft?: number;
 }
 
@@ -838,6 +840,7 @@ export function getAllQuizMetadata(): QuizMetadata[] {
           slug,
           quizName: quizData.quizName || slug,
           start_date: quizData.start_date,
+          notes: quizData.notes,
           draft: quizData.draft,
         });
       } catch (error) {

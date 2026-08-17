@@ -3,7 +3,7 @@ title: "Syllabus: Software Engineering"
 heading_max_level: 2
 ---
 
-<table>
+<table class="!mt-4">
   <tr><td><strong>Course</strong></td><td>CSCI 338: Software Engineering</td></tr>
   <tr><td><strong>Instructor</strong></td><td>Dr. Sarah Van Wart (svanwart@unca.edu)</td></tr>
   <tr><td><strong>Prerequisites</strong></td><td>CSCI 202 and CSCI 235</td></tr>

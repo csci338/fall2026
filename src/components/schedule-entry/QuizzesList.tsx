@@ -89,9 +89,14 @@ function QuizItem({
       )}
       <div className="flex-1">
         {isDraft ? (
-          <span>{quiz.title}</span>
+          <span>
+            {quiz.title}
+            {(quiz.notes || quiz.quizData?.notes) && (
+              <span className="ml-1 text-gray-600 dark:text-gray-400"> ({quiz.notes || quiz.quizData?.notes})</span>
+            )}
+          </span>
         ) : (
-          <div className="flex items-center gap-2 flex-wrap">
+          <><div className="flex items-center gap-2 flex-wrap">
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -101,12 +106,19 @@ function QuizItem({
             >
               {quiz.title}
             </button>
-            {quizStatus && quizStatus.completed && (
-              <span className="text-sm text-gray-600 dark:text-gray-400" style={isDark ? { color: '#9ca3af' } : undefined}>
-                Previous score: {quizStatus.score} / {quizStatus.total} ({quizStatus.total > 0 ? Math.round((quizStatus.score / quizStatus.total) * 100) : 0}%)
+            {(quiz.notes || quiz.quizData?.notes) && (
+              <span className=" text-gray-600 dark:text-gray-400" style={isDark ? { color: '#9ca3af' } : undefined}>
+                ({quiz.notes || quiz.quizData?.notes})
               </span>
             )}
+            
           </div>
+          {quizStatus && quizStatus.completed && (
+              <div className="text-sm text-gray-600 dark:text-gray-400" style={isDark ? { color: '#9ca3af' } : undefined}>
+                Previous score: {quizStatus.score} / {quizStatus.total} ({quizStatus.total > 0 ? Math.round((quizStatus.score / quizStatus.total) * 100) : 0}%)
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

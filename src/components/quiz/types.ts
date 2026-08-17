@@ -39,6 +39,7 @@ export interface QuizData {
   languages?: string[];
   defaultLanguage?: string;
   start_date?: string;
+  notes?: string;
   draft?: number;
   folder?: string;
   cheatsheet?: string;

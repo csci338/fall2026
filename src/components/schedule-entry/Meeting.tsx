@@ -291,15 +291,6 @@ export default function Meeting({
                         isDark={isDark}
                       />
                     )}
-                    <QuizzesList
-                      quizzes={meeting.quizzes}
-                      scheduleQuizzes={meeting.scheduleQuizzes}
-                      meetingKey={meetingKey}
-                      checklist={checklist}
-                      enableChecklist={enableChecklist}
-                      isDark={isDark}
-                      onOpenQuiz={setOpenQuizSlug}
-                    />
                     <DiscussionQuestions
                       discussionQuestions={meeting.discussionQuestions}
                       isDark={isDark}
@@ -324,6 +315,15 @@ export default function Meeting({
                         isDark={isDark}
                       />
                     )}
+                    <QuizzesList
+                      quizzes={meeting.quizzes}
+                      scheduleQuizzes={meeting.scheduleQuizzes}
+                      meetingKey={meetingKey}
+                      checklist={checklist}
+                      enableChecklist={enableChecklist}
+                      isDark={isDark}
+                      onOpenQuiz={setOpenQuizSlug}
+                    />
                 </div>
             </div> 
         </div> 

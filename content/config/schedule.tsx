@@ -26,7 +26,7 @@ export const baseTopics = [
         },
         {
           date: "Th, Aug 20",
-          topic: "What is Software Engineering?",
+          topic: "Lab 1 + What is Software Engineering?",
           activities: [
             { title: "What is Software Engineering?", url: "https://docs.google.com/presentation/d/1R-kcV7qoy0EA924nqrB8W2doX5VJFHEC/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
@@ -83,7 +83,7 @@ export const baseTopics = [
         },
         {
           date: "Th, Aug 27",
-          topic: "Programming Readiness Verification 1 + Introduction to Lab 2",
+          topic: "Lab 2: Version Control Part 1",
           activities: [
             { title: "Introduction to Lab 2", url: "https://docs.google.com/presentation/d/1iBYAdOWcRUqr_Oc0O0ss0F0PFG2ulR9g/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
@@ -103,7 +103,7 @@ export const baseTopics = [
         },
         {
           date: "Th, Sep 3",
-          topic: "Intro to Lab 3",
+          topic: "Lab 3: Version Control Part 2",
           activities: [
             { title: "Intro to Lab 3", url: "https://docs.google.com/presentation/d/1ucN6atlHcSLyE7n6Tcdj2fo4X_8rqDig/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
@@ -149,7 +149,7 @@ export const baseTopics = [
         },
         {
           date: "Th, Sep 10",
-          topic: "Programming Readiness Verification 2 + Everything as Code",
+          topic: "Lab 4. Docker",
           activities: [
             { title: "Everything as Code", url: "https://docs.google.com/presentation/d/1jUycpTRuO-qw-wokBCKUh3MvJQcEc0uF/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
@@ -195,7 +195,7 @@ export const baseTopics = [
         },
         {
           date: "Th, Sep 17",
-          topic: "Lab 5 + Programming Language Transfer",
+          topic: "Lab 5. Package Managers",
           activities: [
             { title: "Python Practice (after Java readiness practice)", url: "/activities/python-practice", draft: 1 },
           ],
