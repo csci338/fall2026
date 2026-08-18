@@ -49,7 +49,6 @@ export interface MeetingData {
   readings?: Reading[];
   optionalReadings?: Reading[];
   holiday?: boolean;
-  discussionQuestions?: DiscussionQuestion[];
   assigned?: Assignment | string | (Assignment | string)[];
   due?: Assignment | string | (Assignment | string)[];
 }

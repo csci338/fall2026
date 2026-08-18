@@ -3,6 +3,7 @@
 import { useState, useEffect, useLayoutEffect } from 'react';
 import PageHeader from '@/components/PageHeaderExpandable';
 import Meeting from '@/components/schedule-entry/Meeting';
+import DiscussionQuestions from '@/components/schedule-entry/DiscussionQuestions';
 
 import { Topic } from '@/lib/topics';
 
@@ -72,12 +73,20 @@ export default function ScheduleContent({ topics }: ScheduleContentProps) {
       {topics.map((topic) => (
         <div key={topic.id} id={`topic-${topic.id}`} className="mb-16">
           <h2>Topic {topic.id}: {topic.title}</h2>
-          <p 
+          <div
             className="pb-6 !mb-0 border-b border-black dark:border-gray-800 text-gray-700 dark:text-gray-300"
             style={isDark ? { borderColor: '#1f2937', color: '#d1d5db' } : undefined}
           >
-            {topic.description}
-          </p>
+            {topic.description && (
+              typeof topic.description === 'string'
+                ? <p className="!mb-0">{topic.description}</p>
+                : topic.description
+            )}
+            <DiscussionQuestions
+              discussionQuestions={topic.discussionQuestions}
+              isDark={isDark}
+            />
+          </div>
           
           {topic.meetings.map((meeting, index) => {
             const meetingKey = `meeting-${meeting.date}-${meeting.topic.replace(/\s+/g, '-').toLowerCase()}`;

@@ -2,7 +2,7 @@
 title: Code Editors
 type: lab
 num: 1
-draft: 1
+draft: 0
 assigned_date: 2026-08-20
 due_date: 2026-08-26
 points: 6

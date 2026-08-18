@@ -51,7 +51,6 @@ export interface Meeting {
   readings?: Reading[];
   optionalReadings?: Reading[];
   holiday?: boolean;
-  discussionQuestions?: DiscussionQuestion[];
   assigned?: Assignment | string | (Assignment | string)[];
   due?: Assignment | string | (Assignment | string)[];
 }
@@ -60,6 +59,7 @@ export interface Topic {
   id: number;
   title: string;
   description: string | React.ReactElement;
+  discussionQuestions?: DiscussionQuestion[];
   meetings: Meeting[];
 }
 
@@ -78,7 +78,6 @@ interface BaseMeeting {
   readings?: Reading[];
   optionalReadings?: Reading[];
   holiday?: boolean;
-  discussionQuestions?: DiscussionQuestion[];
   assigned?: Assignment | string | (Assignment | string)[];
   due?: Assignment | string | (Assignment | string)[];
 }
@@ -87,6 +86,7 @@ interface BaseTopic {
   id: number;
   title: string;
   description: string | React.ReactElement;
+  discussionQuestions?: DiscussionQuestion[];
   meetings: BaseMeeting[];
 }
 

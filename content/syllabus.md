@@ -74,12 +74,12 @@ Project 2 team eligibility is determined by the Project Readiness policy describ
 ### 2.5. Exams
 There will also be a midterm and a final exam to assess your understanding of some of the methods we are learning about (e.g., version control, tradeoffs, CI/CD, managing trade-offs, navigating constraints and uncertainty, dependency management, etc.).
 
-## 4. Course Materials & Resources
+## 3. Course Materials & Resources
 
-### 4.1. Books
+### 3.1. Books
 We will be reading selected chapters from  <a href="https://abseil.io/resources/swe-book" target="_blank">Software Engineering at Google</a>. There is a free copy of the book online, or you can order a hardcopy. 
 
-### 4.2. Software
+### 3.2. Software
 This course will utilize many different software packages, libraries, and tools (all free), including the ones listed below. You will probably need around 5GB of disk space to run these programs. Installing and configuring programming software can be a hassle, but it is part of the process of developing your working computing knowledge. We will help you. 
 
 {:.compact}
@@ -87,10 +87,10 @@ This course will utilize many different software packages, libraries, and tools 
 * <a href="https://github.com/git-guides/install-git" target="_blank">Git and the Github Client</a>
 * <a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop</a>
 
-### 4.3. Other Course Resources
+### 3.3. Other Course Resources
 We will also be compiling a list of cheatsheets, online tutorials, and documentation pages on the course [Readings and Resources](/resources/) page.
 
-## 5. Grading
+## 4. Grading
 Your course grade is calculated based on projects, labs, exams, and attendance / participation:
 
 {:.indented}
@@ -106,7 +106,7 @@ Project 2 team eligibility is determined by the Project Readiness policy describ
 
 > Please also see the attendance policy below: poor attendance will severely impact your grade.
 
-### 5.1. Labs (30%)
+### 4.1. Labs (30%)
 Labs will be graded according to the following scale:
 
 {:.indented}
@@ -118,18 +118,18 @@ Labs will be graded according to the following scale:
 | 100% | Check Plus | Assignment fully completed and works as expected. |
 
 
-### 5.2. Projects (40%)
-Projects involve building part of a larger system, and will be graded according to a rubric. We will be using a code review workflow for assessment. Here is how the process will work:
+### 4.2. Projects (40%)
+Projects involve building part of a larger system, and will be graded according to a rubric. We will be using a code review workflow for assessment.
 
 **No late project deliverables will be accepted.**
 
-### 5.3. Exams (30%)
+### 4.3. Exams (30%)
 Exams will be graded according to how thoroughly you answer the questions and drawing from the principles and readings covered of the course.
 
-## 6. Course Policies
+## 5. Course Policies
 Please read this section closely. It is your responsibility to understand this policy and ask questions if you are unsure what these policies mean for you
 
-### 6.1. Attendance
+### 5.1. Attendance
 Regular attendance is a required part of CSCI 338. Much of our work will take place during class and will involve collaborative problem solving, project work, code review, and coordination with teammates. Missing class therefore affects not only your own learning, but also the work of other students who depend on your participation.
 
 You may miss up to **3** class meetings without a grade penalty. You do not need to provide documentation or an explanation for these absences; they are intended to provide flexibility for illness, emergencies, appointments, and other circumstances that may arise during the semester.
@@ -152,7 +152,7 @@ Absences covered by an approved university accommodation or other applicable uni
 
 Because the course includes substantial team-based work, attendance alone does not guarantee credit for collaborative assignments. Students are expected to participate meaningfully in their team's work and may not receive credit for work completed primarily by their teammates.
 
-### 6.2. Participation
+### 5.2. Participation
 This course depends on active participation and collaboration. When you are in class, you are expected to be physically and mentally present and to contribute to the work of the class and your team.
 
 We will treat one another as professional adults. This means:
@@ -169,16 +169,16 @@ Disagreement, questions, mistakes, and differing perspectives are welcome. Disre
 
 Participation does not require being the person who speaks most often. There are many ways to contribute meaningfully, including asking questions, helping a teammate, reviewing someone else's work, explaining an idea, debugging collaboratively, documenting decisions, or helping a group move forward.
 
-### 6.3. Submitting Late Work
+### 5.3. Submitting Late Work
 * **Labs:** Late labs will penalized 25% if they are turned in within a week of the deadline. After 1 week, late labs will not be accepted.
 * **Project Deliverables:** No late project deliverables will be accepted.
 
-### 6.4. Collaboration
+### 5.4. Collaboration
 
 * **Labs:** Helping other students with their in-class labs is allowed and encouraged, but each student should type their own solution unless otherwise specified in the lab instructions.
 * **Projects:** Working with others is one of the most fundamental skills you will be practicing in this course. 
 
-### 6.5. Using Outside Tools and Materials (Including GenAI)
+### 5.5. Using Outside Tools and Materials (Including GenAI)
 In this class, I encourage you to explore the broader Internet for tutorials, code samples, new programming techniques, libraries, GenAI tools, and other useful resources. Computational tools and resources are integral to the subject matter of this course, and Generative Artificial Intelligence (GenAI) is one category that we may use, examine, or evaluate in class and in project work.
 
 The appropriate use of GenAI and other tools and resources will vary by assignment. Regardless of what you use, you are responsible for understanding, evaluating, and explaining the work you submit. These tools and resources should support your learning rather than substitute for the knowledge, reasoning, programming, or analysis an assignment is designed to assess.
@@ -187,32 +187,32 @@ Specific expectations regarding permitted tools and resources will be provided w
 
 Project Readiness Assessments must be completed independently without GenAI, coding assistants, assistance from another person, or other unapproved resources.
 
-### 6.6. Class Cancellation Policy
+### 5.6. Class Cancellation Policy
 If a class meeting is canceled or due dates are moved due to inclement weather or any other reason, we will inform you via campus email (ending with unca.edu).
 
-## 7. University Policies
+## 6. University Policies
 
-### 7.1. Office of Accessibility & Academic Accommodations
+### 6.1. Office of Accessibility & Academic Accommodations
 UNC Asheville is committed to providing an inclusive experience, accessible learning environments and equal opportunity to individuals with disabilities in accordance with the Americans with Disabilities Act (ADA) and Section 504 of the Rehabilitation Act. 
 
 If you are a student experiencing barriers to access or full participation in this course on the basis of a disability, contact the Office of Accessibility to apply for reasonable accommodations and discuss available resources. You may contact the Office of Accessibility at academicaccess@unca.edu or 828-251-6292. 
 
 Students are responsible for discussing their Letter of Accommodations (LOA) with their faculty. Students and faculty are encouraged to discuss the LOA as early in the semester as possible to allow for extended access to accommodations. However, students may disclose a disability at any point in the semester. Accommodations are not retroactive and are activated when the LOA is discussed.  
 
-### 7.2. Promoting Gender Equity, Addressing Sexual Misconduct
+### 6.2. Promoting Gender Equity, Addressing Sexual Misconduct
 UNC Asheville is dedicated to cultivating and maintaining a safe, respectful, and inclusive environment, free from harassment and discrimination. We strive to ensure that all have equal access to the educational and employment opportunities the University provides. If you or someone you know has been affected by sex-based harassment or sexual misconduct, including sexual assault, dating or domestic violence, or stalking, please know that help and support are available. UNC Asheville strongly encourages all members of the community to take action, seek support, and report incidents of sexual harassment to the Title IX Office.  You may contact the Title IX Office or Heather Lindkvist, the Title IX Coordinator, directly at 828.232.5658 or via titleix@unca.edu or learn more by visiting the Title IX website.
 
 As a faculty member, I am a “responsible employee” and private resource. This means that if you share any information or discuss an incident with me regarding sexual or gender-based harassment, I must disclose this information to the Title IX Coordinator. Our goal is to ensure you are aware of the range of options available to you and have access to the resources you may need. 
 
 If you wish to speak with a confidential resource, contact University Health and Counseling Services at 828.251.6520. Off-campus confidential resources include Our Voice (24-Hour Hotline at 828.255.7576) and Helpmate (24-Hour Hotline at 828.254.0516).
 
-### 7.3. Academic Alerts
+### 6.3. Academic Alerts
 Faculty at UNC Asheville have access to an Academic Alert system. The purpose of this system is to support communication with students about their progress in courses, especially if there are concerns (e.g., academic difficulty, attendance problems). Professors use the Alert system because they are invested in their students’ success. Entering an academic alert is a great way to supplement open conversations between instructors and students about how students can improve their academic performance. 
 
 When a faculty member submits an alert that expresses a concern, the student receives outreach from their academic advisor or the team in the Office of Academic Advising. Students are no longer receiving automated notification emails when an alert is submitted. It is in the student's best interest to address the alert quickly, as students who do so are more likely to earn credit for the course. Questions about the Academic Alert system can be directed to Anne Marie Roberts (amrober1@unca.edu) in the Academic Success Center.
 
 
-### 7.4. Mental Health Support
+### 6.4. Mental Health Support
 As a student, you may experience a range of challenges that can interfere with learning, such as stressful life events, experiences of anxiety and/or depression, self-harm, substance use, and/or unusual difficulty with ordinary life activities. The increased stress of school can also make existing mental health struggles more difficult to manage. Support is available and treatment can help. Learn more about the confidential mental health services UNC Asheville provides to support student success at [https://www.unca.edu/life/health-counseling/](https://www.unca.edu/life/health-counseling/).
 
 The Health and Counseling Center is located at 118 W.T. Weaver Boulevard. Appointments can be made by calling 828-251-6520. A UNC Asheville counselor on call is available after 5 p.m. and on weekends; the counselor on call can be accessed by calling the UNCA Campus Police dispatcher at 828-251-6710. Additionally available after hours and on weekends, call the Bulldog Health Link at 1-888-267-3675, where you can get immediate support for mental health, medical consultation, concern for a friend, and/or community resources. In case of an emergency, you can also call RHA’s Mental Health Mobile Crisis Unit at 1-888-573-1006.

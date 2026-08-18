@@ -10,7 +10,6 @@ import ActivitiesList from './ActivitiesList';
 import QuizzesList from './QuizzesList';
 import ReadingsList from './ReadingsList';
 import AssignmentsList from './AssignmentsList';
-import DiscussionQuestions from './DiscussionQuestions';
 
 // Re-export MeetingData for backwards compatibility
 export type { MeetingData } from './types';
@@ -291,10 +290,6 @@ export default function Meeting({
                         isDark={isDark}
                       />
                     )}
-                    <DiscussionQuestions
-                      discussionQuestions={meeting.discussionQuestions}
-                      isDark={isDark}
-                    />
                     {meeting.assigned && !isTutorialOnlyMeeting && (
                       <AssignmentsList
                         assignments={meeting.assigned}
