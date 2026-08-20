@@ -28,7 +28,7 @@ export const baseTopics = [
           date: "Th, Aug 20",
           topic: "Lab 1 + What is Software Engineering?",
           activities: [
-            { title: "What is Software Engineering?", url: "https://docs.google.com/presentation/d/1R-kcV7qoy0EA924nqrB8W2doX5VJFHEC/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "What is Software Engineering?", url: "https://docs.google.com/presentation/d/1XMBT31fsWPm0LJoct0pHJbCMm7yHK8yQ/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
           readings: [
             { citation: "Preface. Software Engineering at Google", url: "https://abseil.io/resources/swe-book/html/pr01.html" },

@@ -26,7 +26,7 @@ Welcome to your first CSCI 338 lab! The goal of today's lab is to get you a litt
 > * <span class="os-icon mac" title="Mac"><i class="fa-brands fa-apple" aria-hidden="true"></i><span class="sr-only">Mac</span></span> use the **Terminal** app. Your home folder is also `~`.
 
 {:#setup}
-## Part 1. Set-Up
+## 1. Set-Up
 1. Install [VS Code](https://code.visualstudio.com/download) if it isn't already installed on your machine.
 1. <span class="os-icon windows" title="Windows"><i class="fa-brands fa-windows" aria-hidden="true"></i><span class="sr-only">Windows</span></span> [follow these instructions to install WSL and a Linux distribution](/resources/wsl) (Windows Subsystem for Linux). Read / watch them carefully — if you skip steps, you will likely have to rebuild your Linux distro. When you're done, open a WSL terminal and type `pwd`. You should see a path like `/home/yourname`.
 1. Create a directory called `csci338` in your home folder (`cd` then `mkdir csci338`).
@@ -42,7 +42,7 @@ Welcome to your first CSCI 338 lab! The goal of today's lab is to get you a litt
 </div>
 
 {:#vscode}
-## Part 2. VS Code Exercises
+## 2. VS Code Exercises
 
 ### 2.1. Install VS Code Extensions
 Please install the following VS Code Extensions:
@@ -106,7 +106,7 @@ python3 toggle-editor-ai.py off
 Then Command Palette → **Developer: Reload Window**. Run the same script with `on` when you want AI back.
 
 {:#command-line}
-## Part 3. Complete the Command Line Exercises
+## 3. Complete the Command Line Exercises
 Please complete the following command line exercises with the help of the [Command Line Reference](/resources/command-line) that has been compiled for you. Feel free to collaborate with your classmates!
 
 ### 3.1 Open a Terminal
@@ -290,7 +290,7 @@ csci338
 </div>
 
 {:#dot-files}
-## Part 4. OS Environment Exercises
+## 4. OS Environment Exercises
 In Linux-style operating systems, you can create shortcuts, aliases, and customizations by editing your shell config file. We'll make an alias so that typing `338` takes you to your `csci338` directory.
 
 1. Print the path you want the alias to open (`cd ~/csci338` then `pwd`) and copy it.
@@ -317,7 +317,7 @@ More about these files: [The Significance of .bashrc or .zshrc](https://medium.c
 </div>
 
 {:#vim-emacs}
-## Part 5. Vim / Emacs Exercises
+## 5. Vim / Emacs Exercises
 
 Using either [vim](/resources/vim) or [emacs](/resources/emacs), open a file from the command line, edit it, save it, and exit.
 
@@ -343,16 +343,56 @@ Then `cat notes.txt` to confirm your sentence is there.
 </div>
 
 {:#java-check}
-## Part 6. Java Readiness Check
-The programming-readiness verification will use Java because Java is the language used in the prerequisite courses. Before leaving today, make sure your computer can compile and run a Java program.
-
-This environment check is **Practice**, not Verification. It confirms that your tools work; it does not earn a readiness specification.
+## 6. Configure Java in VS Code
+We will be practicing programming in this class in multiple languages, including in Java. In this section, you're going to ensure that you can compile your Java code from the command line.
 
 1. From the command line, check for the Java compiler: `javac --version`
-1. If `javac` is not installed:
-    * <span class="os-icon windows" title="Windows"><i class="fa-brands fa-windows" aria-hidden="true"></i><span class="sr-only">Windows</span></span> in WSL, run `sudo apt install default-jdk`
-    * <span class="os-icon mac" title="Mac"><i class="fa-brands fa-apple" aria-hidden="true"></i><span class="sr-only">Mac</span></span> install a current JDK, then reopen Terminal
-1. In `lab01`, create `ReadinessCheck.java`:
+1. If `javac` is not installed, expand the instructions for your OS below, follow them, then reopen your terminal and re-run `javac --version` to confirm.
+
+<details class="mb-4">
+<summary><span class="os-icon windows" title="Windows"><i class="fa-brands fa-windows" aria-hidden="true"></i><span class="sr-only">Windows</span></span> Windows / WSL: install the JDK</summary>
+
+In WSL, run:
+
+```bash
+sudo apt update
+sudo apt install default-jdk
+```
+
+Then close and reopen your WSL terminal.
+
+</details>
+
+<details class="mb-4">
+<summary><span class="os-icon mac" title="Mac"><i class="fa-brands fa-apple" aria-hidden="true"></i><span class="sr-only">Mac</span></span> Mac: install the JDK</summary>
+
+If you've taken a Java course before, you may already have a JDK installed that just isn't on your PATH. Check with:
+
+```bash
+/usr/libexec/java_home -V
+```
+
+* If this lists one or more JDKs, add the default one to your PATH by adding this line to the bottom of `~/.zshrc`:
+
+    ```bash
+    export PATH="$(/usr/libexec/java_home)/bin:$PATH"
+    ```
+
+    Then run `source ~/.zshrc` and open a **new** Terminal tab/window.
+* If it says no Java runtime is installed, install one using **one** of these options, then **reopen Terminal**:
+    * **Oracle JDK (recommended):** download the macOS installer for **JDK 25 (LTS)** from [Oracle's JDK downloads page](https://www.oracle.com/java/technologies/downloads/#java25) (pick the `.dmg` matching your chip — Apple Silicon or Intel) and run it.
+    * **Homebrew** (if you already use it):
+
+        ```bash
+        brew install openjdk
+        ```
+
+        Then follow the "Next steps" that `brew` prints (it gives you a command to link `javac` onto your PATH).
+
+</details>
+
+{:.mt-8}
+Once you've verified that the Java runtime environment has been installed and configured (`javac --version` gives you a message and not an error) create a `ReadinessCheck.java` file inside of your `lab01` folder, and paste in the following code:
 
 ```java
 public class ReadinessCheck {
@@ -362,10 +402,13 @@ public class ReadinessCheck {
 }
 ```
 
-1. Compile and run it:
+Then, compile and run this file (be sure to run these commands from the same directory your file's in):
 
 ```bash
+# compile your Java program:
 javac ReadinessCheck.java
+
+# run the resulting bytecode (*.class file) via the JVM runtime:
 java ReadinessCheck
 ```
 
@@ -382,7 +425,8 @@ java ReadinessCheck
 Under Lab 1 on Moodle, paste the command line history from today's lab (`history`). If the dump is huge, the last ~80–100 lines that include this lab is enough.
 
 ### What to study / have done after completing this lab...
-* If you are a Windows user, make sure your WSL is installed and configured
-* Make sure your VS Code editor is set up. If Copilot or other AI tools keep popping up, [turn them off](/resources/disable-editor-ai).
-* Make sure you know some basic shell commands, and specifically how to navigate, search, create, delete, copy, read, and move files. Practice with the quiz at the bottom of this page, or these [sample command line quiz questions](https://docs.google.com/document/d/1cBdqsCEobdzdNiGrISZip3Xm45bs0VgfWyM9rJM7M8A/edit?usp=sharing).
-* Make sure you know how to open, edit, save, and exit either vim or emacs.
+1. If you are a Windows user, make sure your WSL is installed and configured
+1. Make sure your VS Code editor is set up. If Copilot or other AI tools keep popping up, [turn them off](/resources/disable-editor-ai).
+1. Make sure you know some basic shell commands, and specifically how to navigate, search, create, delete, copy, read, and move files. 
+1. Practice your shell commands by taking the quiz at the bottom of this page and reviewing these [sample command line quiz questions](https://docs.google.com/document/d/1cBdqsCEobdzdNiGrISZip3Xm45bs0VgfWyM9rJM7M8A/edit?usp=sharing).
+1. Make sure you know how to open, edit, save, and exit either vim or emacs.
