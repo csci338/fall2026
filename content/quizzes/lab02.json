@@ -1,0 +1,175 @@
+{
+  "quizName": "Lab 2: Configuring git and GitHub",
+  "start_date": "2026-08-27",
+  "notes": "Take after completing Lab 2",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "When you use SSH keys with GitHub, which key do you upload to GitHub?",
+      "options": [
+        "Your private key (`id_rsa`)",
+        "Your public key (`id_rsa.pub`)",
+        "Both keys",
+        "Neither — GitHub generates keys for you"
+      ],
+      "correct": 1,
+      "explanation": "Your public key goes on GitHub. Your private key stays on your computer and must never be shared."
+    },
+    {
+      "id": "q2",
+      "question": "What does the `ssh-keygen` command do?",
+      "options": [
+        "Clones a GitHub repository",
+        "Creates a new GitHub account",
+        "Generates a public/private key pair (usually in `~/.ssh`)",
+        "Commits your changes to git"
+      ],
+      "correct": 2,
+      "explanation": "`ssh-keygen` creates the key pair used for SSH authentication. Afterwards you can confirm the files with `ls -la ~/.ssh`."
+    },
+    {
+      "id": "q3",
+      "question": "What does it mean to **fork** the `class-exercises-fall2026` repository?",
+      "options": [
+        "Delete the course repository from GitHub",
+        "Create your own copy of the repo on GitHub that you own",
+        "Download only the README file",
+        "Merge your work into the instructor's `main` branch automatically"
+      ],
+      "correct": 1,
+      "explanation": "A fork is a copy of a repository under your GitHub account. In this class you work on your fork and open pull requests there for review."
+    },
+    {
+      "id": "q4",
+      "question": "When cloning your fork, which remote URL format should you use in this class?",
+      "options": [
+        "HTTPS, like `https://github.com/username/class-exercises-fall2026.git`",
+        "SSH, like `git@github.com:username/class-exercises-fall2026.git`",
+        "Either is fine; they behave identically with no setup",
+        "FTP"
+      ],
+      "correct": 1,
+      "explanation": "Lab 2 asks everyone to use the SSH protocol with the key pair you set up. The SSH URL starts with `git@github.com:`."
+    },
+    {
+      "id": "q5",
+      "question": "You want a new branch named `lab02-b` and to work on it. Which sequence is correct?",
+      "options": [
+        "`git push lab02-b` then `git commit`",
+        "Create and switch to `lab02-b` (for example with `git checkout -b lab02-b`), then confirm with `git branch` or `git status`",
+        "`git clone lab02-b`",
+        "`git merge lab02-b` before creating it"
+      ],
+      "correct": 1,
+      "explanation": "Create the branch, switch to it, and verify you are on `lab02-b` before writing and committing lab work."
+    },
+    {
+      "id": "q6",
+      "question": "After writing `ContainsPair.java`, which command compiles it into `ContainsPair.class`?",
+      "options": [
+        "`java ContainsPair`",
+        "`javac ContainsPair.java`",
+        "`git add ContainsPair.java`",
+        "`python ContainsPair.java`"
+      ],
+      "correct": 1,
+      "explanation": "`javac` is the Java compiler. `java ContainsPair` runs the already-compiled class file."
+    },
+    {
+      "id": "q7",
+      "question": "Why add `*.class` to `.gitignore`?",
+      "options": [
+        "So Java programs can no longer run",
+        "So git stops tracking / offering to commit compiled `.class` files",
+        "So GitHub deletes your Java source files",
+        "So `javac` will refuse to compile"
+      ],
+      "correct": 1,
+      "explanation": "Compiled files are generated from source and should not be committed. After adding `*.class`, `git status -u` should no longer list `ContainsPair.class`."
+    },
+    {
+      "id": "q8",
+      "question": "What does `git add .` do?",
+      "options": [
+        "Pushes your branch to GitHub",
+        "Deletes all untracked files",
+        "Stages changes in the current directory (and below) for the next commit",
+        "Creates a new pull request"
+      ],
+      "correct": 2,
+      "explanation": "Staging prepares changes for commit. The `.` means \"everything in this folder tree,\" subject to `.gitignore`."
+    },
+    {
+      "id": "q9",
+      "question": "Which command records a staged snapshot with a message?",
+      "options": [
+        "`git push -m \"Lab 2 is completed\"`",
+        "`git commit -m \"Lab 2 is completed\"`",
+        "`git clone -m \"Lab 2 is completed\"`",
+        "`git status -m \"Lab 2 is completed\"`"
+      ],
+      "correct": 1,
+      "explanation": "`git commit -m \"...\"` creates a commit from what you staged. Pushing is a separate step that uploads commits to GitHub."
+    },
+    {
+      "id": "q10",
+      "question": "The first `git push` on a new branch fails and suggests `git push --set-upstream origin lab02-b`. Why?",
+      "options": [
+        "Your code has a compile error",
+        "The remote does not yet have a `lab02-b` branch tracking setup for this local branch",
+        "You forgot to fork the repository",
+        "`.gitignore` is missing"
+      ],
+      "correct": 1,
+      "explanation": "A brand-new local branch is not linked to a remote branch until you push with `--set-upstream` (or `-u`), which creates the remote branch and sets tracking."
+    },
+    {
+      "id": "q11",
+      "question": "What should `git remote show origin` look like when you are using SSH correctly for your fork?",
+      "options": [
+        "`https://github.com/csci338/class-exercises-fall2026`",
+        "`git@github.com:<your-username>/class-exercises-fall2026`",
+        "`git@github.com:csci338/class-exercises-fall2026` only (never your username)",
+        "An empty string"
+      ],
+      "correct": 1,
+      "explanation": "Origin should point at **your** fork over SSH: `git@github.com:<your-username>/class-exercises-fall2026.git`."
+    },
+    {
+      "id": "q12",
+      "question": "For Lab 2, how should you set up the pull request?",
+      "options": [
+        "base: `csci338/main` ← compare: `your-username/lab02-b`",
+        "base: `your-username/main` ← compare: `your-username/lab02-b`",
+        "base: `your-username/lab02-b` ← compare: `your-username/main`",
+        "base: `csci338/lab02-b` ← compare: `csci338/main`"
+      ],
+      "correct": 1,
+      "explanation": "Open the PR on **your fork**: left/base is your `main`, right/compare is your `lab02-b`. Both sides should show your GitHub username, not `csci338`."
+    },
+    {
+      "id": "q13",
+      "question": "Which of the following should generally **not** be committed to version control?",
+      "options": [
+        "`ContainsPair.java` source code",
+        "`contains_pair.py` source code",
+        "Compiled `ContainsPair.class` files",
+        "A descriptive commit message"
+      ],
+      "correct": 2,
+      "explanation": "Commit source and config you need to rebuild the project. Leave build artifacts (like `.class` files), secrets, and large third-party binaries out—often via `.gitignore`."
+    },
+    {
+      "id": "q14",
+      "question": "What do you turn in for Lab 2 on Moodle?",
+      "options": [
+        "A ZIP of your `lab02` folder only",
+        "A screenshot of `git status`",
+        "A link to your pull request",
+        "Your private SSH key"
+      ],
+      "correct": 2,
+      "explanation": "Paste the URL of the pull request from `lab02-b` into your fork's `main`. Never share your private key."
+    }
+  ]
+}

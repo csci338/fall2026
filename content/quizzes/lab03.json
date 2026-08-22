@@ -1,0 +1,175 @@
+{
+  "quizName": "Lab 3: A Tour of git Commands",
+  "start_date": "2026-09-03",
+  "notes": "Take after completing Lab 3",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Why should `lab03-exercises` be a sibling of `class-exercises-fall2026` (both under `csci338`), not inside it?",
+      "options": [
+        "GitHub only allows one folder per account",
+        "Nested git repositories cause problems; each repo should have its own top-level folder",
+        "So `git init` runs automatically",
+        "So you can skip creating a README"
+      ],
+      "correct": 1,
+      "explanation": "A git repo should not live inside another git repo. Keep `lab03-exercises` next to `class-exercises-fall2026`, not nested under it."
+    },
+    {
+      "id": "q2",
+      "question": "You create `README.md` and run `git add README.md` before `git init`. What goes wrong?",
+      "options": [
+        "Nothing — `git add` always works anywhere",
+        "Git has no repository yet, so you get an error until you run `git init`",
+        "The file is permanently deleted",
+        "GitHub rejects the filename"
+      ],
+      "correct": 1,
+      "explanation": "`git add` and `git commit` only work inside a repository. `git init` creates the `.git` directory that makes the folder a repo."
+    },
+    {
+      "id": "q3",
+      "question": "After `git init`, what new hidden item appears in the directory?",
+      "options": [
+        "A file named `README.git`",
+        "A `.git` directory (Git's internal data)",
+        "A `node_modules` folder",
+        "A GitHub Actions workflow"
+      ],
+      "correct": 1,
+      "explanation": "`git init` creates `.git`, which stores commits, branches, and other repository state. You usually do not edit it by hand."
+    },
+    {
+      "id": "q4",
+      "question": "What are you mainly checking for when you run `git status`?",
+      "options": [
+        "Only your GitHub password",
+        "Which branch you are on, and which files are untracked / staged / modified",
+        "Whether Python is installed",
+        "The contents of every commit ever made"
+      ],
+      "correct": 1,
+      "explanation": "`git status` shows the current branch and the working-tree state (untracked files, staged changes, etc.). Get in the habit of checking it often."
+    },
+    {
+      "id": "q5",
+      "question": "What does `git add README.md` do?",
+      "options": [
+        "Pushes the file to GitHub",
+        "Deletes the previous version forever",
+        "Puts the file in the staging area for the next commit",
+        "Creates a pull request"
+      ],
+      "correct": 2,
+      "explanation": "Staging (`git add`) selects what will be included in the next `git commit`. It does not upload anything by itself."
+    },
+    {
+      "id": "q6",
+      "question": "After you edit a tracked file, which command shows the line-by-line changes since the last commit?",
+      "options": [
+        "`git log`",
+        "`git remote -v`",
+        "`git diff`",
+        "`git branch`"
+      ],
+      "correct": 2,
+      "explanation": "`git diff` shows unstaged changes in the working tree compared to what was last committed (or staged, depending on flags)."
+    },
+    {
+      "id": "q7",
+      "question": "In Git terms, what is a **remote** (like `origin`)?",
+      "options": [
+        "A temporary stash of uncommitted edits",
+        "A copy of the repository living somewhere else (often on GitHub)",
+        "The same thing as a branch",
+        "A Python virtual environment"
+      ],
+      "correct": 1,
+      "explanation": "Git is distributed: your laptop has a full copy, and GitHub holds another copy. By convention that GitHub copy is named `origin`."
+    },
+    {
+      "id": "q8",
+      "question": "For collaborative / production work, why avoid committing directly to `main`?",
+      "options": [
+        "`main` cannot store commits",
+        "So changes can go through a branch + pull request process (review, checks) before landing on `main`",
+        "Because `git push` only works on feature branches",
+        "Because GitHub deletes `main` nightly"
+      ],
+      "correct": 1,
+      "explanation": "Treat `main` as sacred. Commit on a feature branch, open a PR, then merge so process (tests, review) can protect `main`."
+    },
+    {
+      "id": "q9",
+      "question": "You run `git branch one-set` while on `main`. What is true afterward?",
+      "options": [
+        "You are now on `one-set` automatically",
+        "`one-set` exists, but you are still on `main` until you `checkout` (or switch to) it",
+        "`main` is deleted",
+        "The branch is already on GitHub"
+      ],
+      "correct": 1,
+      "explanation": "`git branch <name>` creates a branch but does not switch to it. The `*` in `git branch` marks your current branch; use `git checkout one-set` (or `git switch`) to move."
+    },
+    {
+      "id": "q10",
+      "question": "You commit on `one-set`, then `git checkout main`. What happens to your working tree?",
+      "options": [
+        "Nothing — every branch always shows the same files",
+        "Files update to match `main`'s latest commit; `one-set`'s commits are still saved on that branch",
+        "Your `one-set` commits are permanently erased",
+        "GitHub merges the PR automatically"
+      ],
+      "correct": 1,
+      "explanation": "Checking out a branch updates your files to that branch's tip. Other branches keep their history; switch back to see those commits again."
+    },
+    {
+      "id": "q11",
+      "question": "What does `git diff main..one-set` show?",
+      "options": [
+        "Only untracked files",
+        "The differences between the tips of `main` and `one-set`",
+        "Your GitHub password",
+        "Whether SSH is configured"
+      ],
+      "correct": 1,
+      "explanation": "That form of `git diff` compares two branches so you can see what would change if you brought `one-set` into `main`."
+    },
+    {
+      "id": "q12",
+      "question": "After a PR is merged on GitHub, your local repo does not update by itself. Which pair of ideas matches the lab?",
+      "options": [
+        "`git init` downloads remote commits; `git add` applies them",
+        "`git fetch` downloads remote updates without merging; `git pull` brings them into your current branch",
+        "`git commit` syncs with GitHub; `git status` pushes",
+        "`git branch -D` always updates `main` from GitHub"
+      ],
+      "correct": 1,
+      "explanation": "Merging on GitHub changes the remote. Locally, `fetch` updates remote-tracking refs; `pull` integrates those changes into your current branch (often `main`)."
+    },
+    {
+      "id": "q13",
+      "question": "What does `git branch -D one-set` do?",
+      "options": [
+        "Deletes the remote repository on GitHub",
+        "Deletes the local branch `one-set` after you no longer need it",
+        "Deletes `main`",
+        "Uninstalls git"
+      ],
+      "correct": 1,
+      "explanation": "After the PR is merged and you have updated local `main`, you can delete the finished local feature branch with `git branch -D`."
+    },
+    {
+      "id": "q14",
+      "question": "Which statement best describes Git vs GitHub?",
+      "options": [
+        "They are the same tool with two names",
+        "Git is the version-control system; GitHub is a hosting/collaboration platform built around Git",
+        "GitHub replaces `git commit` entirely",
+        "Git only works offline; GitHub only works without git"
+      ],
+      "correct": 1,
+      "explanation": "You use git commands locally. GitHub stores remotes, PRs, issues, and related collaboration features."
+    }
+  ]
+}

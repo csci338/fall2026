@@ -212,8 +212,6 @@ const QuizReport = forwardRef<QuizReportHandle, QuizReportProps>(({
                 }
                 
                 // Handle multiple-choice questions
-                const isMultiSelect = question.type === 'select-all' || Array.isArray(question.correct);
-                
                 // Format selected answer
                 let selectedAnswerText = 'Not answered';
                 if (savedAnswer !== undefined) {

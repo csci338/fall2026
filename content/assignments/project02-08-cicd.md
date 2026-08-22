@@ -134,7 +134,7 @@ jobs:
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── .github/

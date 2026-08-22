@@ -36,7 +36,6 @@ export default function remarkInlineAttrs() {
 
         // Look for a paragraph that is just an inline-attrs marker
         // Also check if it's a text node directly (can happen in some contexts)
-        let markerText: string | null = null;
         let markerAttrs: string | null = null;
         
         if (node.type === 'paragraph' && 'children' in node && Array.isArray(node.children) && node.children.length === 1) {
@@ -45,7 +44,6 @@ export default function remarkInlineAttrs() {
             const text = String(child.value || '').trim();
             const match = text.match(/^\{\:\s+([^}]+)\}$/);
             if (match) {
-              markerText = text;
               markerAttrs = match[1].trim();
             }
           }
@@ -54,7 +52,6 @@ export default function remarkInlineAttrs() {
           const text = String(node.value || '').trim();
           const match = text.match(/^\{\:\s+([^}]+)\}$/);
           if (match) {
-            markerText = text;
             markerAttrs = match[1].trim();
           }
         }

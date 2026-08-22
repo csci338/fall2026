@@ -15,10 +15,6 @@ interface QuizInstructionsProps {
 }
 
 export default function QuizInstructions({
-  randomMode,
-  onToggleRandomMode,
-  onClearQuiz,
-  onStartQuiz,
   isDark,
   cheatsheetContent,
   quizName,

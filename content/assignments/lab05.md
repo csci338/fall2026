@@ -26,11 +26,11 @@ By the end of the lab, you should understand how to install, update, remove, and
 
 {:.info}
 > ## Before you begin
-> Before you begin, get the latest code from class-exercises-fall2025
+> Before you begin, get the latest code from class-exercises-fall2026
 >
 > **On GitHub:**
 >
-> * Sync the latest changes from the class version of `class-exercises-fall2025` to your copy of the repo.
+> * Sync the latest changes from the class version of `class-exercises-fall2026` to your copy of the repo.
 >
 > **On your local computer:**
 > * Make sure that all of your changes from the last lab are staged and committed.
@@ -39,7 +39,7 @@ By the end of the lab, you should understand how to install, update, remove, and
 >     * If you did it correctly, you will notice that a new `lab05` folder has been created.
 > * Create a new branch called lab05: `git checkout -b lab05-b`
 > * Verify that you’re on your new branch: `git branch`
-> * You are going to do some coding / package manager activities within your `class-exercises-fall2025/lab05` directory
+> * You are going to do some coding / package manager activities within your `class-exercises-fall2026/lab05` directory
 > * After going through the lab, be sure to answer the questions in `lab05/answers.md`.
 
 
@@ -173,7 +173,7 @@ If it worked, an `google.html` file should have been created to your local direc
       ```
       export PATH="$HOME/.local/bin:$PATH"
       ```
-5. Navigate to your `class-exercises-fall2025/lab05` directory.
+5. Navigate to your `class-exercises-fall2026/lab05` directory.
 6. From within the `lab05` directory, create a new Python project using Poetry:<br><br>
    ```bash
    poetry new poetry-demo
@@ -182,7 +182,7 @@ If it worked, an `google.html` file should have been created to your local direc
 
    Your file structure should look like the one below:
    ```bash
-    class-exercises-fall2025
+    class-exercises-fall2026
     ├── .git
     ├── .gitignore
     ├── README.md
@@ -438,7 +438,7 @@ If you are new to web development, this modal may not look like much, but buildi
 
 {:#p4}
 ## Part 4: Answer the Discussion Questions
-Please answer all of the discussion questions in the `class-exercises-fall2025/lab05/answers.md` file.
+Please answer all of the discussion questions in the `class-exercises-fall2026/lab05/answers.md` file.
 
 
 ### Submission

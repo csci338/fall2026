@@ -200,7 +200,9 @@ export default function ResourceQuiz({ quizData, resourceSlug, variant = 'deskto
       // Mark that we've auto-entered review mode
       hasAutoEnteredReviewModeRef.current = true;
     }
-  }, [completed, shuffledQuestions.length, isInitialLoad]);
+  // isInitialLoad is a ref; reading .current does not need it in the dependency array
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [completed, shuffledQuestions]);
 
   // Detect mobile screen size
   useEffect(() => {

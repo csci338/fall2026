@@ -36,13 +36,17 @@ export default function ReadingsList({
         {readings.map((reading, index) => {
           const itemKey = `${meetingKey}-${isOptional ? 'optional-reading' : 'reading'}-${index}`;
           const isChecked = enableChecklist ? checklist.isChecked(itemKey) : false;
+          const citationLabel =
+            typeof reading.citation === 'string'
+              ? reading.citation.replace(/<[^>]*>/g, '').trim()
+              : 'reading';
           
           return (
             <li key={index} className="mb-0 text-gray-700 dark:text-gray-300">
               <div className="flex items-start gap-2">
                 <input
                   type="checkbox"
-                  aria-label={`Mark reading "${reading.citation}" as ${isChecked ? 'unread' : 'read'}`}
+                  aria-label={`Mark reading "${citationLabel}" as ${isChecked ? 'unread' : 'read'}`}
                   checked={isChecked}
                   onChange={() => enableChecklist && checklist.toggleChecked(itemKey)}
                   disabled={!enableChecklist}
@@ -54,7 +58,10 @@ export default function ReadingsList({
                   } : undefined}
                 />
                 <div className={`flex-1 ${isChecked ? '!line-through opacity-60' : ''}`}>
-                  {reading.citation} {" "}
+                  {typeof reading.citation === 'string' && reading.citation.includes('<')
+                    ? <span dangerouslySetInnerHTML={{ __html: reading.citation }} />
+                    : reading.citation}
+                  {" "}
                   {reading.url && (() => {
                     const isExternal = reading.url.startsWith('http://') || reading.url.startsWith('https://');
                     return (

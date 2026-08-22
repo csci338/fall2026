@@ -104,7 +104,7 @@ class Todo(Base):
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/
@@ -647,7 +647,7 @@ CMD ["poetry", "run", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/
@@ -769,7 +769,7 @@ bash scripts/fix.sh
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/

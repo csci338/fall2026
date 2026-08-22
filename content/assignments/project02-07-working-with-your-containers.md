@@ -18,7 +18,7 @@ When working with Docker containers, it can be confusing to know whether you sho
 - You're using **Git** (commits, pushes, branches)
 - You're **viewing files** in your file explorer or editor
 
-I recommend navigating to `project02-fall2025` on your terminal and typing `code .` to edit your code files on your laptop (host machine).
+I recommend navigating to `project02-fall2026` on your terminal and typing `code .` to edit your code files on your laptop (host machine).
 
 ## Your Containers
 **Run commands inside containers when:**

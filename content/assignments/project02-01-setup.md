@@ -14,7 +14,7 @@ hide_from_list: 1
 Create the following folder structure:
 
 ```sh
-project02-fall2025
+project02-fall2026
 ├── backend/
 │   └── models/
 ├── database/
@@ -27,7 +27,7 @@ project02-fall2025
 > Verify your folder structure matches the above.
 
 ## 2. Initialize Git Repository
-Initialize a git repo at the root of your `project02-fall2025` folder:
+Initialize a git repo at the root of your `project02-fall2026` folder:
 
 ```bash
 git init
@@ -83,7 +83,7 @@ A full-stack web application built with FastAPI (backend), React (frontend), and
 ## Project Structure
 
 
-project02-fall2025/
+project02-fall2026/
 ├── backend/      # FastAPI application
 ├── database/     # Database Dockerfile
 └── ui/           # React application
@@ -123,7 +123,7 @@ See the project documentation for detailed setup and development instructions.
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .git/
 > ├── .gitignore    # new
 > ├── backend/
@@ -140,7 +140,7 @@ If you're using GitHub (recommended), set it up now so you can push your code as
 
 1. **Create a new repository on GitHub:**
    - Go to https://github.com/new
-   - Choose a repository name (e.g., `project02-fall2025`)
+   - Choose a repository name (e.g., `project02-fall2026`)
    - Make it private and add `svanwart` as a collaborator
    - Click "Create repository"
 

@@ -46,7 +46,7 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
         showToc={postData.toc !== false}
         tocMaxLevel={heading_max_level || 2}
       >
-        <div className={`assignment-page${isTutorial02 ? ' assignment-page-tutorial02' : ''}`}>
+        <div className={`assignment-page${isTutorial02 ? ' assignment-page-tutorial02' : ''}${postData.type === 'lab' ? ' lab-page' : ''}`}>
           <PageHeader 
             title={postData.title} 
             excerpt={postData.excerpt}

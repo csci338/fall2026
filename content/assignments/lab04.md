@@ -118,9 +118,9 @@ This just lists the commands we'll be using in today's tutorial:
 For this week's lab, you will be completing the "Getting Started" Docker Tutorial. 
 
 {:.info}
-> ### Before you begin, get the latest code from `class-exercises-fall2025`
+> ### Before you begin, get the latest code from `class-exercises-fall2026`
 > **On GitHub:**
-> * Sync the latest changes from the class version of class-exercises-fall2025 to your copy of the repo.
+> * Sync the latest changes from the class version of class-exercises-fall2026 to your copy of the repo.
 >
 > **On your local computer:** 
 > * Make sure that all of your changes from the last lab are staged and committed.
@@ -147,13 +147,13 @@ Begin the Docker tutorial as follows:
     1. Multi-Container Apps
     1. Using Docker Compose
     1. <span class="badge info">Optional</span> *Image Building Best Practices*
-1. Answer the questions in the `class-exercises-fall2025/lab04/answers.md` file.
+1. Answer the questions in the `class-exercises-fall2026/lab04/answers.md` file.
 
 
 ## What to Turn In
-After answering all of the questions in your `class-exercises-fall2025/labo04/answers.md` file...
+After answering all of the questions in your `class-exercises-fall2026/labo04/answers.md` file...
 
 1. Make sure that your app folder is inside of your lab04 folder (including your Dockerfile and docker-compose.yml files).
-2. Then, stage, commit, and push the `lab04-b` branch of your `class-exercises-fall2025` repo to GitHub.
+2. Then, stage, commit, and push the `lab04-b` branch of your `class-exercises-fall2026` repo to GitHub.
 3. Create a Pull Request (but do not merge your pull request -- that doesn't happen until Sarah reviews it).
 4. Paste a link to your pull request in the Lab04 submission

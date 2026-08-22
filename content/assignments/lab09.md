@@ -20,11 +20,11 @@ points: 6
 ## 2. Setup
 
 ### Version Control Stuff
-Before you begin, get the latest code from <a href="https://github.com/csci338/class-exercises-fall2025" target="_blank">class-exercises-fall2025</a>. 
+Before you begin, get the latest code from <a href="https://github.com/csci338/class-exercises-fall2026" target="_blank">class-exercises-fall2026</a>. 
 * If you are a Windows user, you will do this lab (and all subsequent work in this class) using the WSL terminal.
 
 **On GitHub:**
-* Sync the latest changes from the class version of `class-exercises-fall2025` to your copy of the repo on GitHub.
+* Sync the latest changes from the class version of `class-exercises-fall2026` to your copy of the repo on GitHub.
 
 **On your local computer:**
 * Make sure that all of your changes from the last lab are staged and committed.

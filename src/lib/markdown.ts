@@ -7,7 +7,7 @@ import gfm from 'remark-gfm';
 import highlight from 'remark-highlight.js';
 import smartypants from 'remark-smartypants';
 import { preprocessCheckboxes, postprocessCheckboxes } from './markdown-checkboxes';
-import { preprocessMarkdownTags } from './markdown-tags';
+import { preprocessMarkdownTags, parseCollapsibleHeadingsOption, injectAutoCollapsibleMarkers } from './markdown-tags';
 
 const postsDirectory = path.join(process.cwd(), 'content');
 const quizzesDirectory = path.join(process.cwd(), 'content', 'quizzes');
@@ -138,6 +138,13 @@ export interface PostData {
   quizzes?: string[];
   no_render?: number;
   hide_from_list?: number;
+  collapsible_headings?: boolean | number | 'closed' | {
+    enabled?: boolean;
+    level?: number;
+    expand_all?: boolean;
+    expandAll?: boolean;
+    closed?: boolean;
+  };
 }
 
 export function getAllPostIds(subdirectory?: string) {
@@ -360,7 +367,6 @@ export async function getPostData(id: string, subdirectory?: string): Promise<Po
     if (elementMatch && elementMatch.index !== undefined) {
       const elementIndex = commentIndex + commentLength + elementMatch.index;
       const elementTag = elementMatch[0];
-      const tagName = elementMatch[1];
       
       // Add the class to the element
       let newElementTag: string;
@@ -384,6 +390,14 @@ export async function getPostData(id: string, subdirectory?: string): Promise<Po
       // Remove the comment
       contentHtml = contentHtml.substring(0, commentIndex) + contentHtml.substring(commentIndex + commentLength);
     }
+  }
+
+  // Optionally auto-mark headings as collapsible / expand-all from frontmatter
+  const autoCollapsible = parseCollapsibleHeadingsOption(
+    (matterResult.data as Record<string, unknown>).collapsible_headings
+  );
+  if (autoCollapsible) {
+    contentHtml = injectAutoCollapsibleMarkers(contentHtml, autoCollapsible);
   }
 
   // Post-process HTML to make headings collapsible based on <!-- collapsible --> comments
@@ -497,6 +511,119 @@ export async function getPostData(id: string, subdirectory?: string): Promise<Po
     
     // Replace the comment, heading, and section content with the details structure
     contentHtml = contentHtml.substring(0, commentIndex) + detailsContent + contentHtml.substring(sectionEnd);
+  }
+
+  // Post-process HTML for {% expand-all %} headings.
+  // These remote-control collapsible details one heading level below within the section.
+  // Must run AFTER collapsible processing so child headings are already <details>.
+  const expandAllCommentRegex = /<!--\s*expand-all(\s+closed)?\s*-->/gi;
+  const expandAllSections: Array<{
+    commentIndex: number;
+    commentLength: number;
+    headingStart: number;
+    headingEnd: number;
+    headingFull: string;
+    headingLevel: number;
+    isClosed: boolean;
+  }> = [];
+  let expandAllMatch;
+
+  while ((expandAllMatch = expandAllCommentRegex.exec(contentHtml)) !== null) {
+    const commentIndex = expandAllMatch.index;
+    const commentLength = expandAllMatch[0].length;
+    const isClosed = expandAllMatch[1] !== undefined;
+
+    const afterComment = contentHtml.substring(commentIndex + commentLength);
+    const headingMatch = afterComment.match(/<(h[1-5])([^>]*)>([\s\S]*?)<\/h[1-5]>/);
+
+    if (headingMatch && headingMatch.index !== undefined) {
+      const headingStart = commentIndex + commentLength + headingMatch.index;
+      const headingEnd = headingStart + headingMatch[0].length;
+      const headingLevel = parseInt(headingMatch[1].substring(1));
+
+      expandAllSections.push({
+        commentIndex,
+        commentLength,
+        headingStart,
+        headingEnd,
+        headingFull: headingMatch[0],
+        headingLevel,
+        isClosed,
+      });
+    }
+  }
+
+  for (let i = expandAllSections.length - 1; i >= 0; i--) {
+    const { commentIndex, headingEnd, headingFull, headingLevel, isClosed } = expandAllSections[i];
+    const afterHeading = contentHtml.substring(headingEnd);
+    const childLevel = headingLevel + 1;
+
+    // Section ends at the next top-level heading of equal or higher priority
+    // (ignore headings nested inside already-processed <details> blocks)
+    const findNextTopLevelHeadingIndex = (html: string, maxLevel: number): number | undefined => {
+      let depth = 0;
+      const tokenRegex = /<\/?details\b[^>]*>|<(h[1-5])\b[^>]*>/gi;
+      let tokenMatch;
+      while ((tokenMatch = tokenRegex.exec(html)) !== null) {
+        const token = tokenMatch[0].toLowerCase();
+        if (token.startsWith('<details')) {
+          depth++;
+        } else if (token.startsWith('</details')) {
+          depth = Math.max(0, depth - 1);
+        } else if (depth === 0 && tokenMatch[1]) {
+          const level = parseInt(tokenMatch[1].substring(1));
+          if (level <= maxLevel) {
+            return tokenMatch.index;
+          }
+        }
+      }
+      return undefined;
+    };
+
+    let sectionEnd = contentHtml.length;
+    const nextHeadingIndex = findNextTopLevelHeadingIndex(afterHeading, headingLevel);
+    if (nextHeadingIndex !== undefined) {
+      sectionEnd = headingEnd + nextHeadingIndex;
+    }
+
+    // If a later expand-all section starts sooner, stop there
+    for (let j = i + 1; j < expandAllSections.length; j++) {
+      const nextSection = expandAllSections[j];
+      if (nextSection.commentIndex > headingEnd && nextSection.commentIndex < sectionEnd) {
+        if (nextSection.headingLevel <= headingLevel) {
+          sectionEnd = nextSection.commentIndex;
+          break;
+        }
+      }
+    }
+
+    let sectionContent = contentHtml.substring(headingEnd, sectionEnd);
+
+    // Optionally force one-level-down collapsibles closed on load
+    if (isClosed) {
+      sectionContent = sectionContent.replace(/<details([^>]*)>/gi, (full, attrs: string) => {
+        if (attrs.includes(`collapsible-h${childLevel}`)) {
+          return `<details${attrs.replace(/\s+open\b/gi, '')}>`;
+        }
+        return full;
+      });
+    }
+
+    const openAttr = isClosed ? '' : ' data-expanded="true"';
+    const expandAllContent = `<section class="expand-all-section expand-all-h${headingLevel}" data-heading-level="${headingLevel}" data-child-level="${childLevel}"${openAttr}>
+  <div class="expand-all-heading">
+    ${headingFull}
+    <button type="button" class="expand-all-toggle" aria-expanded="${isClosed ? 'false' : 'true'}" aria-label="Expand or collapse all sections">
+      <span class="expand-all-toggle-icon" aria-hidden="true">
+        <i class="fa-solid fa-chevron-up"></i>
+        <i class="fa-solid fa-chevron-down"></i>
+      </span>
+    </button>
+  </div>
+  ${sectionContent}
+</section>`;
+
+    contentHtml = contentHtml.substring(0, commentIndex) + expandAllContent + contentHtml.substring(sectionEnd);
   }
 
   // Wrap each instructor notes section with data attribute for conditional rendering
@@ -742,7 +869,7 @@ export function getQuizData(slug: string): QuizData | null {
                 selectedQuiz = quizFile;
                 break; // Found one with folder property, use it
               }
-            } catch (error) {
+            } catch {
               // Continue to next file if this one can't be read
             }
           }

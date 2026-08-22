@@ -30,7 +30,6 @@ export default function QuizQuestionView({
   isCorrect,
   isSelected,
   hasAnswered,
-  completed = false,
   isRevealed = false,
   onRevealAnswer,
   showSummary = false,
@@ -43,7 +42,7 @@ export default function QuizQuestionView({
         question={question}
         questionNumber={questionNumber}
         selectedAnswers={selectedAnswers}
-        onAnswerSelect={onCodeAnswerSelect || ((id, answer, passed) => {
+        onAnswerSelect={onCodeAnswerSelect || (() => {
           // Fallback if handler not provided
           console.warn('Code answer handler not provided');
         })}

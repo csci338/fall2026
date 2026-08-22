@@ -301,6 +301,92 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
     };
   }, [content]);
 
+  // Handle {% expand-all %} headings that remote-control one-level-down collapsibles
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const sections = contentRef.current.querySelectorAll<HTMLElement>('.expand-all-section');
+    const cleanups: Array<() => void> = [];
+
+    const getChildCollapsibles = (section: HTMLElement): HTMLDetailsElement[] => {
+      const childLevel = section.dataset.childLevel;
+      if (!childLevel) return [];
+      return Array.from(
+        section.querySelectorAll<HTMLDetailsElement>(`details.collapsible-h${childLevel}`)
+      ).filter((details) => {
+        // Only control collapsibles directly under this section, not nested deeper
+        const wrappingDetails = details.parentElement?.closest('details');
+        return !wrappingDetails || !section.contains(wrappingDetails);
+      });
+    };
+
+    const syncButtonState = (section: HTMLElement) => {
+      const button = section.querySelector<HTMLButtonElement>('.expand-all-toggle');
+      if (!button) return;
+      const children = getChildCollapsibles(section);
+      const allOpen = children.length > 0 && children.every((details) => details.open);
+      button.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+      if (allOpen) {
+        section.setAttribute('data-expanded', 'true');
+      } else {
+        section.removeAttribute('data-expanded');
+      }
+    };
+
+    const persistDetailsState = (details: HTMLDetailsElement) => {
+      const allDetails = contentRef.current?.querySelectorAll<HTMLDetailsElement>('details.mb-4');
+      if (!allDetails) return;
+      const index = Array.from(allDetails).indexOf(details);
+      if (index < 0) return;
+      const summary = details.querySelector('summary');
+      const summaryText = summary?.textContent?.trim() || '';
+      const pagePath = window.location.pathname;
+      const storageKey = `collapsible-${pagePath}-${summaryText}-${index}`
+        .replace(/[^a-zA-Z0-9-]/g, '-')
+        .toLowerCase();
+      localStorage.setItem(storageKey, JSON.stringify(details.open));
+    };
+
+    sections.forEach((section) => {
+      const button = section.querySelector<HTMLButtonElement>('.expand-all-toggle');
+      if (!button) return;
+
+      syncButtonState(section);
+
+      const handleClick = () => {
+        const children = getChildCollapsibles(section);
+        if (children.length === 0) return;
+        const shouldExpand = !children.every((details) => details.open);
+        children.forEach((details) => {
+          details.open = shouldExpand;
+          persistDetailsState(details);
+        });
+        syncButtonState(section);
+      };
+
+      const handleChildToggle = () => {
+        syncButtonState(section);
+      };
+
+      button.addEventListener('click', handleClick);
+      const children = getChildCollapsibles(section);
+      children.forEach((details) => {
+        details.addEventListener('toggle', handleChildToggle);
+      });
+
+      cleanups.push(() => {
+        button.removeEventListener('click', handleClick);
+        children.forEach((details) => {
+          details.removeEventListener('toggle', handleChildToggle);
+        });
+      });
+    });
+
+    return () => {
+      cleanups.forEach((cleanup) => cleanup());
+    };
+  }, [content]);
+
   // Highlight code blocks that weren't processed by remark-highlight.js
   // (e.g., code blocks inside HTML tables)
   useEffect(() => {

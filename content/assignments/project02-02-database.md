@@ -125,7 +125,7 @@ DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/todo_db
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env            # new (and excluded from version control via .gitignore)
 > ├── .git/
 > ├── .gitignore

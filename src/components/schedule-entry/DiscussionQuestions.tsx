@@ -1,20 +1,20 @@
 'use client'
 
-import { useState } from 'react';
-import clsx from 'clsx';
 import { DiscussionQuestion } from './types';
 
 interface DiscussionQuestionsProps {
   discussionQuestions?: DiscussionQuestion[];
   isDark?: boolean;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
 export default function DiscussionQuestions({
   discussionQuestions,
   isDark,
+  isExpanded,
+  onToggle,
 }: DiscussionQuestionsProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
   if (!discussionQuestions || discussionQuestions.length === 0) {
     return null;
   }
@@ -23,27 +23,35 @@ export default function DiscussionQuestions({
 
   return (
     <div className="mt-4">
-      <button
-        type="button"
-        onClick={() => setIsExpanded(!isExpanded)}
-        aria-expanded={isExpanded}
-        className="flex items-center gap-2 text-left text-gray-700 dark:text-gray-300 hover:text-sky-700 dark:hover:text-gray-100"
-        style={textStyle}
-      >
-        <svg
-          className={clsx(
-            'w-4 h-4 flex-shrink-0 transition-transform duration-200',
-            isExpanded ? 'rotate-0' : '-rotate-90'
-          )}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
+      <div className="flex items-center gap-1 sm:gap-2">
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-label="Toggle study questions"
+          aria-expanded={isExpanded}
+          className="text-black dark:text-gray-200 hover:text-sky-700 dark:hover:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800 flex justify-center items-center rounded-full w-7 h-7 transition-colors flex-shrink-0"
+          style={isDark ? { color: '#e5e7eb' } : undefined}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M19 9l-7 7-7-7" />
-        </svg>
-        <strong>Study Questions</strong>
-      </button>
+          {isExpanded ? (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+            </svg>
+          ) : (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+            </svg>
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-expanded={isExpanded}
+          className="text-left text-gray-700 dark:text-gray-300 hover:text-sky-700 dark:hover:text-gray-100"
+          style={textStyle}
+        >
+          <strong>Study Questions</strong>
+        </button>
+      </div>
       {isExpanded && (
         <ul className="list-disc !pl-8 mt-2">
           {discussionQuestions.map((dq, index) => (

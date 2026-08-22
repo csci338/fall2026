@@ -134,38 +134,44 @@ export default function Meeting({
   }
 
 
-  function renderDetailsButton(allChecked: boolean) {
+  function renderExpandButton() {
+    if (!hasMoreDetails || isTutorialOnlyMeeting) {
+      return <span className="w-7 h-7 flex-shrink-0" aria-hidden="true" />;
+    }
+
     return (
-      <div className="flex items-center gap-2">
-        {allChecked && (
-          <div 
-            className="flex items-center justify-center w-7 h-7 rounded-full bg-green-700 dark:bg-green-400 transition-all duration-200" 
-            title="All tasks completed!"
-            style={{ textDecoration: 'none' }}
-          >
-            <svg className="w-4 h-4 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3} style={{ textDecoration: 'none' }}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" style={{ textDecoration: 'none' }} />
-            </svg>
-          </div>
+      <button 
+        onClick={handleToggleButtonClick}
+        aria-label="Toggle details"
+        aria-expanded={showDetails}
+        className="text-black dark:text-gray-200 hover:text-sky-700 dark:hover:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800 flex justify-center items-center rounded-full w-7 h-7 transition-colors flex-shrink-0"
+        style={isDark ? { color: '#e5e7eb' } : undefined}
+      >
+        {showDetails ? (
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+          </svg>
+        ) : (
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+          </svg>
         )}
-        {hasMoreDetails && !isTutorialOnlyMeeting && (
-          <button 
-            onClick={handleToggleButtonClick}
-            aria-label="Toggle details"
-            aria-expanded={showDetails}
-            className="text-black dark:text-gray-200 hover:text-sky-700 dark:hover:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800 flex justify-center items-center rounded-full w-[35px] h-[35px] transition-colors"
-            style={isDark ? { color: '#e5e7eb' } : undefined}
-          >
-            {showDetails ? 
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 15l7-7 7 7" />
-              </svg>: 
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M19 9l-7 7-7-7" />
-              </svg>
-            }
-          </button>
-        )}
+      </button>
+    );
+  }
+
+  function renderCompletionBadge(allChecked: boolean) {
+    if (!allChecked) return null;
+
+    return (
+      <div 
+        className="flex items-center justify-center w-7 h-7 rounded-full bg-green-700 dark:bg-green-400 transition-all duration-200" 
+        title="All tasks completed!"
+        style={{ textDecoration: 'none' }}
+      >
+        <svg className="w-4 h-4 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3} style={{ textDecoration: 'none' }}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" style={{ textDecoration: 'none' }} />
+        </svg>
       </div>
     );
   }
@@ -208,19 +214,23 @@ export default function Meeting({
       className={containerClassName}
       style={containerStyle}
     >
-        <div className={clsx("flex gap-4", {
+        <div className={clsx("flex gap-2 sm:gap-3 flex-1 min-w-0", {
             'flex-col': showDetails,
             'md:flex-row': showDetails
         })}>
-            <span className={clsx("w-[100px] flex-shrink-0 transition-all duration-300 ease-in-out", {
-                'font-bold': true,
-                'cursor-pointer': !isTutorialOnlyMeeting
-            })} onClick={isTutorialOnlyMeeting ? undefined : toggleDetails}>{meeting.date}</span>
-            <div className="w-full">
+            <div className="flex gap-1 sm:gap-2 items-start flex-shrink-0">
+              {renderExpandButton()}
+              <span className={clsx("w-[100px] flex-shrink-0 transition-all duration-300 ease-in-out pt-1", {
+                  'font-bold': true,
+                  'cursor-pointer': !isTutorialOnlyMeeting
+              })} onClick={isTutorialOnlyMeeting ? undefined : toggleDetails}>{meeting.date}</span>
+            </div>
+            <div className="w-full min-w-0">
                 <p className={clsx({
                     '!mb-3': !showDetails && !isTutorialOnlyMeeting,
                     '!mb-2': showDetails || isTutorialOnlyMeeting,
                     'cursor-pointer': !isTutorialOnlyMeeting && 'pointer',
+                    'pt-1': !showDetails && !isTutorialOnlyMeeting,
                   })} onClick={isTutorialOnlyMeeting ? undefined : toggleDetails}>
                   {isTutorialOnlyMeeting && tutorialInfo ? (
                     tutorialInfo.isDraft ? (
@@ -322,8 +332,8 @@ export default function Meeting({
                 </div>
             </div> 
         </div> 
-        <div>
-            {renderDetailsButton(allChecked)}
+        <div className="flex-shrink-0 pt-1">
+            {renderCompletionBadge(allChecked)}
         </div>
     </div>
     {/* Render quiz drawer when a quiz is opened */}

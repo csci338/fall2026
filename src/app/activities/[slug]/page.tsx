@@ -1,10 +1,11 @@
-import { getPostData } from '@/lib/markdown';
+import { getPostData, getQuizData } from '@/lib/markdown';
 import { generateStaticParamsForContentType, validatePostForRender } from '@/lib/static-params';
 import PageHeader from '@/components/PageHeader';
 import MarkdownContent from '@/components/MarkdownContent';
 import ContentLayout from '@/components/ContentLayout';
 import QuickLinksNav from '@/components/QuickLinksNav';
 import StyleGuideStyles from '@/components/StyleGuideStyles';
+import ResourceQuiz from '@/components/ResourceQuiz';
 import { notFound } from 'next/navigation';
 
 interface AssignmentPageProps {
@@ -44,6 +45,7 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
     
     const { heading_max_level } = postData;
     const isStyleGuideDemo = slug === 'style-guide-demo';
+    const quizData = getQuizData(slug);
     
     return (
       <ContentLayout
@@ -59,10 +61,13 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
         />
         { postData.due_date && <p className="mt-2 text-lg font-bold">Due {formatDate(postData.due_date)} at 11:59pm</p> }
         {isStyleGuideDemo && <StyleGuideStyles />}
-        <MarkdownContent content={postData.content} />
+        <MarkdownContent content={postData.content} className="activity-content" />
+        {quizData && (
+          <ResourceQuiz key={`quiz-${slug}`} quizData={quizData} resourceSlug={slug} variant="desktop" />
+        )}
       </ContentLayout>
     );
   } catch {
     notFound();
   }
-} 
+}

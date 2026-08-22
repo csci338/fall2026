@@ -4,301 +4,607 @@ type: activity
 draft: 1
 start_date: 2026-09-01
 date: 2026-09-01
+collapsible_headings: true
 ---
 
 {:.info}
-> Credit: This activity was designed by Semmy Purewall
-
-This activity is designed to be completed entirely in class. The goals with this activity are as follows:
-
-1. Practice with merge conflicts
-2. Practicing with various merging/rebasing strategies
-3. More practice with basic git & CLI stuff
+> **Credit:** This activity was originally designed by Semmy Purewall and has been adapted for this course.
+>
+> **Rule of Thumb**: Never develop directly on `main`. Create a branch for your work.
 
 
-For this activity, you'll work with (at least) one other person. The person who creates the initial repository will be called the "owner." Any additional collaborators will be called "the collaborator"
 
-## Part 1: Merging
-Nominate one person in your group to be "the owner." 
+In this activity, you will work with a partner to practice:
 
-### 1.1. Owner setup
-If you are the owner, you will create a new git repository as follows:
-1.  Open a new command line shell (Windows users use WSL),  navigate to your `csci338` folder, and make a directory called `merge-activity`:
+1. collaborating with Git and GitHub
+2. working on feature branches
+3. resolving merge conflicts
+4. comparing merge and rebase
 
-    ```bash
-    $ mkdir merge-activity
-    ```
-1. Navigate into the directory (`cd merge-activity`)
-1. Initialize a new git repository (`git init`)
-1. Create a `README.md` file directly inside of `merge-activity`. Inside `README`, add a heading that says "Merge / Rebase Practice" 
-1. Stage your `README.md` file using (`git add .`)
-1. Commit it (e.g., `git commit -m "Added README.md"`)
-1. Next create a `my_code.py` file. It should look like this.
-
-    ```py
-    def say_hello() -> None:
-        print("hello world!")
+You will use one shared repository for the entire activity.
 
 
-    if __name__ == "__main__":
-        say_hello()
-    ```
-1. Commit it.
-1. Now create a *private* repository on GitHub (github.com) for your local git repository and push your local repository to the remote repository.
-1. After a successful push, add your collaborator(s) to the
-repository (GitHub > Settings > "Collaborators and Teams"). 
 
-### 1.2. Collaborator setup
-After the owner has added you as a collaborator to the `merge-activity` repo, you are going to clone their repository. To do this:
+## Part 1: Set Up the Shared Repository
 
-1.  Open a new command line shell (Windows users use WSL),  navigate to your `csci338` folder.
-2. *From within the `csci338` folder, clone the the `merge-activity` repo using the SSH protocol. If you forgot how to do this, refer back to Lab 2.
-1. Navigate into the `merge-activity` repo that has just been created on your local machine.
+Decide roles now and keep them for the rest of the activity:
 
-You and your partner are now going to work on two features in parallel. The owner will work on Feature A and the collaborator will work on Feature B. Both of your repositories should have the same remote urls. 
+- <span class="badge person-a">Person A</span> is the **owner** of the GitHub repository (creates it and adds the collaborator).
+- <span class="badge person-b">Person B</span> is the **collaborator** (clones the shared repository).
 
-**Question:** Which Git subcommand can you use to confirm that? Go ahead and confirm it.
+### 1.1. <span class="badge person-a">Person A</span> (Owner): Create the Repository
+
+Inside your `csci338` folder:
+
+```bash
+mkdir git-collaboration
+cd git-collaboration
+git init
+```
+
+Create a `README.md` file:
+
+```md
+# Git Collaboration Practice
+```
+
+Create a file named `my_code.py`:
+
+```python
+def say_hello() -> None:
+    print("hello world!")
 
 
-**Answer:** `git remote show origin`
+if __name__ == "__main__":
+    say_hello()
+```
+
+Commit the starter code:
+
+```bash
+git add .
+git commit -m "Add starter code"
+```
+
+Now:
+
+1. Create a private GitHub repository named `git-collaboration`.
+2. Push your local repository to GitHub.
+3. Add your partner (<span class="badge person-b">Person B</span>) as a collaborator.
+
+### 1.2. <span class="badge person-b">Person B</span> (Collaborator): Clone the Repository
+
+Inside your `csci338` folder, clone the repository using SSH.
+
+Then:
+
+```bash
+cd git-collaboration
+```
+
+Confirm that your local repository points to the shared GitHub repository:
+
+```bash
+git remote -v
+```
+
+Both partners should now have the same `main` branch.
 
 
-Complete the next two sections in parallel.
+## Part 2: Resolve a Conflict with Merge
 
-### 1.3. Creating a conflict
-You are now going to both edit the same file on different branches and practice resolving the conflicts.
+You will both start from the same version of `main`, create separate feature branches, and make conflicting changes.
 
-#### Feature A (Owner)
+At the beginning, each person creates a branch from the same commit:
 
-This feature will be implemented on the `main` branch.
+### 2.1 Create feature branches (in parallel)
 
-**The owner of the repository** should complete Feature A. 
+Work on these at the same time — <span class="badge person-a">Person A</span> (owner) does the left column, <span class="badge person-b">Person B</span> (collaborator) does the right.
 
-To complete feature A, you will modify the `say_hello` function definition to (a) accept a `name` parameter, and (b) output a greeting and the name. 
+<div class="parallel-columns">
+<div class="parallel-column">
 
-* If you don't know how to do this (totally expected if you're new to python), try Googling it or using an AI tool. When you're at your first job or internship, you're going to need to "learn how to learn" a new language, so this is good practice. 
+#### <span class="badge person-a">Person A</span> Create `feature-a`
 
-When you invoke your function as follows:
+Make sure you are on `main`, then create a feature branch:
 
-```py
+```bash
+git checkout main
+git checkout -b feature-a
+```
+
+<img src="/fall2026/images/activities/git-activity/p1-branch1.png" class="h-[250px] mb-4 border-4">
+
+Change `say_hello()` so that it accepts a name.
+
+For example:
+
+```python
 say_hello("Walter")
-say_hello("Ruth")
-say_hello("Larry")
-say_hello("Helen")
 ```
 
-It will print out:
+should print:
 
-```bash
+```text
 Hello Walter!
-Hello Ruth!
-Hello Larry!
-Hello Helen!
 ```
 
-Once this is tested and working, commit it locally, then **push your main branch to the remote repository** on GitHub.
+Test your code.
 
-#### Feature B (Collaborator)
-
-The collaborator will complete a slightly different feature on a different branch. First, create and check out a branch.
+Then commit and push your branch:
 
 ```bash
-$ git checkout -b feature-b
+git add .
+git commit -m "Add named greeting"
+git push -u origin feature-a
 ```
 
-The job of `feature-b` is to print the same "hello world!" message n times. To do this, rename `say_hello` -> `say_hello_n`, and add a parameter to specify the number of times the message should be repeated. Then, use a loop in the body of the function to print the message n times. 
+</div>
+<div class="parallel-column">
 
-* If you don't know how to do this (totally expected if you're new to python), try Googling it or using an AI tool. When you're at your first job or internship, you're going to need to "learn how to learn" a new language, so this is good practice. 
+#### <span class="badge person-b">Person B</span> Create `feature-b`
 
-When I invoke your function as follows:
+Make sure you are on `main`, then create a different feature branch:
 
-```py
+```bash
+git checkout main
+git checkout -b feature-b
+```
+
+<img src="/fall2026/images/activities/git-activity/p2-branch1.png" class="h-[250px] mb-4 border-4">
+
+Change the function so that it prints `"hello world!"` a specified number of times.
+
+For example:
+
+```python
 say_hello_n(3)
 ```
 
-It will print out:
+should print:
 
-```bash
+```text
 hello world!
 hello world!
 hello world!
 ```
 
-Once you're happy with your change, commit it locally, but **do not push
-anything yet.**
+Test your code.
 
-### 1.4. Pulling down the owners changes
-
-Once you're both finished with the sections above, you'll work
-together on this section on the **collaborator's** computer.
-
-At this point, we are in the situation where you are in a feature
-branch, but main is ahead (i.e., changes have been made to main since you branched from it, making the collaborator's branch is no longer in sync with main).
-
-![image](/images/activities/feature_branch_main_ahead.png)
-
-Check the state of your git repository and make sure you're on the `feature-b` branch. Let's checkout `main` on your laptop and then  pull your partner's changes down from GitHub.
+Then commit and push your branch:
 
 ```bash
-$ git checkout main
+git add .
+git commit -m "Add repeated greeting"
+git push -u origin feature-b
 ```
 
-Confirm you're on the main branch now.
+</div>
+</div>
+
+### 2.2. Sync and verify (both partners)
+
+Once both of you have pushed your feature branch to GitHub, fetch each other's work and confirm you are still in sync.
+
+On **both** computers:
 
 ```bash
-$ git pull origin main
+git checkout main
+git fetch origin
+git pull origin main
 ```
 
-Now take a look at the history (`git log`) to make sure you see the commit that
-implements feature A. Then, check out your feature branch again:
+List the remote branches:
 
 ```bash
-$ git checkout feature-b
+git branch -r
 ```
 
-Let's take a look at the history again. Do you see the commit with
-feature A? Probably not, but you can see it by doing this:
+You should see both `origin/feature-a` and `origin/feature-b`.
+
+Then check that you share the same `main` commit:
 
 ```bash
-$ git log --all
+git log -1 --oneline
 ```
 
-And if you want a visual representation, add the `--graph`
-option. Where is `HEAD`? Where is `feature-b`?
+Both partners should see the same commit hash and message (the starter commit from Part 1). If anything is missing, wait for your partner to finish pushing, then `fetch` again.
+
+Your Git Tree should now look like this:
+
+<img src="/fall2026/images/activities/git-activity/2-branches.png" class="w-[500px] mb-4 border-4">
+
+### 2.3. Merge `feature-a` into `main`
+
+<span class="badge person-a">Person A</span> will merge their feature first.
+
+On <span class="badge person-a">Person A</span>'s computer:
 
 ```bash
-$ git log --all --graph
+git checkout main
+git merge feature-a
+git push origin main
 ```
 
-### 1.5. Merging
-Let's merge the branches! First, check out main again. Take a look at
-the history (with all commits and the graph option enabled). Where is
-`HEAD`?
+Now the shared repository looks like this:
 
-Now let's use the `merge` subcommand to merge the branches. Make sure
-you're on `main` and then run:
+<img src="/fall2026/images/activities/git-activity/persona-merged.png" class="w-[500px] mb-4 border-4">
+
+**Person A's** job was easy. Git simply moved the `main` pointer to their most recent commit. Compare the last two diagrams carefully so you understand what just happened. This kind of merge is called a *fast-forward*, because `main` had not diverged from `feature-a` (it was still an ancestor of that commit).
+
+### 2.4. <span class="badge person-b">Person B</span> Update `main`
+Before `feature-b` can be merged, <span class="badge person-b">Person B</span> should bring the newest `main` into their branch. On <span class="badge person-b">Person B</span>'s computer:
 
 ```bash
-$ git merge feature-b
+git checkout main
+git pull origin main
 ```
 
-This attempts to merge the `feature-b` branch into the `main`
-branch. It should look something like this:
+Now switch back to the feature branch:
 
 ```bash
+git checkout feature-b
+```
+
+View the history:
+
+```bash
+git log --all --graph --oneline
+```
+
+Because you edited the same part of `my_code.py`, but on a different branch than Person A, your history has diverged. Therefore, integrating your code with your partner's code should create a conflict that you will need to manually resolve.
+
+### 2.5. Merge `main` into `feature-b`
+
+While on `feature-b`, run:
+
+```bash
+git merge main
+```
+
+Git should report a merge conflict.
+
+Open `my_code.py`. You should see conflict markers similar to:
+
+```text
 <<<<<<< HEAD
-[Feature A Code]
+...
 =======
-[Feature B Code]
->>>>>>> feature-b
+...
+>>>>>>> main
 ```
 
-Note that `[Feature A Code]` will be replaced with the actual code
-associated with Feature A. The top part represents the state of the
-code at your `HEAD` (in this case, `HEAD` is an alias for `main`).
+Edit the file so that:
 
-Before going further, take a look at the state of your
-repository. Note that `git` gives you helpful instructions on how to
-proceed -- you can either fix the conflicts and then run `git commit -m "some message"`
-which will create your merge commit, or you can abort the process
-altogether.
+- the named greeting still works
+- the repeated greeting still works
+- all conflict markers are removed
 
-Your job is now to reconcile these conflicts, and remove the merge conflict separators. Do that now. At the end of your reconciliation, both features should work as expected. You can test them by running it with Python.
+Test the program.
 
-Once that's done, let's take a look at the state of the repo
-again. Git should tell you that you're good to go!
+Then finish the merge:
 
 ```bash
-$ git status
+git add .
+git commit -m "Merge conflicts resolved"
 ```
 
-Let's take a look at the log with the `--graph` option. You should see
-your merge commit with two parent pointers.
-
-Commit and push the changes to the main branch on Github, and take a look at all
-the commits. Have your partner (the owner) pull down the changes. You both should now have the exact same code on the `main` branch. 
-
-## Part 2: Rebasing
-We're going to to do a rebase and fast-forward this time, instead of a merge. ***Let's reverse roles*** now so that the owner becomes the collaborator and vice-versa. 
-
-### 2.1. Owner setup
-Repeat Step 1.1 above, but instead of working with `merge-activity`, you will create a new repo within `csci338` called `rebase-activity`.
-
-Your directory structure should look something like:
-```
-csci338
-├── class-exercises-fall2025
-├── lab01
-├── merge-activity
-└── rebase-activity
-```
-
-### 2.2. Collaborator setup
-Repeat Step 1.2 above, but with the `rebase-activity` repo.
-
-### 2.3. Creating a conflict
-Repeat Step 1.3 above, but with the `rebase-activity` repo.
-
-### 2.4. Pulling down the owner's changes
-Repeat Step 1.4 above, but with the `rebase-activity` repo.
-
-### 2.5. Rebasing
-Now, we're going to rebase the branches to see how this process differs. The ***collaborator*** will do the rebase.
-
-Check out `main` again. Take a look at the history (with all commits and the graph option enabled). Where is HEAD?
-
-Next, we'll rebase `main` on the `feature-b` branch, then fast-forward merge `feature-b` back into `main`. So check out the `feature-b` branch. And then, after confirming you're in the right place, do the rebase.
+View the history:
 
 ```bash
-$ git rebase main
+git log --all --graph --oneline
 ```
 
-Git will try to "replay" the new commit in `main` on top but it will hit the same conflict we saw in the merge case. Read the message Git outputs.
+<img src="/fall2026/images/activities/git-activity/merge-commit.png" class="w-[500px] mb-4 border-4">
 
-Now take a look at the code. You'll see it looks something like this.
+Push your updated feature branch:
 
 ```bash
-<<<<<<< HEAD
-[Feature A Code]
-=======
-[Feature B Code]
->>>>>>> 1a0ffaa (Add feature b)
+git push origin feature-b
 ```
 
-In this case `HEAD` is `main` again, since we checked it out to replay
-the commits on top. Check the status of the repository, and read all
-the hints Git is giving you. Fix the conflicts as you did this time.
+Then merge it into `main`:
 
-Once you're done, check the status again and read the message. 
-
-**Question:** What should you do now?
-
-**Answer:** 
+```bash
+git checkout main
+git merge feature-b
+git push origin main
 ```
+
+View the history again:
+
+```bash
+git log --all --graph --oneline
+```
+
+
+<img src="/fall2026/images/activities/git-activity/feature-merged-to-main.png" class="w-[500px] mb-4 border-4">
+
+
+Both partners should now pull the newest `main`:
+
+```bash
+git checkout main
+git pull origin main
+```
+
+
+
+## Part 3: Resolve a Conflict with Rebase
+
+Now you will create the same kind of situation again, but resolve it using rebase instead of merge.
+
+Switch roles so that each person gets to perform the other side of the workflow: whoever was <span class="badge person-a">Person A</span> in Part 2 should now be <span class="badge person-b">Person B</span>, and vice versa. (GitHub owner/collaborator stays the same.)
+
+The diagrams below reuse the same shapes from Part 2 — read `rebase-a` for `feature-a` and `rebase-b` for `feature-b`.
+
+### 3.1. <span class="badge person-a">Person A</span> Create Fresh Starter Code
+
+On `main`, <span class="badge person-a">Person A</span> should create a new file named `rebase_code.py`:
+
+```python
+def say_goodbye() -> None:
+    print("goodbye world!")
+
+
+if __name__ == "__main__":
+    say_goodbye()
+```
+
+Commit and push:
+
+```bash
+git add .
+git commit -m "Add rebase starter code"
+git push origin main
+```
+
+Both partners should pull:
+
+```bash
+git checkout main
+git pull origin main
+```
+
+### 3.2. Create rebase branches (in parallel)
+
+Work on these at the same time — <span class="badge person-a">Person A</span> does the left column, <span class="badge person-b">Person B</span> does the right.
+
+<div class="parallel-columns">
+<div class="parallel-column">
+
+#### <span class="badge person-a">Person A</span> Create `rebase-a`
+
+Make sure you are on `main`, then create a feature branch:
+
+```bash
+git checkout main
+git checkout -b rebase-a
+```
+
+<img src="/fall2026/images/activities/git-activity/rebase-a-start.png" class="h-[200px] mb-4 border-4">
+
+Change `say_goodbye()` so that it accepts a name.
+
+For example:
+
+```python
+say_goodbye("Walter")
+```
+
+should print:
+
+```text
+Goodbye Walter!
+```
+
+Test your code.
+
+Then commit and push your branch:
+
+```bash
+git add .
+git commit -m "Add named goodbye"
+git push -u origin rebase-a
+```
+
+<img src="/fall2026/images/activities/git-activity/rebase-a-new-commit.png" class="h-[170px] mb-4 border-4">
+
+</div>
+<div class="parallel-column">
+
+#### <span class="badge person-b">Person B</span> Create `rebase-b`
+
+Make sure you are on `main`, then create a different feature branch:
+
+```bash
+git checkout main
+git checkout -b rebase-b
+```
+
+<img src="/fall2026/images/activities/git-activity/rebase-b-start.png" class="h-[200px] mb-4 border-4">
+
+Change the function so that it prints `"goodbye world!"` a specified number of times.
+
+For example:
+
+```python
+say_goodbye_n(3)
+```
+
+should print:
+
+```text
+goodbye world!
+goodbye world!
+goodbye world!
+```
+
+Test your code.
+
+Then commit and push your branch:
+
+```bash
+git add .
+git commit -m "Add repeated goodbye"
+git push -u origin rebase-b
+```
+
+<img src="/fall2026/images/activities/git-activity/rebase-b-new-commit.png" class="h-[170px] mb-4 border-4">
+
+</div>
+</div>
+
+### 3.3. Sync and verify (both partners)
+
+Once both of you have pushed your rebase branch to GitHub, fetch each other's work and confirm you are still in sync.
+
+On **both** computers:
+
+```bash
+git checkout main
+git fetch origin
+git pull origin main
+```
+
+List the remote branches:
+
+```bash
+git branch -r
+```
+
+You should see both `origin/rebase-a` and `origin/rebase-b`.
+
+Then check that you share the same `main` commit:
+
+```bash
+git log -1 --oneline
+```
+
+Both partners should see the same commit hash and message. If anything is missing, wait for your partner to finish pushing, then `fetch` again.
+
+Your Git tree should now look like this:
+
+<img src="/fall2026/images/activities/git-activity/rebase-start.png" class="w-[500px] mb-4 border-4">
+
+### 3.4. Merge `rebase-a` into `main`
+
+<span class="badge person-a">Person A</span> merges first:
+
+```bash
+git checkout main
+git merge rebase-a
+git push origin main
+```
+
+Now the shared repository looks like this:
+
+<img src="/fall2026/images/activities/git-activity/person-a-rebased-ff.png" class="max-w-[600px] mb-4 border-4">
+
+Again, this is a *fast-forward*: `main` had not diverged from `rebase-a`.
+
+<span class="badge person-b">Person B</span>'s branch was created from an older version of `main`. This time, instead of merging `main` into the feature branch, you will rebase the feature branch onto `main`.
+
+### 3.5. <span class="badge person-b">Person B</span> Update `main`
+
+On <span class="badge person-b">Person B</span>'s computer:
+
+```bash
+git checkout main
+git pull origin main
+git checkout rebase-b
+```
+
+You are now here (same shape as after Person A's merge):
+
+<img src="/fall2026/images/activities/git-activity/person-a-rebased-ff.png" class="max-w-[600px] mb-4 border-4">
+
+### 3.6. Rebase `rebase-b` onto `main`
+
+While on `rebase-b`, run:
+
+```bash
+git rebase main
+```
+
+Git should stop because of a conflict.
+
+Open `rebase_code.py` and resolve the conflict so that both features work.
+
+Then:
+
+```bash
 git add .
 git rebase --continue
 ```
 
-Once that's done, you've successfully rebase `main` onto
-`feature-b`. Check the history and note that the commit hash
-associated with `feature-b` has changed as we expected!
-
-We're not finished yet, because we wanted to get `feature-b` into
-`main`. Now that `main` is no longer ahead, we can do a fast-forward
-merge into main. To complete this, check out the main branch and do a
-merge.
+When the rebase finishes, view the history:
 
 ```bash
-$ git checkout main
-$ git merge feature-b
+git log --all --graph --oneline
 ```
 
-Read the output. Now take a look at the history with the `--graph`
-option. How is the history different from the merge above? Do you see
-a merge commit?
+<img src="/fall2026/images/activities/git-activity/rebase-complete.png" class="max-w-[600px] mb-4 border-4">
 
-Push the changes to Github and take a look at the commits.
+What just happened, simply:
 
-Now you've successfully fixed some merge conflicts, merged, and
-rebased. Do you have any opinions on which is better? Talk with your
-partner about your newly found strong opinions.
+- Git took the commits that only existed on `rebase-b`
+- It **replayed** those changes on top of the newest `main`
+- Those `rebase-b` commits get **new commit hashes** (they are rewritten)
+- The commits on `main` are **not** rewritten — they stay exactly as they were
+
+So , instead of creating a merge commit (like in Part 2), you end up with a straight line. 
+
+The history is now **linear**.
+
+### 3.7. Merge the Rebased Branch
+
+Switch to `main`:
+
+```bash
+git checkout main
+```
+
+Merge `rebase-b`:
+
+```bash
+git merge rebase-b
+```
+
+This should be a fast-forward merge — `main` is an ancestor of the rebased `rebase-b`, so Git only moves the `main` pointer forward.
+
+The history remains linear:
+
+<img src="/fall2026/images/activities/git-activity/rebase-complete-main-merge.png" class="max-w-[600px] mb-4 border-4">
+
+Push:
+
+```bash
+git push origin main
+```
+
+Both partners should pull the newest `main`:
+
+```bash
+git checkout main
+git pull origin main
+```
+
+
+## Part 4: Compare Merge and Rebase
+
+Look at the history:
+
+```bash
+git log --all --graph --oneline
+```
+
+<img src="/fall2026/images/activities/git-activity/history.png" class="w-full mb-4 border-4">
+
+Discuss with your partner:
+
+1. Why did the conflicts happen?
+2. What happened when you merged `main` into a feature branch?
+3. What happened when you rebased a feature branch onto `main`?
+4. How did the resulting Git histories differ?
+5. Which approach makes more sense to you right now?

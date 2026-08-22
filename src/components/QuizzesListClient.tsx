@@ -124,19 +124,6 @@ export default function QuizzesListClient({ quizzes }: QuizzesListClientProps) {
 
   const openQuiz = quizzes.find(q => q.slug === openQuizSlug);
   const getQuizStatus = (slug: string) => quizCompletionStatus[slug];
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains('dark'));
-    const observer = new MutationObserver(() => {
-      setIsDark(document.documentElement.classList.contains('dark'));
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>

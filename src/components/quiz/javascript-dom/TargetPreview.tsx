@@ -9,7 +9,7 @@ interface TargetPreviewProps {
   isDark?: boolean;
 }
 
-export default function TargetPreview({ html, css, js, isDark }: TargetPreviewProps) {
+export default function TargetPreview({ html, css, js }: TargetPreviewProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const updateIframe = (iframe: HTMLIFrameElement | null) => {

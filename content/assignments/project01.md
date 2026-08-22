@@ -102,7 +102,7 @@ Your teams are listed below. Each member of your team has been assigned a task f
 {% collapsible %}
 ### Team 1
 
-Please see your team's <a href="https://github.com/csci338/p01-team01-fall2025" target="_blank">repo</a> for more information. Members of your team are:
+Please see your team's <a href="https://github.com/csci338/p01-team01-fall2026" target="_blank">repo</a> for more information. Members of your team are:
 
 | 1. |  Course | carlos460  | Implement the `Course` class |
 | 2. |  Courses	| ajrest1103  | Implement the `Courses` class |
@@ -117,7 +117,7 @@ Please see your team's <a href="https://github.com/csci338/p01-team01-fall2025" 
 {% collapsible %}
 ### Team 2
 
-Please see your team's <a href="https://github.com/csci338/p01-team02-fall2025" target="_blank">repo</a> for more information. Members of your team are:
+Please see your team's <a href="https://github.com/csci338/p01-team02-fall2026" target="_blank">repo</a> for more information. Members of your team are:
 
 | 1. |  Course | dhend595  | Implement the `Course` class |
 | 2. |  Courses | ringojuic | Implement the `Courses` class |
@@ -132,7 +132,7 @@ Please see your team's <a href="https://github.com/csci338/p01-team02-fall2025" 
 {% collapsible %}
 ### Team 3
 
-Please see your team's <a href="https://github.com/csci338/p01-team03-fall2025" target="_blank">repo</a> for more information. Members of your team are:
+Please see your team's <a href="https://github.com/csci338/p01-team03-fall2026" target="_blank">repo</a> for more information. Members of your team are:
 
 | 1. |  Course | kpr0vence  | Implement the `Course` class |
 | 2. |  Courses | Neptune-C-Providence  | Implement the `Courses` class |
@@ -147,7 +147,7 @@ Please see your team's <a href="https://github.com/csci338/p01-team03-fall2025" 
 {% collapsible %}
 ### Team 4
 
-Please see your team's <a href="https://github.com/csci338/p01-team04-fall2025" target="_blank">repo</a> for more information. Members of your team are:
+Please see your team's <a href="https://github.com/csci338/p01-team04-fall2026" target="_blank">repo</a> for more information. Members of your team are:
 
 | 1. |  Course | rsciaudo  | Implement the `Course` class |
 | 2. |  Courses | KellanBrown  | Implement the `Courses` class |
@@ -426,7 +426,7 @@ Once your team lead has added you to their repo, you will set up the code locall
 1. Open the terminal.
 1. Clone your team's version of the repository:
 ```
-git clone git@github.com:csci338/p01-<your-team-number>-fall2025.git project01
+git clone git@github.com:csci338/p01-<your-team-number>-fall2026.git project01
 ```
     * Note that the second argument of the clone command allows you to specify the name of the local folder (`project01`) even if the remote repo name is different.
     * Please do not clone this repo inside of another directory that is already under version control.

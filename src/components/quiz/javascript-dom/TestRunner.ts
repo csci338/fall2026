@@ -78,7 +78,7 @@ export class TestRunner {
             for (let i = 0; i < styleSheets.length; i++) {
               try {
                 void styleSheets[i].cssRules; // Accessing cssRules may throw if not loaded
-              } catch (e) {
+              } catch {
                 // Stylesheet not accessible yet
                 stylesLoaded = false;
                 break;
@@ -94,7 +94,7 @@ export class TestRunner {
           
           // Proceed if stylesheets are loaded
           return stylesLoaded;
-        } catch (e) {
+        } catch {
           // If we can't check stylesheets, proceed anyway
           return true;
         }
@@ -694,8 +694,8 @@ export class TestRunner {
           // Create a submit event that can be prevented
           const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
           // Dispatch the event - this will trigger all submit event listeners
-          const notPrevented = element.dispatchEvent(submitEvent);
           // Note: Even if preventDefault() is called, the event handlers will have executed
+          element.dispatchEvent(submitEvent);
         } else {
           // If selector points to something inside a form, find and submit the form
           const form = element.closest('form');

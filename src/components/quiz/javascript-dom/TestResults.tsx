@@ -7,7 +7,7 @@ interface TestResultsProps {
   isDark?: boolean;
 }
 
-export default function TestResults({ results, isDark }: TestResultsProps) {
+export default function TestResults({ results }: TestResultsProps) {
   if (!results.results || results.results.length === 0) {
     return null;
   }

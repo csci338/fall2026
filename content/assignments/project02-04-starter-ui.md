@@ -78,7 +78,7 @@ Dependencies will be installed automatically when you build your containers (`np
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/
@@ -146,7 +146,7 @@ export default defineConfig({
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/
@@ -190,7 +190,7 @@ Create `ui/index.html`:
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/
@@ -243,7 +243,7 @@ main();
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/
@@ -299,7 +299,7 @@ export default function App() {
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/
@@ -374,7 +374,7 @@ export default function App() {
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/
@@ -489,7 +489,7 @@ package-lock.json
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/
@@ -542,7 +542,7 @@ CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 > * Also verify that your file structure looks like the one below:
 >
 > ```sh
-> project02-fall2025
+> project02-fall2026
 > ├── .env
 > ├── .git/
 > ├── backend/

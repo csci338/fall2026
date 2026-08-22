@@ -9,7 +9,9 @@
     "lint": "next lint",
     "stylelint": "stylelint \"**/*.css\" --ignore-path .gitignore",
     "export": "next build",
-    "deploy": "npm run build && touch out/.nojekyll"
+    "deploy": "npm run build && touch out/.nojekyll",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm run stylelint"
   },
   "dependencies": {
     "@codemirror/lang-css": "^6.2.1",

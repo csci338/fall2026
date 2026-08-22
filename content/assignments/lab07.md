@@ -12,7 +12,7 @@ points: 6
 > <a href="https://docs.google.com/presentation/d/1Phlll9bNNabM4nyGMQGWq4sEAW8w4Ncq/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true" target="_blank">Slides for today's Lab</a>
 
 ## Set Up
-Get the latest code from `https://github.com/<your_github_handle>/class-exercises-fall2025` by syncing changes to your GitHub repo (click the "Sync Fork" button).
+Get the latest code from `https://github.com/<your_github_handle>/class-exercises-fall2026` by syncing changes to your GitHub repo (click the "Sync Fork" button).
 
 Then, on your local machine, make sure that all previous work is committed. Then:
 

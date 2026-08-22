@@ -9,7 +9,7 @@ interface PreviewPaneProps {
   isDark?: boolean;
 }
 
-export default function PreviewPane({ html, css, js, isDark }: PreviewPaneProps) {
+export default function PreviewPane({ html, css, js }: PreviewPaneProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [key, setKey] = useState(0);
 

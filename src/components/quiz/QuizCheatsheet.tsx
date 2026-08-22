@@ -9,9 +9,6 @@ interface QuizCheatsheetProps {
 }
 
 export default function QuizCheatsheet({
-  quizName,
-  onContinue,
-  onBack,
   isDark,
   cheatsheetContent,
 }: QuizCheatsheetProps) {

@@ -19,7 +19,7 @@ Try it out to get a feel of how it should work. The goals with this lab are as f
 
 ## 1. Getting Started
 
-For this lab, there is **no starter code**. You will create everything yourself. Begin by navigating to your `class-exercises-fall2025` directory on your local machine: 
+For this lab, there is **no starter code**. You will create everything yourself. Begin by navigating to your `class-exercises-fall2026` directory on your local machine: 
 * Stage and commit any old work 
 * Checkout your `main` branch
 * Create a new branch from `main`: `git checkout -b lab10-b`

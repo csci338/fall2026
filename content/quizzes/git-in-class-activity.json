@@ -1,0 +1,127 @@
+{
+  "quizName": "Git Collaboration Activity",
+  "start_date": "2026-09-01",
+  "notes": "Take after completing the in-class git collaboration activity",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Before merging in Part 2, why do both partners `fetch` / check `git branch -r`?",
+      "options": [
+        "To delete `main`",
+        "To confirm both feature branches exist on GitHub and that they still share the same `main`",
+        "To rewrite commit history",
+        "To create a pull request automatically"
+      ],
+      "correct": 1,
+      "explanation": "Sync and verify catches missed pushes. Both should see `origin/feature-a` and `origin/feature-b` and the same `main` commit."
+    },
+    {
+      "id": "q2",
+      "question": "Person A merges `feature-a` into `main` and Git just moves the `main` pointer forward. What is that called, and why?",
+      "options": [
+        "A rebase, because commits were rewritten",
+        "A fast-forward, because `main` had not diverged from `feature-a` (it was still an ancestor)",
+        "A merge conflict, because two people edited the same file",
+        "A force push, because history changed on the remote"
+      ],
+      "correct": 1,
+      "explanation": "When `main` is still an ancestor of the branch being merged, Git can fast-forward by sliding the pointer—no merge commit required."
+    },
+    {
+      "id": "q3",
+      "question": "After Person A updates `main`, Person B's `feature-b` was created from an older `main`. What should Person B do before integrating?",
+      "options": [
+        "Delete `feature-b` and start over on GitHub only",
+        "Update local `main` (`pull`), then bring that newest `main` into their feature work",
+        "Never touch `main` again",
+        "Run `git init` inside the feature branch"
+      ],
+      "correct": 1,
+      "explanation": "Person B pulls the newest `main`, checks out `feature-b`, then merges (Part 2) or rebases (Part 3) so their branch includes Partner A's work."
+    },
+    {
+      "id": "q4",
+      "question": "In Part 2, while on `feature-b`, Person B runs `git merge main` and gets conflict markers like `<<<<<<< HEAD`. What do those markers mean?",
+      "options": [
+        "Git deleted both versions of the file",
+        "Git could not automatically combine overlapping edits; you must resolve them by hand",
+        "The repository is corrupted and must be re-cloned",
+        "SSH keys are missing"
+      ],
+      "correct": 1,
+      "explanation": "Conflict markers show the two competing versions. Edit the file so both features work, remove the markers, then `git add` and finish the merge commit."
+    },
+    {
+      "id": "q5",
+      "question": "After resolving a merge conflict on `feature-b`, what does the history typically include that a fast-forward would not?",
+      "options": [
+        "A merge commit joining the divergent histories",
+        "No commits at all",
+        "Only Person A's commits",
+        "A deleted `main` branch"
+      ],
+      "correct": 0,
+      "explanation": "Merging divergent branches creates a merge commit with two parents. That is different from a linear fast-forward."
+    },
+    {
+      "id": "q6",
+      "question": "In Part 3, instead of `git merge main` on the feature branch, Person B runs `git rebase main`. What is the goal?",
+      "options": [
+        "To delete Person A's commits from `main`",
+        "To replay the feature-branch commits on top of the newest `main` for a linear history",
+        "To convert the repo from git to SVN",
+        "To skip conflict resolution forever"
+      ],
+      "correct": 1,
+      "explanation": "Rebase replays your unique commits onto the updated base. Conflicts can still happen, but the end history is a straight line instead of a merge commit."
+    },
+    {
+      "id": "q7",
+      "question": "During `git rebase main`, which commits get rewritten (new hashes)?",
+      "options": [
+        "Only commits that were unique to the feature branch being rebased",
+        "Every commit on `main`",
+        "All commits in the entire GitHub organization",
+        "None — rebase never changes hashes"
+      ],
+      "correct": 0,
+      "explanation": "`main`'s commits stay as they are. Rebase copies/replays the feature commits as new commits on top of `main`."
+    },
+    {
+      "id": "q8",
+      "question": "After a successful rebase of `rebase-b` onto `main`, merging `rebase-b` into `main` is often a fast-forward. Why?",
+      "options": [
+        "Because rebase deletes `main`",
+        "Because `main` is once again an ancestor of the tip of `rebase-b`",
+        "Because GitHub ignores history",
+        "Because conflicts are impossible after a rebase"
+      ],
+      "correct": 1,
+      "explanation": "Rebase put the feature commits directly ahead of `main`, so merging can just move the `main` pointer forward."
+    },
+    {
+      "id": "q9",
+      "question": "Which statement best contrasts merge vs rebase for updating a feature branch with new `main` work?",
+      "options": [
+        "Merge always rewrites history; rebase never creates commits",
+        "Merge can create a merge commit and preserve branch topology; rebase replays commits for a linear history (and rewrites those feature commits)",
+        "They are identical in every situation",
+        "Rebase only works on GitHub's website, not on the command line"
+      ],
+      "correct": 1,
+      "explanation": "Both integrate changes and can involve conflicts. Merge keeps a join commit; rebase rewrites the feature commits into a linear sequence on top of `main`."
+    },
+    {
+      "id": "q10",
+      "question": "Course practice in this activity says: do not develop directly on `main`. What should you do instead?",
+      "options": [
+        "Commit only on `main` and never push",
+        "Create a feature branch for your work",
+        "Edit files only on GitHub's web UI",
+        "Disable `git status`"
+      ],
+      "correct": 1,
+      "explanation": "Use feature branches (`feature-a`, `feature-b`, `rebase-a`, `rebase-b`, etc.), then integrate into `main` intentionally."
+    }
+  ]
+}

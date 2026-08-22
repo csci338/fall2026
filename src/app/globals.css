@@ -191,6 +191,13 @@ li {
 blockquote {
   @apply mt-8 bg-[#a3e6ff44] dark:bg-sky-950 p-4 !mb-10 !border-l-12 !border-[#8eddff];
   border: none;
+
+  details, .prose details.mb-4 {
+    margin-top: 0 !important;
+    .hljs, code {
+      @apply bg-transparent dark:bg-transparent;
+    }
+  }
 }
 
 blockquote h2, blockquote h3, blockquote h4, blockquote h5 {
@@ -199,15 +206,6 @@ blockquote h2, blockquote h3, blockquote h4, blockquote h5 {
 
 blockquote > *:last-child {
   @apply !mb-0;
-}
-
-blockquote {
-    details, .prose details.mb-4 {
-        margin-top: 0 !important;
-        .hljs, code {
-            @apply bg-transparent dark:bg-transparent;
-        }
-    }
 }
 
 blockquote .hljs, blockquote code {
@@ -378,7 +376,7 @@ li:has(input[type="checkbox"]) {
 
 .syllabus-page {
   h2:not(blockquote h2) {
-    @apply text-gray-900 dark:text-gray-300 border-gray-900 dark:border-gray-300 border-b-4 pb-2 mb-4 uppercase;
+    @apply text-gray-900 dark:text-gray-300 border-gray-900 dark:border-gray-300 border-b-4 pb-2 mb-4;
   }
   h3:not(blockquote h3) {
     @apply text-xl md:text-2xl text-gray-800 dark:text-gray-300 pb-0 mb-2;
@@ -406,6 +404,12 @@ li:has(input[type="checkbox"]) {
     /* border: none;
     border-left: 4px solid #60a5fa; */
   }
+}
+
+/* Match syllabus section headings on activities and labs */
+.activity-content h2:not(blockquote h2),
+.lab-page h2:not(blockquote h2) {
+  @apply text-gray-900 dark:text-gray-300 border-gray-900 dark:border-gray-300 border-b-4 pb-2 mb-4;
 }
 
 /* Activity page specific styles */
@@ -1081,12 +1085,66 @@ pre code {
 
 /* Badge style for optional items */
 .badge {
-  @apply inline-block px-2 py-0.5 text-xs font-medium uppercase bg-amber-50 text-gray-700;
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem; /* text-xs */
+  line-height: 1.25;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background-color: #fffbeb; /* amber-50 */
+  color: #374151; /* gray-700 */
+  vertical-align: text-top;
+}
+
+/* In h3: mid size to match heading */
+h3 .badge, h4 .badge  {
+  padding: 0.2rem 0.65rem;
+  font-size: 1rem;
+  line-height: 1.2;
+  /* margin-right: 0.35rem; */
+}
+
+/* In h2: larger to match heading */
+h2 .badge {
+  padding: 0.25rem 0.65rem;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  /* margin-right: 0.4rem; */
 }
 
 .badge.success {
-    @apply inline-block px-2 py-0.5 text-xs font-medium uppercase bg-green-50 text-gray-700;
-  }
+  background-color: #f0fdf4; /* green-50 */
+  color: #374151;
+}
+
+.badge.info {
+  background-color: #e0f2fe;
+  color: #0c4a6e;
+}
+
+.badge.person-a {
+  background-color: #e0f2fe;
+  color: #0c4a6e;
+  /* margin-right: 0.35rem; */
+}
+
+.badge.person-b {
+  background-color: #ffedd5;
+  color: #9a3412;
+  /* margin-right: 0.35rem; */
+}
+
+.dark .badge.info,
+.dark .badge.person-a {
+  background-color: #0c4a6e;
+  color: #e0f2fe;
+}
+
+.dark .badge.person-b {
+  background-color: #9a3412;
+  color: #ffedd5;
+}
 
 .os-icon {
   @apply inline-flex items-center align-middle mr-1.5;
@@ -1274,7 +1332,7 @@ pre code {
   
 .prose details > summary::before {
     content: "\f105"; /* fa-angle-right */
-    font-family: "Font Awesome 6 Free";
+    font-family: "Font Awesome 6 Free", sans-serif;
     font-weight: 900;
     display: inline-block;
     font-size: 0.875rem;
@@ -1299,6 +1357,87 @@ pre code {
 .prose details[open] > *:not(summary) {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* {% expand-all %} heading that remote-controls one-level-down collapsibles */
+.prose .expand-all-heading {
+  @apply flex items-center gap-2 mb-4 w-full;
+}
+
+.prose .expand-all-h2 > .expand-all-heading {
+  @apply mt-8;
+}
+
+.prose .expand-all-heading > :is(h1, h2, h3, h4, h5) {
+  @apply !mt-0 !mb-0 flex-1 min-w-0;
+}
+
+.prose .expand-all-section {
+  @apply mb-8;
+}
+
+.prose .expand-all-toggle {
+  @apply p-1.5 text-black dark:text-gray-200 hover:text-sky-700 dark:hover:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full w-7 h-7 transition-all duration-200 flex items-center justify-center shrink-0 ml-auto;
+}
+
+/* On activities/labs, keep the syllabus underline across the full h2 + toggle row */
+.activity-content .expand-all-h2 > .expand-all-heading,
+.lab-page .expand-all-h2 > .expand-all-heading {
+  @apply border-b-4 border-gray-900 dark:border-gray-300 pb-2 mb-4;
+}
+
+.activity-content .expand-all-h2 > .expand-all-heading > h2,
+.lab-page .expand-all-h2 > .expand-all-heading > h2 {
+  @apply border-b-0 pb-0 mb-0;
+}
+
+.prose .expand-all-toggle-icon {
+  @apply relative inline-flex flex-col items-center justify-center h-3.5 w-3.5;
+}
+
+.prose .expand-all-section[data-expanded] .expand-all-toggle-icon {
+  flex-direction: column-reverse;
+}
+
+.prose .expand-all-toggle-icon i {
+  @apply text-[0.6rem] leading-none;
+}
+
+.prose .expand-all-toggle-icon i + i {
+  @apply -mt-0.5;
+}
+
+.prose .expand-all-section[data-expanded] .expand-all-toggle-icon i + i {
+  @apply mt-0 -mb-0.5;
+}
+
+/* Side-by-side parallel task columns (e.g. Person A / Person B) */
+.prose .parallel-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  align-items: stretch;
+}
+
+.prose .parallel-column {
+  min-width: 0;
+}
+
+.prose .parallel-column > :first-child {
+  margin-top: 0 !important;
+}
+
+@media (min-width: 640px) {
+  .prose .parallel-column:first-child {
+    border-right: 4px dashed #999;
+    padding-right: 1.5rem;
+  }
+
+  .dark .prose .parallel-column:first-child {
+    border-right-color: #374151;
+  }
 }
 
 

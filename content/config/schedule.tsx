@@ -75,7 +75,7 @@ export const baseTopics = [
           topic: "Intro to Version Control",
           description: "Version control is perhaps one of the most important topics in software engineering. Version control systems allow teams to collaborate on projects, review one another's code, experiment with new features and ideas, and revert to previous versions when needed. In this unit, we will explore different approaches that teams might take to organize their code repositories. We will also do various hands-on activities so that you can familiarize yourself with bash and git commands.",
           activities: [
-            { title: "Intro to Version Control", url: "https://docs.google.com/presentation/d/1CJeCcZvtlv50V5THh3DxDZvRROZXIno9/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Intro to Version Control", url: "https://docs.google.com/presentation/d/1t2gwSbh_TPVWOO6z56hC_q8H4hTKrCpj/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
           readings: [
             { citation: "Chapter 16. Version Control and Branch Management", url: "https://abseil.io/resources/swe-book/html/ch16.html" },
@@ -85,14 +85,14 @@ export const baseTopics = [
           date: "Th, Aug 27",
           topic: "Lab 2: Version Control Part 1",
           activities: [
-            { title: "Introduction to Lab 2", url: "https://docs.google.com/presentation/d/1iBYAdOWcRUqr_Oc0O0ss0F0PFG2ulR9g/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Introduction to Lab 2", url: "https://docs.google.com/presentation/d/1w4f6h1GClFr_CXN9iZ1_Z3XRtxx4DenK/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
         },
         {
           date: "Tu, Sep 1",
           topic: "Version Control and Collaborative Workflows",
           activities: [
-            { title: "Version Control and Collaborative Workflows", url: "https://docs.google.com/presentation/d/1-hRdUlYno040jHsVn3H1urpkMpDp58As/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Version Control and Collaborative Workflows", url: "https://docs.google.com/presentation/d/1ELJsUf7EOs2lHrsH2y7TBFRS8H4Zwbpt/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "<a href=\"https://en.wikipedia.org/wiki/git\" target=\"_blank\">Git Wikipedia article </a><br>Read the \"History\" and \"Characteristics\" sections." },
@@ -105,7 +105,7 @@ export const baseTopics = [
           date: "Th, Sep 3",
           topic: "Lab 3: Version Control Part 2",
           activities: [
-            { title: "Intro to Lab 3", url: "https://docs.google.com/presentation/d/1ucN6atlHcSLyE7n6Tcdj2fo4X_8rqDig/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Intro to Lab 3", url: "https://docs.google.com/presentation/d/1cNbA9DcyFGINxjeVORpoWYLNshMVrFLv/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "Collaborating with git and GitHub (video)", url: "https://www.youtube.com/watch?v=_wQdY_5Tb5Q" },
@@ -130,7 +130,7 @@ export const baseTopics = [
         { question: "Besides your application's source code, what other kinds of things should you also represent as code?" },
         { question: "What are some of the advantages of putting all aspects of your system in terms of code?" },
         { question: "What is Docker and why is it useful?" },
-        { question: "Be able to explain the following Docker concepts: <em>image</em>, <em>container</em>, <em>volume</em>, <em>bind mount</em>" },
+        { question: <>Be able to explain the following Docker concepts: <em>image</em>, <em>container</em>, <em>volume</em>, <em>bind mount</em></> },
       ],
       meetings: [
         {
@@ -163,7 +163,7 @@ export const baseTopics = [
     {
       id: 4,
       title: "Package & Dependency Management",
-      description: "When developing software, it is common to rely on dependencies -- code that has been developed by other people. However, <em>your code</em> isn't the only code that changes. Dependencies (and their dependencies, and their dependencies' dependencies) also evolve over time as new features are added and bugs are patched. Given this, in this unit we will examine some tools, approaches, and considerations for managing code dependencies. We will also experiment with a few different dependency management tools, such as npm, poetry, and apt.",
+      description: <>When developing software, it is common to rely on dependencies -- code that has been developed by other people. However, <em>your code</em> isn't the only code that changes. Dependencies (and their dependencies, and their dependencies' dependencies) also evolve over time as new features are added and bugs are patched. Given this, in this unit we will examine some tools, approaches, and considerations for managing code dependencies. We will also experiment with a few different dependency management tools, such as npm, poetry, and apt.</>,
       discussionQuestions: [
         { question: "What do we mean by \"dependency management\"?" },
         { question: "What happened in the \"leftpad\" debacle? What happened in the \"everything\" debacle? Why should we care?" },
@@ -173,13 +173,13 @@ export const baseTopics = [
         { question: "What are some dependencies that we have used in this class?" },
         { question: "What are some common features of a good dependency management system?" },
         { question: "What is the purpose of the Poetry lock file and the package.json lock file?" },
-        { question: "Different dependency management systems are used for different parts of the software stack. What are some examples of dependency managers that are used for: <em>operating systems</em>, <em>software languages (e.g., python, node.js, ruby, etc.</em>, <em>server configuration</em>?" },
+        { question: <>Different dependency management systems are used for different parts of the software stack. What are some examples of dependency managers that are used for: <em>operating systems</em>, <em>software languages (e.g., python, node.js, ruby, etc.</em>, <em>server configuration</em>?</> },
       ],
       meetings: [
         {
           date: "Tu, Sep 15",
           topic: "Package & Dependency Management",
-          description: "When developing software, it is common to rely on dependencies -- code that has been developed by other people. However, <em>your code</em> isn't the only code that changes. Dependencies (and their dependencies, and their dependencies' dependencies) also evolve over time as new features are added and bugs are patched. Given this, in this unit we will examine some tools, approaches, and considerations for managing code dependencies. We will also experiment with a few different dependency management tools, such as npm, poetry, and apt.",
+          description: <>When developing software, it is common to rely on dependencies -- code that has been developed by other people. However, <em>your code</em> isn't the only code that changes. Dependencies (and their dependencies, and their dependencies' dependencies) also evolve over time as new features are added and bugs are patched. Given this, in this unit we will examine some tools, approaches, and considerations for managing code dependencies. We will also experiment with a few different dependency management tools, such as npm, poetry, and apt.</>,
           activities: [
             { title: "Package & Dependency Management", url: "https://docs.google.com/presentation/d/1p3iEMGavYPvR6LiItAfsUHaiWbSnsy2s/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
@@ -270,7 +270,7 @@ export const baseTopics = [
     {
       id: 6,
       title: "Midterm Exam Review & Midterm",
-      description: "",
+      description: "This unit is dedicated to consolidating what we have covered so far. The midterm will draw on the big ideas from the first half of the course, so it is important that you actively study the study questions for each topic, review the assigned readings, and revisit both the programming problems and the git collaborative workflow we practiced in class and labs. Use the mid-semester review session to identify gaps and ask questions before the exam.",
       meetings: [
         {
           date: "Tu, Oct 6",
@@ -298,7 +298,7 @@ export const baseTopics = [
     {
       id: 7,
       title: "Back-End: the MVC Design Pattern + AsyncIO",
-      description: "",
+      description: "As applications grow beyond simple scripts, structure and concurrency become essential. In this unit, we introduce the Model–View–Controller (MVC) design pattern as a way to organize server-side code so that data, presentation, and control logic stay separable and maintainable. We also explore AsyncIO in Python, which helps you write non-blocking back-end code that can handle many concurrent tasks efficiently -- an important foundation for responsive web services.",
       meetings: [
         {
           date: "Th, Oct 15",
@@ -326,7 +326,7 @@ export const baseTopics = [
     {
       id: 8,
       title: "Back-End: Databases & ORMs",
-      description: "",
+      description: "Most real applications need durable, queryable storage. In this unit, we introduce relational databases and SQL as the foundation for persisting application data, then turn to object-relational mappers (ORMs) such as SQLAlchemy. Understanding how to model data, query it effectively, and bridge between database tables and application objects is critical for building reliable back-end systems.",
       meetings: [
         {
           date: "Th, Oct 22",
@@ -349,7 +349,7 @@ export const baseTopics = [
     {
       id: 9,
       title: "Challenges in Client-Side Engineering",
-      description: "In this unit, we will explore some software engineering ideas that are specific to client-side engineering. To do this, we're going to learn some HTML, CSS, JavaScript, and React concepts <em>as a means of learning</em> various client-side software engineering principles",
+      description: <>In this unit, we will explore some software engineering ideas that are specific to client-side engineering. To do this, we're going to learn some HTML, CSS, JavaScript, and React concepts <em>as a means of learning</em> various client-side software engineering principles</>,
       discussionQuestions: [
         { question: "What is front-end engineering? What is UI engineering?" },
         { question: "When did it become a distinct subdiscipline of computer programming?" },
@@ -366,7 +366,7 @@ export const baseTopics = [
         {
           date: "Tu, Nov 3",
           topic: "Client-Side Engineering (Part I)",
-          description: "In this unit, we will explore some software engineering ideas that are specific to client-side engineering. To do this, we're going to learn some HTML, CSS, JavaScript, and React concepts <em>as a means of learning</em> various client-side software engineering principles",
+          description: <>In this unit, we will explore some software engineering ideas that are specific to client-side engineering. To do this, we're going to learn some HTML, CSS, JavaScript, and React concepts <em>as a means of learning</em> various client-side software engineering principles</>,
           activities: [
             { title: "Client-Side Engineering (Part I)", url: "https://docs.google.com/presentation/d/1l8UaFjXBidZNg-s3j-mYWcce-4iWU2nQ/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
@@ -403,8 +403,14 @@ export const baseTopics = [
     {
       id: 10,
       title: "Back-End: Scaling Up",
-      description: "",
+      description: "Once an application works for a small number of users, the next challenge is making it work under growth. In this unit, we examine what it means to scale a back-end system, including strategies for handling more traffic, coordinating services, and thinking about infrastructure that can evolve with demand. These ideas matter as you move from class projects toward production-minded software.",
       meetings: [
+
+        {
+            date: "Th, Nov 17",
+            topic: "Symposium - No Class",
+            holiday: true,
+        },
         {
           date: "Th, Nov 19",
           topic: "Introduction to Project 2",
@@ -419,27 +425,11 @@ export const baseTopics = [
             { title: "Project 2 work: Ideally, you'll begin customizing your vertical feature today", draft: 1 },
           ],
         },
-      ],
-    },
-
-    {
-      id: 11,
-      title: "Thanksgiving Break",
-      description: "",
-      meetings: [
         {
           date: "Th, Nov 26",
           topic: "Thanksgiving Break",
           holiday: true,
         },
-      ],
-    },
-
-    {
-      id: 12,
-      title: "Back-End: Scaling Up & Course Wrap",
-      description: "",
-      meetings: [
         {
           date: "Tu, Dec 1",
           topic: "Scaling an App",

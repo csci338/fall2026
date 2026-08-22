@@ -252,7 +252,7 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
             const existingState = JSON.parse(existing);
             existingRevealedQuestions = existingState.revealedQuestions;
           }
-        } catch (e) {
+        } catch {
           // Ignore errors reading existing state
         }
         
@@ -359,7 +359,7 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
   };
 
   // Handler for JavaScript DOM code submissions
-  const handleCodeAnswerSelect = (questionId: string, answer: { html: string; css: string; js: string; testResults?: TestResults }, passed: boolean) => {
+  const handleCodeAnswerSelect = (questionId: string, answer: { html: string; css: string; js: string; testResults?: TestResults }) => {
     setSelectedAnswers(prev => ({
       ...prev,
       [questionId]: answer,
@@ -465,7 +465,7 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
           const existingState = JSON.parse(existing);
           existingRevealedQuestions = existingState.revealedQuestions;
         }
-      } catch (e) {
+      } catch {
         // Ignore errors reading existing state
       }
       

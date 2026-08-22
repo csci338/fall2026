@@ -21,16 +21,16 @@ points: 6
 ## 1. Git Basics
 
 On GitHub: 
-1. Navigate to your fork of the `class-exercises-fall2025` repository. Sync your fork to incorporate new changes into the main branch by clicking the "sync fork" button (below the green "Code" button).
+1. Navigate to your fork of the `class-exercises-fall2026` repository. Sync your fork to incorporate new changes into the main branch by clicking the "sync fork" button (below the green "Code" button).
 
 On your laptop: 
-1. Navigate to your version of `class-exercises-fall2025`, located inside of your `csci338` folder.
+1. Navigate to your version of `class-exercises-fall2026`, located inside of your `csci338` folder.
 1. Check which branch you're on using the `git branch` command.
 1. Check if you have any uncommitted changes using the `git status` command. 
     * If you have lingering changes, stage and commit them. 
 1. Checkout the main branch: `git checkout main`
 1. Pull the latest changes from your remote main branch into your local main branch: `git pull origin main`
-1. If you did it correctly, you should notice that you should now have a `lab03` directory inside of your `class-exercises-fall2025` folder.
+1. If you did it correctly, you should notice that you should now have a `lab03` directory inside of your `class-exercises-fall2026` folder.
 1. Create a new branch (while on the main branch) to do our work for lab 3: `git checkout -b lab03-b`
     * Note that branches are created from the branch you're currently on (in this case `main`). Therefore, it's important to pay attention to which branch you're on before making new branches.
     * Typically, you always branch from `main`. 
@@ -55,11 +55,11 @@ mkdir lab03-exercises
 ```
 
 {:.info}
-> **Important**: Make sure you **DO NOT** create the `lab03-exercises` repo inside of your `class-exercises-fall2025` repo (remember: no nested repos). Instead, `lab03-exercises` should be in a *sibling*  directory. So, your directory structure should look something like this:
+> **Important**: Make sure you **DO NOT** create the `lab03-exercises` repo inside of your `class-exercises-fall2026` repo (remember: no nested repos). Instead, `lab03-exercises` should be in a *sibling*  directory. So, your directory structure should look something like this:
 >
 ```
 > csci338
-> ├── class-exercises-fall2025
+> ├── class-exercises-fall2026
 > ├── lab03-exercises
 > ├── merge-activity
 > └── rebase-activity
@@ -545,5 +545,5 @@ Before you submit, make sure that you have completed the following:
 * The `main` branch has nested loop implementations of a "find duplicates" function/method in both Java and Python.
 * The `one-set` branch has dictionary (or hashmap) implementations of a "find duplicates" function/method in both Java and Python.
 * You have answered all of the questions in your `answers.md` file.
-* You have committed your `answers.md` to your branch in the `class-exercises-fall2025` repository and make a pull request that points to **your** main branch.
+* You have committed your `answers.md` to your branch in the `class-exercises-fall2026` repository and make a pull request that points to **your** main branch.
 * Then paste a link to your pull request in the Moodle.
