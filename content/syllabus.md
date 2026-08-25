@@ -1,6 +1,7 @@
 ---
 title: "Syllabus: Software Engineering"
 heading_max_level: 2
+collapsible_headings: true
 ---
 
 <table class="!mt-4">

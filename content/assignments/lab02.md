@@ -2,7 +2,7 @@
 title: Configuring git and GitHub
 type: lab
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-08-27
 due_date: 2026-09-02
 points: 6

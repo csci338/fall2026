@@ -1,21 +1,14 @@
 ---
-title: Programming Readiness Diagnostic
-group: Programming Readiness
-group_order: 0
-hide_from_list: 1
+title: Programming Practice
+group: Programming
+group_order: 2
 order: 2
+quicklink: 1
 quizzes:
   - programming-readiness-diagnostic
 ---
 
-This is practice, not a grade.
-
-Pick **Java or Python**. Use that language for both parts.
-
-You will do two things:
-
-1. Take a quiz to practice tracing.
-1. Write code to answer 4 questions.
+This page lists resources to help you practice your programming skills. The quizzes on this site run entirely in your browser and are stored only on your computer – nothing is sent to a server or tracked.
 
 ## 1. Take the tracing quiz
 
@@ -28,102 +21,62 @@ The quiz is at the **bottom of this page**.
 
 Work on your own.
 
-## 2. Write code for 4 questions
+## 2. Practice these sample problems
 
-Download the starter. Fill in each TODO. Then run the tests.
+There are so many wonderful websites that can help you practice your skills! Here are some good ones (feel free to practice Python or Java – it doesn't matter), with specific problems that map to the ideas in this project.
 
-**Java:** [Diagnostic.java](/starter-code/programming-readiness/diagnostic/Diagnostic.java), [DiagnosticTest.java](/starter-code/programming-readiness/diagnostic/DiagnosticTest.java), [Card.java](/starter-code/programming-readiness/diagnostic/Card.java)
+### CodingBat (<a href="https://codingbat.com/java" target="_blank" rel="noopener noreferrer">Java</a> · <a href="https://codingbat.com/python" target="_blank" rel="noopener noreferrer">Python</a>)
 
-```bash
-javac Diagnostic.java DiagnosticTest.java Card.java && java DiagnosticTest
-```
+CodingBat problems are short methods. They are great for loops, arrays/lists, and maps. They do **not** practice designing your own classes (see OOP below for that).
 
-**Python:** [diagnostic.py](/starter-code/programming-readiness/diagnostic/diagnostic.py)
+Python only mirrors some of the Java problems (mostly under **List-2**). Map and AP problems are Java-only on CodingBat.
 
-```bash
-python3 diagnostic.py
-```
+| Problem | Java | Python | What it evaluates |
+|---------|------|--------|-------------------|
+| has22 | <a href="https://codingbat.com/prob/p121853" target="_blank" rel="noopener noreferrer">Java</a> | <a href="https://codingbat.com/prob/p119308" target="_blank" rel="noopener noreferrer">Python</a> | Scan a list/array and detect a specific adjacent pair |
+| countEvens | <a href="https://codingbat.com/prob/p162010" target="_blank" rel="noopener noreferrer">Java</a> | <a href="https://codingbat.com/prob/p189616" target="_blank" rel="noopener noreferrer">Python</a> | Loop + filtering: count elements that meet a condition |
+| bigDiff | <a href="https://codingbat.com/prob/p196640" target="_blank" rel="noopener noreferrer">Java</a> | <a href="https://codingbat.com/prob/p184853" target="_blank" rel="noopener noreferrer">Python</a> | Track running min and max while scanning |
+| twoTwo | <a href="https://codingbat.com/prob/p102145" target="_blank" rel="noopener noreferrer">Java</a> | — | Enforce a pairing rule: every occurrence of a value must have a matching neighbor |
+| either24 | <a href="https://codingbat.com/prob/p191878" target="_blank" rel="noopener noreferrer">Java</a> | — | Check for one kind of adjacent pair while excluding another |
+| countClumps | <a href="https://codingbat.com/prob/p193817" target="_blank" rel="noopener noreferrer">Java</a> | — | Count contiguous runs of equal values |
+| maxSpan | <a href="https://codingbat.com/prob/p189576" target="_blank" rel="noopener noreferrer">Java</a> | — | Nested index comparison: largest distance between equal values |
+| wordCount | <a href="https://codingbat.com/prob/p117630" target="_blank" rel="noopener noreferrer">Java</a> | — | Build a frequency map (`String` → count) while iterating |
+| wordMultiple | <a href="https://codingbat.com/prob/p190862" target="_blank" rel="noopener noreferrer">Java</a> | — | Build a map of values to a boolean (“appears at least twice?”) |
+| firstChar | <a href="https://codingbat.com/prob/p168493" target="_blank" rel="noopener noreferrer">Java</a> | — | Group strings by a key derived from each string (first character) |
+| wordsWithoutList | <a href="https://codingbat.com/prob/p183407" target="_blank" rel="noopener noreferrer">Java</a> | — | Filter an `ArrayList` and return a new list of matching elements |
+| scoresClump | <a href="https://codingbat.com/prob/p194530" target="_blank" rel="noopener noreferrer">Java</a> | — | Check whether any three consecutive values fall within a fixed range |
 
-### Question A. Group words by first letter
+Suggested order: **has22** → **countEvens** → **either24** (Java) → **maxSpan** (Java) → **wordCount** (Java) → **wordMultiple** (Java) → **wordsWithoutList** (Java).
 
-Put each word into a list for its first letter.
+### Lists / collections (<a href="https://pynative.com/java-arraylist-exercises/" target="_blank" rel="noopener noreferrer">Java ArrayList</a> · <a href="https://pynative.com/python-list-exercise-with-solutions/" target="_blank" rel="noopener noreferrer">Python lists</a>)
 
-Keep words in the order they appear.
+| Focus | Java | Python | What it evaluates |
+|-------|------|--------|-------------------|
+| Iteration | <a href="https://pynative.com/java-arraylist-exercises/" target="_blank" rel="noopener noreferrer">Ex 2 – Iterating Elements</a> | <a href="https://pynative.com/python-list-exercise-with-solutions/" target="_blank" rel="noopener noreferrer">Ex 1–2 – Basic list ops</a> | Multiple ways to traverse a list |
+| Search | <a href="https://pynative.com/java-arraylist-exercises/" target="_blank" rel="noopener noreferrer">Ex 7 – Search for an Element</a> | <a href="https://pynative.com/python-list-exercise-with-solutions/" target="_blank" rel="noopener noreferrer">Ex 14 – Check if list contains an item</a> | Membership testing and writing a manual search |
+| Remove duplicates (with set) | <a href="https://pynative.com/java-arraylist-exercises/" target="_blank" rel="noopener noreferrer">Ex 23 – With Set</a> | <a href="https://pynative.com/python-list-exercise-with-solutions/" target="_blank" rel="noopener noreferrer">Ex 20 – Remove duplicates</a> | Using a set to recognize / eliminate repeats efficiently |
+| Remove duplicates (nested loops) | <a href="https://pynative.com/java-arraylist-exercises/" target="_blank" rel="noopener noreferrer">Ex 24 – Without Set</a> | <a href="https://pynative.com/python-basic-exercise-for-beginners/" target="_blank" rel="noopener noreferrer">Ex 11 – Removing duplicates</a> | Nested-loop duplicate removal and its higher time cost |
+| Frequency counting | <a href="https://pynative.com/java-arraylist-exercises/" target="_blank" rel="noopener noreferrer">Ex 26 – Frequency Counter</a> | <a href="https://pynative.com/python-list-exercise-with-solutions/" target="_blank" rel="noopener noreferrer">Ex 17 – Count occurrences</a> | Building counts of how often each element appears |
 
-Empty input → empty result.
+Suggested order: **iteration** → **search** → **duplicates with set** → **frequency** → **duplicates without set**.
 
-**Java:** `groupByFirstLetter`
+### OOP practice (<a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Java OOP</a> · <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Python OOP</a>)
 
-**Python:** `group_by_first_letter`
+CodingBat will not ask you to invent classes. Use these for constructors, encapsulation, and inheritance.
 
-```
-Input:  ["banana", "apple", "cat", "bear", "ant"]
-Output: b → ["banana", "bear"]
-        a → ["apple", "ant"]
-        c → ["cat"]
-```
+| Focus | Java | Python | What it evaluates |
+|-------|------|--------|-------------------|
+| Encapsulation | <a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Ex 1 – Book Repository</a> | <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Ex 2 – Vehicle with attributes</a> | Fields + controlled access to stored data |
+| Object state + validation | <a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Ex 3 – Secure Bank Account</a> | <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Ex 6 – Bank Account</a> | Rules on updates (deposit / withdraw) |
+| Methods on instance data | <a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Ex 5 – Student Grading</a> | <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Ex 4 – Student average grade</a> | Instance methods that compute from an object's own data |
+| Inheritance | <a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Ex 15 – Vehicle Customization</a> | <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Ex 13 – Bus inherits Vehicle</a> | Subclass extends a parent type |
+| Overriding + `super` | <a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Ex 18 – Polite Person</a> | <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Ex 14 – Override with `super()`</a> | Method overriding and calling the parent version |
+| Polymorphism | <a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Ex 25 – Animal Chorus</a> | <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Ex 16 – Dog & Cat `speak()`</a> | Same call, different subclass behavior |
 
-### Question B. Target sum
+For the midterm exam, you will be expected to understand how to write solutions that work and are efficient.
 
-You get a list of numbers and a target.
-
-Return true if **two different spots** in the list add up to the target.
-
-Otherwise return false.
-
-Do not add a number to itself.
-
-**Java:** `targetSum`
-
-**Python:** `target_sum`
-
-```
-[2, 3, 5, 9, 12] and 5  → true   (2 + 3)
-[2, 0, 5, 6, 4] and 12  → false
-[3] and 6               → false
-[] and 10               → false
-```
-
-### Question C. Count different numbers
-
-Return how many **different** values are in the list.
-
-**Java:** `countDistinct`
-
-**Python:** `count_distinct`
-
-```
-[1, 3, 5, 3, 8, 5, 2]  → 5
-[5]                    → 1
-[]                     → 0
-```
-
-### Question D. Three of a kind
-
-A `Card` has a `rank` (like `"9"` or `"K"`) and a `suit`.
-
-Return true if any rank shows up **3 or more times**.
-
-The `Card` class is already in the starter.
-
-**Java:** `hasThreeOfAKind`
-
-**Python:** `has_three_of_a_kind`
-
-```
-three 9s and one K  → true
-two 9s and one K    → false
-no cards            → false
-```
-
-## If something was hard
-
-This does not count as a Satisfactory score. It only tells you what to practice.
-
-| If this was hard | Open this next |
-| --- | --- |
-| Tracing loops or true/false checks | [Module 1](/resources/readiness-01-tracing) and [Module 2](/resources/readiness-02-methods-control-flow) |
-| Nested loops over a list | [Module 3](/resources/readiness-03-lists-arrays) |
-| Maps, grouping, or three of a kind | [Module 4](/resources/readiness-04-maps-sets) |
-| Target sum | [Module 5](/resources/readiness-05-testing) |
-| A test failed and you are not sure why | [Module 6](/resources/readiness-06-debugging) |
+## 3. Other Coding Interview Resources
+If you are interested in pursuing a software engineering type career, code interviews are – for better or for worse – the currency of the realm. Given this, I highly recommend that you dedicate some time to doing practice problems. Here are some useful resources:
+* <a href="https://leetcode.com/discuss/post/460599/blind-75-leetcode-questions/" target="_blank">The Blind 75</a>
+* <a href="https://www.techinterviewhandbook.org/grind75/" target="_blank">The Grind 75</a>
+* <a href="https://www.youtube.com/@NeetCode/videos" target="_blank">NeetCode YouTube Channel</a>

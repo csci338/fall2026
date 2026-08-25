@@ -1,7 +1,7 @@
 ---
 title: Design & Design Systems
 group: Design
-group_order: 4
+group_order: 6
 order: 1
 ---
 

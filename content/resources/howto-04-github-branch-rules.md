@@ -1,7 +1,7 @@
 ---
 title: "GitHub Issues & Branch Protection"
 group: "How To Guides"
-group_order: 2
+group_order: 4
 order: 4
 quicklink: 0
 ---

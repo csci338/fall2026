@@ -257,13 +257,7 @@ When it asks for a folder name, type `my_new_folder` and press Enter.
 
 Take a look at what was created: `tree .`
 
-Now open the HTML file in a browser:
-
-* <span class="os-icon mac" title="Mac"><i class="fa-brands fa-apple" aria-hidden="true"></i><span class="sr-only">Mac</span></span> `open my_new_folder/index.html`
-* <span class="os-icon windows" title="Windows"><i class="fa-brands fa-windows" aria-hidden="true"></i><span class="sr-only">Windows</span></span> `wslview my_new_folder/index.html`
-* **Linux:** `xdg-open my_new_folder/index.html`
-
-And finally, open the current folder in VS Code:
+Now open the HTML file in a browser. Then, open the current folder in VS Code:
 
 `code .`
 

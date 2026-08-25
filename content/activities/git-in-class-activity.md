@@ -25,7 +25,7 @@ You will use one shared repository for the entire activity.
 
 
 
-## Part 1: Set Up the Shared Repository
+## Part 1: Set Up
 
 Decide roles now and keep them for the rest of the activity:
 
@@ -91,7 +91,7 @@ git remote -v
 Both partners should now have the same `main` branch.
 
 
-## Part 2: Resolve a Conflict with Merge
+## Part 2: Merge Commits
 
 You will both start from the same version of `main`, create separate feature branches, and make conflicting changes.
 
@@ -330,7 +330,7 @@ git pull origin main
 
 
 
-## Part 3: Resolve a Conflict with Rebase
+## Part 3: Rebasing
 
 Now you will create the same kind of situation again, but resolve it using rebase instead of merge.
 
@@ -591,17 +591,14 @@ git pull origin main
 ```
 
 
-## Part 4: Compare Merge and Rebase
-
-Look at the history:
+## Part 4: Reflection
+After going through the merge commit and rebase process, it is useful to compare and contrast the two approachs. Please look at the history and then discussion the questions below with your partner:
 
 ```bash
 git log --all --graph --oneline
 ```
 
 <img src="/fall2026/images/activities/git-activity/history.png" class="w-full mb-4 border-4">
-
-Discuss with your partner:
 
 1. Why did the conflicts happen?
 2. What happened when you merged `main` into a feature branch?

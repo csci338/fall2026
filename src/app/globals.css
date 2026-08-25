@@ -1380,12 +1380,14 @@ h2 .badge {
   @apply p-1.5 text-black dark:text-gray-200 hover:text-sky-700 dark:hover:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full w-7 h-7 transition-all duration-200 flex items-center justify-center shrink-0 ml-auto;
 }
 
-/* On activities/labs, keep the syllabus underline across the full h2 + toggle row */
+/* Keep the syllabus underline across the full h2 + toggle row */
+.syllabus-page .expand-all-h2 > .expand-all-heading,
 .activity-content .expand-all-h2 > .expand-all-heading,
 .lab-page .expand-all-h2 > .expand-all-heading {
   @apply border-b-4 border-gray-900 dark:border-gray-300 pb-2 mb-4;
 }
 
+.syllabus-page .expand-all-h2 > .expand-all-heading > h2,
 .activity-content .expand-all-h2 > .expand-all-heading > h2,
 .lab-page .expand-all-h2 > .expand-all-heading > h2 {
   @apply border-b-0 pb-0 mb-0;

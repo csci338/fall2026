@@ -1,6 +1,7 @@
 {
   "quizName": "Programming Readiness Diagnostic",
-  "draft": 1,
+  "draft": 0,
+  "notes": "Self-check covering tracing, OOP, lists, maps, and debugging",
   "languages": [
     "java",
     "python"
@@ -9,34 +10,82 @@
   "showStrandResults": true,
   "strandThreshold": 0.6666666666666666,
   "strandLabels": {
-    "R1": "Trace and reason",
-    "R2": "Methods and control flow",
+    "R1": "Code tracing",
+    "R2": "OOP",
     "R3": "Lists and arrays",
-    "R4": "Maps, sets, and algorithms",
-    "R5": "Tests and debugging"
+    "R4": "Maps and sets",
+    "R5": "Find the bug"
   },
   "questions": [
     {
-      "id": "r1-q1",
+      "id": "r1-q2",
       "strand": "R1",
       "variants": {
         "java": {
-          "question": "For `bed = {1, 0, 0, 0, 1}` and `i = 1`, what is `canPlant`?\n\n```java\nint[] bed = {1, 0, 0, 0, 1};\nint i = 1;\nboolean leftEmpty = (i == 0) || bed[i - 1] == 0;\nboolean rightEmpty = (i == bed.length - 1) || bed[i + 1] == 0;\nboolean canPlant = bed[i] == 0 && leftEmpty && rightEmpty;\n```",
-          "options": [
-            "true",
-            "false"
-          ],
-          "correct": 1,
-          "explanation": "bed[1] is empty, but the left neighbor bed[0] is already 1, so canPlant is false."
+          "question": "What is printed?\n\n```java\nint[] a = {3, 1, 4, 1};\nint x = a[0];\nfor (int i = 1; i < a.length; i++) {\n    if (a[i] > x) {\n        x = a[i];\n    }\n}\nSystem.out.println(x);\n```",
+          "options": ["1", "3", "4", "9"],
+          "correct": 2,
+          "explanation": "The loop tracks the maximum value in the array, which is 4."
         },
         "python": {
-          "question": "For `bed = [1, 0, 0, 0, 1]` and `i = 1`, what is `can_plant`?\n\n```python\nbed = [1, 0, 0, 0, 1]\ni = 1\nleft_empty = (i == 0) or bed[i - 1] == 0\nright_empty = (i == len(bed) - 1) or bed[i + 1] == 0\ncan_plant = bed[i] == 0 and left_empty and right_empty\n```",
-          "options": [
-            "True",
-            "False"
-          ],
+          "question": "What is printed?\n\n```python\na = [3, 1, 4, 1]\nx = a[0]\nfor i in range(1, len(a)):\n    if a[i] > x:\n        x = a[i]\nprint(x)\n```",
+          "options": ["1", "3", "4", "9"],
+          "correct": 2,
+          "explanation": "The loop tracks the maximum value in the list, which is 4."
+        }
+      }
+    },
+    {
+      "id": "r1-q3",
+      "strand": "R1",
+      "variants": {
+        "java": {
+          "question": "What is printed?\n\n```java\nint n = 5;\nif (n % 2 == 0) {\n    System.out.println(\"even\");\n} else if (n > 3) {\n    System.out.println(\"big odd\");\n} else {\n    System.out.println(\"small odd\");\n}\n```",
+          "options": ["even", "big odd", "small odd", "Nothing — it does not compile"],
           "correct": 1,
-          "explanation": "bed[1] is empty, but the left neighbor bed[0] is already 1, so can_plant is False."
+          "explanation": "5 is not even, and 5 > 3, so the middle branch runs."
+        },
+        "python": {
+          "question": "What is printed?\n\n```python\nn = 5\nif n % 2 == 0:\n    print(\"even\")\nelif n > 3:\n    print(\"big odd\")\nelse:\n    print(\"small odd\")\n```",
+          "options": ["even", "big odd", "small odd", "Nothing — it raises an error"],
+          "correct": 1,
+          "explanation": "5 is not even, and 5 > 3, so the middle branch runs."
+        }
+      }
+    },
+    {
+      "id": "r1-q4",
+      "strand": "R1",
+      "variants": {
+        "java": {
+          "question": "How many times does the body of this loop run?\n\n```java\nint count = 0;\nfor (int i = 0; i < 3; i++) {\n    for (int j = 0; j < 2; j++) {\n        count++;\n    }\n}\n```",
+          "options": ["2", "3", "5", "6"],
+          "correct": 3,
+          "explanation": "Outer loop runs 3 times; inner loop runs 2 times each → 6."
+        },
+        "python": {
+          "question": "How many times does the body of this loop run?\n\n```python\ncount = 0\nfor i in range(3):\n    for j in range(2):\n        count += 1\n```",
+          "options": ["2", "3", "5", "6"],
+          "correct": 3,
+          "explanation": "Outer loop runs 3 times; inner loop runs 2 times each → 6."
+        }
+      }
+    },
+    {
+      "id": "r1-q6",
+      "strand": "R1",
+      "variants": {
+        "java": {
+          "question": "What is printed?\n\n```java\nList<Integer> list = new ArrayList<>(Arrays.asList(2, 4, 6));\nfor (int i = 0; i < list.size(); i++) {\n    if (list.get(i) % 2 == 0) {\n        list.remove(i);\n    }\n}\nSystem.out.println(list);\n```",
+          "options": ["[]", "[4]", "[2, 4, 6]", "[6]"],
+          "correct": 1,
+          "explanation": "i=0 removes 2 → [4, 6], then i becomes 1 so 4 is skipped; i=1 removes 6 → [4]. Removing shifts the next element into index i, but the loop still increments i."
+        },
+        "python": {
+          "question": "What is printed?\n\n```python\nnums = [2, 4, 6]\ni = 0\nwhile i < len(nums):\n    if nums[i] % 2 == 0:\n        nums.pop(i)\n    i += 1\nprint(nums)\n```",
+          "options": ["[]", "[4]", "[2, 4, 6]", "[6]"],
+          "correct": 1,
+          "explanation": "i=0 removes 2 → [4, 6], then i becomes 1 so 4 is skipped; i=1 removes 6 → [4]. Removing shifts the next element into index i, but the loop still increments i."
         }
       }
     },
@@ -45,26 +94,110 @@
       "strand": "R2",
       "variants": {
         "java": {
-          "question": "What is `n` after this loop finishes?\n\n```java\nint[] bed = {1, 0, 0, 0, 1};\nint n = 0;\nfor (int i = 0; i < bed.length; i++) {\n    boolean left = i == 0 || bed[i - 1] == 0;\n    boolean right = i == bed.length - 1 || bed[i + 1] == 0;\n    if (bed[i] == 0 && left && right) {\n        bed[i] = 1;\n        n++;\n    }\n}\n```",
+          "question": "In Java, what is the best description of a **class** vs an **object**?",
           "options": [
-            "0",
-            "1",
-            "2",
-            "3"
+            "A class is a running program; an object is a file on disk",
+            "A class is a blueprint/type; an object is a concrete instance of that type",
+            "A class and an object are the same thing",
+            "An object defines methods; a class only stores numbers"
           ],
           "correct": 1,
-          "explanation": "Only index 2 can be planted. Planting there turns the bed into {1, 0, 1, 0, 1}, so indexes 1 and 3 stay blocked. n is 1."
+          "explanation": "A class describes the structure and behavior; each object is one instance created from that class."
         },
         "python": {
-          "question": "What is `n` after this loop finishes?\n\n```python\nbed = [1, 0, 0, 0, 1]\nn = 0\nfor i in range(len(bed)):\n    left = i == 0 or bed[i - 1] == 0\n    right = i == len(bed) - 1 or bed[i + 1] == 0\n    if bed[i] == 0 and left and right:\n        bed[i] = 1\n        n += 1\n```",
+          "question": "In Python, what is the best description of a **class** vs an **object** (instance)?",
           "options": [
-            "0",
-            "1",
-            "2",
-            "3"
+            "A class is a running program; an object is a file on disk",
+            "A class is a blueprint/type; an object is a concrete instance of that type",
+            "A class and an object are the same thing",
+            "An object defines methods; a class only stores numbers"
           ],
           "correct": 1,
-          "explanation": "Only index 2 can be planted. Planting there turns the bed into [1, 0, 1, 0, 1], so indexes 1 and 3 stay blocked. n is 1."
+          "explanation": "A class describes the structure and behavior; each object is one instance created from that class."
+        }
+      }
+    },
+    {
+      "id": "r2-q2",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "What does **encapsulation** usually mean in OOP?",
+          "options": [
+            "Using only static methods",
+            "Keeping an object's data private and exposing controlled operations (methods)",
+            "Making every field public so other classes can edit it freely",
+            "Inheriting from multiple parents at once"
+          ],
+          "correct": 1,
+          "explanation": "Encapsulation hides internal state and lets the object enforce rules through its methods."
+        },
+        "python": {
+          "question": "What does **encapsulation** usually mean in OOP?",
+          "options": [
+            "Using only module-level functions",
+            "Keeping an object's data private (or protected by convention) and exposing controlled operations (methods)",
+            "Making every attribute public so other code can edit it freely",
+            "Inheriting from multiple parents at once"
+          ],
+          "correct": 1,
+          "explanation": "Encapsulation hides internal state and lets the object enforce rules through its methods."
+        }
+      }
+    },
+    {
+      "id": "r2-q3",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "```java\nclass Animal {\n    String speak() { return \"...\"; }\n}\nclass Dog extends Animal {\n    String speak() { return \"woof\"; }\n}\nAnimal a = new Dog();\nSystem.out.println(a.speak());\n```\nWhat is printed, and why?",
+          "options": [
+            "`...` because `a` is declared as `Animal`",
+            "`woof` because the runtime type is `Dog` (polymorphism / overriding)",
+            "It does not compile",
+            "`null`"
+          ],
+          "correct": 1,
+          "explanation": "The variable type is Animal, but the object is a Dog, so Dog's overridden speak() runs."
+        },
+        "python": {
+          "question": "```python\nclass Animal:\n    def speak(self):\n        return \"...\"\n\nclass Dog(Animal):\n    def speak(self):\n        return \"woof\"\n\na = Dog()\nprint(a.speak())\n```\nWhat is printed, and why?",
+          "options": [
+            "`...` because Dog inherits Animal unchanged",
+            "`woof` because Dog overrides `speak` (polymorphism / overriding)",
+            "It raises an error",
+            "`None`"
+          ],
+          "correct": 1,
+          "explanation": "`a` is a Dog instance, so Dog's overridden speak() runs."
+        }
+      }
+    },
+    {
+      "id": "r2-q4",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "Why call `super(...)` in a subclass constructor or method?",
+          "options": [
+            "To delete the parent class",
+            "To reuse/initialize parent behavior instead of rewriting it from scratch",
+            "To make fields public",
+            "To convert the object into an array"
+          ],
+          "correct": 1,
+          "explanation": "`super` reaches the parent class so you can run its constructor or method as part of the subclass implementation."
+        },
+        "python": {
+          "question": "Why call `super()` in a subclass `__init__` or method?",
+          "options": [
+            "To delete the parent class",
+            "To reuse/initialize parent behavior instead of rewriting it from scratch",
+            "To make attributes public",
+            "To convert the object into a list"
+          ],
+          "correct": 1,
+          "explanation": "`super()` reaches the parent class so you can run its initializer or method as part of the subclass implementation."
         }
       }
     },
@@ -73,26 +206,16 @@
       "strand": "R3",
       "variants": {
         "java": {
-          "question": "What does `found` become?\n\n```java\nint[] nums = {2, 0, 5, 6, 4};\nint target = 12;\nboolean found = false;\nfor (int i = 0; i < nums.length; i++) {\n    for (int j = i + 1; j < nums.length; j++) {\n        if (nums[i] + nums[j] == target) {\n            found = true;\n        }\n    }\n}\n```",
-          "options": [
-            "true, because 6 + 6 would work",
-            "true, because 12 is in the list",
-            "false, because no two different indexes add to 12",
-            "false, because the inner loop starts at i + 1"
-          ],
-          "correct": 2,
-          "explanation": "j starts at i + 1, so each pair uses two different indexes. The largest pair is 6 + 5 = 11. found stays false."
+          "question": "What is printed?\n\n```java\nint[] nums = {2, 4, 6};\nSystem.out.println(nums[1]);\n```",
+          "options": ["2", "4", "6", "An error — indexes start at 1"],
+          "correct": 1,
+          "explanation": "Indexes start at 0, so index 1 is the middle value 4."
         },
         "python": {
-          "question": "What does `found` become?\n\n```python\nnums = [2, 0, 5, 6, 4]\ntarget = 12\nfound = False\nfor i in range(len(nums)):\n    for j in range(i + 1, len(nums)):\n        if nums[i] + nums[j] == target:\n            found = True\n```",
-          "options": [
-            "True, because 6 + 6 would work",
-            "True, because 12 is in the list",
-            "False, because no two different indexes add to 12",
-            "False, because the inner loop starts at i + 1"
-          ],
-          "correct": 2,
-          "explanation": "j starts at i + 1, so each pair uses two different indexes. The largest pair is 6 + 5 = 11. found stays False."
+          "question": "What is printed?\n\n```python\nnums = [2, 4, 6]\nprint(nums[1])\n```",
+          "options": ["2", "4", "6", "An error — indexes start at 1"],
+          "correct": 1,
+          "explanation": "Indexes start at 0, so index 1 is the middle value 4."
         }
       }
     },
@@ -101,26 +224,72 @@
       "strand": "R3",
       "variants": {
         "java": {
-          "question": "If the inner loop starts at `j = i` instead of `j = i + 1`, what does this return?\n\n```java\nint[] nums = {3};\nint target = 6;\nfor (int i = 0; i < nums.length; i++) {\n    for (int j = i; j < nums.length; j++) {\n        if (nums[i] + nums[j] == target) return true;\n    }\n}\nreturn false;\n```",
+          "question": "Which approach best checks whether a list contains **any duplicate** values in roughly O(n) time (on average)?",
           "options": [
-            "true, because 3 + 3 is allowed when j == i",
-            "false, because the list has only one value",
-            "true, because empty pairs count",
-            "false, because 3 is odd"
+            "Compare every pair with nested loops only",
+            "Add each value to a HashSet and see if an insert was already present",
+            "Sort is impossible for this problem",
+            "Only print the list"
           ],
-          "correct": 0,
-          "explanation": "When j starts at i, the single value 3 is paired with itself. A correct pair search must not reuse the same index."
+          "correct": 1,
+          "explanation": "A set remembers what you have already seen, so you can detect a repeat in one pass (average O(n))."
         },
         "python": {
-          "question": "If the inner loop starts at `j = i` instead of `j = i + 1`, what does this return?\n\n```python\nnums = [3]\ntarget = 6\nfor i in range(len(nums)):\n    for j in range(i, len(nums)):\n        if nums[i] + nums[j] == target:\n            return True\nreturn False\n```",
+          "question": "Which approach best checks whether a list contains **any duplicate** values in roughly O(n) time (on average)?",
           "options": [
-            "True, because 3 + 3 is allowed when j == i",
-            "False, because the list has only one value",
-            "True, because empty pairs count",
-            "False, because 3 is odd"
+            "Compare every pair with nested loops only",
+            "Add each value to a set and see if it was already present",
+            "Sorting is impossible for this problem",
+            "Only print the list"
           ],
-          "correct": 0,
-          "explanation": "When j starts at i, the single value 3 is paired with itself. A correct pair search must not reuse the same index."
+          "correct": 1,
+          "explanation": "A set remembers what you have already seen, so you can detect a repeat in one pass (average O(n))."
+        }
+      }
+    },
+    {
+      "id": "r3-q3",
+      "strand": "R3",
+      "variants": {
+        "java": {
+          "question": "To check whether an array contains a duplicate, you can either (A) compare every pair of indexes with nested loops, or (B) scan once while storing seen values in a HashSet. What does approach (A) mainly cost more of?",
+          "options": [
+            "Memory only — nested loops use more RAM",
+            "Time — comparing many pairs is often O(n²)",
+            "Nothing — they always have identical performance",
+            "Disk space only"
+          ],
+          "correct": 1,
+          "explanation": "Pairwise comparison grows with n²; a set-based scan is typically much faster for large n, at the cost of some extra memory."
+        },
+        "python": {
+          "question": "To check whether a list contains a duplicate, you can either (A) compare every pair of indexes with nested loops, or (B) scan once while storing seen values in a set. What does approach (A) mainly cost more of?",
+          "options": [
+            "Memory only — nested loops use more RAM",
+            "Time — comparing many pairs is often O(n²)",
+            "Nothing — they always have identical performance",
+            "Disk space only"
+          ],
+          "correct": 1,
+          "explanation": "Pairwise comparison grows with n²; a set-based scan is typically much faster for large n, at the cost of some extra memory."
+        }
+      }
+    },
+    {
+      "id": "r3-q4",
+      "strand": "R3",
+      "variants": {
+        "java": {
+          "question": "After this code, what is `nums.length`?\n\n```java\nint[] nums = {1, 2, 3};\nnums[0] = 9;\n```",
+          "options": ["2", "3", "9", "It becomes 4"],
+          "correct": 1,
+          "explanation": "Updating an element does not change the array's length. Length stays 3."
+        },
+        "python": {
+          "question": "After this code, what is `len(nums)`?\n\n```python\nnums = [1, 2, 3]\nnums[0] = 9\n```",
+          "options": ["2", "3", "9", "It becomes 4"],
+          "correct": 1,
+          "explanation": "Updating an element does not change the list's length. Length stays 3."
         }
       }
     },
@@ -129,26 +298,26 @@
       "strand": "R4",
       "variants": {
         "java": {
-          "question": "After this loop, what does `groups` contain?\n\n```java\nMap<Character, List<String>> groups = new LinkedHashMap<>();\nfor (String word : List.of(\"banana\", \"apple\", \"cat\", \"bear\", \"ant\")) {\n    char key = word.charAt(0);\n    if (!groups.containsKey(key)) {\n        groups.put(key, new ArrayList<>());\n    }\n    groups.get(key).add(word);\n}\n```",
+          "question": "What is a HashMap mainly used for?",
           "options": [
-            "{b=[bear], a=[ant], c=[cat]}",
-            "{b=[banana, bear], a=[apple, ant], c=[cat]}",
-            "{a=[banana, apple, cat, bear, ant]}",
-            "{3=[cat, ant], 4=[bear], 5=[apple], 6=[banana]}"
+            "Storing only a single integer",
+            "Associating keys with values for fast lookup by key",
+            "Guaranteeing values are always sorted",
+            "Replacing all loops forever"
           ],
           "correct": 1,
-          "explanation": "Each word is appended. Keys appear in first-seen order: b, then a, then c. banana and bear go under b; apple and ant under a; cat under c."
+          "explanation": "Maps store key→value pairs so you can look up a value when you know the key."
         },
         "python": {
-          "question": "After this loop, what does `groups` contain?\n\n```python\ngroups = {}\nfor word in [\"banana\", \"apple\", \"cat\", \"bear\", \"ant\"]:\n    key = word[0]\n    if key not in groups:\n        groups[key] = []\n    groups[key].append(word)\n```",
+          "question": "What is a dict mainly used for?",
           "options": [
-            "{'b': ['bear'], 'a': ['ant'], 'c': ['cat']}",
-            "{'b': ['banana', 'bear'], 'a': ['apple', 'ant'], 'c': ['cat']}",
-            "{'a': ['banana', 'apple', 'cat', 'bear', 'ant']}",
-            "{3: ['cat', 'ant'], 4: ['bear'], 5: ['apple'], 6: ['banana']}"
+            "Storing only a single integer",
+            "Associating keys with values for fast lookup by key",
+            "Guaranteeing values are always sorted",
+            "Replacing all loops forever"
           ],
           "correct": 1,
-          "explanation": "Each word is appended. Keys appear in first-seen order: b, then a, then c. banana and bear go under b; apple and ant under a; cat under c."
+          "explanation": "Dicts store key→value pairs so you can look up a value when you know the key."
         }
       }
     },
@@ -157,26 +326,16 @@
       "strand": "R4",
       "variants": {
         "java": {
-          "question": "Each `Card` has a `rank` (for example `\"9\"` or `\"K\"`). After the loop processes the third card, what is in `counts`, and does the method return then?\n\n```java\nList<Card> cards = List.of(\n    new Card(\"9\", \"Hearts\"),\n    new Card(\"9\", \"Diamonds\"),\n    new Card(\"9\", \"Hearts\"),\n    new Card(\"K\", \"Clubs\")\n);\nMap<String, Integer> counts = new HashMap<>();\nfor (Card card : cards) {\n    if (!counts.containsKey(card.rank)) {\n        counts.put(card.rank, 1);\n    } else {\n        counts.put(card.rank, counts.get(card.rank) + 1);\n    }\n    if (counts.get(card.rank) == 3) {\n        return true;\n    }\n}\nreturn false;\n```",
-          "options": [
-            "{9=2, K=1}, already returned true",
-            "{9=3}, returns true on the third card",
-            "{9=1}, because put overwrites",
-            "{9=3, K=1}, returns false until the loop ends"
-          ],
-          "correct": 1,
-          "explanation": "The first two cards make counts {9=2}. The third card is also rank 9, so the count becomes 3 and the method returns true before the King is seen."
+          "question": "After this code, what does `counts.get(\"a\")` return?\n\n```java\nMap<String, Integer> counts = new HashMap<>();\ncounts.put(\"a\", 1);\ncounts.put(\"b\", 2);\ncounts.put(\"a\", 3);\n```",
+          "options": ["1", "2", "3", "null"],
+          "correct": 2,
+          "explanation": "A map has one entry per key. The second put for \"a\" overwrites the first, so the value is 3."
         },
         "python": {
-          "question": "Each `Card` has a `.rank` (for example `\"9\"` or `\"K\"`). After the loop processes the third card, what is in `counts`, and does the function return then?\n\n```python\ncards = [\n    Card(\"9\", \"Hearts\"),\n    Card(\"9\", \"Diamonds\"),\n    Card(\"9\", \"Hearts\"),\n    Card(\"K\", \"Clubs\"),\n]\ncounts = {}\nfor card in cards:\n    if card.rank not in counts:\n        counts[card.rank] = 1\n    else:\n        counts[card.rank] += 1\n    if counts[card.rank] == 3:\n        return True\nreturn False\n```",
-          "options": [
-            "{'9': 2, 'K': 1}, already returned True",
-            "{'9': 3}, returns True on the third card",
-            "{'9': 1}, because assignment overwrites",
-            "{'9': 3, 'K': 1}, returns False until the loop ends"
-          ],
-          "correct": 1,
-          "explanation": "The first two cards make counts {'9': 2}. The third card is also rank 9, so the count becomes 3 and the function returns True before the King is seen."
+          "question": "After this code, what does `counts[\"a\"]` return?\n\n```python\ncounts = {}\ncounts[\"a\"] = 1\ncounts[\"b\"] = 2\ncounts[\"a\"] = 3\n```",
+          "options": ["1", "2", "3", "KeyError"],
+          "correct": 2,
+          "explanation": "A dict has one entry per key. Assigning \"a\" again overwrites the first value, so it is 3."
         }
       }
     },
@@ -185,26 +344,54 @@
       "strand": "R4",
       "variants": {
         "java": {
-          "question": "What does this return for `{1, 3, 5, 3, 8, 5, 2}` and for `{}`?\n\n```java\nSet<Integer> seen = new HashSet<>();\nfor (int n : numbers) {\n    seen.add(n);\n}\nreturn seen.size();\n```",
+          "question": "You want frequencies of each word in an array. Which structure fits best?",
           "options": [
-            "7 and 0",
-            "5 and 0",
-            "5 and 1",
-            "2 and 0"
+            "HashMap<String, Integer>",
+            "A single boolean",
+            "Only a StringBuilder",
+            "A 2D array of chars is required"
           ],
-          "correct": 1,
-          "explanation": "The set keeps unique values: 1, 3, 5, 8, 2. An empty list leaves the set empty, so the size is 0."
+          "correct": 0,
+          "explanation": "Map each word (key) to how many times it appeared (integer value)."
         },
         "python": {
-          "question": "What does this return for `[1, 3, 5, 3, 8, 5, 2]` and for `[]`?\n\n```python\nseen = set()\nfor n in numbers:\n    seen.add(n)\nreturn len(seen)\n```",
+          "question": "You want frequencies of each word in a list. Which structure fits best?",
           "options": [
-            "7 and 0",
-            "5 and 0",
-            "5 and 1",
-            "2 and 0"
+            "A dict from str to int (or Counter)",
+            "A single boolean",
+            "Only a string concatenation",
+            "A 2D list of chars is required"
           ],
-          "correct": 1,
-          "explanation": "The set keeps unique values: 1, 3, 5, 8, 2. An empty list leaves the set empty, so the length is 0."
+          "correct": 0,
+          "explanation": "Map each word (key) to how many times it appeared (integer value)."
+        }
+      }
+    },
+    {
+      "id": "r4-q4",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "How does a HashSet differ from a HashMap for \"have I seen this value before?\"",
+          "options": [
+            "A HashSet stores only unique values (no separate value payload); a HashMap stores key→value pairs",
+            "They are identical in every way",
+            "A HashSet can only store integers",
+            "A HashMap cannot store Strings"
+          ],
+          "correct": 0,
+          "explanation": "Sets answer membership for unique elements; maps associate each key with a value."
+        },
+        "python": {
+          "question": "How does a set differ from a dict for \"have I seen this value before?\"",
+          "options": [
+            "A set stores only unique values; a dict stores key→value pairs",
+            "They are identical in every way",
+            "A set can only store integers",
+            "A dict cannot store strings as keys"
+          ],
+          "correct": 0,
+          "explanation": "Sets answer membership for unique elements; dicts associate each key with a value."
         }
       }
     },
@@ -213,26 +400,330 @@
       "strand": "R5",
       "variants": {
         "java": {
-          "question": "A test calls this method with three 9s and a King, and expects `true`. What does it actually return, and why?\n\n```java\npublic static boolean hasThreeOfAKind(List<Card> cards) {\n    Map<String, Integer> rankCounts = new HashMap<>();\n    for (Card card : cards) {\n        rankCounts.put(card.rank, 1);\n        if (rankCounts.get(card.rank) == 3) {\n            return true;\n        }\n    }\n    return false;\n}\n\nList<Card> cards = List.of(\n    new Card(\"9\", \"Hearts\"),\n    new Card(\"9\", \"Diamonds\"),\n    new Card(\"9\", \"Spades\"),\n    new Card(\"K\", \"Clubs\")\n);\nhasThreeOfAKind(cards);\n```",
+          "question": "This method is supposed to return true if `nums` contains a duplicate. Where is the bug?\n\n```java\nboolean hasDup(int[] nums) {\n    for (int i = 0; i < nums.length; i++) {\n        for (int j = i; j < nums.length; j++) {\n            if (nums[i] == nums[j]) {\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```",
           "options": [
-            "true, because three 9s are present",
-            "false, because every put stores 1, so the count never reaches 3",
-            "true, because HashMap counts automatically",
-            "false, because K appears once"
+            "There is no bug",
+            "`j` should start at `i + 1` — otherwise every element matches itself",
+            "The method must return a String",
+            "Nested loops are illegal in Java"
           ],
           "correct": 1,
-          "explanation": "put(rank, 1) overwrites instead of adding. The failing test is evidence; the defect is the missing increment."
+          "explanation": "Starting j at i compares each element to itself, so the method almost always returns true incorrectly."
         },
         "python": {
-          "question": "A test calls this function with three 9s and a King, and expects `True`. What does it actually return, and why?\n\n```python\ndef has_three_of_a_kind(cards):\n    rank_counts = {}\n    for card in cards:\n        rank_counts[card.rank] = 1\n        if rank_counts[card.rank] == 3:\n            return True\n    return False\n\ncards = [\n    Card(\"9\", \"Hearts\"),\n    Card(\"9\", \"Diamonds\"),\n    Card(\"9\", \"Spades\"),\n    Card(\"K\", \"Clubs\"),\n]\nhas_three_of_a_kind(cards)\n```",
+          "question": "This function is supposed to return True if `nums` contains a duplicate. Where is the bug?\n\n```python\ndef has_dup(nums):\n    for i in range(len(nums)):\n        for j in range(i, len(nums)):\n            if nums[i] == nums[j]:\n                return True\n    return False\n```",
           "options": [
-            "True, because three 9s are present",
-            "False, because every assignment stores 1, so the count never reaches 3",
-            "True, because dicts count automatically",
-            "False, because K appears once"
+            "There is no bug",
+            "`j` should start at `i + 1` — otherwise every element matches itself",
+            "The function must return a string",
+            "Nested loops are illegal in Python"
           ],
           "correct": 1,
-          "explanation": "Assigning 1 overwrites instead of adding. The failing test is evidence; the defect is the missing increment."
+          "explanation": "Starting j at i compares each element to itself, so the function almost always returns True incorrectly."
+        }
+      }
+    },
+    {
+      "id": "r5-q2",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "This code is meant to average the numbers in `vals`. What goes wrong?\n\n```java\nint[] vals = {2, 4, 6};\nint sum = 0;\nfor (int i = 0; i <= vals.length; i++) {\n    sum += vals[i];\n}\ndouble avg = sum / vals.length;\n```",
+          "options": [
+            "Nothing — it works",
+            "The loop uses `<=` so `i` reaches `vals.length` and causes an out-of-bounds access",
+            "`sum` cannot hold integers",
+            "Division is impossible in Java"
+          ],
+          "correct": 1,
+          "explanation": "Valid indexes are 0..length-1. Using `i <= vals.length` reads one past the end."
+        },
+        "python": {
+          "question": "This code is meant to average the numbers in `vals`. What goes wrong?\n\n```python\nvals = [2, 4, 6]\ntotal = 0\nfor i in range(len(vals) + 1):\n    total += vals[i]\navg = total / len(vals)\n```",
+          "options": [
+            "Nothing — it works",
+            "The loop goes to `len(vals)` and causes an IndexError",
+            "`total` cannot hold integers",
+            "Division is impossible in Python"
+          ],
+          "correct": 1,
+          "explanation": "Valid indexes are 0..len-1. `range(len(vals) + 1)` includes an invalid index."
+        }
+      }
+    },
+    {
+      "id": "r5-q3",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "A classmate says this always prints the larger of `a` and `b`. What is wrong?\n\n```java\nint a = 3, b = 7;\nif (a > b);\n    System.out.println(a);\nelse\n    System.out.println(b);\n```",
+          "options": [
+            "Nothing is wrong",
+            "The semicolon after `if (a > b)` ends the if early — this will not compile as written (or behaves unexpectedly)",
+            "`else` is not allowed in Java",
+            "You must use a HashMap to compare integers"
+          ],
+          "correct": 1,
+          "explanation": "A trailing semicolon after the if condition is an empty statement; the following lines are not structured as a proper if/else body."
+        },
+        "python": {
+          "question": "A classmate says this always prints the larger of `a` and `b`. What is wrong?\n\n```python\na = 3\nb = 7\nif a > b:\nprint(a)\nelse:\n    print(b)\n```",
+          "options": [
+            "Nothing is wrong",
+            "`print(a)` is not indented under the `if`, so Python raises an IndentationError",
+            "`else` is not allowed in Python",
+            "You must use a dict to compare integers"
+          ],
+          "correct": 1,
+          "explanation": "Python requires indented blocks under if/else. Mis-indenting breaks the structure."
+        }
+      }
+    },
+    {
+      "id": "r5-q4",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "This frequency counter is wrong for input `{\"x\", \"y\", \"x\"}`. Why?\n\n```java\nMap<String, Integer> counts = new HashMap<>();\nfor (String w : words) {\n    counts.put(w, 1);\n}\n```",
+          "options": [
+            "HashMaps cannot use String keys",
+            "Each put overwrites with 1 instead of incrementing the existing count",
+            "You must use nested loops for counting",
+            "The map should be a List"
+          ],
+          "correct": 1,
+          "explanation": "Every word is stored as count 1. You need to read the old count (or use merge/getOrDefault) and add 1."
+        },
+        "python": {
+          "question": "This frequency counter is wrong for input `[\"x\", \"y\", \"x\"]`. Why?\n\n```python\ncounts = {}\nfor w in words:\n    counts[w] = 1\n```",
+          "options": [
+            "Dicts cannot use string keys",
+            "Each assignment sets the count to 1 instead of incrementing the existing count",
+            "You must use nested loops for counting",
+            "The dict should be a list"
+          ],
+          "correct": 1,
+          "explanation": "Every word is stored as count 1. You need to add 1 to the previous value (e.g. `counts[w] = counts.get(w, 0) + 1`)."
+        }
+      }
+    },
+    {
+      "id": "r1-q5",
+      "strand": "R1",
+      "variants": {
+        "java": {
+          "question": "What is printed?\n\n```java\nint[] a = {4, 1, 3, 2};\nfor (int i = 0; i < a.length; i++) {\n    if (a[i] % 2 == 0) {\n        for (int j = i + 1; j < a.length; j++) {\n            a[j]++;\n        }\n    }\n}\nSystem.out.println(a[3]);\n```",
+          "options": ["2", "3", "4", "5"],
+          "correct": 2,
+          "explanation": "i=0: 4 is even → increment a[1], a[2], a[3] → {4,2,4,3}. i=1: 2 is even → increment a[2], a[3] → {4,2,5,4}. i=2: 5 is odd. i=3: 4 is even but no later indexes. a[3] is 4."
+        },
+        "python": {
+          "question": "What is printed?\n\n```python\na = [4, 1, 3, 2]\nfor i in range(len(a)):\n    if a[i] % 2 == 0:\n        for j in range(i + 1, len(a)):\n            a[j] += 1\nprint(a[3])\n```",
+          "options": ["2", "3", "4", "5"],
+          "correct": 2,
+          "explanation": "i=0: 4 is even → increment a[1], a[2], a[3] → [4,2,4,3]. i=1: 2 is even → increment a[2], a[3] → [4,2,5,4]. i=2: 5 is odd. i=3: 4 is even but no later indexes. a[3] is 4."
+        }
+      }
+    },
+    {
+      "id": "r2-q5",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "In this code, which statement correctly uses the terms **instance method** and **static method**?\n\n```java\nclass Point {\n    int x;\n    Point(int x) { this.x = x; }\n    int getX() { return x; }\n    static int mid(Point a, Point b) {\n        return (a.x + b.x) / 2;\n    }\n}\n```",
+          "options": [
+            "`getX` is a static method; `mid` is an instance method",
+            "`getX` is an instance method (invoked on an object, uses `this`); `mid` is a static method (belongs to the class; no `this`, only uses parameters)",
+            "Both are static methods because they are inside a class",
+            "A static method cannot take object parameters like `Point a`"
+          ],
+          "correct": 1,
+          "explanation": "Instance methods run on a particular object and can use its fields via `this`. Static methods belong to the class, have no `this`, and may still accept objects as parameters."
+        },
+        "python": {
+          "question": "In this code, which statement correctly uses the terms **instance method** and **static method** (`@staticmethod`)?\n\n```python\nclass Point:\n    def __init__(self, x):\n        self.x = x\n    def get_x(self):\n        return self.x\n    @staticmethod\n    def mid(a, b):\n        return (a.x + b.x) // 2\n```",
+          "options": [
+            "`get_x` is a static method; `mid` is an instance method",
+            "`get_x` is an instance method (invoked on an object, uses `self`); `mid` is a static method (belongs to the class; no `self`, only uses parameters)",
+            "Both are static methods because they are inside a class",
+            "A static method cannot take object parameters like `a` and `b`"
+          ],
+          "correct": 1,
+          "explanation": "Instance methods run on a particular object and can use its attributes via `self`. Static methods belong to the class, have no `self`, and may still accept objects as parameters."
+        }
+      }
+    },
+    {
+      "id": "r2-q6",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "Given this class, which option correctly calls the **static method** and the **instance method**?\n\n```java\nclass Greeter {\n    static String hi() { return \"hi\"; }\n    String bye() { return \"bye\"; }\n}\n```",
+          "options": [
+            "`Greeter.hi();` and `Greeter.bye();`",
+            "`Greeter.hi();` and `Greeter g = new Greeter(); g.bye();`",
+            "`Greeter g = new Greeter(); g.hi();` only — static methods cannot be called on the class name",
+            "`new Greeter().hi();` only — instance methods must use `Greeter.bye()`"
+          ],
+          "correct": 1,
+          "explanation": "Call a static method on the class (`Greeter.hi()`). Call an instance method on an object (`g.bye()`). `Greeter.bye()` is invalid because `bye` needs an instance."
+        },
+        "python": {
+          "question": "Given this class, which option correctly calls the **static method** and the **instance method**?\n\n```python\nclass Greeter:\n    @staticmethod\n    def hi():\n        return \"hi\"\n    def bye(self):\n        return \"bye\"\n```",
+          "options": [
+            "`Greeter.hi()` and `Greeter.bye()`",
+            "`Greeter.hi()` and `g = Greeter(); g.bye()`",
+            "`g = Greeter(); g.hi()` only — static methods cannot be called on the class name",
+            "`Greeter().hi()` only — instance methods must use `Greeter.bye()`"
+          ],
+          "correct": 1,
+          "explanation": "Call a static method on the class (`Greeter.hi()`). Call an instance method on an object (`g.bye()`). `Greeter.bye()` is invalid because `bye` needs `self` (an instance)."
+        }
+      }
+    },
+    {
+      "id": "r2-q7",
+      "strand": "R2",
+      "variants": {
+        "java": {
+          "question": "What is printed when `new Child()` runs?\n\n```java\nclass Parent {\n    Parent() { System.out.print(\"P\"); }\n}\nclass Child extends Parent {\n    Child() { System.out.print(\"C\"); }\n}\nnew Child();\n```",
+          "options": ["C", "P", "PC", "CP"],
+          "correct": 2,
+          "explanation": "A subclass constructor implicitly calls `super()` first, so the parent constructor runs before the child body: P then C."
+        },
+        "python": {
+          "question": "What is printed when `Child()` runs?\n\n```python\nclass Parent:\n    def __init__(self):\n        print(\"P\", end=\"\")\nclass Child(Parent):\n    def __init__(self):\n        super().__init__()\n        print(\"C\", end=\"\")\nChild()\n```",
+          "options": ["C", "P", "PC", "CP"],
+          "correct": 2,
+          "explanation": "`super().__init__()` runs the parent initializer first, then the child body: P then C."
+        }
+      }
+    },
+    {
+      "id": "r3-q5",
+      "strand": "R3",
+      "variants": {
+        "java": {
+          "question": "This code counts **clumps**: contiguous runs of length ≥ 2 of equal values. What is `clumps` for the array shown?\n\n```java\nint[] a = {1, 1, 1, 2, 2, 3, 3, 3};\nint clumps = 0;\nint i = 0;\nwhile (i < a.length) {\n    int j = i;\n    while (j < a.length && a[j] == a[i]) {\n        j++;\n    }\n    if (j - i >= 2) {\n        clumps++;\n    }\n    i = j;\n}\n```",
+          "options": ["1", "2", "3", "8"],
+          "correct": 2,
+          "explanation": "Three clumps: three 1s, two 2s, and three 3s."
+        },
+        "python": {
+          "question": "This code counts **clumps**: contiguous runs of length ≥ 2 of equal values. What is `clumps` for the list shown?\n\n```python\na = [1, 1, 1, 2, 2, 3, 3, 3]\nclumps = 0\ni = 0\nwhile i < len(a):\n    j = i\n    while j < len(a) and a[j] == a[i]:\n        j += 1\n    if j - i >= 2:\n        clumps += 1\n    i = j\n```",
+          "options": ["1", "2", "3", "8"],
+          "correct": 2,
+          "explanation": "Three clumps: three 1s, two 2s, and three 3s."
+        }
+      }
+    },
+    {
+      "id": "r3-q6",
+      "strand": "R3",
+      "variants": {
+        "java": {
+          "question": "Let `n = a.length`. What is the best big-O time bound for this method in the worst case?\n\n```java\nboolean hasDup(int[] a) {\n    for (int i = 0; i < a.length; i++) {\n        for (int j = i + 1; j < a.length; j++) {\n            if (a[i] == a[j]) {\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```",
+          "options": ["O(1)", "O(n)", "O(n log n)", "O(n²)"],
+          "correct": 3,
+          "explanation": "Two nested loops over the array compare pairs; in the worst case (no duplicates) that is Θ(n²) comparisons."
+        },
+        "python": {
+          "question": "Let `n = len(a)`. What is the best big-O time bound for this function in the worst case?\n\n```python\ndef has_dup(a):\n    for i in range(len(a)):\n        for j in range(i + 1, len(a)):\n            if a[i] == a[j]:\n                return True\n    return False\n```",
+          "options": ["O(1)", "O(n)", "O(n log n)", "O(n²)"],
+          "correct": 3,
+          "explanation": "Two nested loops over the list compare pairs; in the worst case (no duplicates) that is Θ(n²) comparisons."
+        }
+      }
+    },
+    {
+      "id": "r4-q5",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "What is printed?\n\n```java\nMap<String, Integer> m = new HashMap<>();\nString[] words = {\"a\", \"b\", \"a\", \"a\"};\nfor (String w : words) {\n    m.put(w, m.getOrDefault(w, 0) + 1);\n}\nSystem.out.println(m.get(\"a\") + \" \" + m.get(\"b\"));\n```",
+          "options": ["1 1", "3 1", "4 1", "3 0"],
+          "correct": 1,
+          "explanation": "`getOrDefault` reads the previous count (or 0), then `put` stores count+1. \"a\" appears three times; \"b\" once."
+        },
+        "python": {
+          "question": "What is printed?\n\n```python\nm = {}\nwords = [\"a\", \"b\", \"a\", \"a\"]\nfor w in words:\n    m[w] = m.get(w, 0) + 1\nprint(m[\"a\"], m[\"b\"])\n```",
+          "options": ["1 1", "3 1", "4 1", "3 0"],
+          "correct": 1,
+          "explanation": "`m.get(w, 0)` reads the previous count (or 0), then assignment stores count+1. \"a\" appears three times; \"b\" once."
+        }
+      }
+    },
+    {
+      "id": "r4-q6",
+      "strand": "R4",
+      "variants": {
+        "java": {
+          "question": "This builds a map from first character → list of words. What is printed?\n\n```java\nMap<Character, List<String>> g = new HashMap<>();\nString[] words = {\"apple\", \"ant\", \"bee\"};\nfor (String w : words) {\n    char c = w.charAt(0);\n    g.putIfAbsent(c, new ArrayList<>());\n    g.get(c).add(w);\n}\nSystem.out.println(g.get('a').size() + \" \" + g.get('b').size());\n```",
+          "options": ["1 1", "2 1", "3 0", "2 2"],
+          "correct": 1,
+          "explanation": "'a' maps to [apple, ant] (size 2); 'b' maps to [bee] (size 1)."
+        },
+        "python": {
+          "question": "This builds a dict from first character → list of words. What is printed?\n\n```python\ng = {}\nwords = [\"apple\", \"ant\", \"bee\"]\nfor w in words:\n    c = w[0]\n    if c not in g:\n        g[c] = []\n    g[c].append(w)\nprint(len(g[\"a\"]), len(g[\"b\"]))\n```",
+          "options": ["1 1", "2 1", "3 0", "2 2"],
+          "correct": 1,
+          "explanation": "\"a\" maps to [apple, ant] (length 2); \"b\" maps to [bee] (length 1)."
+        }
+      }
+    },
+    {
+      "id": "r5-q5",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "This method is supposed to return `true` if any two **consecutive** values are equal. Where is the bug?\n\n```java\nboolean hasAdjacentPair(int[] a) {\n    for (int i = 0; i < a.length; i++) {\n        if (a[i] == a[i + 1]) {\n            return true;\n        }\n    }\n    return false;\n}\n```",
+          "options": [
+            "There is no bug",
+            "The loop should stop at `i < a.length - 1` — otherwise `a[i + 1]` goes out of bounds on the last index",
+            "You must use a HashSet to compare neighbors",
+            "Consecutive values can only be checked with nested loops"
+          ],
+          "correct": 1,
+          "explanation": "Valid neighbor pairs are indexes (0,1), (1,2), … (n-2, n-1). Using `i < a.length` makes `i` reach `n-1` and then reads `a[n]`."
+        },
+        "python": {
+          "question": "This function is supposed to return `True` if any two **consecutive** values are equal. Where is the bug?\n\n```python\ndef has_adjacent_pair(a):\n    for i in range(len(a)):\n        if a[i] == a[i + 1]:\n            return True\n    return False\n```",
+          "options": [
+            "There is no bug",
+            "The loop should stop at `range(len(a) - 1)` — otherwise `a[i + 1]` raises IndexError on the last index",
+            "You must use a set to compare neighbors",
+            "Consecutive values can only be checked with nested loops"
+          ],
+          "correct": 1,
+          "explanation": "Valid neighbor pairs are indexes (0,1), (1,2), … (n-2, n-1). Using `range(len(a))` makes `i` reach `n-1` and then reads `a[n]`."
+        }
+      }
+    },
+    {
+      "id": "r5-q6",
+      "strand": "R5",
+      "variants": {
+        "java": {
+          "question": "What is printed?\n\n```java\nString a = new String(\"hi\");\nString b = new String(\"hi\");\nSystem.out.println((a == b) + \" \" + a.equals(b));\n```",
+          "options": [
+            "true true",
+            "false false",
+            "false true",
+            "true false"
+          ],
+          "correct": 2,
+          "explanation": "`==` on objects compares references (two distinct `new String` objects → false). `.equals` compares content → true."
+        },
+        "python": {
+          "question": "What is printed?\n\n```python\na = [1, 2]\nb = [1, 2]\nprint((a is b), (a == b))\n```",
+          "options": [
+            "True True",
+            "False False",
+            "False True",
+            "True False"
+          ],
+          "correct": 2,
+          "explanation": "`is` tests object identity (two separate lists → False). `==` tests value equality → True."
         }
       }
     }
