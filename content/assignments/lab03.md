@@ -546,4 +546,4 @@ Before you submit, make sure that you have completed the following:
 * The `one-set` branch has dictionary (or hashmap) implementations of a "find duplicates" function/method in both Java and Python.
 * You have answered all of the questions in your `answers.md` file.
 * You have committed your `answers.md` to your branch in the `class-exercises-fall2026` repository and make a pull request that points to **your** main branch.
-* Then paste a link to your pull request in the Moodle.
+* Then paste a link to your pull request in the Canvas.

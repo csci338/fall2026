@@ -417,7 +417,7 @@ java ReadinessCheck
 
 {:#turn-in}
 ## What do I turn in?
-Under Lab 1 on Moodle, paste the command line history from today's lab (`history`). If the dump is huge, the last ~80–100 lines that include this lab is enough.
+Under Lab 1 on Canvas, paste the command line history from today's lab (`history`). If the dump is huge, the last ~80–100 lines that include this lab is enough.
 
 ### What to study / have done after completing this lab...
 1. If you are a Windows user, make sure your WSL is installed and configured

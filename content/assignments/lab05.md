@@ -452,4 +452,4 @@ Please verify that you completed the Lab 5 tasks:
 
 Then, push your `lab05-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab05-b` branch of **your repo**
 
-Paste a link to your pull request in the Moodle submission.
+Paste a link to your pull request in the Canvas submission.

@@ -158,4 +158,4 @@ Before you submit, make sure you've completed the two sets of tasks:
 * SQLAlchemy tasks: you have successfully written and invoked the 8 SQLAlchemy-based functions using asynchronous database queries in `answers_orm.py`.
 {:.checkbox-list}
 
-When you're done, please push your `lab08-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab08-b` branch of **your repo**. Then, please paste a link to your PR in the Moodle.
+When you're done, please push your `lab08-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab08-b` branch of **your repo**. Then, please paste a link to your PR in the Canvas.

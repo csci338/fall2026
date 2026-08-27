@@ -290,7 +290,7 @@ Now that your code is on GitHub, you're going to make a "Pull Request" so that I
 
     Both sides should show **your GitHub username** as the repository owner. If the left side says `csci338`, switch it to your fork before creating the PR.
 
-1. Copy the URL of the pull request and keep the link handy for Moodle.
+1. Copy the URL of the pull request and keep the link handy for Canvas.
 
 <div class="info">
 
@@ -303,7 +303,7 @@ Now that your code is on GitHub, you're going to make a "Pull Request" so that I
 
 ## What do I turn in?
 
-Please paste a link to your pull request in the Moodle submission box. Also, please verify that...
+Please paste a link to your pull request in the Canvas submission box. Also, please verify that...
 
 * You created a branch called `lab02-b`.
 * You have a working `ContainsPair.java` file in it.

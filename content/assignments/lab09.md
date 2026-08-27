@@ -593,4 +593,4 @@ Can you figure out how to modify the `ButtonCount` component so that it initiali
     1. Invoke the setter function to set the state variable, which will automatically redraw the component.
 
 ## What to Submit
-When you're done, push your `lab09-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab09-b` branch of **your repo**. Then, please paste a link to your PR in the Moodle.
+When you're done, push your `lab09-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab09-b` branch of **your repo**. Then, please paste a link to your PR in the Canvas.

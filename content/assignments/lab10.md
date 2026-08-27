@@ -342,4 +342,4 @@ async function fetchData() {
     * In other words, how does the Form component notify the Carousel to redraw after the user submits their search?
     
 ## What to Submit
-When you're done, push your `lab10-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab10-b` branch of **your repo**. Then, please paste a link to your PR in the Moodle.
+When you're done, push your `lab10-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab10-b` branch of **your repo**. Then, please paste a link to your PR in the Canvas.

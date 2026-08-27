@@ -60,7 +60,7 @@ Add an `<img>` element in `templates/index.html` to display the dog image. Use t
 Complete all three tasks, then:
 1. Commit and push your `lab07-b` branch
 2. Create a pull request to `main` 
-3. Submit the PR link in Moodle
+3. Submit the PR link in Canvas
 
 **Resources:** 
 * [FastAPI](https://fastapi.tiangolo.com/)

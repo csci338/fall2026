@@ -490,4 +490,4 @@ You are now done with the Python version of this lab! If you want 6 points extra
 > A project's **test suite**, **code formatter**, **linter**, and **import sorter** (if applicable) are typically run before any pull request is made. These tools are also run by your project's continuous integration validation suite before any branch is merged into the main codebase. Test suites and automated static analysis tools are an important part of creating scalable software that is maintainable over time.
 
 ## What to Submit
-When you're done, push your `lab06-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab06` branch of **your repo**. Then, please paste a link to your PR in the Moodle.
+When you're done, push your `lab06-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab06` branch of **your repo**. Then, please paste a link to your PR in the Canvas.

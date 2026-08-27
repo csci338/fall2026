@@ -162,7 +162,7 @@
     },
     {
       "id": "q14",
-      "question": "What do you turn in for Lab 2 on Moodle?",
+      "question": "What do you turn in for Lab 2 on Canvas?",
       "options": [
         "A ZIP of your `lab02` folder only",
         "A screenshot of `git status`",

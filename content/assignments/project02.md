@@ -93,5 +93,5 @@ Before submitting, verify you have completed all of the following:
 
 
 ### Submit
-Once you have verified that your project is done, paste a link to your GitHub Repo and to your Railway deployment into the Moodle submission checkbox.
+Once you have verified that your project is done, paste a link to your GitHub Repo and to your Railway deployment into the Canvas submission checkbox.
 

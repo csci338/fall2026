@@ -30,7 +30,7 @@ By the end of this course, our hope is that you will view software engineering a
 
 
 ## 2. Course Format
-The course format includes a mix of assigned readings, lectures, labs, projects, quizzes, and exams. We will generally try to use our Tuesday class time to discuss a "big idea" in software engineering, and our Thursday class time to complete hands-on labs. It is your responsibility to keep up-to-date on class material and announcements, as the schedule is subject to change. This includes material presented and announcements made in class, via email, or on Moodle.
+The course format includes a mix of assigned readings, lectures, labs, projects, quizzes, and exams. We will generally try to use our Tuesday class time to discuss a "big idea" in software engineering, and our Thursday class time to complete hands-on labs. It is your responsibility to keep up-to-date on class material and announcements, as the schedule is subject to change. This includes material presented and announcements made in class, via email, or on Canvas.
 
 ### 2.1. Class Participation
 Class meetings will be in person. Most class sessions have accompanying readings, which you will be expected to complete before class. Please do your best to be physically and mentally present, and to share your knowledge and experience with one another. 
