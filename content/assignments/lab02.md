@@ -41,8 +41,8 @@ In the workflow outlined below, all commands should be run from the command line
 #### 2.1. Generate a public / private key pair
 To generate a public / private key pair (use WSL if you're a Windows user):
 
-* Type the following command: **`ssh-keygen`**
-* This will generate your private key inside the `.ssh` folder inside your home directory. Typically, the private key is  called `id_rsa` and the public key is called `id_rsa.pub`.
+* Type the following command (from any directory on your terminal): **`ssh-keygen`**
+* This will generate your private key inside the `.ssh` folder inside your home directory (accept the default name or rename -- up to you). Typically, the private key is  called `id_rsa` and the public key is called `id_rsa.pub`.
 * Verify that this worked by typing `ls -la ~/.ssh`. You should see both files (with today's timestamp).
 
 #### 2.2. Copy your public key to GitHub
