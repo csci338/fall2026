@@ -37,7 +37,7 @@ function QuizItem({
   isDark: boolean;
   onOpen: (slug: string) => void;
 }) {
-  const isDraft = quiz.draft && quiz.draft === 1;
+  const isDraft = quiz.draft === 1 || quiz.quizData?.draft === 1;
   const itemKey = `${meetingKey}-quiz-${index}`;
   const isChecked = enableChecklist && !isDraft ? checklist.isChecked(itemKey) : false;
   

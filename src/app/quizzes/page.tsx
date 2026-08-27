@@ -41,7 +41,7 @@ export default async function QuizzesPage() {
   const allQuizzes = getAllQuizMetadata();
   
   // Filter out draft quizzes
-  const publishedQuizzes = allQuizzes.filter(quiz => !quiz.draft || quiz.draft !== 1);
+  const publishedQuizzes = allQuizzes.filter(quiz => quiz.draft !== 1);
   
   // Load quiz data for all quizzes and calculate week/days left
   const quizzesWithData: Array<QuizMetadata & { quizData: QuizData | null; cheatsheetContent: string | null; weekNumber?: number; daysLeft?: number | null }> = publishedQuizzes.map(quiz => {

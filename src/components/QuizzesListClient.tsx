@@ -184,19 +184,9 @@ export default function QuizzesListClient({ quizzes }: QuizzesListClientProps) {
                   {!mounted ? (
                     <span className="text-gray-400 dark:text-gray-500">—</span>
                   ) : status && status.completed ? (
-                    // Rule 1: If taken, show score
                     `${status.score} / ${status.total} (${status.total > 0 ? Math.round((status.score / status.total) * 100) : 0}%)`
-                  ) : quiz.daysLeft !== null && quiz.daysLeft !== undefined ? (
-                    // Rule 2 & 3: If not taken, show days left or overdue
-                    quiz.daysLeft > 0 ? (
-                      <span className="text-blue-600 dark:text-blue-400">{quiz.daysLeft} day{quiz.daysLeft !== 1 ? 's' : ''} left</span>
-                    ) : quiz.daysLeft === 0 ? (
-                      <span className="text-orange-600 dark:text-orange-400">Today</span>
-                    ) : (
-                      <span className="text-red-600 dark:text-red-400">Overdue</span>
-                    )
                   ) : (
-                    <span className="text-gray-400 dark:text-gray-500">—</span>
+                    ''
                   )}
                 </td>
                 <td className="py-3 px-4">

@@ -51,7 +51,7 @@ export default async function ResourcePage({ params }: PageProps) {
         quizData,
         cheatsheetContent
       };
-    }).filter(item => item.quizData !== null); // Only include quizzes that were found
+    }).filter(item => item.quizData !== null && item.quizData.draft !== 1); // Skip missing and draft quizzes
     
     // Get all resources for navigation
     const resourcePosts = getAllPosts('resources');

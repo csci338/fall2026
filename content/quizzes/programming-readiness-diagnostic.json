@@ -1,5 +1,6 @@
 {
   "quizName": "Programming Readiness Quiz",
+  "start_date": "2026-08-18",
   "draft": 0,
   "notes": "Self-check covering tracing, OOP, lists, maps, and debugging",
   "languages": [

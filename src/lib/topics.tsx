@@ -319,7 +319,8 @@ async function enrichTopicsWithMarkdown(baseTopics: BaseTopicsArray): Promise<To
             return {
               ...quiz,
               quizData: quizData || undefined,
-              cheatsheetContent: cheatsheetContent || undefined
+              cheatsheetContent: cheatsheetContent || undefined,
+              draft: quiz.draft ?? quizData?.draft ?? 0
             };
           }
           // If quizData exists but cheatsheetContent doesn't, load it
@@ -327,10 +328,14 @@ async function enrichTopicsWithMarkdown(baseTopics: BaseTopicsArray): Promise<To
             const cheatsheetContent = getQuizCheatsheet(quiz.quizData, quiz.slug);
             return {
               ...quiz,
-              cheatsheetContent: cheatsheetContent || undefined
+              cheatsheetContent: cheatsheetContent || undefined,
+              draft: quiz.draft ?? quiz.quizData?.draft ?? 0
             };
           }
-          return quiz;
+          return {
+            ...quiz,
+            draft: quiz.draft ?? quiz.quizData?.draft ?? 0
+          };
         });
         // If no Quiz objects remain, set to undefined
         if (meeting.quizzes.length === 0) {
@@ -408,7 +413,7 @@ async function enrichTopicsWithMarkdown(baseTopics: BaseTopicsArray): Promise<To
           quizData: quizData || undefined,
           cheatsheetContent: cheatsheetContent || undefined,
           notes: quiz.notes || quizData?.notes,
-          draft: 0
+          draft: quiz.draft ?? quizData?.draft ?? 0
         };
       });
       

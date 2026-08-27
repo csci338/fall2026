@@ -569,16 +569,22 @@ li:has(input[type="checkbox"]) {
 a.text-blue-600,
 a.text-blue-400,
 a.text-blue-200,
+.schedule-content button.text-blue-600,
+.schedule-content button.text-blue-400,
 .dark .prose a,
 .dark .schedule-content a,
 .dark a.text-blue-600,
 .dark a.text-blue-400,
-.dark a.text-blue-200 {
+.dark a.text-blue-200,
+.dark .schedule-content button.text-blue-600,
+.dark .schedule-content button.text-blue-400 {
   color: var(--link);
 }
 
 .prose a:hover,
 .schedule-content a:hover,
+.schedule-content button.text-blue-600:hover,
+.schedule-content button.text-blue-400:hover,
 a.hover\:text-blue-600:hover,
 a.hover\:text-blue-400:hover,
 a.dark\:hover\:text-blue-400:hover,

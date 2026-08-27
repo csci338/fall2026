@@ -62,7 +62,7 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
         { postData.due_date && <p className="mt-2 text-lg font-bold">Due {formatDate(postData.due_date)} at 11:59pm</p> }
         {isStyleGuideDemo && <StyleGuideStyles />}
         <MarkdownContent content={postData.content} className="activity-content" />
-        {quizData && (
+        {quizData && quizData.draft !== 1 && (
           <ResourceQuiz key={`quiz-${slug}`} quizData={quizData} resourceSlug={slug} variant="desktop" />
         )}
       </ContentLayout>
