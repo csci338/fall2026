@@ -85,7 +85,7 @@ export const baseTopics = [
           date: "Th, Aug 27",
           topic: "Lab 2: Version Control Part 1",
           activities: [
-            { title: "Introduction to Lab 2", url: "https://docs.google.com/presentation/d/1w4f6h1GClFr_CXN9iZ1_Z3XRtxx4DenK/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Introduction to Lab 2", url: "https://docs.google.com/presentation/d/1w4f6h1GClFr_CXN9iZ1_Z3XRtxx4DenK/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
         },
         {

@@ -3,6 +3,8 @@ title: Git & GitHub
 group: Version Control
 group_order: 2
 order: 1
+collapsible_headings: true
+quicklink: 1
 ---
 
 ## Useful Online Resources
@@ -15,6 +17,7 @@ order: 1
 ## Git Cheatsheet
 ### Basic Commands
 
+| Command | Description |
 | **git clone** | Copies a remote repository (e.g., one hosted on a GitHub server) onto your local machine (within your current directory). |
 | **git status** | Tells you which of the files in your current directory are different from the latest commit in the repo. |
 | **git add** | Stages the specified files to be committed |
@@ -25,6 +28,7 @@ order: 1
 
 ### Branch Commands 
 
+| Command | Description |
 |  **git checkout -b my-new-branch** | Creates a new branch |
 | **git branch** | Tells you which branch you’re on |
 | **git checkout main** | Switches you from your current branch to the main branch |
