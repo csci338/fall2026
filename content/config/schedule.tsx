@@ -92,7 +92,7 @@ export const baseTopics = [
           date: "Tu, Sep 1",
           topic: "Version Control and Collaborative Workflows",
           activities: [
-            { title: "Version Control and Collaborative Workflows", url: "https://docs.google.com/presentation/d/1ELJsUf7EOs2lHrsH2y7TBFRS8H4Zwbpt/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Version Control and Collaborative Workflows", url: "https://docs.google.com/presentation/d/1ELJsUf7EOs2lHrsH2y7TBFRS8H4Zwbpt/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
           readings: [
             { citation: "<a href=\"https://en.wikipedia.org/wiki/git\" target=\"_blank\">Git Wikipedia article </a><br>Read the \"History\" and \"Characteristics\" sections." },
