@@ -6,6 +6,7 @@ draft: 1
 assigned_date: 2026-09-10
 due_date: 2026-09-16
 points: 6
+collapsible_headings: true
 ---
 
 ## 1. Background

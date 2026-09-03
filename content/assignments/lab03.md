@@ -1,549 +1,462 @@
 ---
-title: A Tour of git Commands
+title: A Tour of Git Commands
 type: lab
 num: 3
-draft: 1
+draft: 0
 assigned_date: 2026-09-03
 due_date: 2026-09-09
 points: 6
+collapsible_headings: true
 ---
 
 **Credit: This activity was designed by Semmy Purewall**
 
 {:.info}
 > ## Learning Goals
-> The goals with this lab are as follows:
-> 
-> 1. Getting more familiar with git
-> 2. Practicing adding and committing
-> 3. Practicing with the linux command line
-
-## 1. Git Basics
-
-On GitHub: 
-1. Navigate to your fork of the `class-exercises-fall2026` repository. Sync your fork to incorporate new changes into the main branch by clicking the "sync fork" button (below the green "Code" button).
-
-On your laptop: 
-1. Navigate to your version of `class-exercises-fall2026`, located inside of your `csci338` folder.
-1. Check which branch you're on using the `git branch` command.
-1. Check if you have any uncommitted changes using the `git status` command. 
-    * If you have lingering changes, stage and commit them. 
-1. Checkout the main branch: `git checkout main`
-1. Pull the latest changes from your remote main branch into your local main branch: `git pull origin main`
-1. If you did it correctly, you should notice that you should now have a `lab03` directory inside of your `class-exercises-fall2026` folder.
-1. Create a new branch (while on the main branch) to do our work for lab 3: `git checkout -b lab03-b`
-    * Note that branches are created from the branch you're currently on (in this case `main`). Therefore, it's important to pay attention to which branch you're on before making new branches.
-    * Typically, you always branch from `main`. 
-
-Use the `lab03/answers.md` markdown file to answer questions as you're
-going through the lab.
-
-**Note:** Whenever the lab says "What do you see?" that usually means to copy the command and the output to your `answers.md` file. You should do this in Markdown's preformatted mode which is simply 3 backticks before and after the block. 
-
-### Getting Help
-
-Git has fairly good documentation that's easily available (and often
-faster than using Chat GPT). Read through
-[this](https://git-scm.com/book/en/v2/Getting-Started-Getting-Help) to
-see how to access it.
-
-### Create a New Git Repository
-Create a new repository for code exercises directly inside of your `csci338` directory. To do this, create a directory called `lab03-exercises` using the `mkdir` command.
-
-```
-mkdir lab03-exercises
-```
-
-{:.info}
-> **Important**: Make sure you **DO NOT** create the `lab03-exercises` repo inside of your `class-exercises-fall2026` repo (remember: no nested repos). Instead, `lab03-exercises` should be in a *sibling*  directory. So, your directory structure should look something like this:
+> By the end of this lab, you should be able to:
 >
-```
-> csci338
-> ├── class-exercises-fall2026
-> ├── lab03-exercises
-> ├── merge-activity
-> └── rebase-activity
-```
+> 1. create and use a local Git repository
+> 2. stage, commit, inspect, and compare changes
+> 3. connect a local repository to GitHub and push your work
+> 4. use a branch and pull request to make a small change
 
-Verify that you've created your new `lab03-exercises` directory directly inside of `csci338` before proceeding. Then, change your working directory to `csci338/lab03-exercises`. Within `lab03-exercises`, create a new markdown file called `README.md`. Add a header to the top.
+## Overview
 
-Great! First let's try to commit this.
+This lab uses **one repository**: `lab03-exercises`.
 
-```
-git add README.md
-```
+You will create it on your computer first, then connect it to GitHub later in the lab. Git works on your computer without GitHub; GitHub is simply an online home for a Git repository.
 
-Oh no! Something went wrong. What error do you see?
+You will use one file, `README.md`, for both project notes and written responses. There is no separate `answers.md` file.
 
-The problem is we haven't created a repository yet. Before we fix
-this, let's take a look at what we have in the directory using the
-`ls` command, along with the flags to show all hidden files. If you
-don't remember the flag to look for hidden files, take a look at the command line cheatsheet on the course website.
+The programming work in this lab is intentionally small. You already practiced the duplicate-checking problem in Lab 02. Here, you will reuse **one** of those files so that you can focus on the Git workflow.
 
-You should see a single file, the `README.md` file you made. Now let's
-initialize the our new git repository.
+## Part 1: Create Your Local Repository
 
-```
-git init
-```
+1. Open a terminal and move to your `csci338` directory. Create a directory for this lab, move into it, and initialize Git:
 
-Git will initialize a repository for you. Now let's list the contents of the directory again (including hidden files). Do you see anything new? Is it a directory or a file? How can you tell? List the contents of the new directory. 
+    ```bash
+    mkdir lab03-exercises
+    cd lab03-exercises
+    git init -b main
+    ```
 
-> 1.1. What do you see? Copy the output to your `answers.md` file.
-{:.blockquote-no-margin}
+    {:.info}
+    > `git init` turns the current directory into a Git repository. It creates a hidden `.git` directory where Git stores the repository's history and settings.
 
-This is Git's internal implementation. You generally won't have to look in here, but whenever you're working in a Git repository, this special directory
-will exist.
+2. List the contents of the directory, including hidden files:
 
-### Our First Commit!
+    ```bash
+    ls -la
+    ```
 
-Git is _stateful_ and _modal_, which means that it sometimes behaves
-differently depending on what state or mode it's in. It's a good idea
-to get in the habit of checking Git's state prior to making any
-changes. Let's do that now with the `status` subcommand.
+    You should see the hidden `.git` directory.
 
-```bash
-git status
-```
+3. Create a file named `README.md` and add the following starter content:
 
-> 1.2. What do you see? Copy the output to your `answers.md` file.
-{:.blockquote-no-margin}
+    ```md
+    # Lab 03: Git and GitHub
 
-When you issue the `git status command`, you're usually looking for 2 things:
-1. The `branch` you're on (in this case, `main`) and 
-2. a list of untracked files (in this case, just `README.md`).
+    ## README Responses
 
-Let's add `README.md` to Git's staging area using the `add`
-subcommand.
+    ### 1.1 After initialization
 
-```bash
-git add README.md
-```
+    ### 1.2 First git status
 
-Hmmmm, there was no output from that command. What to do? Is there a
-way you can check the state of git to confirm that your file was added
-(hint: see above)?
+    ### 1.3 After the first commit
 
-Note that `README.md` is under the `Changes to be committed` header
-now. That means this file will be included on our next commit. Let's
-do that now.
+    ### 1.4 git log
 
-```bash
-git commit -m "add README.md to the repository"
-```
+    ### 1.5 git diff
 
-What do you see? After you commit this, let's check the state of the repository. 
+    Paste the `git status` and `git diff` commands and their output.
 
-> 1.3. What do you see? Copy the output to your `answers.md` file.
-{:.blockquote-no-margin}
+    How does this `git status` differ from the one in **1.2**?
 
-Now that our repository has history, let's explore that history. To do
-that, we use the `log` subcommand.
+    ### 1.6 Git command reflections
 
-```bash
-git log
-```
-> 1.4. What do you see? Copy the output to your `answers.md` file.
-{:.blockquote-no-margin}
+    In one or two sentences each, what does each command do?
 
-The [`log` subcommand](https://git-scm.com/docs/git-log) has a lot of great
-features that we'll want to use going forward, but for now let's just
-bask in the glory of the fact we've created a brand new git repository
-and made our first commit to it!
+    - `git init`
+    - `git status`
+    - `git add`
+    - `git commit`
+    - `git log`
+    - `git diff`
 
-Now let's modify our file.  Open `README.md` and add the following description of the first problem we are going to solve, and then save
-the file.
+    ### 1.7 Repository link
 
-> ### Add to README.md
-> #### Find All Duplicates
-> Write a function (in python) or method (in Java) that accepts a list of integers and returns a list of only those integers that appear more than once. 
+    ### 1.8 Comparing approaches
 
+    In your own words:
 
-Now that we have a change, let's check Git's state. What's different
-about this message than when we first added the `README.md` file?
+    - How does the nested-loop approach check for a duplicate?
+    - How does the set-based approach check for a duplicate?
+    - What is the runtime and memory trade-off of each?
 
-You can see what has changed between the previous commit and now with
-the `diff` subcommand.
+    ### 1.9 Pull request merge options
 
-```
-git diff
-```
-> 1.5. What do you see? Copy the output to your `answers.md` file.
-{:.blockquote-no-margin}
+    In your own words, what does each GitHub merge option do?
 
-Let's add this change to Git's staging area and commit it with a commit message "add first problem".
+    - Create a merge commit
+    - Squash and merge
+    - Rebase and merge
+    ```
 
-### Reflection and Review
+4. In `README.md`, under **1.1 After initialization**, paste the `ls -la` command and its output. Use a fenced code block, like this:
 
-We've learned 6 git subcommands now. In your `answers.md` file,
-describe each of them in your own words.
+    ````md
+    ```text
+    ls -la
+    ...your output here...
+    ```
+    ````
 
-### Practice
+<div class="info ml-7">
 
-{:.info}
-> **Programming Readiness: Practice (R2, R3, and R5)**
-> This is formative practice, not Verification, so it cannot earn a Satisfactory readiness mark. Complete it without GenAI to get an accurate picture of what you can do before the next paper attempt.
+**Before moving on**
 
-**DO NOT USE CHAT GPT FOR THIS SECTION**
+[ ] I am inside `lab03-exercises`
+[ ] `ls -la` shows a `.git` directory
+[ ] I created `README.md` with the starter headings
 
-You may use Google, but you may not cut and paste any code.
+</div>
 
-Let's write some code. Create a new directory called `java` and let's
-answer that first coding question in a file called `FindDuplicates.java`. In it, create a static method called `findDuplicatesNestedLoops` that takes a list of integers as an argument and returns a list of integers that have duplicates. Use a "nested loop" strategy to implement your method. Then, in your `main` function, invoke your `findDuplicatesNestedLoops` method with a few examples to confirm it's working correctly. Here's a sample stub of `FindDuplicates.java`:
 
-```java
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+## Part 2: Make Your First Commit
 
-public class FindDuplicates {
+1. Check your repository's state:
 
-    public static List<Integer> findDuplicatesNestedLoops(List<Integer> l) {
-        // replace "return null" with your code:
+    ```bash
+    git status
+    ```
 
+2. Copy that `git status` output now, before you change anything else. In `README.md`, find the heading **1.2 First git status** (in the starter outline from Part 1) and paste the command plus that output under it.
 
-        return null;
-    }
+3. Stage and commit `README.md` itself:
 
-    public static void main(String[] args) {
-        // some test strings:
-        List<Integer> sample1 = new ArrayList<Integer>(Arrays.asList(3, 7, 5, 6, 7, 4, 8, 5, 7, 66));
-        List<Integer> sample2 = new ArrayList<Integer>(Arrays.asList(3, 5, 6, 4, 4, 5, 66, 6, 7, 6));
-        List<Integer> sample3 = new ArrayList<Integer>(Arrays.asList(3, 0, 5, 1, 0));
-        List<Integer> sample4 = new ArrayList<Integer>(Arrays.asList(3));
-        System.out.println("Sample 1: " + findDuplicatesNestedLoops(sample1));
-        System.out.println("Sample 2: " + findDuplicatesNestedLoops(sample2));
-        System.out.println("Sample 3: " + findDuplicatesNestedLoops(sample3));
-        System.out.println("Sample 4: " + findDuplicatesNestedLoops(sample4));
-    }
+    ```bash
+    git add README.md
+    git commit -m "Create lab README"
+    ```
 
-}
-```
+4. Run these commands:
 
-You can compile and run your code using:
+    ```bash
+    git status
+    git log --oneline
+    ```
 
-```
-javac FindDuplicates.java
-java FindDuplicates
-```
+    In `README.md`, under **1.3 After the first commit**, paste the `git status` command and its output. In `README.md`, under **1.4 git log**, paste the `git log --oneline` command and its output.
 
-Before committing, add and run checks for an empty list, a one-element list, no duplicates, one duplicate, multiple duplicates, and negative values. For each check, compare the actual and expected lists and print `PASS` or `FAIL`. Use any failure to revise your method, then record one correction in `answers.md`.
+    When `git status` says your working tree is clean, it means Git sees no uncommitted changes.
 
-Once you have that working, let's add it and commit it to the
-repository.
+<div class="info ml-7">
 
-## Github
+**Before moving on**
 
-Github is not Git. Github is essentially a code management platform
-that creates an ecosystem of software-related tools around Git. In this section, we'll push our repository to Github.
+[ ] I pasted `git status` under **1.2** *before* my first commit
+[ ] `git log --oneline` shows the `"Create lab README"` commit
+[ ] **1.3** and **1.4** in `README.md` have the post-commit `git status` and `git log` output
 
-### Create a New Repository
+</div>
 
-On Github, click the "New" button that's next to your list of
-repos. Let's call it `lab03-exercises` (same as our local repo name, though you could name it something different). Please make it **public**. Leave all of the GitHub options unchecked (i.e. Add README, Add .gitignore, Choose license).
+## Part 3: Make and Inspect a Change
 
-Once you click the green "Create repository" button, you'll see some
-instructions. We're going to follow the ones labeled "push an existing
-repository from the command line."
+1. Add this sentence **under the title** at the top of `README.md`:
 
-> ### Important: Use the ssh protocol
-You'll note that when you make a new repository, there are two ways to interact with GitHub: HTTPS and SSH. Please make sure that the **SSH** button is selected (not HTTPS) and that your origin looks something like this: `git@github.com:your-git-handle/your-repo.git`
+    ```text
+    This repository documents my practice with 
+    local Git, GitHub, branches, and pull requests.
+    ```
 
-Note that the second command is redundant since we already call our
-default branch `main`. But let's go ahead and do it anyway.
+2. Before staging the change, run:
 
-Once you push, reload the Github page in your browser, and you should
-see your readme file in all its glory!
+    ```bash
+    git status
+    git diff
+    ```
 
-### Git is Distributed
+3. In `README.md`, under **1.5 git diff**, paste the `git status` and `git diff` commands and their output. Then answer: 
+    - How does this `git status` differ from the one in **1.2**?
 
-What we've done is we've created a _copy_ of our repository on
-Github's servers. In Git, a copy of the repo living somewhere else is
-called a `remote`. Note that this doesn't mean that Github is the
-"source of truth" for our code, it just means that Github is a
-copy. By convention, we can think of the Github version of our code as
-the source of truth, and the clones that live everywhere else as
-secondary, but we don't have to.
+4. Stage and commit the change:
 
-We can even create other remotes, other than "origin" if we want. The
-`remote` subcommand will list all of our remotes (using the `-v` flag
-will show us 'verbose' details).
+    ```bash
+    git add README.md
+    git commit -m "Describe repository purpose"
+    ```
 
-```
-git remote -v
-```
+<div class="info ml-7">
 
-Once we make a _local_ change to our repository, we have to _push_ the
-changes to our remote to see them reflected.
+**Before moving on**
 
-### More Practice
+[ ] I added the purpose sentence under the title in `README.md`
+[ ] **1.5** includes `git status` / `git diff` output and a short answer comparing this `git status` with **1.2**
+[ ] I committed with `"Describe repository purpose"`
 
-**DO NOT USE CHAT GPT FOR THIS SECTION**
+</div>
 
-You may use Google, but you may not cut and paste any code.
+## Part 4: Bring Forward One Existing Program
 
-Let's add a directory called `python` and repeat this exercise in
-Python. Generally, Python doesn't use CamelCase for filenames, so name
-your file `find_duplicates.py`. In it, you will implement a function called `find_duplicates_nested_loop`. Here's a basic python skeleton program you
-can run.
+You do **not** need to solve a new programming problem for this lab. Reuse one completed program from Lab 02:
 
-```py
-def find_duplicates_nested_loop(l: list) -> list:
-    # Replace "return None" with your code
-    return None
+* `ContainsPair.java`, or
+* `contains_pair.py`
 
-# In Python, if __name__ == "__main__" is a conditional check that determines whether 
-# a Python file is being run as the main program or imported as a module into another 
-# script.
-if __name__ == "__main__":
-    sample1 = [3, 7, 5, 6, 7, 4, 8, 5, 7, 66]
-    sample2 = [3, 5, 6, 4, 4, 5, 66, 6, 7, 6]
-    sample3 = [3, 0, 5, 1, 0]
-    sample4 = [3]
-    
-    print("Sample 1:", find_duplicates_nested_loop(sample1))
-    print("Sample 2:", find_duplicates_nested_loop(sample2))
-    print("Sample 3:", find_duplicates_nested_loop(sample3))
-    print("Sample 4:", find_duplicates_nested_loop(sample4))
-```
+1. Create either a `java-practice` or `python-practice` directory in `lab03-exercises`, then copy your chosen Lab 02 file into that directory. Use only one language for this lab.
 
-You can run it like this:
+2. Run the program to confirm it still works.
 
-```
-python3 find_duplicates.py
-```
+3. Create a `.gitignore` file at the root of your `lab03-exercises` folder containing this line:
 
-Go ahead and modify the `find_duplicates_nested_loop` function so it works as we
-described. Once you have it working, add it and commit it to the
-repository. Take a look at your Git history. What do you see? Take a
-look at your repo on Github and click on the "commits" link. Do you
-see the commit you just made?
+    ```text
+    *.class
+    ```
 
-Let's take a look at the state of our local repository first. What do
-you see? Do you see any messages that suggest that there's a
-difference between your local repository and the remote repository?
+    This prevents Java's compiled `.class` files from being committed. It is fine to include this file even if you choose Python.
 
-Now let's push these changes to our remote.
+4. Stage and commit the program and `.gitignore` file:
 
-```
-git push origin main
-```
+    ```bash
+    git add .
+    git commit -m "Add duplicate-checking practice program"
+    ```
 
-Some notes:
-* If you reload your Github repository and you should now see your latest commit on GitHub.
-* Similarly, if you type `git status` on the command line again, you can see that your current and remote branches are the same.
+<div class="info ml-7">
 
-## Branching
+**Before moving on**
 
-So far we've been committing directly to the `main` branch and pushing that branch to the remote. This is fine for personal projects, or experimental codebases. It's not fine for production projects that have users.
+[ ] I have either `java-practice/` or `python-practice/` (not both) with my Lab 02 file
+[ ] Running the program still works
+[ ] `.gitignore` at the repo root contains `*.class`
+[ ] I committed the program and `.gitignore`
 
-Generally speaking, on collaborative projects we'll consider our `main` branch on our `origin` remote sacred. Indeed, it's probably good practice to keep the `main` branch of your local repository
-sacred as well. 
+</div>
 
-> Generally, this means we will never commit _directly_ to the `main` branch anywhere. 
-{:.blockquote-no-margin}
+## Part 5: Add Your Reflection
 
-Instead we will commit to a local
-_branch_ and then use a process called a Pull Request to get our local
-branch into our remote `main` branch, then we'll use `fetch` and
-`pull` to sync our local branch with the remote.
+1. In `README.md`, under **1.6 Git command reflections**, answer in one or two sentences each: what do the following `git` commands do (do not use GenAI for this):
+    - `git init`
+    - `git status` 
+    - `git add`
+    - `git commit` 
+    - `git log`
+    - `git diff`
 
-This is convenient because it allows us to apply some basic _process_
-to our pull requests (e.g. static analysis, testing, code review) to
-make sure only quality, working code makes it into our _main_ branch.
+2. Commit your reflection:
 
-Let's start by listing all of our branches using the `branch`
-subcommand.
+    ```bash
+    git add README.md
+    git commit -m "Add Git command reflection"
+    ```
 
-```
-git branch
-* main
-```
+<div class="info ml-7">
 
-You only have the main branch. Let's create a new branch in our
-`exercises` repository.
+**Before moving on**
 
-```
-git branch one-set
-```
+[ ] **1.6** describes `git init`, `git status`, `git add`, `git commit`, `git log`, and `git diff` in my own words
+[ ] I committed the reflection
 
-Hmmmm. No output. Let's rerun the command from above to see our
-branches.
+</div>
 
-```
-git branch
-* main
-  one-set
-```
+## Part 6: Connect Your Repository to GitHub
 
-The asterisk (*) means you are still on the `main` branch. You can
-also see this by checking the state of your repository. Do that. Where
-do you see that specified?
+Now create an online home for your local repository.
 
-Let's `checkout` the `one-set` branch.
+1. On GitHub, create a repository named `lab03-exercises`.
 
-```
-git checkout one-set
-```
+    * Make it **public**.
+    * Do **not** initialize it with a README, `.gitignore`, or license. Your local repository already has those files.
 
-Confirm you are indeed on the `one-set`
-branch (use `git status`)
+2. After GitHub creates the empty repository, copy the SSH URL shown under **push an existing repository from the command line**. It will look like this:
 
-> ### Add to README.md
-> #### Describe Different Approaches to Solving This Problem
-> Describe the two different ways to figure out all of the duplicate values of a list of integers in english. The first solution is the nested loop solution. The second solution is to use a dictionary or a map (similar to the `containsPair` method we wrote in class. Describe both in as much detail as you can (with no code) and describe the trade-offs between the two solutions.
+    ```text
+    git@github.com:your-github-username/lab03-exercises.git
+    ```
 
-Now let's commit this change to our `README.md` file. Note that as long as you're on the correct branch, all git operations will happen on that branch. Maybe check you're on the correct branch one more time? Once you're confident, add and commit your changes.
+3. From your local `lab03-exercises` directory, connect the remote and push your work. Replace `your-github-username` with your own GitHub username:
 
-Now let's look at our history again. You should have several commits now. One of those commits is the top of `main` and one of those commits is the top of `one-set`. There's also one that's labeled `HEAD`. Which one?
+    ```bash
+    git remote add origin git@github.com:your-github-username/lab03-exercises.git
+    git push -u origin main
+    ```
 
-Now let's checkout our `main` branch and check our history again. What's different? 
-* Is `HEAD` the same? 
-* If you look at your `README.md` file in VS Code (or by "catting" it), is it the same?
+4. Check the connection:
 
-Describe in english what happened here.
+    ```bash
+    git remote -v
+    git status
+    ```
 
-### Still More Practice
+    Reload the repository page on GitHub. You should see your `README.md`, program file, `.gitignore`, and commit history.
 
-{:.info}
-> **Programming Readiness: Practice (R4 and R6)**
-> Implement the Java version first. After it works, you may optionally translate your own solution into Python to practice language transfer.
+5. In `README.md`, under **1.7 Repository link**, paste the URL to your public GitHub repository. Commit and push that update:
 
-**DO NOT USE CHAT GPT FOR THIS SECTION**
+    ```bash
+    git add README.md
+    git commit -m "Add repository link"
+    git push
+    ```
 
-You may use Google, but you may not cut and paste any code. It's much
-better to only use the documentation for the [Python
-Set](https://docs.python.org/3/tutorial/datastructures.html#sets) or
-the [Java
-Set](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html).
+<div class="info ml-7">
 
-Now we're going to solve question one using a set or hashmap data structure instead of nested loops. Implement this version in the Java file you already made and run the same edge-case checks. In `README.md`, explain why this strategy changes the expected runtime and identify any memory tradeoff.
+**Before moving on**
 
-Once you're done, commit your changes to the `one-set` branch. Double
-check you're on the right branch before committing.
+[ ] I created a **public** GitHub repo named `lab03-exercises` with no extra README / license
+[ ] `git remote -v` shows my SSH `origin` URL
+[ ] GitHub shows `README.md`, `.gitignore`, my program, and commit history
+[ ] **1.7** has the repository URL, and I pushed that commit
 
-Remember the `diff` subcommand? Note that you can use the `diff`
-subcommand to compare your two branches!
+</div>
 
-```
-git diff main..one-set
-```
+## Part 7: Make a Change on a Branch
 
-### Pull Requests
+So far, you have committed directly to `main`. Next, you will make a small improvement on a separate branch.
 
-Let's create a pull request by pushing our local branch to our
-remote. Previously, we pushed to `main` but we don't want to do that
-anymore. Instead, we want to push to our new branch.
+1. Create and switch to a branch named `more-tests`:
 
-```
-git push origin one-set
-```
+    ```bash
+    git switch -c more-tests
+    ```
 
-What do you see? Note that there's a URL there that will take you to a
-page that allows you to immediately create a pull request. Instead of
-doing that, visit the homepage of your repository on Github. Notice
-that at the top it also allows you to create a pull request.
+2. Confirm that you are on the new branch:
 
-Before doing that, notice that the dropdown that says `main` also
-shows your new branch! You can click the drop-down and explore the
-code in your branch before making a pull request.
+    ```bash
+    git status
+    ```
 
-Let's make a pull request now. You can do it in either of the two ways
-that I described above.
+3. Make these two changes on `more-tests`:
 
-Notice that the pull request title is pre-populated based on your
-commit message. That may be okay, but if you have multiple commits in
-your branch you might want to change it.
+    * Add one new test case to the Java or Python program you brought forward from Lab 02. 
+        - A test case is one additional program input, its expected result, and a way to see whether the actual result matches your expectation. 
+        - You are adding another call to your existing program, not rewriting its duplicate-checking method or function.
 
-More interesting is the `Preview` tab. Github supports Markdown for
-your pull request description! This means you can easily add links,
-lists, and preformatted code snippets to your pull request
-description. Add all of those things.
+    * In `README.md`, under **1.8 Comparing approaches**, answer:
+        - How does the nested-loop approach check for a duplicate? 
+        - How does the set-based approach check for a duplicate? 
+        - What is the runtime and memory trade-off of each?
 
-You can also add screenshots fairly easily. Take a screenshot of your
-VS Code instance or of your SSH window. Once it's on your clipboard,
-you can paste it directly in the description edit box. It will upload
-the image and add some markdown. Now click on the Preview tab and you
-will see it!
+4. Run your program again to verify the new test case. Then commit the changes:
 
-Create your pull request. In the upper right hand section, you'll see
-the "Reviewers" section. Add me as a reviewer. If your repository is
-private, you'll need to add me to it first by going into the
-repository settings and adding me under "Collaborators".
+    ```bash
+    git add .
+    git commit -m "Document duplicate-checking approaches"
+    ```
 
-### Merging a Pull Request
+5. Compare the branch with `main`:
 
-Click on the drop-down arrow in the green "Merge pull request"
-button. There are three options there. Based on our discusssion in
-class, what do the three options mean? 
+    ```bash
+    git diff main..more-tests
+    ```
 
-> What do the three "Merge pull request" options mean? Add them to your `answers.md`
-file.
+    Notice that this command shows the changes that exist on `more-tests` but not on `main`.
 
-No need to wait for Sarah to actually review it. Go ahead and choose
-"Rebase and Merge" and then delete the branch.
+6. Push the new branch to GitHub:
 
-### Post Merge
+    ```bash
+    git push -u origin more-tests
+    ```
 
-Perhaps interestingly, merging doesn't actually change anything in
-your local repository. You can confirm this by examining the state of
-both of your branches in your local repository.
+<div class="info ml-7">
 
-You can pull the latest updates in your remote repository without
-affecting your local repositories by using the `fetch` subcommand.
+**Before moving on**
 
-```
-git fetch
-```
+[ ] `git status` showed I was on `more-tests` (not `main`) while making these changes
+[ ] I added one new test case (another program input / expected result), without rewriting the duplicate-checking function
+[ ] **1.8** describes how the nested-loop and set-based algorithms work, plus their trade-offs
+[ ] I pushed `more-tests` to GitHub
 
-Now check the state of the two branches on your local repository. What
-do you see?
+</div>
 
-You can use `pull` to actually pull the latest changes into your local
-branch. In this case, on the main branch, pull the changes.
+## Part 8: Create and Merge a Pull Request
 
-```
-git pull
-```
+1. On GitHub, open a pull request with:
 
-Now you can delete your local `one-set` branch since we don't need it
-anymore.
+    * **base:** `main`
+    * **compare:** `more-tests`
 
-```
-git branch -D one-set
-```
+2. Write a short pull-request description using Markdown. Include:
 
-## Summary
+    * a bullet list describing your two changes
+    * a code block showing the command you used to run your program
+    * a link to a relevant resource, such as the [Pro Git book](https://git-scm.com/book/en/v2) -- to practice making Markdown links.
 
-We've learned a lot about Git in this lab, but much of it should have
-been familiar from Lab 1 and Lab 2. You should be comfortable with the following git subcommands:
+3. Before merging, use GitHub's branch selector to look at both branches and confirm that `more-tests` contains the changes you expect.
 
-* init
-* add
-* commit
-* log
-* diff
-* remote
-* push
-* branch
-* checkout
-* fetch
-* pull
+4. Still on the pull request page, click the merge button's dropdown (do **not** merge yet). Read GitHub's descriptions of the three options. Then in `README.md`, under **1.9 Pull request merge options**, answer in your own words: what does each option do (Create a merge commit, Squash and merge, Rebase and merge)?
 
-Now that you're finished, let's read the the following sections in
-[Pro Git](https://git-scm.com/book/en/v2). They should be mostly
-review at this point, but there's a few new things in there.
+5. Commit and push that README update to `more-tests` (this adds a new commit to the open pull request; you still have not merged):
 
-* Chapter 2, sections 1, 2, 3, 4, 5
-* Chapter 3, sections 1, 2, 3, 6
+    ```bash
+    git add README.md
+    git commit -m "Explain pull request merge options"
+    git push
+    ```
+
+6. Back on GitHub, refresh the pull request and confirm the new commit appears. **Now** merge: choose **Rebase and merge**. Delete the remote `more-tests` branch when GitHub offers.
+
+<div class="info ml-7">
+
+**Before moving on**
+
+[ ] I opened a pull request from `more-tests` into `main` with a Markdown description
+[ ] **1.9** describes merge commit, squash and merge, and rebase and merge — written *before* I merged
+[ ] I merged with **"rebase and merge"** and deleted the remote `more-tests` branch
+
+</div>
+
+## Part 9: Update Your Local Repository
+
+Merging on GitHub does not automatically update the copy on your computer.
+
+1. Fetch information from GitHub:
+
+    ```bash
+    git fetch
+    ```
+
+2. Run `git status` and `git branch`. Notice what changed locally and what did not change yet.
+
+3. Switch to `main` and pull the merged work:
+
+    ```bash
+    git switch main
+    git pull
+    ```
+
+4. Delete your local feature branch:
+
+    ```bash
+    git branch -d more-tests
+    ```
+
+5. Run one final check:
+
+    ```bash
+    git status
+    git log --oneline
+    ```
+
+    Your local `main` branch should now include the work that was merged through the pull request.
+
+<div class="info ml-7">
+
+**Before moving on**
+
+[ ] I ran `git fetch`, then `git switch main` and `git pull`
+[ ] I deleted the local `more-tests` branch
+[ ] `git log --oneline` on `main` includes the work from the pull request
+
+</div>
 
 ## What to Submit
-Before you submit, make sure that you have completed the following:
 
-{:.checkbox-list}
-* You have created and pushed a new repo called `lab03-exercises` to your GitHub account.
-* The `main` branch has nested loop implementations of a "find duplicates" function/method in both Java and Python.
-* The `one-set` branch has dictionary (or hashmap) implementations of a "find duplicates" function/method in both Java and Python.
-* You have answered all of the questions in your `answers.md` file.
-* You have committed your `answers.md` to your branch in the `class-exercises-fall2026` repository and make a pull request that points to **your** main branch.
-* Then paste a link to your pull request in the Canvas.
+Submit the link to your merged pull request in Canvas. Before submitting, confirm all of the following:
+
+
+[ ] I created one local repository named `lab03-exercises` and connected it to GitHub.
+[ ] My public GitHub repository includes `README.md`, `.gitignore`, and one reused Lab 02 program.
+[ ] My `README.md` includes my command observations, reflection, repository link, approach comparison, and merge-option explanations.
+[ ] I created a `more-tests` branch, made and pushed a small change on it, and opened a pull request into `main`.
+[ ] I merged the pull request.
+[ ] My local `main` branch includes the merged changes.

@@ -105,7 +105,7 @@ export const baseTopics = [
           date: "Th, Sep 3",
           topic: "Lab 3: Version Control Part 2",
           activities: [
-            { title: "Intro to Lab 3", url: "https://docs.google.com/presentation/d/1cNbA9DcyFGINxjeVORpoWYLNshMVrFLv/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "More on Git and Collaborative Workflows", url: "https://docs.google.com/presentation/d/1ELJsUf7EOs2lHrsH2y7TBFRS8H4Zwbpt/edit?slide=id.g2fb0684e0f8_0_25", draft: 0 },
           ],
           readings: [
             { citation: "Collaborating with git and GitHub (video)", url: "https://www.youtube.com/watch?v=_wQdY_5Tb5Q" },
