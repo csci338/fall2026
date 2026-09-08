@@ -138,8 +138,8 @@ export const baseTopics = [
           topic: "Version Control Wrap",
           description: "In this unit, we will explore the idea of formalizing your entire software stack using code (e.g. operating system configurations, dependencies, documentation, and more). Even if your team is collaborating on the same codebase, if each team member is developing software with a different compiler, interpreter, language version, operating system, etc., you will likely run into conflicts and inconsistencies. Give this, you will learn about why \"everything as code\" is such an important idea, and some tools and strategies for managing your system stack over time.",
           activities: [
-            { title: "Version Control Wrap", url: "https://docs.google.com/presentation/d/1DrAiSZvQ8BOISgJCHgoVWZ6zG5tjNsp1/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
-            { title: "Coding Practice", url: "https://docs.google.com/document/d/1xio34-aAAFzljgeVkWKnbla0nyEzTXIh/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Version Control Wrap", url: "https://docs.google.com/presentation/d/1DrAiSZvQ8BOISgJCHgoVWZ6zG5tjNsp1/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Coding Practice", url: "https://docs.google.com/document/d/1xio34-aAAFzljgeVkWKnbla0nyEzTXIh/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
           readings: [
             { citation: "Everything as Code", url: "https://youtu.be/HcmPi7-IVQo" },
@@ -150,7 +150,7 @@ export const baseTopics = [
           date: "Th, Sep 10",
           topic: "Lab 4. Docker",
           activities: [
-            { title: "Everything as Code", url: "https://docs.google.com/presentation/d/13Db7iA0bXUVwzW9Ot1uA0Sx0dqGhOs7Q/edit?slide=id.p1#slide=id.p1", draft: 1 },
+            { title: "Everything as Code", url: "https://docs.google.com/presentation/d/13Db7iA0bXUVwzW9Ot1uA0Sx0dqGhOs7Q/edit?slide=id.p1#slide=id.p1", draft: 0 },
           ],
           optionalReadings: [
             { citation: "Docker cheat sheet reference", url: "https://docs.docker.com/get-started/docker_cheatsheet.pdf" },
