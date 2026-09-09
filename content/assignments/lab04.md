@@ -2,7 +2,7 @@
 title: Intro to Docker
 type: lab
 num: 4
-draft: 1
+draft: 0
 assigned_date: 2026-09-10
 due_date: 2026-09-16
 points: 6
@@ -10,135 +10,82 @@ collapsible_headings: true
 ---
 
 ## 1. Background
+
 * <a href="https://learn.microsoft.com/en-us/training/modules/intro-to-docker-containers/" target="_blank">What is Docker?</a>
 
 ## 2. Install Docker
+
 ### Mac
-You can either install the binary from the Docker website or use `brew` (brew instructions below):
+
+**Recommended:** install with Homebrew:
 
 ```shell
-brew install --cask docker  # use "cask" b/c it's a system-level package
-# verify version:
+brew install --cask docker
 docker --version
 ```
 
-Next, run the Docker service by looking for `Docker.app` using Spotlight (magnifying glass). Once it starts, go back to the Terminal and issue:
+Then start **Docker Desktop** (Spotlight → `Docker.app`). Wait until Docker says it is running.
+
+Verify with:
 
 ```shell
-# install hello world container:
 docker run hello-world
 ```
 
-You should see that it outputs a message similar to the one shown below to the command line:
-
-{:#f1}
-#### Figure 1
-Docker output after running `docker run hello-world`:
-
-```shell
-Unable to find image 'hello-world:latest' locally
-latest: Pulling from library/hello-world
-70f5ac315c5a: Pull complete 
-Digest: sha256:dcba6daec718f547568c562956fa47e1b03673dd010fe6ee58ca806767031d1c
-Status: Downloaded newer image for hello-world:latest
-
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (arm64v8)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://hub.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/get-started/
-```
+You should see a line that says **`Hello from Docker!`**. That means the install worked.
 
 ### Windows
-Follow the instructions on Microsoft's website: <a href="https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop" target="_blank">https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop</a>. 
 
-Then, activate WSL and type the following into your WSL shell:
+1. Follow Microsoft's install guide: <a href="https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop" target="_blank">Install Docker Desktop with WSL</a>.
+2. Open your **WSL Ubuntu** terminal (not PowerShell / CMD).
+3. Verify with:
 
 ```shell
 docker run hello-world
 ```
 
-You should see output similar to the output above ([Figure 1](#f1))
+You should see **`Hello from Docker!`**.
 
-## 3. FAQs
-### What is a container?
-A container is an isolated process (process that can't interact w/any other parts of your OS) that runs on a host machine (i.e., your laptop).
-* It can run on any machine (and be easily ported to the cloud)
-* It's isolated from any other containers and processes
-* Created from "images" (OS configurations), and can be stopped, started, or deleted
-* Source: <a href="https://docs.docker.com/get-started/" target="_blank">https://docs.docker.com/get-started/</a>
+## 3. Your Tasks
 
-### What is an image?
-A Docker image is a lightweight, read-only template or "blueprint" that contains everything needed to run an application. Images are used to create containers. All of the container's dependencies, configurations, scripts, binaries, etc are stored within an image. The image also contains other configurations for the container, such as environment variables, a default command to run, and other metadata."
+This lab uses your **`class-exercises-fall2026`** fork (not `lab03-exercises`).
 
-* Source: <a href="https://docs.docker.com/get-started/" target="_blank">https://docs.docker.com/get-started/</a>
+### 3.1 Get ready (git)
 
-{:.info}
-> ## Analogy
-> Container : Class :: Image : Object
+1. **On GitHub:** open *your* fork of `class-exercises-fall2026` and sync it with the class repo (`csci338/class-exercises-fall2026`) using **Sync fork** / **Update branch**.
+2. **On your computer**, in your local `class-exercises-fall2026` folder:
 
-### Docker Cheatsheet
-This just lists the commands we'll be using in today's tutorial:
+    ```shell
+    git checkout main
+    git pull
+    git checkout -b lab04-b
+    git branch
+    ```
 
-#### Images
+3. Confirm `git branch` shows `* lab04-b`.
 
-| **docker images** | Lists available images |
-| **docker rmi `<your-image-id>`** | Removes an image |
-| **<a href="https://hub.docker.com/search?q=&type=image&image_filter=official" target="_blank">Docker Hub Image registry</a>** | Shows you all the available pre-defined images |
+<div class="info">
 
-#### Containers
+**Before moving on**
 
-| **docker build .** | Builds a container from a Dockerfile in the current directory (`.`) | 
-| **docker build -t `<name-of-container>` .** | Builds a container from a Dockerfile in the current directory (`.`) and tags it with the name `my-container` | 
-| **docker run `<name-of-container>`** | Creates and runs a new container from an image (including images in the <a href="https://hub.docker.com/search?q=&type=image&image_filter=official" target="_blank">Docker Hub Image registry</a>) |
-| **docker ps** | Lists Docker processes that are currently running |
-| **docker stop `<pid>`** | Stops Docker container from running (by process id) | 
-| **docker start `<pid>`** | Starts Docker container from running (by process id) | 
-| **docker rm `<pid>`** | Deletes Docker container from running (by process id) | 
-| **docker exec -it `<pid>` sh** | Runs a shell inside a running Docker container |
-| **docker exec -it `<pid>` python** | Runs python inside a Docker container (provided that python is installed) |
+[ ] I am inside `class-exercises-fall2026` on branch `lab04-b`
+[ ] Docker Desktop is running
+[ ] `docker run hello-world` printed `Hello from Docker!`
 
+</div>
 
-## 4. Your Tasks
+### 3.2 Complete the Docker tutorial
 
-For this week's lab, you will be completing the "Getting Started" Docker Tutorial. 
+1. Keep Docker Desktop running.
+2. In a terminal, run:
 
-{:.info}
-> ### Before you begin, get the latest code from `class-exercises-fall2026`
-> **On GitHub:**
-> * Sync the latest changes from the class version of class-exercises-fall2026 to your copy of the repo.
->
-> **On your local computer:** 
-> * Make sure that all of your changes from the last lab are staged and committed.
-> * Checkout your main branch: `git checkout main`
-> * Pull down the latest changes: `git pull`
-> * Create a new branch called lab04-b: `git checkout -b lab04-b`
-> * Verify that you're on your new branch: `git branch`
-> * After going through the lab, answer the questions in the `lab04/answers.md` file.
+    ```shell
+    docker run -dp 80:80 docker/getting-started
+    ```
 
+3. Open <a href="http://localhost" target="_blank">http://localhost</a> in your browser.
+4. Complete these tutorial sections (**Sharing Our App** and **Image Building Best Practices** are optional):
 
-### Begin the Docker Tutorial
-Begin the Docker tutorial as follows:
-1. Ensure that Docker is running
-1. Open the command prompt
-1. Run the following command: `docker run -dp 80:80 docker/getting-started`
-1. Open <a href="http://localhost" target="_blank">http://localhost</a> in your browser to complete the tutorial.
-1. Complete the following sections (note that #4 and #9 are optional):
     1. Getting Started
     1. Our Application
     1. Updating Our App
@@ -148,13 +95,79 @@ Begin the Docker tutorial as follows:
     1. Multi-Container Apps
     1. Using Docker Compose
     1. <span class="badge info">Optional</span> *Image Building Best Practices*
-1. Answer the questions in the `class-exercises-fall2026/lab04/answers.md` file.
+
+5. **As you work**, answer the questions in `class-exercises-fall2026/lab04/answers.md`.
+
+### 3.3 Put your app files in the right place
+
+When the tutorial is done, your repo should look like this:
+
+```text
+class-exercises-fall2026/
+  lab04/
+    answers.md          ← your written answers
+    app/                ← the app folder from the tutorial
+      Dockerfile
+      docker-compose.yml
+      ...other tutorial files...
+```
+
+If the tutorial created `app/` somewhere else, move it into `lab04/app/` before you submit.
+
+<div class="info">
+
+**Before moving on**
+
+[ ] `lab04/answers.md` is filled in
+[ ] `lab04/app/` exists and includes `Dockerfile` and `docker-compose.yml`
+
+</div>
+
+## 4. What to Turn In
+
+1. Stage, commit, and push branch `lab04-b` of `class-exercises-fall2026` to GitHub.
+2. Open a Pull Request from `lab04-b` into **your** `main` (do **not** merge — wait for Sarah to review).
+3. Paste the pull request link into the **Lab 04** assignment on Canvas.
+
+## 5. Reference (optional reading)
+
+Use this section if you need a reminder. You do not need to memorize it before starting the tutorial.
+
+### What is a container?
+
+A container is an isolated process that runs on a host machine (for example, your laptop).
+
+* It can run on any machine (and be moved to the cloud)
+* It is isolated from other containers and processes
+* It is created from an **image**, and can be stopped, started, or deleted
+* Source: <a href="https://docs.docker.com/get-started/" target="_blank">https://docs.docker.com/get-started/</a>
+
+### What is an image?
+
+A Docker image is a lightweight, read-only template or "blueprint" that contains everything needed to run an application. Images are used to create containers. Dependencies, configurations, scripts, binaries, and metadata (such as environment variables and a default command) live in the image.
+
+* Source: <a href="https://docs.docker.com/get-started/" target="_blank">https://docs.docker.com/get-started/</a>
 
 
-## What to Turn In
-After answering all of the questions in your `class-exercises-fall2026/labo04/answers.md` file...
 
-1. Make sure that your app folder is inside of your lab04 folder (including your Dockerfile and docker-compose.yml files).
-2. Then, stage, commit, and push the `lab04-b` branch of your `class-exercises-fall2026` repo to GitHub.
-3. Create a Pull Request (but do not merge your pull request -- that doesn't happen until Sarah reviews it).
-4. Paste a link to your pull request in the Lab04 submission
+> **Image : Class :: Container : Object**
+
+### Docker cheatsheet
+
+#### Images
+
+| **docker images** | Lists available images |
+| **docker build .** | Builds an image from a Dockerfile in the current directory (`.`) |
+| **docker build -t `<name-of-image>` .** | Builds an image and tags it with that name |
+| **docker rmi `<your-image-id>`** | Removes an image |
+| **<a href="https://hub.docker.com/search?q=&type=image&image_filter=official" target="_blank">Docker Hub Image registry</a>** | Browse official images |
+
+#### Containers
+
+| **docker run `<name-of-image>`** | Creates and runs a new container from an image |
+| **docker ps** | Lists containers that are currently running |
+| **docker stop `<container-id>`** | Stops a running container |
+| **docker start `<container-id>`** | Starts a stopped container |
+| **docker rm `<container-id>`** | Removes a container |
+| **docker exec -it `<container-id>` sh** | Runs a shell inside a running container |
+| **docker exec -it `<container-id>` python** | Runs python inside a container (if python is installed) |
