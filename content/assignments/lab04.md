@@ -36,9 +36,11 @@ You should see a line that says **`Hello from Docker!`**. That means the install
 
 ### Windows
 
-1. Follow Microsoft's install guide: <a href="https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop" target="_blank">Install Docker Desktop with WSL</a>.
-2. Open your **WSL Ubuntu** terminal (not PowerShell / CMD).
-3. Verify with:
+1. Install **Docker Desktop** from Docker's official guide: <a href="https://docs.docker.com/desktop/setup/install/windows-install/" target="_blank">Install Docker Desktop on Windows</a>.
+2. During setup, choose the **WSL 2** backend if asked.
+3. Do **not** install or switch to **Windows containers** / WSLc. This lab uses Linux containers through Docker Desktop.
+4. Start **Docker Desktop** and wait until it says it is running.
+5. Open **PowerShell** or your **WSL Ubuntu** terminal and verify with:
 
 ```shell
 docker run hello-world
