@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 
 export default async function ReposHiddenPage() {
   try {
-    const postData = await getPostData('repos-hidden');
+    const postData = await getPostData('repos');
     const { title, excerpt, heading_max_level } = postData;
 
     return (
