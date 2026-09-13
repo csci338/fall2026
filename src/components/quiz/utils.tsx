@@ -247,6 +247,58 @@ function getOptionText(question: QuizQuestion, optionIndex: number): string | un
   return question.options?.[optionIndex];
 }
 
+/** Coerce correct index/indices to numbers (guards against stringified values from serialization). */
+function normalizeCorrectIndices(correct: number | number[] | undefined): number[] {
+  if (correct === undefined || correct === null) return [];
+  const values = Array.isArray(correct) ? correct : [correct];
+  return values
+    .map((value) => Number(value))
+    .filter((value) => Number.isInteger(value) && value >= 0);
+}
+
+/** Correct option texts for a question (after any option shuffling). */
+function getCorrectOptionTexts(question: QuizQuestion): string[] {
+  if (!question.options) return [];
+  return normalizeCorrectIndices(question.correct)
+    .map((index) => question.options![index])
+    .filter((text): text is string => text !== undefined);
+}
+
+/**
+ * Whether a saved answer matches the question's correct option(s).
+ * Always compares by option text so scoring and UI feedback stay aligned
+ * even if option order was shuffled or `correct` was stringified.
+ */
+function isSavedAnswerCorrect(
+  question: QuizQuestion,
+  savedAnswer: string | string[] | { html: string; css: string; js: string; testResults?: { allPassed?: boolean } } | undefined,
+): boolean {
+  if (savedAnswer === undefined) return false;
+
+  if (question.type === 'javascript-dom') {
+    return (
+      typeof savedAnswer === 'object' &&
+      savedAnswer !== null &&
+      !Array.isArray(savedAnswer) &&
+      savedAnswer.testResults?.allPassed === true
+    );
+  }
+
+  const correctTexts = getCorrectOptionTexts(question);
+  if (correctTexts.length === 0) return false;
+
+  if (question.type === 'select-all' || Array.isArray(question.correct)) {
+    const selected = Array.isArray(savedAnswer) ? savedAnswer : [];
+    return (
+      selected.length === correctTexts.length &&
+      correctTexts.every((text) => selected.includes(text)) &&
+      selected.every((text) => correctTexts.includes(text))
+    );
+  }
+
+  return typeof savedAnswer === 'string' && savedAnswer === correctTexts[0];
+}
+
 // Export all functions
 export {
   formatQuestionText,
@@ -255,4 +307,7 @@ export {
   stripMarkdown,
   findOptionIndex,
   getOptionText,
+  normalizeCorrectIndices,
+  getCorrectOptionTexts,
+  isSavedAnswerCorrect,
 };

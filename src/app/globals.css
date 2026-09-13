@@ -1169,12 +1169,20 @@ h2 .badge {
   color: #0284c7; /* sky-600 */
 }
 
+.os-icon.linux {
+  color: #ca8a04; /* yellow-600 */
+}
+
 .dark .os-icon.mac {
   color: #e2e8f0;
 }
 
 .dark .os-icon.windows {
   color: #7dd3fc;
+}
+
+.dark .os-icon.linux {
+  color: #facc15;
 }
 
 .dark .badge {

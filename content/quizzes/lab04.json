@@ -1,0 +1,200 @@
+{
+  "quizName": "Lab 4: Intro to Docker",
+  "start_date": "2026-09-10",
+  "notes": "Take after completing Lab 4",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Lab 4 compares Docker images and containers to classes and objects in programming. Which statement is correct?",
+      "options": [
+        "An image is like a class, and a container is like an object created from that class.",
+        "An image is like an object, and a container is like a class.",
+        "An image and a container are the same thing with two names.",
+        "A container is the blueprint, and an image is one running copy of it."
+      ],
+      "correct": 0,
+      "explanation": "An image is a reusable blueprint (like a class). A container is a running instance created from that image (like an object)."
+    },
+    {
+      "id": "q2",
+      "question": "What is a Docker **image**?",
+      "options": [
+        "A process that is currently running on your laptop",
+        "A GitHub pull request that installs Docker Desktop",
+        "A lightweight, read-only template that packages what an application needs to run",
+        "A virtual machine with its own full guest operating system kernel"
+      ],
+      "correct": 2,
+      "explanation": "Images are blueprints: app code, dependencies, configs, and metadata. You create containers from images."
+    },
+    {
+      "id": "q3",
+      "question": "What is a Docker **container**?",
+      "options": [
+        "Only a file sitting on Docker Hub that can never run",
+        "The Dockerfile used to describe how to build software",
+        "A Windows-only alternative to git",
+        "An isolated process (or set of processes) created from an image that you can start, stop, or delete"
+      ],
+      "correct": 3,
+      "explanation": "A container is a running (or runnable) instance of an image — an isolated process on a host machine."
+    },
+    {
+      "id": "q4",
+      "question": "Why is Docker useful for software teams?",
+      "options": [
+        "It replaces the need to write application code",
+        "It packages an app with its runtime environment so it can run more consistently across machines",
+        "It automatically merges every pull request",
+        "It only helps with writing HTML and CSS"
+      ],
+      "correct": 1,
+      "explanation": "Containers reduce “works on my machine” problems by shipping the app together with the environment it expects (dependencies, configs, and so on)."
+    },
+    {
+      "id": "q5",
+      "question": "How do containers differ from traditional virtual machines?",
+      "options": [
+        "Containers typically share the host OS kernel and isolate processes; VMs virtualize hardware and usually run a full guest OS",
+        "Containers each run a full guest OS kernel; VMs share the host kernel",
+        "There is no difference — the terms are interchangeable",
+        "VMs are always smaller and start faster than containers"
+      ],
+      "correct": 0,
+      "explanation": "Containerization isolates processes on a shared kernel. Virtual machines emulate hardware and typically boot a complete guest operating system, which is heavier."
+    },
+    {
+      "id": "q6",
+      "question": "What does a **Dockerfile** represent?",
+      "options": [
+        "A running container’s live memory dump",
+        "A list of git branches on GitHub",
+        "A recipe of steps for building an image",
+        "A password file Docker Desktop requires"
+      ],
+      "correct": 2,
+      "explanation": "A Dockerfile is code that describes how to build an image — another example of treating environment setup as code."
+    },
+    {
+      "id": "q7",
+      "question": "If you have one image, how many containers can you create from it?",
+      "options": [
+        "Exactly one — images and containers are 1:1 forever",
+        "None — images cannot create containers",
+        "Only two: one for development and one for production",
+        "As many as you need; each container is a separate instance of that image"
+      ],
+      "correct": 3,
+      "explanation": "Like objects from a class, many containers can be started from the same image, each with its own running state."
+    },
+    {
+      "id": "q8",
+      "question": "When you map ports (for example, publishing container port 80 on your laptop’s port 80), what problem are you solving?",
+      "options": [
+        "Copying the image from Docker Hub into git",
+        "Letting your browser on the host reach a service listening inside the container’s network namespace",
+        "Deleting unused images automatically",
+        "Turning the container into a virtual machine"
+      ],
+      "correct": 1,
+      "explanation": "Containers have their own network view. Port publishing connects a host port to a container port so tools on your machine (like a browser) can talk to the app."
+    },
+    {
+      "id": "q9",
+      "question": "By default, what happens to files written only inside a container’s writable layer if you remove that container?",
+      "options": [
+        "They are typically lost with the container unless you stored them somewhere persistent (for example a volume or bind mount)",
+        "They are automatically committed back into the original image for everyone",
+        "Docker emails them to you",
+        "They permanently replace files on your host home directory"
+      ],
+      "correct": 0,
+      "explanation": "Container filesystems are ephemeral by default. Persist data with volumes or bind mounts if it should outlive the container."
+    },
+    {
+      "id": "q10",
+      "question": "What is a Docker **volume** mainly for?",
+      "options": [
+        "Compiling Java source files",
+        "Naming git remotes",
+        "Storing data managed by Docker so it can persist beyond a single container’s lifetime",
+        "Blocking all network access permanently"
+      ],
+      "correct": 2,
+      "explanation": "Volumes are Docker-managed storage for persistent data (databases are a common example from the getting-started tutorial)."
+    },
+    {
+      "id": "q11",
+      "question": "How is a **bind mount** different from a typical Docker volume?",
+      "options": [
+        "A bind mount can only store images; a volume can only store containers",
+        "They are identical — Docker uses two names for marketing",
+        "Bind mounts only work on Windows containers",
+        "A bind mount mounts a specific path from the host filesystem into the container; a volume is storage managed by Docker"
+      ],
+      "correct": 3,
+      "explanation": "Bind mounts point at a real host folder (handy in development so edits sync). Volumes are Docker-managed and are the usual choice for durable app data."
+    },
+    {
+      "id": "q12",
+      "question": "Why run an application as multiple containers (for example, a web app container plus a database container)?",
+      "options": [
+        "Because Docker forbids more than one process in any project",
+        "So each service can be isolated, scaled, and replaced independently while still working together over a network",
+        "Because images cannot include dependencies",
+        "So you never need a Dockerfile"
+      ],
+      "correct": 1,
+      "explanation": "Splitting services into containers matches how real systems are composed: separate concerns, clearer boundaries, and independent lifecycles."
+    },
+    {
+      "id": "q13",
+      "question": "What problem does **Docker Compose** address?",
+      "options": [
+        "Defining and running a multi-container application (services, networks, volumes) from a single config file",
+        "Editing Python syntax errors",
+        "Replacing HTTPS with SSH for GitHub",
+        "Generating random passwords for Canvas"
+      ],
+      "correct": 0,
+      "explanation": "Compose describes a whole stack in one place (often `docker-compose.yml`) so you can bring related containers up together instead of juggling many manual `docker run` commands."
+    },
+    {
+      "id": "q14",
+      "question": "What does it mean that containers are **isolated** from each other and from the host?",
+      "options": [
+        "A container cannot use any CPU or memory",
+        "Containers can never communicate over a network",
+        "Each container gets its own process space and filesystem view, so one app’s files and processes do not freely mix with another’s",
+        "Isolation means the container deletes the host OS when it stops"
+      ],
+      "correct": 2,
+      "explanation": "Isolation is the point of containers: apps share the host efficiently but stay separated unless you intentionally connect them (networks, mounts, ports)."
+    },
+    {
+      "id": "q15",
+      "question": "Where do people commonly store and share public Docker images?",
+      "options": [
+        "Only inside a local `.git` directory",
+        "Canvas assignment comments",
+        "The `node_modules` folder",
+        "An image registry such as Docker Hub"
+      ],
+      "correct": 3,
+      "explanation": "Registries (Docker Hub is the well-known default) host images so you can pull the same blueprint onto different machines."
+    },
+    {
+      "id": "q16",
+      "question": "Which statement best describes the relationship between building and running in Docker?",
+      "options": [
+        "`docker build` creates a container; `docker run` creates an image",
+        "`docker build` creates an image from a Dockerfile; `docker run` creates a container from an image",
+        "Both commands only delete unused networks",
+        "You must run before you can build"
+      ],
+      "correct": 1,
+      "explanation": "Build produces the blueprint (image). Run starts an instance of that blueprint (container)."
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { QuizData, QuizQuestion } from './types';
 import QuizReport, { QuizReportHandle } from './QuizReport';
 import { TestResults } from './javascript-dom/types';
+import { isSavedAnswerCorrect } from './utils';
 
 interface QuizSummaryProps {
   quizData: QuizData;
@@ -47,31 +48,7 @@ export default function QuizSummary({
   };
 
   const isQuestionCorrect = (question: QuizQuestion): boolean => {
-    const answer = selectedAnswers[question.id];
-
-    if (question.type === 'javascript-dom') {
-      return (
-        typeof answer === 'object' &&
-        answer !== null &&
-        !Array.isArray(answer) &&
-        answer.testResults?.allPassed === true
-      );
-    }
-
-    if (!question.options || question.correct === undefined) return false;
-    const correctAnswers = (Array.isArray(question.correct) ? question.correct : [question.correct])
-      .map(index => question.options?.[index])
-      .filter((option): option is string => option !== undefined);
-
-    if (Array.isArray(question.correct)) {
-      return (
-        Array.isArray(answer) &&
-        answer.length === correctAnswers.length &&
-        correctAnswers.every(option => answer.includes(option))
-      );
-    }
-
-    return typeof answer === 'string' && answer === correctAnswers[0];
+    return isSavedAnswerCorrect(question, selectedAnswers[question.id]);
   };
 
   const strandSource = questions ?? quizData.questions;

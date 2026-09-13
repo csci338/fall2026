@@ -180,7 +180,7 @@ export const baseTopics = [
           topic: "Package & Dependency Management",
           description: <>When developing software, it is common to rely on dependencies -- code that has been developed by other people. However, <em>your code</em> isn't the only code that changes. Dependencies (and their dependencies, and their dependencies' dependencies) also evolve over time as new features are added and bugs are patched. Given this, in this unit we will examine some tools, approaches, and considerations for managing code dependencies. We will also experiment with a few different dependency management tools, such as npm, poetry, and apt.</>,
           activities: [
-            { title: "Package & Dependency Management", url: "https://docs.google.com/presentation/d/1p3iEMGavYPvR6LiItAfsUHaiWbSnsy2s/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Package & Dependency Management", url: "https://docs.google.com/presentation/d/1QJM7LkReJWKHMZeBJNmQ6hK66miLTjk5/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
           readings: [
             { citation: "Chapter 21. Dependency Management", url: "https://abseil.io/resources/swe-book/html/ch21.html" },
@@ -194,10 +194,7 @@ export const baseTopics = [
         },
         {
           date: "Th, Sep 17",
-          topic: "Lab 5. Package Managers",
-          activities: [
-            { title: "Python Practice (after Java readiness practice)", url: "/activities/python-practice", draft: 1 },
-          ],
+          topic: "Lab 5. Package Managers"
         },
       ],
     },

@@ -1,7 +1,8 @@
 "use client";
 
 import { QuizQuestion } from './types';
-import { TestResults } from './javascript-dom/types';
+import { isSavedAnswerCorrect } from './utils';
+import type { TestResults } from './javascript-dom/types';
 
 interface QuestionCirclesProps {
   questions: QuizQuestion[];
@@ -49,37 +50,9 @@ export default function QuestionCircles({
           
           // Check if saved answer matches the correct answer(s) - only if revealed or on summary
           const savedAnswer = selectedAnswers[question.id];
-          let isCorrect = false;
-          
-          if (shouldShowGrade && answered && savedAnswer !== undefined) {
-            // Handle JavaScript DOM questions
-            if (question.type === 'javascript-dom') {
-              if (typeof savedAnswer === 'object' && savedAnswer !== null && 'testResults' in savedAnswer) {
-                const testResults = (savedAnswer as { testResults?: TestResults }).testResults;
-                isCorrect = !!(testResults && testResults.allPassed);
-              }
-            } else if (question.options && question.correct !== undefined) {
-              // Handle multiple-choice questions
-              if (Array.isArray(question.correct)) {
-                // Multi-select: check that arrays match exactly
-                const correctIndices = question.correct;
-                const correctOptionTexts = correctIndices.map(idx => question.options![idx]);
-                const selectedArray = Array.isArray(savedAnswer) ? savedAnswer : [];
-                
-                const allCorrectSelected = correctOptionTexts.every(text => selectedArray.includes(text));
-                const noIncorrectSelected = selectedArray.every(text => correctOptionTexts.includes(text));
-                const sameLength = selectedArray.length === correctOptionTexts.length;
-                
-                isCorrect = allCorrectSelected && noIncorrectSelected && sameLength;
-              } else {
-                // Single-select: check if saved option text matches correct option text
-                if (typeof savedAnswer === 'string') {
-                  const correctOptionText = question.options[question.correct];
-                  isCorrect = savedAnswer === correctOptionText;
-                }
-              }
-            }
-          }
+          const isCorrect = shouldShowGrade && answered
+            ? isSavedAnswerCorrect(question, savedAnswer)
+            : false;
         
         let bgColor = 'bg-gray-300 dark:bg-gray-600';
         let borderColor = 'border-gray-400 dark:border-gray-500';

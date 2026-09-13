@@ -483,6 +483,7 @@ export default function ResourceQuiz({ quizData, resourceSlug, variant = 'deskto
               ) : currentQuestion ? (
                 /* Single Question View */
                 <QuizQuestionView
+                  key={currentQuestion.id}
                   question={currentQuestion}
                   questionNumber={currentQuestionIndex + 1}
                   selectedAnswers={selectedAnswers}

@@ -228,10 +228,10 @@ const QuizReport = forwardRef<QuizReportHandle, QuizReportProps>(({
                 let correctAnswerText = '';
                 if (question.options && question.correct !== undefined) {
                   if (Array.isArray(question.correct)) {
-                    const correctOptions = question.correct.map(idx => question.options![idx]);
+                    const correctOptions = question.correct.map(idx => question.options![Number(idx)]);
                     correctAnswerText = correctOptions.map(text => stripMarkdown(text)).join(', ');
                   } else {
-                    correctAnswerText = stripMarkdown(question.options[question.correct]);
+                    correctAnswerText = stripMarkdown(question.options[Number(question.correct)]);
                   }
                 }
                 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { QuizData, QuizState, QuizQuestion, resolveQuestionForLanguage } from './types';
-import { shuffleArray, findOptionIndex, getOptionText } from './utils';
+import { shuffleArray, findOptionIndex, getOptionText, normalizeCorrectIndices, getCorrectOptionTexts, isSavedAnswerCorrect } from './utils';
 import { TestResults } from './javascript-dom/types';
 
 export function useQuizState(quizData: QuizData, resourceSlug: string) {
@@ -70,15 +70,15 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
         if (!question.options) {
           return question; // Skip questions without options (e.g., JavaScript DOM questions)
         }
-        const correctIndices = Array.isArray(question.correct) 
-          ? question.correct 
-          : question.correct !== undefined ? [question.correct] : [];
-        const correctOptions = correctIndices.map(idx => question.options![idx]).filter((opt): opt is string => opt !== undefined);
+        const correctIndices = normalizeCorrectIndices(question.correct);
+        const correctOptions = correctIndices
+          .map(idx => question.options![idx])
+          .filter((opt): opt is string => opt !== undefined);
         const shuffledOptions = shuffleArray(question.options);
         const newCorrectIndices = correctOptions.map(opt => shuffledOptions.indexOf(opt));
         // Preserve original type: number for single-select, number[] for multi-select
-        const newCorrect = Array.isArray(question.correct) 
-          ? newCorrectIndices 
+        const newCorrect = Array.isArray(question.correct)
+          ? newCorrectIndices
           : newCorrectIndices[0];
         
         return {
@@ -190,41 +190,7 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
     const newScore = shuffledQuestions.reduce((acc, question) => {
       const savedAnswer = selectedAnswers[question.id];
       if (savedAnswer === undefined) return acc;
-
-      // Handle JavaScript DOM questions
-      if (question.type === 'javascript-dom') {
-        if (typeof savedAnswer === 'object' && savedAnswer !== null && 'testResults' in savedAnswer) {
-          const testResults = (savedAnswer as { testResults?: TestResults }).testResults;
-          if (testResults && testResults.allPassed) {
-            return acc + 1;
-          }
-        }
-        return acc;
-      }
-
-      // Handle multiple-choice questions (single-select and multi-select)
-      if (!question.options || question.options.length === 0) return acc;
-      
-      const correctIndices = Array.isArray(question.correct) 
-        ? question.correct 
-        : question.correct !== undefined ? [question.correct] : [];
-      const correctOptionTexts = correctIndices.map(idx => question.options![idx]).filter((opt): opt is string => opt !== undefined);
-      
-      if (Array.isArray(question.correct)) {
-        // Multi-select: check that selected array exactly matches correct array
-        const selectedArray = Array.isArray(savedAnswer) ? savedAnswer : [];
-        // Check: all correct selected, no incorrect selected, same length
-        const allCorrectSelected = correctOptionTexts.every(text => selectedArray.includes(text));
-        const noIncorrectSelected = selectedArray.every(text => correctOptionTexts.includes(text));
-        const sameLength = selectedArray.length === correctOptionTexts.length;
-        return allCorrectSelected && noIncorrectSelected && sameLength ? acc + 1 : acc;
-      } else {
-        // Single-select: existing logic
-        if (typeof savedAnswer === 'string' && savedAnswer === correctOptionTexts[0]) {
-          return acc + 1;
-        }
-      }
-      return acc;
+      return isSavedAnswerCorrect(question, savedAnswer) ? acc + 1 : acc;
     }, 0);
     
     setScore(newScore);
@@ -368,13 +334,14 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
 
   const isCorrect = (questionId: string, optionIndex: number): boolean => {
     const question = shuffledQuestions.find(q => q.id === questionId);
-    if (!question) return false;
-    
-    if (Array.isArray(question.correct)) {
-      return question.correct.includes(optionIndex);
-    } else {
-      return optionIndex === question.correct;
-    }
+    if (!question?.options) return false;
+
+    const optionText = question.options[optionIndex];
+    if (optionText === undefined) return false;
+
+    // Compare by option text (same basis as scoring) so highlight state cannot
+    // disagree with the numeric score after shuffling / serialization.
+    return getCorrectOptionTexts(question).includes(optionText);
   };
 
   const isSelected = (questionId: string, optionIndex: number): boolean => {
@@ -415,40 +382,7 @@ export function useQuizState(quizData: QuizData, resourceSlug: string) {
   const getIncorrectQuestions = () => {
     return shuffledQuestions.filter(question => {
       const savedAnswer = selectedAnswers[question.id];
-      if (savedAnswer === undefined) return true;
-      
-      // Handle JavaScript DOM questions
-      if (question.type === 'javascript-dom') {
-        if (typeof savedAnswer === 'object' && savedAnswer !== null && 'testResults' in savedAnswer) {
-          const testResults = (savedAnswer as { testResults?: TestResults }).testResults;
-          // Question is incorrect if tests didn't all pass
-          return !(testResults && testResults.allPassed);
-        }
-        return true; // No valid answer
-      }
-      
-      // Handle multiple-choice questions
-      if (!question.options || question.options.length === 0) return false;
-      
-      // Handle both single-select and multi-select
-      if (Array.isArray(question.correct)) {
-        // Multi-select: check if arrays match exactly
-        const correctIndices = question.correct;
-        const correctOptionTexts = correctIndices.map(idx => question.options![idx]);
-        const selectedArray = Array.isArray(savedAnswer) ? savedAnswer : [];
-        
-        const allCorrectSelected = correctOptionTexts.every(text => selectedArray.includes(text));
-        const noIncorrectSelected = selectedArray.every(text => correctOptionTexts.includes(text));
-        const sameLength = selectedArray.length === correctOptionTexts.length;
-        
-        // Question is incorrect if arrays don't match exactly
-        return !(allCorrectSelected && noIncorrectSelected && sameLength);
-      } else {
-        // Single-select: same check as score (compare option text)
-        if (typeof savedAnswer !== 'string') return true;
-        const correctOptionText = question.correct !== undefined ? question.options![question.correct] : undefined;
-        return savedAnswer !== correctOptionText;
-      }
+      return !isSavedAnswerCorrect(question, savedAnswer);
     });
   };
 

@@ -1,0 +1,200 @@
+{
+  "quizName": "Lab 5: Understanding Package Managers",
+  "start_date": "2026-09-17",
+  "notes": "Take after completing Lab 5",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the main job of a package / dependency manager?",
+      "options": [
+        "Install, update, remove, and track software or libraries (often including versions) in a consistent way",
+        "Replace version control entirely",
+        "Compile every language down to machine code",
+        "Host course assignments on Canvas"
+      ],
+      "correct": 0,
+      "explanation": "Package managers automate installing and managing dependencies so machines and projects stay reproducible."
+    },
+    {
+      "id": "q2",
+      "question": "Why do software projects use dependency managers instead of copying library source into every repo by hand?",
+      "options": [
+        "Hand-copied libraries can never run",
+        "Dependency managers delete the need for testing",
+        "Managers make versions, updates, and shared libraries easier to declare and reproduce across machines",
+        "GitHub rejects repositories that contain any third-party code"
+      ],
+      "correct": 2,
+      "explanation": "Declaring dependencies (and locking versions) is more maintainable than vendoring everything manually and hoping everyone has the same copies."
+    },
+    {
+      "id": "q3",
+      "question": "Which statement best describes **layers** of package management?",
+      "options": [
+        "One tool always manages the OS, Python, and Node.js the same way",
+        "Only npm can install operating-system packages on Linux",
+        "Poetry replaces Apt on Ubuntu",
+        "OS package managers (for example Homebrew or Apt) install system tools; language managers (for example Poetry or npm) manage libraries for a specific ecosystem"
+      ],
+      "correct": 3,
+      "explanation": "Different layers of the stack use different managers. Matching the tool to the layer (OS vs language) is a core idea of the unit."
+    },
+    {
+      "id": "q4",
+      "question": "Homebrew and Apt are primarily used to manage…",
+      "options": [
+        "Only React component libraries",
+        "Operating-system / system-level packages and tools on a machine",
+        "Docker images exclusively",
+        "Git commit messages"
+      ],
+      "correct": 1,
+      "explanation": "These are OS package managers: install things like `wget`, `curl`, or language runtimes onto the machine itself."
+    },
+    {
+      "id": "q5",
+      "question": "In Apt, what is the difference between updating the package index and upgrading installed packages?",
+      "options": [
+        "Refreshing the index downloads current package metadata; upgrading installs newer versions of packages you already have",
+        "There is no difference; the commands are synonyms",
+        "Upgrading only refreshes metadata; updating uninstalls everything",
+        "Updating is Mac-only; upgrading is Windows-only"
+      ],
+      "correct": 0,
+      "explanation": "Think: refresh the catalog first, then upgrade the software already installed from that catalog."
+    },
+    {
+      "id": "q6",
+      "question": "Poetry is primarily used for…",
+      "options": [
+        "Managing only macOS GUI applications",
+        "Building Docker images from a Dockerfile",
+        "Managing Python project dependencies and environments",
+        "Editing HTML without a browser"
+      ],
+      "correct": 2,
+      "explanation": "Poetry belongs to the language layer: it tracks Python dependencies for a project and runs code in that project’s environment."
+    },
+    {
+      "id": "q7",
+      "question": "When you add a library with a language package manager (for example Poetry or npm), where does that dependency usually “belong”?",
+      "options": [
+        "Only to the operating system, forever, for every project",
+        "Only inside the git `main` branch name",
+        "Only on Docker Hub",
+        "To the project: it is recorded in project metadata and installed into that project’s environment or package folder"
+      ],
+      "correct": 3,
+      "explanation": "Project-level managers record deps in files like `pyproject.toml` or `package.json` and install them into an isolated project environment / `node_modules`, not as a vague global OS change."
+    },
+    {
+      "id": "q8",
+      "question": "Why might a script import successfully with `poetry run python …` but fail with a plain system `python3 …` and `ModuleNotFoundError`?",
+      "options": [
+        "Because `python3` cannot run `.py` files",
+        "Because the library was installed into Poetry’s project environment, which system Python does not automatically use",
+        "Because Poetry forbids all imports",
+        "Because Java must compile Python first"
+      ],
+      "correct": 1,
+      "explanation": "Virtual environments isolate dependencies per project. System Python has its own site-packages and will not see Poetry-installed libraries unless you install them there too (usually a bad idea for coursework projects)."
+    },
+    {
+      "id": "q9",
+      "question": "What problem do **project environments** (Poetry’s env, Node’s local `node_modules`, etc.) help prevent?",
+      "options": [
+        "Different projects needing different versions of the same library and stepping on each other",
+        "The need to ever use version control",
+        "CPU usage on laptops",
+        "Writing documentation"
+      ],
+      "correct": 0,
+      "explanation": "Isolation means Project A can depend on library v1 while Project B uses v2, without forcing one global install to satisfy both."
+    },
+    {
+      "id": "q10",
+      "question": "What is npm primarily for?",
+      "options": [
+        "A Python-only virtual environment tool",
+        "Debian’s only OS package manager",
+        "The default package manager for Node.js / JavaScript projects",
+        "A replacement for Docker Compose"
+      ],
+      "correct": 2,
+      "explanation": "npm manages packages and scripts for the Node ecosystem, analogous to how Poetry serves Python projects."
+    },
+    {
+      "id": "q11",
+      "question": "What is the role of a file like `package.json` or `pyproject.toml`?",
+      "options": [
+        "It stores your GitHub private SSH key",
+        "It is the compiled binary of your application",
+        "It replaces the need for a README",
+        "It declares project metadata and dependencies (and often scripts) so others can recreate the same setup"
+      ],
+      "correct": 3,
+      "explanation": "These manifests are how a project says “here is what I depend on.” They are checked into version control so the setup is reproducible."
+    },
+    {
+      "id": "q12",
+      "question": "What is the purpose of a **lock file** (for example `package-lock.json` or Poetry’s lock file)?",
+      "options": [
+        "To encrypt your source code so classmates cannot read it",
+        "To pin exact resolved versions of dependencies (and sub-dependencies) so installs stay reproducible",
+        "To list only the operating system packages on the machine",
+        "To disable `git commit`"
+      ],
+      "correct": 1,
+      "explanation": "Manifests often allow version ranges. Lock files freeze the exact graph that was resolved so “works on my machine” is less likely when someone else installs later."
+    },
+    {
+      "id": "q13",
+      "question": "Before adding a new third-party dependency to a project, which consideration fits best with this unit?",
+      "options": [
+        "Weigh benefit vs cost: maintenance, security, license, size, and whether you really need it",
+        "Always add it — more libraries are always better",
+        "Only add dependencies that have never been updated",
+        "Dependencies should never be locked to a version"
+      ],
+      "correct": 0,
+      "explanation": "Dependencies are not free: they bring code you did not write, plus update and security risk (as readings like left-pad illustrate)."
+    },
+    {
+      "id": "q14",
+      "question": "Why can installing a language runtime from an OS package manager sometimes be a poor fit for modern app tooling?",
+      "options": [
+        "OS packages are never allowed to include compilers",
+        "Language runtimes can only be installed with Docker",
+        "Distro packages can lag behind the versions your tools expect, so version managers (for example nvm) are often used instead",
+        "OS package managers cannot access the network"
+      ],
+      "correct": 2,
+      "explanation": "Apt’s Node package, for example, is often older than what Vite/React tooling wants. Version managers install current runtimes without fighting the distro’s defaults."
+    },
+    {
+      "id": "q15",
+      "question": "What is a dependency **graph** in this context?",
+      "options": [
+        "A chart of git commits only",
+        "A UML class diagram required by Docker",
+        "The folder layout of your home directory",
+        "The tree of packages you depend on, including the packages *those* packages depend on"
+      ],
+      "correct": 3,
+      "explanation": "You rarely depend on one library in isolation. Package managers resolve a whole graph of transitive dependencies — which is why lock files and careful upgrades matter."
+    },
+    {
+      "id": "q16",
+      "question": "Which statement best compares OS package managers with language package managers?",
+      "options": [
+        "They are interchangeable; use either for any language or OS task",
+        "OS managers install tools for the machine; language managers install libraries for a project/ecosystem — they solve related problems at different layers",
+        "Language managers can only install kernels; OS managers can only install React",
+        "You should never use both on the same computer"
+      ],
+      "correct": 1,
+      "explanation": "You often use both: Apt/Homebrew for system tools and runtimes, Poetry/npm for project libraries. Knowing which layer you are changing avoids confusion."
+    }
+  ]
+}

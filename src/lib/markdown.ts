@@ -661,6 +661,25 @@ export async function getPostData(id: string, subdirectory?: string): Promise<Po
     }
   }
 
+  // Open external http(s) links in a new tab
+  contentHtml = contentHtml.replace(
+    /<a\b([^>]*?)>/gi,
+    (match, attrs: string) => {
+      const hrefMatch = attrs.match(/\bhref\s*=\s*"([^"]*)"/i);
+      if (!hrefMatch) return match;
+      const href = hrefMatch[1];
+      if (!/^https?:\/\//i.test(href)) return match;
+      let nextAttrs = attrs;
+      if (!/\btarget\s*=/i.test(nextAttrs)) {
+        nextAttrs += ' target="_blank"';
+      }
+      if (!/\brel\s*=/i.test(nextAttrs)) {
+        nextAttrs += ' rel="noopener noreferrer"';
+      }
+      return `<a${nextAttrs}>`;
+    },
+  );
+
   // Prefix site-root paths so markdown href/src work with Next.js basePath
   contentHtml = contentHtml.replace(
     /\b(href|src)="\/(?!fall2026\/)([^"]*)"/g,
