@@ -299,7 +299,7 @@ You will do the package-manager work inside `class-exercises-fall2026/lab05`. **
     def main():
         print("hello world")
         # user_agent makes it seem like the request is coming from a web browser (versus a bot)
-        user_agent = {'User-agent': 'Mozilla/5.0'}
+        user_agent = {'User-agent': 'Googlebot/2.1'}
         response = requests.get("https://new.cs.unca.edu/", headers=user_agent)
         print(response.content)
 
@@ -579,7 +579,7 @@ Building modals from scratch is tedious; design-system packages like Ant Design 
 
 Confirm all of the following:
 
-[ ] I completed §1 with my OS package manager (`brew` **or** `apt-get`)
+[ ] I completed Part 1 with my OS package manager (`brew` **or** `apt-get`)
 [ ] My Poetry app in `lab05/poetry-demo` extracts and prints URLs from the UNCA CS homepage
 [ ] My React app in `lab05/node-demo` shows the Ant Design modal
 [ ] I answered every question in `lab05/answers.md`
