@@ -105,7 +105,7 @@ Create a Node project and install all three tools as dev dependencies:
 npm init -y  
 
 # install the tools as dev dependencies:
-npm install --save-dev mocha prettier eslint eslint-plugin-mocha
+npm install --save-dev mocha prettier @eslint/js eslint-plugin-mocha
 ```
 
 Verify that a `package.json` file and a `node_modules` folder have been created, and that the four packages are listed under `devDependencies` in `package.json`.
