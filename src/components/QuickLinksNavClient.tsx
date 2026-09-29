@@ -10,6 +10,7 @@ interface ResourceData {
   id: string;
   title: string;
   group?: string;
+  section: 'resources' | 'activities';
 }
 
 interface AssignmentData {
@@ -116,7 +117,7 @@ export default function QuickLinksNavClient({ resources, assignments, readings }
               return (
                 <div key={resource.id}>
                   <Link
-                    href={`/resources/${resource.id}`}
+                    href={`/${resource.section}/${resource.id}`}
                     className="!border-0 !text-sm text-gray-800 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 block"
                   >
                     {resource.title}

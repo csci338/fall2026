@@ -244,7 +244,11 @@ export const baseTopics = [
           date: "Tu, Sep 29",
           topic: "Static Analysis & Continuous Integration",
           activities: [
-            { title: "Static Analysis & Continuous Integration", url: "https://docs.google.com/presentation/d/1IUBjHLwGkYh-8xpPIC05Xahmj34cqPDd/edit?usp=sharing&rtpof=true&sd=true", draft: 1 },
+            {
+              title: "Static Analysis & Continuous Integration",
+              url: "https://docs.google.com/presentation/d/1i696YN2mOISqCLNaTRwBajH1H6zu2JGq/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true",
+              draft: 0,
+            }
           ],
           readings: [
             { citation: "Chapter 20. Static Analysis", url: "https://abseil.io/resources/swe-book/html/ch20.html" },

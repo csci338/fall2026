@@ -8,6 +8,7 @@ interface ResourceData {
   id: string;
   title: string;
   group?: string;
+  section: 'resources' | 'activities';
 }
 
 interface AssignmentData {
@@ -39,6 +40,7 @@ export default async function QuickLinksNav() {
       id: resource.id,
       title: resource.title,
       group: resource.group,
+      section: 'resources' as const,
     }));
 
   // Sort by group_order and order if available, otherwise by title
@@ -60,6 +62,17 @@ export default async function QuickLinksNav() {
     
     return a.title.localeCompare(b.title);
   });
+
+  // Include activities that have quicklink: 1 (listed after resources, by date)
+  const allActivities = getAllPosts('activities');
+  const quickLinkActivities: ResourceData[] = allActivities
+    .filter(activity => activity.quicklink === 1 && activity.draft !== 1 && !activity.excluded && activity.no_render !== 1)
+    .sort((a, b) => (a.date || '').localeCompare(b.date || '') || a.title.localeCompare(b.title))
+    .map(activity => ({
+      id: activity.id,
+      title: activity.title,
+      section: 'activities' as const,
+    }));
 
   // Get all assignment files from content/assignments directory
   const assignmentIds = getAllPostIds('assignments');
@@ -181,6 +194,6 @@ export default async function QuickLinksNav() {
   });
 
   // Pass all data to client - filtering will happen client-side
-  return <QuickLinksNavClient resources={quickLinkResources} assignments={allAssignments} readings={allReadings} topics={topics} />;
+  return <QuickLinksNavClient resources={[...quickLinkResources, ...quickLinkActivities]} assignments={allAssignments} readings={allReadings} topics={topics} />;
 }
 
