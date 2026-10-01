@@ -2,641 +2,182 @@
 title: UNCA Course Lookup
 type: project
 num: 1
-draft: 1
+draft: 0
 assigned_date: 2026-10-01
-due_date: 2026-10-29
+due_date: 2026-10-27
 heading_max_level: 3
 points: 100
 ---
 
-{:.new.info}
-> ## Deadlines
-> 1. Every member of your team **is required** submit a draft pull request by **Friday, 10/17 at 11:59PM**
-> 2. It is **recommended** that all of the basic components are integrated by the following **Friday, 10/24 at 11:59PM**
-> 3. The final, **HARD DEADLINE** (no submissions accepted beyond this date) is **Thursday, 10/30 at 11:59PM.**
-> 
-> Keep in mind that there is a lot of coordination and testing involved with this assignment, so don't leave it 'til the last minute!
+## Project overview
 
+As a class, you will build a terminal app for searching UNCA course sections and
+planning a schedule. The app uses Python and Textual. You will begin with small,
+independent tasks, then connect those pieces to the app.
 
+The starter project is in the [`project01-fall2026`](https://github.com/csci338/project01-fall2026)
+repository. Find tasks in the [issue tracker](https://github.com/csci338/project01-fall2026/issues)
+and read the [README](https://github.com/csci338/project01-fall2026/blob/main/README.md)
+for setup and a preview of the app.
 
-<div class="info">
-{% collapsible %}
-## How do I rebase main against my current working branch? 
+## 1. What you are required to do
 
-1. Stage and commit all of the changes on the branch you're currently on. 
-1. Checkout main and pull down changes:<br><br>
-  ```bash
-     git checkout main
-     git pull
+Complete **three Round 1 issues** and submit **one pull request (PR) for each issue**.
+Each PR must implement its issue and include tests. Work on one issue at a time, in
+your own branch. Do not edit another student's files or another issue's files unless
+your instructor asks you to.
+
+### Claim an issue
+
+1. Open the project's GitHub **Issues** page.
+2. Filter by the "Round" label (for the first round, select **Round 1**).
+3. Choose an issue that has no assignee. Read its requirements and confirm it is
+   still unassigned before claiming it.
+4. Assign the issue to yourself. If GitHub will not let you assign it, comment that
+   you want to claim it and ask your instructor to assign it.
+5. Start as soon as possible. Open a finished, review-ready PR within 7 calendar
+   days of claiming the issue. If you are blocked, comment on the issue before the 7 days are up and explain what you tried and what is blocking you.
+      * If you do not open a review-ready PR within 7 days, the instructor may unassign the issue so another student can claim it. Keep the issue updated as you work.
+
+### All PRs must be submitted, approved, and merged into main by the deadline
+
+These are suggested checkpoints to help you make steady progress:
+
+| PR | Suggested submission date |
+| --- | --- |
+| First PR | Before Thursday, October 8, 2026 |
+| Second PR | Before Thursday, October 15, 2026 |
+| Third PR | Before Thursday, October 22, 2026 |
+
+**Hard deadline: Tuesday, October 27, 2026.** All three PRs must be approved and **merged into `main`** by this date. Therefore, Oct 23 is the very last day you should be submitting to allow for me to review your code, provide comments if necessary, and allow you to merge. A PR is not complete until it is ready
+for review (all tests and linters pass). If you are getting stuck, it is your responsibility to attend office hours and ask questions -- most problems are small, so don't be afraid to ask for help. This stuff can be confusing!
+
+## 2. Get started
+
+1. Accept the GitHub assignment and open your team's repository.
+2. Follow the setup steps in that repository's README.
+3. Read your assigned issue and the relevant sections of `docs/contracts.md`.
+4. Read `course_lookup/tui/README.md` for a widget issue.
+6. Start a branch from the latest `main`. Use one branch per issue and include your
+   name, such as `issue-14-<your_name>`. Do not commit directly to `main`.
+
+For your first issue, start with:
+
+```sh
+git checkout main
+git pull
+git checkout -b issue-14-<your_name>
+```
+
+Replace the example branch name with one for your issue and your name.
+
+## 3. Start each work day by saving and updating your branch
+
+Before you begin work each day, save any changes from your last session in a commit
+on your issue branch. Then update your branch with the latest `main`:
+
+```sh
+git status
+git add path/to/your/changed_file.py path/to/your/test_file.py
+git commit -m "Work on issue 14"
+git checkout main
+git pull
+git checkout issue-14-<your_name>
+git rebase main
+```
+
+Replace the example file paths, issue number, and branch name with your own. If
+`git status` shows no changes to commit, skip `git add` and `git commit`; do not make
+an empty commit. Run these commands from the project repository. If a rebase reports
+conflicts, resolve them, stage the resolved files, and run `git rebase --continue`.
+If you have already pushed this branch to GitHub, update it after rebasing with
+`git push --force-with-lease`. Ask your instructor for help if you are unsure how to
+resolve a conflict.
+
+## 4. Complete and check your issue
+
+- Follow the acceptance criteria in your issue.
+- Add tests in the test file named in your issue. Use `make_course` to build test
+  courses and cover normal behavior, edge cases, and unknown data where relevant.
+- Run your test file while you work. For example:
+
+  ```sh
+  poetry run pytest tests/test_filters_identity.py
   ```
-1. Check out your working branch<br><br>
-  ```bash
-     git checkout <your-feature-branch>
-  ```
-1. Rebase:<br><br>
-  ```bash
-     git rebase main
-  ```
-1. If there are conflicts:	
-      * Manually resolve them in VS code
-      * Then stage the changes you just made: `git add .`
-      * Then continue the rebase process: `git rebase --continue`
-      * And when you're done, modify latest commit message (optional).
-1. Verify that nothing broke by:
-      * run the tests
-      * run the app
-      * run the linter (and formatter if needed)
-1. Force push: because we rewrote history, we need to use the force flag:<br><br>
-  ```bash
-     git push --force
+
+- Before opening a PR, run the full test suite and both code checks from the README:
+
+  ```sh
+  poetry run pytest
+  poetry run black --check course_lookup tests
+  poetry run flake8 course_lookup tests
   ```
 
-</div>
+- Fix any failures before you submit. If Black reports formatting changes, run
+  `poetry run black course_lookup tests`, then run all three checks again.
 
-## Introduction
-For your first project, you are going to create a command line tool to replicate aspects of the <a href="https://www.unca.edu/schedules/" target="_blank">UNCA Course Search</a> app. A subset of the app's functionality is shown in <a href="https://drive.google.com/file/d/1DlmCIw0_sXJYLQNjyt1qnHmrXpekU2lY/view?usp=drive_link" target="_blank">this video</a> (please watch).
+## 5. Submit a pull request
 
+Use this checklist for each issue:
 
-{% collapsible %}
-### Learning Goals
+- [ ] Commit your finished code and tests on your issue branch.
+- [ ] Run all tests and code checks; confirm they pass.
+- [ ] Push your branch to GitHub.
+- [ ] Open one PR for this issue, with `main` as the base branch.
+- [ ] Give the PR a clear title, such as `Implement issue 14: calendar export`.
+- [ ] Use this PR description structure:
 
-This project will help you practice the concepts we have been covering so far, including:
+  ```markdown
+  ## What changed
+  Describe the code change.
 
-1. Breaking requirements up into logical units that can be worked on in parallel (i.e., minimizing the dependencies between components).
-1. Thinking about which "jobs" each component will have.
-1. Working with a common development environment using Docker (e.g., operating system, python versions, coding conventions, testing suite) so that the app runs identically on any machine.
-1. Working with static analysis tools.
-1. Writing tests.
-1. Devising a workflow for integrating work.
-1. Coordinating and communicating across tasks to make sure everything can be successfully integrated.
+  ## Why
+  Explain how it meets the issue requirements.
 
+  ## How I tested it
+  List the tests and checks you ran, and why those test cases cover the behavior.
 
-{% collapsible %}
-### Product Requirements
+  ## Issue
+  Closes #14
+  ```
 
-You and your team will create an app that implements the following features:
+- [ ] Replace `#14` with your issue number so GitHub links and closes the issue.
+- [ ] If you used AI, disclose the tool and how you used it (see the AI policy).
+- [ ] Confirm the PR's automated checks pass and respond to review comments promptly.
 
-1. A way to download the UNCA data file from the Internet (JSON)
-1. A way to display the search options. 
-1. A way to allow the user to specify the search options
-1. A way to store the user's preferences (for any of the options)
-1. A way to filter the courses according to the user's preferences
-1. A way to display the courses that match a user's preferences
-1. A way to add, remove, and view courses from a user's schedule
-1. A way to download the schedule as a CSV file
-1. A way to email one's schedule to someone (using Twilio's SendGrid API)
+Do not merge your PR unless your instructor tells you to. The instructor reviews and
+merges the work. See `CONTRIBUTING.md` in the project repository for the complete PR
+instructions.
 
+Sarah will review each review-ready PR within two business days. If a PR
+needs revisions, Sarah will review your updated PR within two business. Submitting a PR is not the same thing as completing the PR. Completeness is necessary to receive any credit.
 
-{% collapsible %}
-### System Architecture (Done as a Class)
+## 6. AI and outside-help policy
 
-During class on Tuesday (9/24), we discussed how to organize our system, and we collectively created the following diagram:
+You may use AI tools such as ChatGPT or GitHub Copilot to:
 
-<img class="large" src="/images/projects/project-1-diagram.png" />
+- Explain a Python concept, an error message, or a part of the starter code.
+- Brainstorm an approach or suggest edge cases for your tests.
+- Review code you wrote and point out possible problems.
+- Generate a small example or code snippet that you adapt and understand.
 
+You may discuss concepts and debugging strategies with classmates, but each student
+must write and understand their own issue's implementation and tests.
 
+Do not ask an AI tool or another person to complete the whole issue, generate the
+entire implementation or test suite, or make design decisions you cannot explain.
+Do not submit code you cannot explain. You are responsible for checking that all
+suggestions are correct and that your tests and code checks pass.
 
-## Team Assignments
-Your teams are listed below. Each member of your team has been assigned a task from the GitHub Issue Tracker. Some of you will be working on the same Python class, so make sure you only work on the tasks to which you were assigned:
+If you use an AI tool, disclose it in your PR description: name the tool and briefly
+say what you used it for (for example, “ChatGPT helped me understand a pytest error;
+I wrote and verified the fix”). If you did not use AI, write “AI assistance: none.”
+Be prepared to explain your code and tests during review.
 
-{% collapsible %}
-### Team 1
+## Grading
 
-Please see your team's <a href="https://github.com/csci338/p01-team01-fall2026" target="_blank">repo</a> for more information. Members of your team are:
-
-| 1. |  Course | carlos460  | Implement the `Course` class |
-| 2. |  Courses	| ajrest1103  | Implement the `Courses` class |
-| 3. |  UserPreferences | HLaiK  | Implement the `UserPreferences` class |
-| 4. |  CourseFilter | mling0502  | Implement the `CourseFilter` class |
-| 5. |  UI functions | Tangerinedream13  | Implement the `UI` functions (`ui.py`) |
-| 6. |  Schedule (except for send_email) | aqsmith02  | Implement the `Schedule` class (except for `send_email`) |
-| 7. |  send_email | jbartle1 | Implement the `send_email` method of the `Schedule` class |
-
-
-
-{% collapsible %}
-### Team 2
-
-Please see your team's <a href="https://github.com/csci338/p01-team02-fall2026" target="_blank">repo</a> for more information. Members of your team are:
-
-| 1. |  Course | dhend595  | Implement the `Course` class |
-| 2. |  Courses | ringojuic | Implement the `Courses` class |
-| 3. |  UserPreferences | jneal2003  | Implement the `UserPreferences` class |
-| 4. |  CourseFilter | JesseRayCrouse  | Implement the `CourseFilter` class |
-| 5. |  UI functions | ktaylo-funky-pants  | Implement the `UI` functions (`ui.py`) |
-| 6. |  Schedule (except for send_email) | amhpurple  | Implement the `Schedule` class (except for `send_email`) |
-| 7. |  send_email | 0re0-Speedwagon  | Implement the `send_email` method of the `Schedule` class |
-
-
-
-{% collapsible %}
-### Team 3
-
-Please see your team's <a href="https://github.com/csci338/p01-team03-fall2026" target="_blank">repo</a> for more information. Members of your team are:
-
-| 1. |  Course | kpr0vence  | Implement the `Course` class |
-| 2. |  Courses | Neptune-C-Providence  | Implement the `Courses` class |
-| 3. |  UserPreferences | kgary432  | Implement the `UserPreferences` class |
-| 4. |  CourseFilter | m-mazzotta  | Implement the `CourseFilter` class |
-| 5. |  UI functions | alisalofe  | Implement the `UI` functions (`ui.py`) |
-| 6. |  Schedule (except for send_email) | kikooperative  | Implement the `Schedule` class (except for `send_email`) |
-| 7. |  send_email | Hayden514 | Implement the `send_email` method of the `Schedule` class |
-
-
-
-{% collapsible %}
-### Team 4
-
-Please see your team's <a href="https://github.com/csci338/p01-team04-fall2026" target="_blank">repo</a> for more information. Members of your team are:
-
-| 1. |  Course | rsciaudo  | Implement the `Course` class |
-| 2. |  Courses | KellanBrown  | Implement the `Courses` class |
-| 3. |  UserPreferences | ltripp1  | Implement the `UserPreferences` class |
-| 4. |  CourseFilter | NoahCSC  | Implement the `CourseFilter` class |
-| 5. |  UI functions | slundin24  | Implement the `UI` functions (`ui.py`) |
-| 6. |  Schedule (except for send_email) | rodrigomendes37  | Implement the `Schedule` class (except for `send_email`) |
-| 7. |  send_email | takarin13  | Implement the `send_email` method of the `Schedule` class |
-
-
-
-## Tasks
-Each task is listed below. Each student on your team has been assigned a task via the GitHub Issue Tracker, and will be completing some subset of the functionality described below:
-
-{% collapsible %}
-### 1. Course
-
-The job of the Course class (`course.py`) is to parse the incoming dictionary into a more useable form. If you have been assigned this issue, please note that the rest of the app is highly dependent on this class, so the earlier you complete this task, the easier it will be for your teammates.
-
-#### Sample dictionary item to be parsed
-
-```python
-{
-    "CRN": 60002,
-    "Code": "ACCT 215.001",
-    "Department": "ACCT",
-    "Title": "Principles of Accounting I",
-    "Instructors": [{"Username": "chughes", "Name": "Hughes, Carolyn"}],
-    "Hours": 4,
-    "Days": "MW",
-    "StartTime": "2020-05-05T21:30:00Z",
-    "EndTime": "2020-05-05T23:10:00Z",
-    "Location": {"FullLocation": "DEL 110", "Building": "DEL", "Room": "110"},
-    "EnrollmentCurrent": 26,
-    "EnrollmentMax": 28,
-    "WaitlistMax": 0,
-    "WaitlistAvailable": 0,
-    "TermPart": "1",
-    "StartDate": "2026-08-17T04:00:00Z",
-    "EndDate": "2026-12-09T05:00:00Z",
-    "Classification": {
-        "DiversityIntensive": False,
-        "DiversityIntensiveR": False,
-        "DistanceLearning": False,
-        "FirstYearSeminar": False,
-        "Graduate": False,
-        "Honors": False,
-        "Arts": False,
-        "ServiceLearning": False,
-        "Open": True,
-    },
-    "AdditionalMeetings": [],
-    "InstructionalMethod": "In-Person",
-    "Async": False,
-}
-```
-
-#### Properties
-It should allow setting and getting of the following properties:
-* `crn` (str)
-* `code` (str)
-* `department` (str)
-* `title` (str)
-* `instructors` (list[str]) - list of strings
-* `hours` (int)
-* `days` (list[str]) - list of strings
-* `start_time` (str) - formatted to be human-readable
-* `end_time` (str) - formatted to be human-readable
-* `location` (str)
-* `enrollment_current` (int)
-* `enrollment_max` (int)
-* `term` (int)
-* `is_di` (bool)
-* `is_dir` (bool)
-* `modality` (str) - In-Person or Online
-
-**Empty values:** If no data are available for a particular property, represent "no data" as follows:
-```py
-* str = ""  # empty string
-* int = -1
-```
-
-#### Methods
-Your class should also have the following methods:
-* A `constructor` method, which takes a dictionary as an argument and sets the properties right away. A stub has been implemented for you.
-* A `__repr__` method (similar to Java's toString() method, which returns the code and name of the course.
-* A `to_row` method that returns a more detailed representation of the course (e.g., name, crn, instructor, location, time / day, etc.).
-* An `is_full` method that returns true or false, depending on whether the course is full or not.
-* An `is_morning` method that returns true or false, depending on whether the course starts before 12PM and false otherwise
-* An `is_afternoon` method that returns true if the course starts between 12PM-5PM and false otherwise.
-* An `is_evening` method that returns true if the course starts on or after 5PM and false otherwise.
-
-
-
-
-{% collapsible %}
-### 2. Courses
-
-The job of the Courses class (`courses.py`) is to make it convenient to print, filter, and download a list of Course objects.
-
-#### Properties
-Your class should have the following properties:
-* `_courseList`: a (private) list of `Course` objects
-
-#### Methods
-Your class should also have the following methods:
-
-* A `constructor` method, which takes a list of Course objects (list[Course]) as an argument and sets the `_courseList` property right away. A stub has been implemented for you in the starter code.
-* A `to_list` method (no required parameters) which returns the `_courseList` property
-* A `size` method  (no required parameters) which returns the length of the `_courseList` list
-* A `display_to_terminal` method (no required parameters) that prints a nice, formatted list of courses (or a message if there are no courses in the list). Use the course's `to_row` method to help you.
-* A `get_matching_courses` method which takes a UserPreferences object as an argument and return a new Courses object that includes only the courses that match the user's preferences.
-    * As you iterate through the available courses, use the CourseFilter object (made by one of your classmates to figure out whether each course is a match).
-    * Consider chaining your filtering methods together using Python's built-in `filter` method. Some pseudocode is shown below: 
-    ```python
-    # Python's `filter` function returns a new list with only results matching the filter function.
-    # Use multiple filter invocations to apply multiple filters:
-    course_matches = filter(some_filter_function, self._courseList)
-    course_matches = filter(another_filter_function, course_matches)
-    ```
-
-
-
-{% collapsible %}
-### 3. UserPreferences
-
-The job of the UserPreferences class (`user_preferences.py`) is store the user's search preference information, and to provide methods for modifying the user's preferences as they browse courses of interest. If you have been assigned this issue, please note that the rest of the app is highly dependent on this class, so the earlier you complete this task, the easier it will be for your teammates.
-
-
-#### Properties
-It should allow setting and getting of the following properties. 
-* `days`: list[str] = []
-* `department`: str = ""
-* `di_only`: bool = False 
-* `dir_only`: bool = False
-* `hours`: int = -1
-* `instructor`: str = ""
-* `open_closed_status`: str = "" (either "open", "closed", or "" (no preference))
-* `search_term`: str = ""
-* `time_of_day`: str = "" (either "morning", "afternoon", or "evening")
-
-
-**Empty values:** If the filter is unset (i.e., the user didn't specify a value one way or the other),  represent "unset" preferences as follows:
-
-```
-str = ""  # empty string
-int = -1
-list = []
-bool = False
-```
-
-#### Methods
-Your class should also have the following methods:
-
-* A `constructor` method that initializes all of the default property values right away.
-* An `update_search_term` method that prompts the user to enter a search term or clear their current `search_term` property.
-* An `update_department` method that prompts the user to enter a department or clear their current `department` property.
-* An `update_instructor` method that prompts the user to enter an instructor or clear their current `instructor` property.
-* An `update_di` method that asks the user whether they want to only see DI courses. This will set the `di_only` property.
-* An `update_dir` method that asks the user whether they want to only see DI-Race courses. This will set the `dir_only` property.
-* An `update_open_closed_status` method that asks the user whether they want to only open or only closed courses. This will set the `open_closed_status` property.
-* An `update_dir` method that asks the user whether they want to only see DI-Race courses. This will set the `dir_only` property.
-* An `update_hours` method that asks the user whether they only want to see courses with 1, 2, 3, or 4 credit hours. This will set the `hours` property.
-* An `update_days` method that asks the user which days they're looking for classes. This will set the `days` property.
-* An `update_time_of_day` method that asks the user whether they want to specify morning, afternoon or evening classes. This will set the `time_of_day` property.
-
-##### A note on the methods
-* All of the update methods must validate the user's input and re-prompt them if they enter an incorrect value (and explain why the value is incorrect).
-* All of the input methods should also be able to clear out the properties (unset them to empty).
-* Feel free to use as many private helper methods as you want. In python, private methods are named with a leading underscore.
-
-
-
-{% collapsible %}
-### 4. Course Filter
-
-The job of the CourseFilter class (`course_filter.py`) is to determine whether a course matches a given set of criteria. 
-
-#### Properties
-It should allow setting and getting of the following properties:
-* `user_prefs`: UserPreferences
-
-#### Methods
-* A `constructor` method, which takes a UserPreferences object as an argument and sets the `user_prefs` property right away. A stub has been implemented for you.
-* `is_search_term_match`: accepts a Course object as an argument. Returns true if the course's title matches the user's preference (from the UserPreferences) property or if the search_term preference is not set. Returns false otherwise.
-* `is_instructor_match`: accepts a Course object as an argument. Returns true if the course's instructor partially matches the user's preference or if the instructor preference is not set. Returns false otherwise.
-* `is_di_match`: accepts a Course object as an argument. Returns true if the course is a DI course preference or if the di_only preference is not set. Returns false otherwise.
-* `is_dir_match`: accepts a Course object as an argument. Returns true if the course is a DI-Race course preference or if the dir_only preference is not set. Returns false otherwise.
-* `is_departmental_match`: accepts a Course object as an argument. Returns true if the course's department matches the user's preference or if the department preference is not set. Returns false otherwise.
-* `is_hours_match`: accepts a Course object as an argument. Returns true if the course's credit hours matches the user's preference or if no preference is set. Returns false otherwise.
-* `is_status_match`: accepts a Course object as an argument. Returns true if the course's `open_closed_status` matches the course's current state or if no preference is set. Returns false otherwise.
-* `is_time_of_day_match`: accepts a Course object as an argument. Returns true if the course's `time_of_day` matches the course's time of day status or if no preference is set. Returns false otherwise.
-
-Make sure that all filters are case-insensitive and that they return true if no preference is set.
-
-
-
-{% collapsible %}
-### 5. User Interface (UI)
-
-The job of the User Interface file (`ui.py`) is to allow people to make choices about what they want to do in the app and receive the appropriate response. This is the main driver of the app and is just a series of function and method calls. 
-
-#### Helper Objects
-Because `ui.py` is the primary way in which users will interact with the app's functionality, this file will initialize `UserPreferences`, `Courses`, and `Schedule` objects and make use of their public methods. A small portion of this has already been done for you, but you will continue to use methods from these objects based on user input.
-
-#### Functions
-* A `fetch_courses` method that queries for the course data from the following url: <a href="https://meteor.unca.edu/registrar/class-schedules/api/v1/courses/2025/spring" target="_blank">https://meteor.unca.edu/registrar/class-schedules/api/v1/courses/2025/spring</a>, converts each result into a `Course` object, and returns a `Courses` object (read more about these objects above).
-* A `generate_menu` method that returns a string representation of all of the menu choices in the system (watch the demo video to get ideas). This menu should also indicate to the user which preferences they have selected. 
-* A `show_menu` function that prints the menu generated (these two functions have been separated so that they're easier to test).
-* A `process_menu_choice` function (which can accept as many arguments as needed) to handle the user's selection. This function will invoke functionality from `UserPreferences`, `Courses`, and `Schedule` objects that are initialized when the app starts. It will return the string "quit" if the user asks to terminate the program (so that the application loop knows to break).
-* A `start_app` method that continues showing the user the menu and re-prompting them until they quit the application.
-
-
-
-{% collapsible %}
-### 6. Schedule
-
-The job of the Schedule class (`schedule.py`) is to allow the user to build a schedule based on the courses the user finds interesting. Eventually, you may want this class to extend the `Courses` class (optional) if it makes sense.
-
-#### Properties
-It should allow setting and getting of the following properties:
-* `_courseList`: a list of `Course` objects (set by the constructor)
-
-#### Methods
-* A `to_list` method (no required parameters) which returns the `_courseList` property
-* A `size` method  (no required parameters) which returns the length of the `_courseList` list
-* A `display_to_terminal` method (no required parameters) that prints a nice, formatted list of courses (or a message if there are no courses in the list). Use the course's `to_row` method to help you.
-* An `add_courses` method, which takes a list of Course objects (list[Course]) as an argument. The function's job is to display the courses, and ask the user which courses they'd like to append to their schedule. After the user makes their selection, the method will append the selected courses to `_courseList`.
-* A `remove_courses` method (no required parameters). This function's job is to display the user's current schedule of classes, and ask the user which courses they'd like to remove. The corresponding courses are then removed from `_courseList`.
-* A `save_schedule` method that saves the current schedule as a CSV file (text file).
-* An `send_email`, which will email the schedule to a selected recipient (see details below).
-
-
-
-{% collapsible %}
-### 6a. Sending Emails
-
-Here is a <a href="https://www.twilio.com/docs/sendgrid/for-developers/sending-email/quickstart-python" target="_blank">tutorial</a> that provides some instructions for how to get started with SendGrid, and here's a <a href="https://www.youtube.com/watch?v=1klvWUnEjfc" target="_blank">YouTube video</a>.
-
-A few tips:
-* Install the `sendgrid` and `dotenv` modules via poetry on your Docker container:<br>
-    ```sh
-    docker exec -it <pid> poetry add sendgrid
-    docker exec -it <pid> poetry add python-dotenv
-    ```
-* Add the API key environment variable inside a new `.env` file, saved directly inside the `course_lookup` directory (replace 12345678ABCDEFG with the API you got from the SendGrid website):
-    ```sh
-    SENDGRID_API_KEY=12345678ABCDEFG
-    ```
-* Then, you can create the environment variables by applying the `.env` file via python as follows:
-    ```py
-    import os
-    from dotenv import load_dotenv
-
-    load_dotenv()
-
-    print(os.getenv("SENDGRID_API_KEY"))
-    ```
-* Exclude your `.env` file (with your API key) from the repository (`.gitignore`)
-* After your pull request is merged, don't forget to tell everyone on your team that they also need to make a `.env` file with the API key, and that they need to install the new poetry dependencies (which are already in the `pyproject.toml` file) as follows:
-    ```sh
-    docker exec -it <pid> poetry install
-    ```
-
-
-
-## Set Up
-
-{:.info}
-> Last semester, I made a <a href="https://drive.google.com/file/d/10h6CsMGXYFRHe4y95x32moJs-u6P9rjo/view?usp=drive_link" target="_blank">video walkthrough</a> of the set up if it helps.
-
-{% collapsible %}
-### 1. Set up your repository
-
-Once your team lead has added you to their repo, you will set up the code locally as follows:
-1. Open the terminal.
-1. Clone your team's version of the repository:
-```
-git clone git@github.com:csci338/p01-<your-team-number>-fall2026.git project01
-```
-    * Note that the second argument of the clone command allows you to specify the name of the local folder (`project01`) even if the remote repo name is different.
-    * Please do not clone this repo inside of another directory that is already under version control.
-    * Make sure that the folder you just created is called `project01` (important for Docker).<br><br>
-
-1. Navigate into the `project01` directory you just cloned. Create a new branch that describes the feature you will be working on (name it whatever you want):
-```
-cd project01
-git checkout -b yourname-feature
-```
-
-
-{% collapsible %}
-### 2. Building Your Docker Container
-
-1. Make sure that Docker is running
-1. Then, from within the `project01` directory on your command line, issue the following Docker command:
-   ```bash
-   docker compose up -d
-   ```
-   This command will build your image and your container in "detached mode," meaning that the build takes place in a background process. Once the container has built, you should see some output like this:
-   ```bash
-   [+] Running 2/2
-    ✔ Network project01_default  Created                                      0.0s 
-    ✔ Container project01-app-1  Started      
-   ```
-
-1. Now, find the process id of the container you just made by listing all of your containers as follows:
-   ```bash
-   docker ps -a
-   ```
-1. Install the poetry dependencies on your Docker container:
-   ```bash
-   docker exec -it <pid> poetry install
-   ```
-1. Run the tests:
-   ```bash
-   docker exec -it <pid> poetry run pytest -v
-   ```
-1. Run the app:
-   ```bash
-   docker exec -it <pid> poetry run python course_lookup/ui.py
-   ```
-1. Now you're ready to start coding in VS Code. Open the entire project in VS Code by typing: `code .`
-
-
-#### 1. Returning to Docker later
-Once you've built your container, it should be available to you in the future, even if you close out of Docker or stop the container. To get back to your container:
-
-1. Make sure Docker is running
-2. Find the pid of the container you want to run: 
-   ```bash
-   docker ps -a
-   ```
-3. Start the stopped container with the pid you just found:
-   ```bash
-   docker start <pid>
-   ```
-4. Use container as per usual (and make sure you're in the `project01` directory when you run the poetry commands).
-
-You could also go to the Docker Dashboard and start your container from the Dashboard.
-
-#### 2 Some useful commands
-
-| Command | Description |
-|--|--|
-| `docker ps -a` | List all of the containers (including stopped containers) |
-| `docker stop <pid>` | List all of the containers (including stopped containers) |
-| `docker start <pid>` | List all of the containers (including stopped containers) |
-| `docker exec -it <pid> bash` | Runs terminal on the container |
-| `docker exec -it <pid> poetry run python course_lookup/ui.py` | Runs the `ui.py` using poetry. |
-| `docker exec -it <pid> poetry run pytest -v ` | Runs tests |
-| `docker exec -it <pid> bash scripts/check.sh` | Runs check script |
-| `docker exec -it <pid> bash scripts/fix.sh` | Runs fix script |
-
-
-
-## Logistics
-Before you begin working on this project, please read the guidelines **VERY CAREFULLY**.
-
-{% collapsible %}
-### 1. Working with Feature Branches
-
-1. You will **never edit the `main` branch directly**. Consider `main` to be the "source of truth" for the app. 
-2. All of your work will be committed to your feature branch (which you will create from the `main` branch).
-3. _Please_ pull down the latest changes from `main` periodically and rebase your local branch with `main`. To do this:
-    * Commit your feature branch work,
-    * Check out main,
-    * Pull down the latest changes,
-    * Check out your feature branch again, and
-    * Rebase your feature branch with main
-    {:.compact}
-
-
-
-
-{% collapsible %}
-### 2. Testing Tips
-
-Run the tests using the pytest library (installed via poetry). Some sample commands:
-
-```bash
-# runs all the tests
-poetry run pytest -v 
-
-# runs all the tests in a single file
-poetry run pytest tests/test_courses.py -v  
-
-# runs a single test (e.g., test_one)
-poetry run pytest tests/test_courses.py::TestCourses::test_check_num_courses -v  
-```
-
-
-
-{% collapsible %}
-### 3. Formatting Tips
-
-We are using `black` to format our code, `isort` to sort our import statements, and `flake8` to validate the Python code. 
-* [https://black.readthedocs.io/en/stable/usage_and_configuration/index.html](https://black.readthedocs.io/en/stable/usage_and_configuration/index.html)
-* [https://pypi.org/project/isort/](https://pypi.org/project/isort/)
-* [https://flake8.pycqa.org/en/latest/](https://flake8.pycqa.org/en/latest/)
-
-The following commands will be run on every push to make sure that the code styling rules have been followed:
-
-```bash
-# runs the Python formatter
-poetry run black . --check     
-
-# run the Python import sorter
-poetry run isort . --check-only  
-
-# flake8 just checks things -- you have to fix them manually
-poetry run flake8                 
-```
-
-You can also use the `bash/check.sh` script (for convenience):
-
-```bash
-bash scripts/check.sh
-```
-
-To actually APPLY the formatting (which will make changes to your files), make sure you run these two commands before pushing your branch to GitHub:
-
-```bash
-# runs the Python formatter
-poetry run black .   
-
-# run the Python import sorter
-poetry run isort .      
-```
-You can also use the bash/fix.sh script (for convenience):
-
-```bash
-bash scripts/fix.sh
-```
-
-If you want flake8 to ignore a particular line, add a `# noqa` comment at the end of the line
-
-
-{% collapsible %}
-### 4. GitHub Workflows & Continuous Integration Notes
-
-The `.github/workflows/pr.yml` is a configuration file that GitHub reads in order to run a series of checks everytime you push your branch to GitHub. Before you make a pull request, make sure that you run the `bash scripts/run_pr_checks.sh` script. If everything passes locally, it should also pass on GitHub.
-
-
-## Grading and Assessment
-
-{% collapsible %}
-### 1. How to submit work for review
-
-
-#### Submissions
-You will submit your work by making a pull request (PR) and tagging `svanwart` as a reviewer. Before making your PR, make sure that you have:
-
-{:.checkbox-list}
-* Implemented all of properties and methods needed to support the functionality listed above (using private helper methods as needed).
-* Written tests for all public methods.
-* Ensured all of the formatter and linter checks pass before making a pull request.
-
-#### [PLEASE READ VERY CAREFULLY] Pull Request Details
-In your pull request, make sure that:
-
-{:.checkbox-list}
-* You only include code changes that you made in the PR. There shouldn't be other random files in your PR. Just the code you want Sarah to review that you wrote.
-* All of the validation checks on GitHub pass
-* There are no merge conflicts with the `main` branch. If you see that your pull request has merge conflicts, it means that you need to rebase against main, and then push your rebased branch to GitHub.
-* In the text of your Pull Request:
-    * Be sure to reference your assigned issue by using the hash tag followed by the issue number.
-    * Describe what has been done in the PR as simply and clearly as possible.
-
-
-A few other PR details:
-* You may make multiple PRs to implement subsets of functionality. Remember: it's better to create smaller, incremental PRs than one big PR (no long-running branches).
-* I (Sarah) will review all pull requests as quickly as possible (ideally within 24 hours)
-* Once I approve your pull request, **you will be responsible for merging your branch into `main` via GitHub**. I recommend doing this as soon as your PR has been approved so that your teammates have the benefit of your updated code.
-
-#### Revisions
-I may ask you for revisions on your code, which is a normal, expected part of the development process. If this happens:
-* Please make the requested changes on your feature branch
-* Push your new changes to the remote branch
-* Modify the PR text to explain what you changed
-* Tag `svanwart` again so that I can review your changes.
-
-
-
-{% collapsible %}
-### 2. Rubric
-
-| 20% | Teamwork and communication | Did you attend class during team meetings? Where you a good team player? Did you talk to your teammates? If someone else was working on a feature that you depended on, did you reach out / coordinate / communicate with them? If someone reached out to you because they depended on a task you were doing, did you respond to them in a timely manner? | 
-| 50% | Individual code contribution | Did you complete your tasks? Does your code work as expected? Do all of your functions / methods have tests? Did the code quality checks pass? Was your PR(s) approved? Were your (PRs) approved by the deadline? |
-| 30% | Quality of the final group product | Does your app work? Is it complete? Can users browse for courses, filter according to their preferences, and add them to a schedule? Were everyone's contributions merged by the deadline (recognizing that the deadline may be a moving target, given the contraints we are operating under)? |
-
-At the end of Project 1, you will be asked to complete a brief, anonymous survey about the contributions of person in your group. Even though we are all remote and operating on different sets of constraints, it is still possible to shoot a quick email or text to give a brief status report. If you are concerned about your ability to participate in this project please talk to Sarah **as soon as possible** so that the appropriate accommodations can be made.
+* Your project grade is based on completing your three issues, the quality and
+correctness of your code and tests, and your contribution to the class app. 
+* Submit your PRs by the suggested checkpoints when possible.
+* This is a hard deadline and no late work will be accepted. 
+* This project is worth 20% of your grade.
