@@ -11,7 +11,7 @@ toc: false
 | Cornell Chin | [Apiznel/class-exercises-fall2026](https://github.com/Apiznel/class-exercises-fall2026) | [Apiznel/lab03-exercises](https://github.com/Apiznel/lab03-exercises) |
 | John Clark-Williams | [jclarkwi/class-exercises-fall2026](https://github.com/jclarkwi/class-exercises-fall2026) | [jclarkwi/lab03-exercises](https://github.com/jclarkwi/lab03-exercises) |
 | Daniel Delong | [gdelong4/class-exercises-fall2026](https://github.com/gdelong4/class-exercises-fall2026) | [gdelong4/lab03-exercises](https://github.com/gdelong4/lab03-exercises) |
-| Doug Henderson | [csci338/class-exercises-fall2026](https://github.com/csci338/class-exercises-fall2026) | [dhend595/lab03-exercises02](https://github.com/dhend595/lab03-exercises02) |
+| Doug Henderson | [dhend595/class-exercises-fall2026](https://github.com/dhend595/class-exercises-fall2026) | [dhend595/lab03-exercises02](https://github.com/dhend595/lab03-exercises02) |
 | Ryan Izzo | [rizzo-unca/class-exercises-fall2026](https://github.com/rizzo-unca/class-exercises-fall2026) | [rizzo-unca/lab03-exercises](https://github.com/rizzo-unca/lab03-exercises) |
 | Brady Jenkins | [bcjenkins1/class-exercises-fall2026](https://github.com/bcjenkins1/class-exercises-fall2026) | — |
 | David McKenzie | [dmckenzi-star/class-exercises-fall2026](https://github.com/dmckenzi-star/class-exercises-fall2026) | [dmckenzi-star/lab03-exercises](https://github.com/dmckenzi-star/lab03-exercises) |

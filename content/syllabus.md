@@ -9,7 +9,7 @@ collapsible_headings: true
   <tr><td><strong>Instructor</strong></td><td>Dr. Sarah Van Wart (svanwart@unca.edu)</td></tr>
   <tr><td><strong>Prerequisites</strong></td><td>CSCI 202 and CSCI 235</td></tr>
   <tr><td><strong>Time &amp; Location</strong></td><td>Tu, Th 9:55 AM - 11:35 AM in RRO Rm. 217</td></tr>
-  <tr><td><strong>Office Hours</strong></td><td>TBD in RRO Rm. 220</td></tr>
+  <tr><td><strong>Office Hours</strong></td><td>MWF, 2-3PM in RRO Rm. 220 or by appointment</td></tr>
 </table>
 
 {:.info}

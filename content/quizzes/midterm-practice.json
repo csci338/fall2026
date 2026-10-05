@@ -1,0 +1,368 @@
+{
+  "quizName": "Midterm Practice Quiz",
+  "start_date": "2026-10-08",
+  "notes": "Practice for the midterm. Draws heavily on the assigned chapters of Software Engineering at Google (Ch. 1, 11, 16, 20, 21, 23) plus the Unit 2-4 study questions (git, Docker, dependency management).",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Per Chapter 1 of Software Engineering at Google, what are the three critical differences between programming and software engineering?",
+      "options": [
+        "Speed, syntax, and tooling",
+        "Design, testing, and deployment",
+        "Time, scale, and trade-offs",
+        "Languages, frameworks, and team size"
+      ],
+      "correct": 2,
+      "explanation": "Chapter 1 says software engineering is \"programming integrated over time.\" Engineers must care about the passage of time and the need for change, about scale and efficiency, and about making higher-stakes trade-off decisions. (SWE at Google, Ch. 1)"
+    },
+    {
+      "id": "q2",
+      "question": "A library documents that the iteration order of its hash table is \"unspecified,\" yet many users' programs end up depending on that order anyway. Which principle from Chapter 1 does this illustrate?",
+      "options": [
+        "Shifting left: problems are cheaper to fix when found earlier",
+        "The Beyoncé Rule: if you liked it, you should have put a test on it",
+        "Hyrum's Law: with enough users of an API, all observable behaviors of the system will be depended on by somebody, whatever the contract promises",
+        "The One-Version Rule: developers should never have a choice of which version to depend on"
+      ],
+      "correct": 2,
+      "explanation": "Hyrum's Law explains why even unpromised behavior (like hash ordering) becomes a de facto contract, which makes changing widely used software hard. (SWE at Google, Ch. 1)"
+    },
+    {
+      "id": "q3",
+      "question": "Chapter 1 describes \"shifting left.\" What does it mean?",
+      "options": [
+        "Running every test only after the code is deployed to production",
+        "Merging changes into a release branch first and the main branch later",
+        "Moving the whole team to a different time zone",
+        "Finding problems earlier in the developer workflow (design, implementation, review, testing) because earlier detection reduces the cost of fixing them"
+      ],
+      "correct": 3,
+      "explanation": "The book pictures the developer workflow as a timeline from conception to production. Catching a problem further to the left (e.g., before it is committed) is cheaper than catching it in production. (SWE at Google, Ch. 1)"
+    },
+    {
+      "id": "q4",
+      "question": "Which statement best reflects Chapter 1's guidance on how teams should make decisions?",
+      "options": [
+        "If data is imperfect, it should be ignored in favor of intuition",
+        "\"Because I said so\" is a terrible reason; decisions should lean mostly on objective data, even though real decisions blend data, assumptions, precedent, and argument",
+        "The most senior engineer should always decide; data only slows teams down",
+        "Decisions should always match whatever the team did last time"
+      ],
+      "correct": 1,
+      "explanation": "The chapter says being data driven is a good start, but most decisions mix data, assumption, precedent, and argument. It is best when objective data is the majority of those inputs, and you must be willing to change course when the data changes. (SWE at Google, Ch. 1)"
+    },
+    {
+      "id": "q5",
+      "question": "How does Chapter 16 describe the main conceptual difference between distributed (e.g., Git) and centralized (e.g., Subversion) version control?",
+      "options": [
+        "Centralized systems store code in the cloud; distributed systems store it only on paper",
+        "Centralized systems cannot track history; distributed systems can",
+        "The question is \"where can you commit?\": in a DVCS every clone is a full repository you can commit to, while a centralized VCS has a single central repository that holds the source of truth",
+        "Distributed systems require every developer to edit the same file at once"
+      ],
+      "correct": 2,
+      "explanation": "In a DVCS there is no inherent source of truth, so well-managed projects (e.g., on GitHub) still declare one branch in one repository to be the source of truth. (SWE at Google, Ch. 16)"
+    },
+    {
+      "id": "q6",
+      "question": "According to Chapter 16, why are long-lived development branches \"not a good default plan,\" and what does the book recommend instead?",
+      "options": [
+        "They use too much disk space; instead delete old branches nightly",
+        "They make merges larger, riskier, and more expensive; instead use trunk-based development, rely heavily on testing and CI, keep the build green, and disable incomplete features at runtime",
+        "They guarantee stability; instead merge them only once per year",
+        "They are impossible to push; instead keep all work on a single laptop"
+      ],
+      "correct": 1,
+      "explanation": "Small merges done by the author are easier than big, batched ones. The chapter cites DORA research linking trunk-based development with high-performing teams. (SWE at Google, Ch. 16)"
+    },
+    {
+      "id": "q7",
+      "question": "What is the \"One-Version Rule\" in Chapter 16?",
+      "options": [
+        "Developers must never have a choice of \"What version of this component should I depend upon?\"",
+        "A project may contain only one programming language",
+        "Each file may have only one author",
+        "Each repository may have only one branch"
+      ],
+      "correct": 0,
+      "explanation": "Removing the choice avoids merge-strategy debates and diamond-dependency problems and scales better across an organization. It is described as important for organizational efficiency. (SWE at Google, Ch. 16)"
+    },
+    {
+      "id": "q8",
+      "question": "What does Chapter 16 conclude about monorepos versus many smaller repositories?",
+      "options": [
+        "Repository structure does not matter at all, including the version rule",
+        "Many small repositories are always better because they avoid sharing code",
+        "Monorepos are always required for any project",
+        "A monorepo makes the One-Version Rule easy to follow, but it is not the one true way; what matters is following One-Version, whichever repository structure you use"
+      ],
+      "correct": 3,
+      "explanation": "The book says the monorepo approach has inherent benefits (One Version is trivial), but is not the perfect answer for everyone; tools can give a monorepo-like experience across repositories. (SWE at Google, Ch. 16)"
+    },
+    {
+      "id": "q9",
+      "question": "In Chapter 21, what is the \"diamond dependency problem\"?",
+      "options": [
+        "A dependency that is shaped like a diamond in the file tree",
+        "Two libraries your code depends on both depend on a third library, but they require incompatible versions of it",
+        "Two developers publishing the same package name at once",
+        "A package that depends on itself"
+      ],
+      "correct": 1,
+      "explanation": "If libbase changes incompatibly and liba upgrades but libb does not, the application that uses both has no single version of libbase that works for everyone. (SWE at Google, Ch. 21)"
+    },
+    {
+      "id": "q10",
+      "question": "Which question appears in Chapter 21's list of things to ask before importing a dependency?",
+      "options": [
+        "Does the package name contain fewer than ten letters?",
+        "Does the project have tests, and do they pass? Who provides it, how often does it make breaking changes, and who will perform upgrades?",
+        "Does the project's website use a modern color scheme?",
+        "Has the package been downloaded exactly once?"
+      ],
+      "correct": 1,
+      "explanation": "Importing is nearly free up front but carries ongoing costs: upgrades, security, compatibility promises, and maintenance. The questions help you weigh them. (SWE at Google, Ch. 21)"
+    },
+    {
+      "id": "q11",
+      "question": "In semantic versioning (SemVer), what does a change to the MAJOR version number (e.g., 1.x to 2.0) signal, and what is the book's criticism of relying on it?",
+      "options": [
+        "It signals a security patch; the criticism is that it is free",
+        "It signals that new features were added; the criticism is that it is never used",
+        "It signals a typo fix; the criticism is that it is too precise",
+        "It signals an incompatible API change; but SemVer is a lossy estimate of risk, so tools that treat it as absolute can overconstrain (\"dependency hell\") or underprotect"
+      ],
+      "correct": 3,
+      "explanation": "Chapter 21 calls SemVer a lossy-compression estimate of \"how risky does a human think this change is?\" Testing and CI give actual evidence about whether versions work together. (SWE at Google, Ch. 21)"
+    },
+    {
+      "id": "q12",
+      "question": "How does Chapter 11 define the \"size\" of a test, and what distinguishes small, medium, and large tests?",
+      "options": [
+        "Size is the number of lines in the test file",
+        "Size is the number of developers who wrote the test",
+        "Size is based on the resources a test needs, not its lines of code: small tests run in one process with no sleeping, I/O, or network; medium tests can use multiple processes and localhost; large tests can span multiple machines",
+        "Size is how long ago the test was written"
+      ],
+      "correct": 2,
+      "explanation": "The most important qualities are speed and determinism, so engineers are encouraged to write the smallest possible test for a piece of functionality. (SWE at Google, Ch. 11)"
+    },
+    {
+      "id": "q13",
+      "question": "Why does Chapter 11 say flaky tests are so expensive?",
+      "options": [
+        "They always run slower than every other test",
+        "They can only be written in Java",
+        "They use up the disk space of the CI server",
+        "They fail nondeterministically, which wastes time investigating and, as flakiness grows, makes engineers lose trust and stop reacting to test failures"
+      ],
+      "correct": 3,
+      "explanation": "Common sources of nondeterminism include clock time, thread scheduling, and network latency. Rerunning flaky tests only delays fixing the root cause. (SWE at Google, Ch. 11)"
+    },
+    {
+      "id": "q14",
+      "question": "Chapter 11 recommends a rough mix of tests (the \"test pyramid\"). Which is it, and which anti-pattern does it warn about?",
+      "options": [
+        "About 80% unit tests, 15% integration tests, and 5% end-to-end tests; the \"ice cream cone\" (many end-to-end tests, few unit tests) is slow and unreliable",
+        "An equal mix of each; there is no anti-pattern",
+        "About 5% unit, 15% integration, and 80% end-to-end; the \"pyramid\" is the anti-pattern",
+        "All unit tests and no integration tests; the \"hourglass\" is the goal"
+      ],
+      "correct": 0,
+      "explanation": "Unit tests are fast and stable, so they form the base. End-to-end tests are better as sanity checks than as the primary way to catch bugs. (SWE at Google, Ch. 11)"
+    },
+    {
+      "id": "q15",
+      "question": "What is the Beyoncé Rule from Chapter 11?",
+      "options": [
+        "Every function must have exactly one test",
+        "Teams may delete tests that fail",
+        "\"If you liked it, then you shoulda put a test on it\": if your team relies on behavior, you should have a test for it, because other teams' changes are only responsible for not breaking tests",
+        "Tests must be written before any code is allowed to run"
+      ],
+      "correct": 2,
+      "explanation": "Infrastructure teams making broad changes can rely on passing tests as the signal that a change is safe, so behavior without tests may be broken unknowingly. (SWE at Google, Ch. 11)"
+    },
+    {
+      "id": "q16",
+      "question": "According to Chapter 11, what is a key problem with using code coverage (e.g., \"90% of lines executed\") as the measure of test quality?",
+      "options": [
+        "Coverage cannot be measured for Python",
+        "Coverage numbers above 50% are impossible to reach",
+        "Coverage always equals the number of tests",
+        "Coverage only shows that lines were run, not that the tests verified anything useful, and a coverage target tends to become a ceiling instead of a floor"
+      ],
+      "correct": 3,
+      "explanation": "The book suggests asking about tested behaviors instead: can you catch breaking changes, are tests stable, will what customers expect keep working? (SWE at Google, Ch. 11)"
+    },
+    {
+      "id": "q17",
+      "question": "How does Chapter 20 define static analysis?",
+      "options": [
+        "Programs analyzing source code to find potential issues (bugs, antipatterns) without executing the program, as opposed to dynamic analysis of a running program",
+        "Running the program with random inputs until it crashes",
+        "Reviewing code by hand in a meeting",
+        "Measuring how fast the program runs in production"
+      ],
+      "correct": 0,
+      "explanation": "The \"static\" refers to analyzing source code rather than a running program. It can find bugs early, before code is checked in as production code. (SWE at Google, Ch. 20)"
+    },
+    {
+      "id": "q18",
+      "question": "Why does Chapter 20 emphasize keeping false positives low?",
+      "options": [
+        "Static analysis tools are never wrong",
+        "Developers stop using tools that produce too many incorrect or unhelpful warnings; Google's Tricorder checks must have less than 10% effective false positives",
+        "False positives are the same as false negatives",
+        "False positives only occur in compiled languages"
+      ],
+      "correct": 1,
+      "explanation": "A false positive is a warning that flags code that doesn't have the issue. The chapter notes perception matters: confusing or unimportant warnings are treated like false positives. (SWE at Google, Ch. 20)"
+    },
+    {
+      "id": "q19",
+      "question": "Where does Google integrate static analysis into the developer workflow, according to Chapter 20?",
+      "options": [
+        "Mainly in code review, where warnings and suggested fixes appear on the change (with additional points like compiler checks, IDEs, and commit gating)",
+        "Only once a year as an audit",
+        "Only after code has been released to users",
+        "Only on each developer's laptop with no shared results"
+      ],
+      "correct": 0,
+      "explanation": "Developers are already in a \"change mindset\" during code review, so fixes from static analysis fit naturally. The chapter's lesson: make static analysis part of the core developer workflow. (SWE at Google, Ch. 20)"
+    },
+    {
+      "id": "q20",
+      "question": "How does Chapter 23 describe the fundamental goal of continuous integration (CI)?",
+      "options": [
+        "To automatically catch problematic changes as early as possible by integrating work frequently, with each integration verified by an automated build and tests",
+        "To replace code review with automated approval",
+        "To release a new version to users once per quarter",
+        "To prevent developers from committing code to the main branch"
+      ],
+      "correct": 0,
+      "explanation": "The book updates the definition for modern systems as \"the continuous assembling and testing of our entire complex and rapidly evolving ecosystem.\" (SWE at Google, Ch. 23)"
+    },
+    {
+      "id": "q21",
+      "question": "According to Chapter 23, which tests belong in presubmit versus post-submit?",
+      "options": [
+        "Presubmit should run every slow test; post-submit should run none",
+        "Presubmit should run only fast, reliable tests; post-submit can accept longer run times and some instability",
+        "Only flaky tests belong in presubmit",
+        "Presubmit and post-submit must always run identical tests"
+      ],
+      "correct": 1,
+      "explanation": "Most teams run small tests (like unit tests) on presubmit. Slower, larger-scoped tests are saved for post-submit and later phases. (SWE at Google, Ch. 23)"
+    },
+    {
+      "id": "q22",
+      "question": "Chapter 23 asks: why not just run ALL tests on presubmit? Which is one of its reasons?",
+      "options": [
+        "It would make the tests pass too often",
+        "Tests are not allowed to run before code review",
+        "It is too expensive and disruptive; engineers would wait on slow or flaky tests, and the repository may change while tests run (a \"mid-air collision\")",
+        "Presubmit cannot run any tests"
+      ],
+      "correct": 2,
+      "explanation": "The chapter notes it's costly to block engineers on slow tests or flakiness unrelated to their change, and two changes touching different files can still cause a test to fail together. (SWE at Google, Ch. 23)"
+    },
+    {
+      "id": "q23",
+      "question": "What is a release candidate (RC) in Chapter 23?",
+      "options": [
+        "A branch that is expected to be abandoned",
+        "A cohesive, deployable unit assembled from code, configuration, and dependencies that have passed the continuous build",
+        "A single unit test that must pass before release",
+        "Any commit made on a Friday"
+      ],
+      "correct": 1,
+      "explanation": "Release automation assembles release candidates (usually cut at \"green head\"), and larger tests then run against the whole candidate as it is promoted through environments. (SWE at Google, Ch. 23)"
+    },
+    {
+      "id": "q24",
+      "question": "According to Chapter 23, how do experiments and feature flags help with continuous delivery?",
+      "options": [
+        "They permanently remove the need for tests",
+        "They reduce deployment risk by isolating changes in modular components that can be dynamically toggled in production",
+        "They force every user to see every feature at once",
+        "They prevent configuration from being versioned"
+      ],
+      "correct": 1,
+      "explanation": "Feature flags let incomplete or risky changes ship dark and be turned on gradually, which pairs with trunk-based development. (SWE at Google, Ch. 23)"
+    },
+    {
+      "id": "q25",
+      "question": "What is the difference between git and GitHub?",
+      "options": [
+        "git works only on repositories hosted on GitHub",
+        "GitHub is a command-line tool, and git is a website",
+        "They are two names for the same program",
+        "git is the distributed version control tool that tracks history; GitHub is a hosting service for git repositories that adds collaboration features such as pull requests"
+      ],
+      "correct": 3,
+      "explanation": "git runs locally and manages commits, branches, and merges. GitHub (like GitLab) hosts remote repositories and adds features around them."
+    },
+    {
+      "id": "q26",
+      "question": "How does `git rebase main` on a feature branch differ from `git merge main`?",
+      "options": [
+        "Rebase pushes your work to GitHub; merge only works locally",
+        "Rebase deletes your commits; merge keeps them",
+        "Rebase replays your commits on top of the latest main to produce a linear history; merge keeps both lines of history and adds a merge commit",
+        "They always produce identical commit histories"
+      ],
+      "correct": 2,
+      "explanation": "Merging preserves how work actually happened. Rebasing rewrites your commits onto a new base (new commit IDs), giving a straight-line history."
+    },
+    {
+      "id": "q27",
+      "question": "In Docker, what is the difference between an image and a container?",
+      "options": [
+        "An image is a read-only template (blueprint); a container is a running instance created from an image",
+        "A container is a template; an image is a virtual machine",
+        "An image is a running process; a container is a file on disk",
+        "They are two names for the same thing"
+      ],
+      "correct": 0,
+      "explanation": "You build an image once and can start many containers from it, like a class and its instances."
+    },
+    {
+      "id": "q28",
+      "question": "What is the difference between a Docker volume and a bind mount?",
+      "options": [
+        "A volume is storage managed by Docker; a bind mount maps a specific folder from the host machine into the container",
+        "A volume maps a host folder; a bind mount is managed by Docker",
+        "A volume deletes data on stop; a bind mount encrypts it",
+        "There is no difference"
+      ],
+      "correct": 0,
+      "explanation": "Volumes are created and managed by Docker. Bind mounts directly link a host path (like your source code directory) into a container."
+    },
+    {
+      "id": "q29",
+      "question": "What is the purpose of lock files such as `poetry.lock` and `package-lock.json`?",
+      "options": [
+        "They list only the code you wrote yourself",
+        "They prevent anyone from editing the project",
+        "They store the passwords for package registries",
+        "They record the exact versions of every installed dependency (including transitive ones) so every machine installs the same thing"
+      ],
+      "correct": 3,
+      "explanation": "`pyproject.toml` and `package.json` allow version ranges. Lock files pin exact versions so installs are reproducible, which is why they are committed to git."
+    },
+    {
+      "id": "q30",
+      "question": "What happened in the \"left-pad\" incident, and why should we care?",
+      "options": [
+        "A developer removed a tiny, widely used package from npm, breaking builds around the world and showing how fragile deep dependency chains can be",
+        "left-pad was updated to a major version that nobody wanted",
+        "npm banned every package written in JavaScript",
+        "A hacker stole credentials through the left-pad package"
+      ],
+      "correct": 0,
+      "explanation": "Thousands of projects depended (often indirectly) on an 11-line package. When it disappeared, builds failed, illustrating the trade-offs of relying on dependencies."
+    }
+  ]
+}

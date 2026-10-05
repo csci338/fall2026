@@ -1,0 +1,176 @@
+{
+  "quizName": "Lab 6: Testing & Static Analysis",
+  "start_date": "2026-09-24",
+  "notes": "Take after completing Lab 6",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Why can anyone write and run tests without a testing framework?",
+      "options": [
+        "Because tests are not code",
+        "A test just calls your function with known inputs and checks the result; a framework is a convenience, not a requirement",
+        "Because JavaScript and Python include a built-in test generator",
+        "Because tests only work if you install Mocha or unittest first"
+      ],
+      "correct": 1,
+      "explanation": "A test is just code that calls your function and compares the actual output to the expected output. Frameworks add organization and nicer reporting, but the core idea needs nothing special."
+    },
+    {
+      "id": "q2",
+      "question": "What does a unit test check?",
+      "options": [
+        "That one small piece of code (e.g., a single function) returns the expected result for given inputs",
+        "That all imports are alphabetized",
+        "That the whole application works end to end in production",
+        "That the code is formatted consistently"
+      ],
+      "correct": 0,
+      "explanation": "Unit tests exercise small, isolated pieces of code. Formatting and import order are checked by other tools (formatters, import sorters)."
+    },
+    {
+      "id": "q3",
+      "question": "Which is the best reason to test `rps(\"x\", \"x\")` even though a tie test already exists?",
+      "options": [
+        "Because \"x\" is a valid hand",
+        "Because tests must always be run in pairs",
+        "It is an edge case: two identical but invalid hands should return \"Invalid\", not \"Tie!\"",
+        "Because Mocha requires at least two identical arguments"
+      ],
+      "correct": 2,
+      "explanation": "Good tests probe boundaries and edge cases. A function can pass every happy-path test yet still return \"Tie!\" for two equal invalid values."
+    },
+    {
+      "id": "q4",
+      "question": "What is a code formatter (e.g., Prettier, Black) responsible for?",
+      "options": [
+        "Installing dependencies",
+        "Finding logic bugs such as unreachable code",
+        "Automatically rewriting code to follow consistent style (indentation, line width, quotes, spacing)",
+        "Running the test suite"
+      ],
+      "correct": 2,
+      "explanation": "Formatters change how code looks, not what it does. This keeps a team's code uniform and avoids style arguments in code review."
+    },
+    {
+      "id": "q5",
+      "question": "What is a linter (e.g., ESLint, flake8) mainly used for?",
+      "options": [
+        "Running tests and reporting coverage",
+        "Compiling code to machine language",
+        "Rewriting all code into one consistent layout automatically",
+        "Statically analyzing code for likely errors, style violations, and bad practices (like unused variables), usually without changing behavior"
+      ],
+      "correct": 3,
+      "explanation": "Linters examine code without running it and point out potential problems. They may auto-fix a few things, but many findings must be fixed by hand."
+    },
+    {
+      "id": "q6",
+      "question": "Which statement best describes the difference between a formatter and a linter?",
+      "options": [
+        "They do exactly the same thing",
+        "A formatter runs your tests; a linter installs packages",
+        "A formatter finds bugs; a linter fixes whitespace",
+        "A formatter standardizes how code looks; a linter flags potential errors and questionable patterns"
+      ],
+      "correct": 3,
+      "explanation": "Formatters normalize layout. Linters analyze code quality (unused imports, undefined names, suspicious constructs). Teams typically use both."
+    },
+    {
+      "id": "q7",
+      "question": "Why do the lab's instructions create a `.flake8` file with `max-line-length = 88`?",
+      "options": [
+        "Because Python cannot run lines longer than 88 characters",
+        "To make isort sort imports faster",
+        "So flake8's rules match Black's formatting (Black wraps at 88 characters, while flake8 defaults to 79)",
+        "To tell Black which files to ignore"
+      ],
+      "correct": 2,
+      "explanation": "Without matching settings, a file Black formatted could still be flagged by flake8 for line length. Aligning the two avoids contradictory tool output."
+    },
+    {
+      "id": "q8",
+      "question": "What does `isort` do, and why do some teams run it?",
+      "options": [
+        "It checks that imports work at runtime",
+        "It installs missing packages from PyPI",
+        "It removes unused imports and deletes unused files",
+        "It sorts and groups Python import statements into a consistent order, keeping imports tidy and diffs small"
+      ],
+      "correct": 3,
+      "explanation": "isort only reorders (and groups) imports. Consistent ordering makes files easier to read and reduces merge noise. It doesn't judge whether an import is used."
+    },
+    {
+      "id": "q9",
+      "question": "In `package.json`, why are `mocha`, `prettier`, and `eslint` installed with `--save-dev`?",
+      "options": [
+        "Because they cannot be installed any other way",
+        "They are tools needed while developing (testing, formatting, linting), not required for the app to run",
+        "Because they must be committed to GitHub inside `node_modules`",
+        "Because `--save-dev` makes them install faster"
+      ],
+      "correct": 1,
+      "explanation": "devDependencies are tools for development and CI. Runtime libraries go under `dependencies`."
+    },
+    {
+      "id": "q10",
+      "question": "What is the benefit of defining scripts like `\"lint:check\"` and `\"format:fix\"` in `package.json`?",
+      "options": [
+        "They prevent Prettier and ESLint from conflicting",
+        "Everyone can run the same commands with `npm run <name>`, so the team uses identical tool settings",
+        "They make the tools run automatically on every save",
+        "They install the tools globally"
+      ],
+      "correct": 1,
+      "explanation": "Scripts give the team shared, named commands. They don't run automatically, but they make the checks easy to repeat locally and in CI."
+    },
+    {
+      "id": "q11",
+      "question": "Black and Prettier both reformat files. What does it mean that running the formatter a second time should change nothing?",
+      "options": [
+        "Formatting is idempotent: once code follows the style, the tool finds nothing to fix",
+        "The tool only works once per project",
+        "The code has no tests",
+        "The formatter failed silently"
+      ],
+      "correct": 0,
+      "explanation": "A formatter converges on one canonical layout. If a second run still changes files, something is wrong or a different tool/version is in play."
+    },
+    {
+      "id": "q12",
+      "question": "A team's CI pipeline runs the test suite, formatter check, linter, and import sorter on every pull request. What is the main benefit?",
+      "options": [
+        "Problems are caught automatically before code is merged, keeping the main branch consistent and maintainable",
+        "It guarantees the code has no bugs",
+        "It removes the need to write tests",
+        "It replaces the need for code review"
+      ],
+      "correct": 0,
+      "explanation": "Automated checks catch regressions and style issues early and consistently. They don't guarantee correctness or replace human review."
+    },
+    {
+      "id": "q13",
+      "question": "Which command checks Python formatting with Black WITHOUT changing any files?",
+      "options": [
+        "`poetry run isort .`",
+        "`poetry run flake8 --fix .`",
+        "`poetry run black --check .`",
+        "`poetry run black .`"
+      ],
+      "correct": 2,
+      "explanation": "`--check` reports which files would change but leaves them alone. Plain `black .` rewrites files, and flake8 has no `--fix` option."
+    },
+    {
+      "id": "q14",
+      "question": "Which JavaScript command lists style violations with Prettier WITHOUT rewriting files?",
+      "options": [
+        "`npm run format:fix`",
+        "`npm run format:check`",
+        "`npm test`",
+        "`npm run lint:fix`"
+      ],
+      "correct": 1,
+      "explanation": "`format:check` runs `prettier --check`; `format:fix` runs `prettier --write` and changes your files. `lint:fix` is ESLint's auto-fix."
+    }
+  ]
+}
