@@ -60,9 +60,13 @@ Suggested order: **has22** → **countEvens** → **either24** (Java) → **maxS
 
 Suggested order: **iteration** → **search** → **duplicates with set** → **frequency** → **duplicates without set**.
 
+For the midterm exam, you will be expected to understand how to write solutions that work and are efficient.
+
+
 ### OOP practice (<a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Java OOP</a> · <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Python OOP</a>)
 
-CodingBat will not ask you to invent classes. Use these for constructors, encapsulation, and inheritance.
+The object-oriented programming (OOP) ideas covered below are important, but will not be formally evaluated on the midterm exam. That said, you will be expected to be familiar with these ideas when working on your final project:
+
 
 | Focus | Java | Python | What it evaluates |
 |-------|------|--------|-------------------|
@@ -73,7 +77,6 @@ CodingBat will not ask you to invent classes. Use these for constructors, encaps
 | Overriding + `super` | <a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Ex 18 – Polite Person</a> | <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Ex 14 – Override with `super()`</a> | Method overriding and calling the parent version |
 | Polymorphism | <a href="https://pynative.com/java-oop-exercises/" target="_blank" rel="noopener noreferrer">Ex 25 – Animal Chorus</a> | <a href="https://pynative.com/python-object-oriented-programming-oop-exercise/" target="_blank" rel="noopener noreferrer">Ex 16 – Dog & Cat `speak()`</a> | Same call, different subclass behavior |
 
-For the midterm exam, you will be expected to understand how to write solutions that work and are efficient.
 
 ## 3. Other Coding Interview Resources
 If you are interested in pursuing a software engineering type career, code interviews are – for better or for worse – the currency of the realm. Given this, I highly recommend that you dedicate some time to doing practice problems. Here are some useful resources:
