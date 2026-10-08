@@ -283,8 +283,8 @@ export const baseTopics = [
           date: "Th, Oct 8",
           topic: "Mid-Semester Review",
           activities: [
-            { title: "Mid-Semester Review", url: "https://docs.google.com/presentation/d/1ZqGsjtky07M_Jzoj1RIFZmNyHO_iBp3z/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
-            { title: "Mid Semester Review Cheat Sheet Activity", url: "https://docs.google.com/document/d/1fjuTb6Oa3q5EDUSeBOnjUa9kNr1st_y5/edit", draft: 1 },
+            { title: "Mid-Semester Review", url: "https://docs.google.com/presentation/d/1ZqGsjtky07M_Jzoj1RIFZmNyHO_iBp3z/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Mid Semester Review Cheat Sheet Activity", url: "https://docs.google.com/document/d/1fjuTb6Oa3q5EDUSeBOnjUa9kNr1st_y5/edit", draft: 0 },
             { title: "Coding Practice for Midterm", url: "/activities/python-practice", draft: 0},
             { title: "Basic Coding Concepts You Should Know (Review)", url: "/resources/programming-readiness-diagnostic", draft: 0}
           ],

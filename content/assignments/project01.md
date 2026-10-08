@@ -152,27 +152,61 @@ instructions.
 Sarah will review each review-ready PR within two business days. If a PR
 needs revisions, Sarah will review your updated PR within two business. Submitting a PR is not the same thing as completing the PR. Completeness is necessary to receive any credit.
 
-## 6. AI and outside-help policy
+## 6. Generative AI and outside-help policy
 
-You may use AI tools such as ChatGPT or GitHub Copilot to:
+Generative AI tools (e.g., ChatGPT, Claude, GitHub Copilot) can be useful learning
+resources. However, **you are expected to do your own programming, writing, and
+problem-solving in this course.**
 
-- Explain a Python concept, an error message, or a part of the starter code.
-- Brainstorm an approach or suggest edge cases for your tests.
-- Review code you wrote and point out possible problems.
-- Generate a small example or code snippet that you adapt and understand.
+The goal is not simply to produce working software, but to develop the skills and
+judgment needed to become a software engineer.
+
+### Acceptable uses
+
+- Ask AI to explain programming concepts, syntax, tools, or error messages.
+- Use AI to explore possible approaches or debugging strategies.
+- Request feedback on code you have already written.
+- Generate examples to help you learn a concept.
 
 You may discuss concepts and debugging strategies with classmates, but each student
 must write and understand their own issue's implementation and tests.
 
-Do not ask an AI tool or another person to complete the whole issue, generate the
-entire implementation or test suite, or make design decisions you cannot explain.
-Do not submit code you cannot explain. You are responsible for checking that all
-suggestions are correct and that your tests and code checks pass.
+### Unacceptable uses
 
-If you use an AI tool, disclose it in your PR description: name the tool and briefly
-say what you used it for (for example, “ChatGPT helped me understand a pytest error;
-I wrote and verified the fix”). If you did not use AI, write “AI assistance: none.”
-Be prepared to explain your code and tests during review.
+- Ask AI to complete assignments, implement issues, or write project code.
+- Copy AI-generated code into your submissions, even with minor modifications.
+- Use AI to write GitHub issues, pull request summaries, progress reports, or other
+  project documentation.
+- Paste assignment instructions or prompts into AI tools and submit the generated
+  responses as your own work.
+
+### Pull request summaries and documentation
+
+> **Your pull request summaries, issue descriptions, and other project documentation
+must be written in your own words and in your own voice.** You should be able to
+explain what you changed, why you made those changes, how you tested your work, and
+any outstanding issues.
+> 
+> **Do not use AI to generate, rewrite, or polish these summaries.** Communicating your
+technical work clearly is an essential software engineering skill, not an
+administrative task.
+
+### Accountability
+
+You must be able to independently explain, debug, and modify everything you submit.
+You may be asked to demonstrate your understanding without AI assistance.
+
+> * **If you used AI in an acceptable way**, disclose it in your PR description: name the
+tool and briefly say what you used it for (for example, “ChatGPT helped me understand
+a pytest error; I wrote and verified the fix”). 
+> * **If you did not use AI**, write “AI assistance: none.”
+
+Unless an assignment explicitly states otherwise, these rules apply to all submitted
+work. Unauthorized AI use may require you to redo an assignment and may be addressed
+under the university's academic integrity policies.
+
+**Bottom line:** Use AI to help you *learn how to do the work*, not to *do the work
+for you*.
 
 ## Grading
 
