@@ -109,7 +109,14 @@ resolve a conflict.
 
   ```sh
   poetry run pytest
+
+  # run format checks:
   poetry run black --check course_lookup tests
+
+  # run format fixes:
+  poetry run black course_lookup tests
+
+  # run linter:
   poetry run flake8 course_lookup tests
   ```
 
@@ -145,14 +152,49 @@ Use this checklist for each issue:
 - [ ] If you used AI, disclose the tool and how you used it (see the AI policy).
 - [ ] Confirm the PR's automated checks pass and respond to review comments promptly.
 
-Do not merge your PR unless your instructor tells you to. The instructor reviews and
-merges the work. See `CONTRIBUTING.md` in the project repository for the complete PR
-instructions.
+Do not merge your PR until your instructor has approved it. After approval, follow
+section 6 to rebase if needed, merge into `main`, and delete the branch. See
+`CONTRIBUTING.md` in the project repository for the complete PR instructions.
 
 Sarah will review each review-ready PR within two business days. If a PR
 needs revisions, Sarah will review your updated PR within two business. Submitting a PR is not the same thing as completing the PR. Completeness is necessary to receive any credit.
 
-## 6. Generative AI and outside-help policy
+## 6. Merging Your Branch After Approval
+
+Merge only after your instructor has approved the PR. Before you merge, update your
+branch so it includes the latest `main` (other students may have merged since you
+opened the PR):
+
+```sh
+git checkout main
+git pull
+git checkout issue-14-<your_name>
+git rebase main
+```
+
+If the rebase reports conflicts, resolve them, stage the resolved files, and run
+`git rebase --continue`. Then update your remote branch:
+
+```sh
+git push --force-with-lease
+```
+
+Confirm the PR checks still pass. On GitHub, merge the PR into `main` (use
+**Rebase and merge** if that option is available), then delete the remote branch when
+GitHub offers.
+
+Finally, update your local repo and remove the local issue branch:
+
+```sh
+git checkout main
+git pull
+git branch -d issue-14-<your_name>
+```
+
+Replace the example branch name with yours. You are then ready to claim your next
+issue from an up-to-date `main`.
+
+## 7. Generative AI and outside-help policy
 
 Generative AI tools (e.g., ChatGPT, Claude, GitHub Copilot) can be useful learning
 resources. However, **you are expected to do your own programming, writing, and
