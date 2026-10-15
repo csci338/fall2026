@@ -34,7 +34,7 @@ You do not need to know Textual. We add **one small idea at a time** and run the
 1. If you have a PR where changes were requested, please revise and resubmit!
 
 ## Get Situated
-1. Sync your fork of **project01-fall2026** on GitHub, then in your terminal:
+1. In your terminal, commit any un-committed work, and then pull down the latest from main:
     ```bash
     git checkout main
     git pull
@@ -79,6 +79,93 @@ Before you look at any steps, try to build it using **only the online documentat
 | Lay widgets out side by side | [Layout guide](https://textual.textualize.io/guide/layout/) |
 | Run code when a key is pressed | [Input guide](https://textual.textualize.io/guide/input/) and [Actions](https://textual.textualize.io/guide/actions/) |
 | Run code when a button is clicked | [Events and messages](https://textual.textualize.io/guide/events/) |
+
+**Stuck on a word in the docs?** The one that trips most people up is `yield`:
+
+<details class="mb-4">
+<summary><strong>What does <code>yield</code> mean?</strong> (click to expand)</summary>
+
+`compose()` has one job: hand Textual the list of widgets to show. Here is the same method written two ways.
+
+**With a list** (no `yield`): build the whole list, then give it back at the end.
+
+```python
+def compose(self):
+    widgets = []
+    widgets.append(Header())
+    widgets.append(Static("Hello World!"))
+    widgets.append(Footer())
+    return widgets
+```
+
+**With `yield`**: hand over one widget at a time, in the order they appear on screen.
+
+```python
+def compose(self):
+    yield Header()
+    yield Static("Hello World!")
+    yield Footer()
+```
+
+Textual ends up with the same three widgets in the same order either way. `yield` is shorthand: instead of collecting widgets in a list and returning it, each `yield` says "here is the next one."
+
+You can see the difference with a plain Python example that has nothing to do with Textual:
+
+```python
+def with_a_list():
+    items = []
+    print("building the list...")
+    items.append("a")
+    items.append("b")
+    return items          # everything is ready at once
+
+
+def with_yield():
+    print("starting...")
+    yield "a"             # pauses here and hands over "a"
+    print("...resuming")
+    yield "b"             # pauses again, hands over "b"
+
+
+for x in with_a_list():
+    print("got", x)
+# building the list...
+# got a
+# got b
+
+for x in with_yield():
+    print("got", x)
+# starting...
+# got a
+# ...resuming
+# got b
+```
+
+The function with `yield` runs a little, pauses at each `yield`, and picks up where it left off when asked for the next item. (Python calls this a *generator*.) For `compose()` you can ignore all that: **read every `yield` as "add this widget to the screen."**
+
+#### The actual Python meaning
+A function containing `yield` is a **generator**. Calling it does not run it; it returns a "paused function" that gives back one value each time it is asked for the next one, then pauses where it left off.
+
+```python
+def count_up(limit):
+    n = 1
+    while n <= limit:
+        yield n          # hand back n, then pause here
+        n += 1
+
+
+gen = count_up(3)
+print(next(gen))         # 1
+print(next(gen))         # 2
+print(list(count_up(3))) # [1, 2, 3]  (list() and for loops call next() for you)
+```
+
+`return` ends a function with one value. `yield` hands back a value and keeps the function alive so it can hand back more.
+
+{:.info}
+> The `with Vertical(...):` blocks work the same way. Anything yielded inside the block becomes a child of that container.
+
+</details>
 
 **Rules for this part:**
 1. Give it about 15 minutes, working alone or with the person next to you.
