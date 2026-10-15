@@ -306,22 +306,19 @@ export const baseTopics = [
       meetings: [
         {
           date: "Th, Oct 15",
+          topic: "Working with Textual (Midterm Project)"
+        },
+        {
+          date: "Tu, Oct 20",
           topic: "AsyncIO + MVC",
           activities: [
-            { title: "AsyncIO + MVC", url: "https://docs.google.com/presentation/d/1dB3iqBd20_sxRJStpBi9uSMdzA80xZdX/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "AsyncIO + MVC", url: "https://docs.google.com/presentation/d/1KBBQ-Jnw_2Ux96QiYbb7FyK31IvBuo2H/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
           readings: [
             { citation: "<a href=\"https://medium.com/@moraneus/mastering-pythons-asyncio-a-practical-guide-0a673265cf04\" target=\"_blank\">Mastering Python’s Asyncio: A Practical Guide</a>" },
           ],
           optionalReadings: [
             { citation: "<a href=\"https://www.youtube.com/watch?v=RIVcqT2OGPA\" target=\"_blank\">AsyncIO and the Event Loop Explained</a>" },
-          ],
-        },
-        {
-          date: "Tu, Oct 20",
-          topic: "MVC Lab Slides",
-          activities: [
-            { title: "MVC Lab Slides", url: "https://docs.google.com/presentation/d/1Phlll9bNNabM4nyGMQGWq4sEAW8w4Ncq/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
         },
       ],
