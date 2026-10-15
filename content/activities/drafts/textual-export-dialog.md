@@ -152,7 +152,44 @@ Read issue #30 slowly. Answer these as a class before writing any code:
 {:.info}
 > A good habit: the "returns" table in a ticket is your list of tests. Every row becomes one assertion.
 
-## 4. Build It, One Small Step at a Time
+## 4. Warm-Up: A Screen "Hello World"
+The ticket's **Helpful reading** links to the Textual guide on [Screens](https://textual.textualize.io/guide/screens/). Before we build the dialog, do that guide's first example on your own (5 to 10 minutes). It is a tiny app where pressing `b` opens a blue "Blue Screen of Death" screen on top of the main one.
+
+### Start from a clean branch
+```bash
+git checkout main
+git pull
+poetry run pytest
+```
+The tests should still pass. Then create a branch for the warm-up:
+
+```bash
+# replace <yourname> with your name, no angle brackets
+git checkout -b screen-hello-world-<yourname>
+```
+
+### Do the exercise
+1. Open the [Screens guide](https://textual.textualize.io/guide/screens/) and find the first full example (the one with a `BSOD` class).
+2. Copy it into a scratch file in the project root, such as `screen_hello.py`. If the example uses a separate `.tcss` file, copy that too and save it next to your script. Do not commit these files.
+3. Run it: `poetry run python screen_hello.py`
+4. Press `b`, then press `Escape` (or whichever key the guide's example uses to go back).
+
+### Answer these before moving on
+Two sentences each is plenty.
+* Which line makes the second screen appear? Which line (or key) makes it go away?
+* Where is the second screen's content listed? (Hint: look for `compose` and `yield`.)
+* What will be different about our `ExportDialog`? It is a `ModalScreen`, and it has to hand back an answer. Search the guide page for `ModalScreen` and `dismiss`.
+
+{:.info}
+> This is the same pattern we are about to use: **one screen on top of another, opened with a key, closed with another key**. Our dialog adds buttons and an answer.
+
+When you are done, go back to your practice branch for the rest of the activity:
+
+```bash
+git checkout export-dialog-practice-<yourname>
+```
+
+## 5. Build It, One Small Step at a Time
 Create `course_lookup/tui/screens/export_dialog.py`. After **each** step we run it and look at the result, so you never write more than ten lines blind.
 
 ### Step 0: a way to see it
@@ -301,7 +338,7 @@ Then use `f"Export {self.what} as:"` in the `Static`. The demo already passes `"
 {:.info}
 > `super().__init__()` runs the parent class's setup. Leave it out and Textual breaks in confusing ways. If you want a refresher on this and `**kwargs`, see Part 2 of `course_lookup/tui/README.md`.
 
-## 5. Test It
+## 6. Test It
 We cannot click through the app every time. Instead we write a test with a **pilot**, a robot user that can press keys and click.
 
 Create `tests/test_screen_export_dialog.py`:
@@ -358,7 +395,7 @@ Add the remaining tests from the ticket. Use the first test as your template:
 
 **Stretch:** Break the code on purpose (change `"cancel"` to `"cancle"` in the handler). Which test fails, and does the failure message tell you why?
 
-## 6. Check and Wrap Up
+## 7. Check and Wrap Up
 Delete `demo_export.py`, then run the checks every ticket requires:
 
 ```
@@ -388,6 +425,7 @@ If Black complains, run it again without `--check` and it will fix your files.
 
 ## Instructor Notes (remove before publishing)
 * **Timing (about 50 min):** tour 5, spec reading 5, build 20, tests 15, wrap 5. If short on time, skip Step 6 and the stretch test.
+* **TODO (fixture):** the tests in section 6 build their own tiny `App` (`open_dialog`) on purpose, so students see every moving part. The project's `tests/conftest.py` on GitHub main already has a `run_app` fixture (not yet in older local clones) that does this without a custom `App`: `run_app([], scenario)` then `app.push_screen(ExportDialog(), answers.append)` inside the scenario. Once the class is comfortable with the from-scratch version, replace `open_dialog` with `run_app`, or add a shared screen fixture to `conftest.py`. Also update the "tiny `App` subclass" wording in issues #28, #30, #53, #62 and #64.
 * **Likely snags:** forgetting `super().__init__()`; a mistyped button id (the test fails with "no matches"); students running `demo_export.py` from the wrong directory, so the `course_lookup` import fails.
 * **Reference solution:**
 

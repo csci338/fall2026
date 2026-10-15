@@ -312,7 +312,7 @@ export const baseTopics = [
           date: "Tu, Oct 20",
           topic: "AsyncIO + MVC",
           activities: [
-            { title: "AsyncIO + MVC", url: "https://docs.google.com/presentation/d/1KBBQ-Jnw_2Ux96QiYbb7FyK31IvBuo2H/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "AsyncIO + MVC", url: "https://docs.google.com/presentation/d/1KBBQ-Jnw_2Ux96QiYbb7FyK31IvBuo2H/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
           readings: [
             { citation: "<a href=\"https://medium.com/@moraneus/mastering-pythons-asyncio-a-practical-guide-0a673265cf04\" target=\"_blank\">Mastering Python’s Asyncio: A Practical Guide</a>" },

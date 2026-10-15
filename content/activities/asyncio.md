@@ -1,7 +1,7 @@
 ---
 title: AsyncIO Activity
 type: activity
-draft: 0
+draft: 1
 start_date: 2026-10-20
 date: 2026-10-20
 ---
