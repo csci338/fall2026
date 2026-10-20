@@ -296,6 +296,10 @@ export const baseTopics = [
           date: "Tu, Oct 13",
           topic: "Midterm Exam",
         },
+        {
+          date: "Th, Oct 15",
+          topic: "Working with Textual (Midterm Project)"
+        },
       ],
     },
 
@@ -305,14 +309,10 @@ export const baseTopics = [
       description: "As applications grow beyond simple scripts, structure and concurrency become essential. In this unit, we introduce the Model–View–Controller (MVC) design pattern as a way to organize server-side code so that data, presentation, and control logic stay separable and maintainable. We also explore AsyncIO in Python, which helps you write non-blocking back-end code that can handle many concurrent tasks efficiently -- an important foundation for responsive web services.",
       meetings: [
         {
-          date: "Th, Oct 15",
-          topic: "Working with Textual (Midterm Project)"
-        },
-        {
           date: "Tu, Oct 20",
           topic: "AsyncIO + MVC",
           activities: [
-            { title: "AsyncIO + MVC", url: "https://docs.google.com/presentation/d/1KBBQ-Jnw_2Ux96QiYbb7FyK31IvBuo2H/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "AsyncIO + MVC", url: "https://docs.google.com/presentation/d/1KBBQ-Jnw_2Ux96QiYbb7FyK31IvBuo2H/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
           readings: [
             { citation: "Mastering Python's Asyncio: A Practical Guide", url: "https://medium.com/@moraneus/mastering-pythons-asyncio-a-practical-guide-0a673265cf04" },
@@ -320,6 +320,10 @@ export const baseTopics = [
           optionalReadings: [
             { citation: "AsyncIO and the Event Loop Explained", url: "https://www.youtube.com/watch?v=RIVcqT2OGPA" },
           ],
+        },
+        {
+          date: "Th, Oct 22",
+          topic: "MVC + AsyncIO Lab",
         },
       ],
     },
@@ -330,10 +334,6 @@ export const baseTopics = [
       description: "Most real applications need durable, queryable storage. In this unit, we introduce relational databases and SQL as the foundation for persisting application data, then turn to object-relational mappers (ORMs) such as SQLAlchemy. Understanding how to model data, query it effectively, and bridge between database tables and application objects is critical for building reliable back-end systems.",
       meetings: [
         {
-          date: "Th, Oct 22",
-          topic: "Back-End: Databases & ORMs",
-        },
-        {
           date: "Tu, Oct 27",
           topic: "Intro to Databases & Object-Relational Mappings",
           activities: [
@@ -343,6 +343,10 @@ export const baseTopics = [
             { citation: "<strong>SQL Readings</strong>: Please review the reference materials on SQL: <ul> <li><a href=\"resources/databases\">Database resources page</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-select.html\" target=\"_blank\">Querying a Table</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-join.html\" target=\"_blank\">Joins Between Tables</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-agg.html\" target=\"_blank\">Aggregate Functions</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-populate.html\" target=\"_blank\">Inserts</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-update.html\" target=\"_blank\">Updates</a></li> <li><a href=\"https://www.postgresql.org/docs/current/tutorial-delete.html\" target=\"_blank\">Deletions</a></li> </ul>" },
             { citation: "<strong>Object-Relational Mapping Readings</strong>: <ul> <li><a href=\"https://martinxpn.medium.com/working-with-databases-using-asyncio-in-python-sqlalchemy-example-79-100-days-of-python-1a5cef841803\" target=\"_blank\">High-level walkthrough / overview of SQLAlchemy</a></li> <li><a href=\"https://docs.sqlalchemy.org/en/20/orm/queryguide/index.html\" target=\"_blank\">SQLAlchemy Reference</a></li> </ul>" },
           ],
+        },
+        {
+          date: "Th, Oct 29",
+          topic: "Databases & ORMs Lab",
         },
       ],
     },

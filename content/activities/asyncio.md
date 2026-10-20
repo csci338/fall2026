@@ -1,7 +1,7 @@
 ---
 title: AsyncIO Activity
 type: activity
-draft: 1
+draft: 0
 start_date: 2026-10-20
 date: 2026-10-20
 ---
@@ -19,10 +19,10 @@ Python’s asyncio library enables concurrent execution, which is important when
 > In other words, they can only start making the next drink after finishing the current one. However, with asyncio, the barista can start preparing drinks as soon as the order is placed.
 
 ## 1. Get Situated / Pull Down the Files
-**On GitHub:** sync your fork of the **class-exercises-fall2025** repo on GitHub.
+**On GitHub:** sync your fork of the **class-exercises-fall2026** repo on GitHub.
 
 **On your local machine:**
-* Navigate to your `csci338/class-exercises-fall2025` directory
+* Navigate to your `csci338/class-exercises-fall2026` directory
 * Check that everything is committed and pushed to your remote branch (some command reminders below):<br><br>
     ```
     git branch
@@ -31,7 +31,7 @@ Python’s asyncio library enables concurrent execution, which is important when
     git commit -m "Message describing your changes"
     ```
 * Checkout `main`
-* Pull down the latest code (`git pull`). You should see a new `asyncio-activity` folder within your local `class-exercises-fall2025` folder.
+* Pull down the latest code (`git pull`). You should see a new `asyncio-activity` folder within your local `class-exercises-fall2026` folder.
 * Create a new branch from main called **asyncio-activity-b**: `git checkout -b asyncio-activity-b`
 
 
@@ -40,18 +40,19 @@ Python’s asyncio library enables concurrent execution, which is important when
 ### Race Condition Script
 First, run the `processes_race_condition.py` script on your computer using python (make sure you're in the right directory).
 
-    > The counter should have been 2,000, but it wasn't! Why?!
-    >
-    > When multiple processes or threads access shared data simultaneously without proper synchronization, they can interfere with each other in unexpected ways. This is called a race condition:
-    > * Process A reads the current value (e.g., counter = 5)
-    > * Process B reads the same value (counter = 5)
-    > * Process A increments and writes back (counter = 6)
-    > * Process B increments and writes back (counter = 6) ❌
-    >
-    > Result: Both processes thought they incremented the counter, but it only increased by 1 instead of 2!
-    {:.info}
+> The counter should have been 2,000, but it wasn't! Why?!
+>
+> When multiple processes or threads access shared data simultaneously without proper synchronization, they can interfere with each other in unexpected ways. This is called a race condition:
+> * Process A reads the current value (e.g., counter = 5)
+> * Process B reads the same value (counter = 5)
+> * Process A increments and writes back (counter = 6)
+> * Process B increments and writes back (counter = 6) ❌
+>
+> Result: Both processes incremented the counter, but one incremented an old, stale value of the counter. Therfore, the counter only increased by 1 instead of 2!
+
 
 ### Synchronized Script
+
 1. Next, run the `processes_without_race_condition.py` script on your computer using python (make sure you're in the right directory).
     * The counter should actually be 2,000 now. Why? Note the use of locks.
 
