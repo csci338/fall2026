@@ -4,7 +4,7 @@ type: project
 num: 1
 draft: 0
 assigned_date: 2026-10-01
-due_date: 2026-10-27
+due_date: 2026-11-04
 heading_max_level: 3
 points: 100
 ---
