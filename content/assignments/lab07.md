@@ -39,6 +39,8 @@ You have already seen this idea in Project 1. A filter like `matches_title` knew
 > **A test for separation:** to add a "room number" to the course search, you should only have to change the Model (so a course has a room) and the View (so the page shows it). If the change leaks into places that have nothing to do with it, the concerns were mixed together.
 
 ## 2. Get Situated
+> **Note:** If you were here on Tuesday (when we went over processes, threads, and asyncio), you already pulled down the code so you should be good to go. 
+
 **On GitHub:** sync your fork of the **class-exercises-fall2026** repo.
 
 **On your local machine:** make sure all previous work is committed, then:
@@ -76,13 +78,22 @@ If you worked on Project 1, this will look familiar. `Course.matches_title` is t
 {:.info}
 > You will see `async def` and `await` in `unca_api.py` and `server.py`. They let the server keep working while it waits for UNCA to respond. You do not need to change them in this lab.
 
-### Run the app
+### 3.1 Run the app
 ```bash
 cd lab07
 poetry install
 cd app
 poetry run uvicorn server:app --reload
 ```
+
+<details class="mb-4">
+<summary>What does uvicorn do?</summary>
+
+- **uvicorn** is the web server that runs the FastAPI app. It listens for browser requests and passes them to your code. The web server runs as a service that is always listening on its assigned port (in this case, port 8080).
+- **`server:app`** means "the `app` object inside `server.py`". The `app` object is an instance of the FastAPI class, and it holds everything about your web app.
+- **`--reload`** restarts the server automatically whenever you save a file, so you don't have to stop and start it by hand.
+
+</details>
 
 Visit [http://127.0.0.1:8000](http://127.0.0.1:8000), then search for a title such as `data`.
 
@@ -96,7 +107,7 @@ Visit [http://127.0.0.1:8000](http://127.0.0.1:8000), then search for a title su
 
 </div>
 
-### Trace a request
+### 3.2 Trace a request
 Open all three files in `app/` and follow one search from start to finish:
 1. The form in `index.html` sends the browser to `/?title=data`.
 2. `home()` in `server.py` receives the `title` and gets the list of courses (`unca_api.py` downloads them and builds a `Course` for each).
@@ -117,7 +128,7 @@ You can also see the Controller's results without the View at [http://127.0.0.1:
 ## 4. Make a Change in Each Part
 Add a **department** filter (for example, `CSCI`) to the search. It takes one small change in each MVC part.
 
-### 1. Model: `app/models.py`
+### 4.1 Model: `app/models.py`
 Add a `matches_department(self, value)` method to `Course`, next to `matches_title`. Follow the same rules the Project 1 filters use:
 * Ignore capitalization and spaces around `value`.
 * A blank `value` returns `True` (no restriction).
@@ -133,7 +144,7 @@ Add a `matches_department(self, value)` method to `Course`, next to `matches_tit
 
 </div>
 
-### 2. Controller: `app/server.py`
+### 4.2 Controller: `app/server.py`
 In **both** endpoints (`/` and `/api`):
 * Accept a `department: str = Query("")` parameter.
 * Add a `department` parameter to `filter_courses()`, keep a course only if it matches the title **and** the department, and pass `department` along from both endpoints.
@@ -152,7 +163,7 @@ In **both** endpoints (`/` and `/api`):
 {:.info}
 > The Controller doesn't know *how* to match a department. It just asks each `Course`. If the rule for matching changes later, only `models.py` has to change.
 
-### 3. View: `app/templates/index.html`
+### 4.3 View: `app/templates/index.html`
 * Add a text input named `department` to the form (copy the title input and keep its `value="{{ department }}"` so the box remembers what you typed).
 * Add a **Dept** column to the table that shows `{{ course.department }}`.
 
@@ -180,6 +191,50 @@ Answer these in an `answers.md` file in your `lab07` folder (a few sentences eac
 * Add a `credits` filter (for example, only 3-credit courses), following the same Model, Controller, View steps.
 * Show a "Full" label instead of `0` in the seats open column.
 * Add a term drop-down in the View, and have the Controller download only the chosen term.
+
+<details class="mb-4">
+<summary>Hints for the extra tasks</summary>
+
+* **Credits filter:**
+  * Copy `matches_department` in `models.py` and compare credits instead. Credits are probably a number, so convert the search value with `int()` and decide what a blank or invalid value should do.
+  * A form value always arrives as a string, so compare like with like.
+  * Then repeat the steps from Part 4: Model, then Controller (both endpoints), then View. Test with `/api?credits=3` before touching the template.
+* **"Full" label:**
+  * Do this in `index.html` with a Jinja `{% if %}`: if the seats open value is `0`, print `Full`, otherwise print the number.
+  * Jinja has `{% if ... %}{% else %}{% endif %}`, just like Python's `if`/`else`.
+* **Term drop-down:**
+  * Use a `<select name="term">` with an `<option value="...">` for each term. Mark the current one with `selected` so the box remembers it.
+  * Add a `term` query parameter in the Controller and pass it to the function in `unca_api.py` that downloads courses. Look at how that function builds its request to see where the term goes.
+  * Pass `term` back to the template, like you did with `department`.
+
+</details>
+
+### Design Tasks
+These only change the View (`index.html` and CSS). The Model and Controller stay the same, which is the point of MVC.
+* Replace the table with a grid of **cards**, one per course. Each card should show the course title, department and number, and seats open. Use CSS Grid or Flexbox so the cards wrap to fit the window.
+* Make the cards respond to screen size: one column on a phone, two on a tablet, three or more on a desktop.
+* Style the seats open count so it is easy to scan, for example green when seats are open and red or gray when the course is full.
+* Add a hover effect to the cards (a shadow or a slight lift), and make sure the text still has enough contrast to read.
+
+<details class="mb-4">
+<summary>Hints for the design tasks</summary>
+
+* **Cards:**
+  * Replace the `<table>` with a container `<div class="cards">` and loop inside it: `{% for course in courses %}<div class="card">...</div>{% endfor %}`.
+  * Reuse the same `{{ course.title }}`-style expressions that the table cells use.
+  * Make the container a grid with `display: grid; gap: 1rem;`.
+* **Responsive layout:**
+  * `grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));` makes the cards wrap on their own, with no media queries.
+  * If you want exact column counts, use `@media (min-width: 600px) { ... }` to change `grid-template-columns`.
+  * Resize your browser window, or use the browser's device toolbar, to test.
+* **Seats styling:**
+  * Add a CSS class in the template based on the value: `<span class="{% if course.seats_open > 0 %}open{% else %}full{% endif %}">`. Check the name of the seats attribute in `models.py` first.
+  * Then style `.open` and `.full` with different colors. Don't rely on color alone: keep the number or the "Full" label too.
+* **Hover effect:**
+  * Use `.card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }`, and add `transition: transform 0.15s, box-shadow 0.15s;` to `.card` so it animates.
+  * Check text contrast with your browser's dev tools (the color picker shows a contrast ratio).
+
+</details>
 
 ## Submission
 Before you submit, make sure that:
