@@ -3,8 +3,8 @@ title: Intro to client-side programming with React
 type: lab
 num: 9
 draft: 1
-assigned_date: 2026-11-05
-due_date: 2026-11-12
+assigned_date: 2026-11-10
+due_date: 2026-11-16
 points: 6
 ---
 

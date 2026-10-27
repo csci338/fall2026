@@ -3,8 +3,8 @@ title: MVC
 type: lab
 num: 7
 draft: 0
-assigned_date: 2026-10-22
-due_date: 2026-10-28
+assigned_date: 2026-10-27
+due_date: 2026-11-02
 points: 6
 ---
 

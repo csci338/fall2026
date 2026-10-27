@@ -323,6 +323,10 @@ export const baseTopics = [
         },
         {
           date: "Th, Oct 22",
+          topic: "Guest Speaker",
+        },
+        {
+          date: "Tu, Oct 27",
           topic: "MVC + AsyncIO Lab",
         },
       ],
@@ -334,7 +338,7 @@ export const baseTopics = [
       description: "Most real applications need durable, queryable storage. In this unit, we introduce relational databases and SQL as the foundation for persisting application data, then turn to object-relational mappers (ORMs) such as SQLAlchemy. Understanding how to model data, query it effectively, and bridge between database tables and application objects is critical for building reliable back-end systems.",
       meetings: [
         {
-          date: "Tu, Oct 27",
+          date: "Th, Oct 29",
           topic: "Intro to Databases & Object-Relational Mappings",
           activities: [
             { title: "Intro to Databases & Object-Relational Mappings", url: "https://docs.google.com/presentation/d/1qeEZ3FX3itqv7Miuho-KqqmEvrIOBX5T/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
@@ -345,7 +349,7 @@ export const baseTopics = [
           ],
         },
         {
-          date: "Th, Oct 29",
+          date: "Tu, Nov 3",
           topic: "Databases & ORMs Lab",
         },
       ],
@@ -369,7 +373,7 @@ export const baseTopics = [
       ],
       meetings: [
         {
-          date: "Tu, Nov 3",
+          date: "Th, Nov 5",
           topic: "Client-Side Engineering (Part I)",
           description: <>In this unit, we will explore some software engineering ideas that are specific to client-side engineering. To do this, we're going to learn some HTML, CSS, JavaScript, and React concepts <em>as a means of learning</em> various client-side software engineering principles</>,
           activities: [
@@ -384,7 +388,7 @@ export const baseTopics = [
           ],
         },
         {
-          date: "Th, Nov 5",
+          date: "Tu, Nov 10",
           topic: "React",
           activities: [
             { title: "React", url: "https://docs.google.com/presentation/d/1hpqJ1g0SB3JeD8rqU8u82rf9wvX-uLXW/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
@@ -396,7 +400,7 @@ export const baseTopics = [
           ],
         },
         {
-          date: "Tu, Nov 10",
+          date: "Th, Nov 12",
           topic: "Communicating over HTTP",
           activities: [
             { title: "Communicating over HTTP", url: "https://docs.google.com/presentation/d/1RaREuV6tA5Q1enX4qUxoCMzUIgAwEdgn/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
@@ -412,22 +416,19 @@ export const baseTopics = [
       meetings: [
 
         {
-            date: "Th, Nov 17",
+            date: "Tu, Nov 17",
             topic: "Symposium - No Class",
             holiday: true,
         },
         {
           date: "Th, Nov 19",
-          topic: "Introduction to Project 2",
-          activities: [
-            { title: "Introduction to Project 2", draft: 1 },
-          ],
+          topic: "Design Systems & External Data Lab",
         },
         {
           date: "Tu, Nov 24",
-          topic: "Project 2 work: Ideally, you'll begin customizing your vertical feature today",
+          topic: "Introduction to Project 2",
           activities: [
-            { title: "Project 2 work: Ideally, you'll begin customizing your vertical feature today", draft: 1 },
+            { title: "Introduction to Project 2", draft: 1 },
           ],
         },
         {

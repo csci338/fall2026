@@ -122,7 +122,18 @@ export default async function QuickLinksNav() {
   // Extract text from React element or string
   function extractText(citation: string | React.ReactElement): string {
     if (typeof citation === 'string') {
-      return citation;
+      // Citations may contain HTML markup; the sidebar shows plain text
+      return citation
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&amp;/g, '&')
+        .replace(/\s+/g, ' ')
+        .replace(/\s+([:,.;])/g, '$1')
+        .trim();
     }
     if (React.isValidElement(citation)) {
       const props = citation.props as { children?: React.ReactNode };
@@ -144,7 +155,11 @@ export default async function QuickLinksNav() {
 
   // Extract URL from React element
   function extractUrl(citation: string | React.ReactElement): string | undefined {
-    if (typeof citation === 'string') return undefined;
+    if (typeof citation === 'string') {
+      // Only use an embedded link when it is unambiguous (exactly one anchor)
+      const hrefs = [...citation.matchAll(/<a\s[^>]*href="([^"]+)"/g)].map(m => m[1]);
+      return hrefs.length === 1 ? hrefs[0] : undefined;
+    }
     if (React.isValidElement(citation)) {
       const props = citation.props as { children?: React.ReactNode; url?: string };
       if (props?.children) {
