@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1185 532" width="1185" height="532" font-family="Menlo, Monaco, Consolas, monospace" font-size="12">
+<title>dvdrental database schema</title>
+<rect width="1185" height="532" fill="#ffffff"/>
+<path d="M205,183.0 h18 V55.0 h-18" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="205,55.0 213,51.0 213,59.0" fill="#64748b"/>
+<path d="M205,311.0 h32 V147.0 h-32" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="205,147.0 213,143.0 213,151.0" fill="#64748b"/>
+<path d="M445,73.0 h18 V165.0 h-18" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="445,165.0 453,161.0 453,169.0" fill="#64748b"/>
+<path d="M260,91.0 C232.5,91.0 232.5,257.0 205,257.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="205,257.0 213,253.0 213,261.0" fill="#64748b"/>
+<path d="M260,219.0 C232.5,219.0 232.5,257.0 205,257.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="205,257.0 213,253.0 213,261.0" fill="#64748b"/>
+<path d="M260,437.0 C232.5,437.0 232.5,257.0 205,257.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="205,257.0 213,253.0 213,261.0" fill="#64748b"/>
+<path d="M685,73.0 C712.5,73.0 712.5,147.0 740,147.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="740,147.0 732,143.0 732,151.0" fill="#64748b"/>
+<path d="M685,201.0 h18 V55.0 h-18" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="685,55.0 693,51.0 693,59.0" fill="#64748b"/>
+<path d="M500,219.0 C472.5,219.0 472.5,347.0 445,347.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="445,347.0 453,343.0 453,351.0" fill="#64748b"/>
+<path d="M500,255.0 C472.5,255.0 472.5,165.0 445,165.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="445,165.0 453,161.0 453,169.0" fill="#64748b"/>
+<path d="M500,347.0 C472.5,347.0 472.5,347.0 445,347.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="445,347.0 453,343.0 453,351.0" fill="#64748b"/>
+<path d="M500,365.0 C472.5,365.0 472.5,165.0 445,165.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="445,165.0 453,161.0 453,169.0" fill="#64748b"/>
+<path d="M685,383.0 h32 V165.0 h-32" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="685,165.0 693,161.0 693,169.0" fill="#64748b"/>
+<path d="M925,55.0 C952.5,55.0 952.5,55.0 980,55.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="980,55.0 972,51.0 972,59.0" fill="#64748b"/>
+<path d="M740,73.0 h-18 V147.0 h18" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="740,147.0 732,143.0 732,151.0" fill="#64748b"/>
+<path d="M925,219.0 C952.5,219.0 952.5,147.0 980,147.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="980,147.0 972,143.0 972,151.0" fill="#64748b"/>
+<path d="M740,401.0 h-32 V147.0 h32" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="740,147.0 732,143.0 732,151.0" fill="#64748b"/>
+<path d="M925,419.0 C952.5,419.0 952.5,401.0 980,401.0" fill="none" stroke="#64748b" stroke-width="1.4"/>
+<polygon points="980,401.0 972,397.0 972,405.0" fill="#64748b"/>
+<rect x="20" y="20" width="185" height="62" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M20,46 V25 a5,5 0 0 1 5,-5 H200 a5,5 0 0 1 5,5 V46 Z" fill="#e0e7ff" stroke="#475569" stroke-width="1.2"/>
+<text x="30" y="37" font-weight="700" font-size="13" fill="#0f172a">country</text>
+<text x="30" y="59" font-weight="700" fill="#0f172a">country_id</text>
+<text x="197" y="59" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="30" y="77" font-weight="400" fill="#0f172a">country</text>
+<rect x="20" y="112" width="185" height="80" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M20,138 V117 a5,5 0 0 1 5,-5 H200 a5,5 0 0 1 5,5 V138 Z" fill="#e0e7ff" stroke="#475569" stroke-width="1.2"/>
+<text x="30" y="129" font-weight="700" font-size="13" fill="#0f172a">city</text>
+<text x="30" y="151" font-weight="700" fill="#0f172a">city_id</text>
+<text x="197" y="151" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="30" y="169" font-weight="400" fill="#0f172a">city</text>
+<text x="30" y="187" font-weight="400" fill="#0f172a">country_id</text>
+<text x="197" y="187" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<rect x="20" y="222" width="185" height="134" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M20,248 V227 a5,5 0 0 1 5,-5 H200 a5,5 0 0 1 5,5 V248 Z" fill="#e0e7ff" stroke="#475569" stroke-width="1.2"/>
+<text x="30" y="239" font-weight="700" font-size="13" fill="#0f172a">address</text>
+<text x="30" y="261" font-weight="700" fill="#0f172a">address_id</text>
+<text x="197" y="261" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="30" y="279" font-weight="400" fill="#0f172a">address</text>
+<text x="30" y="297" font-weight="400" fill="#0f172a">district</text>
+<text x="30" y="315" font-weight="400" fill="#0f172a">city_id</text>
+<text x="197" y="315" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="30" y="333" font-weight="400" fill="#0f172a">postal_code</text>
+<text x="30" y="351" font-weight="400" fill="#0f172a">phone</text>
+<rect x="260" y="20" width="185" height="80" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M260,46 V25 a5,5 0 0 1 5,-5 H440 a5,5 0 0 1 5,5 V46 Z" fill="#dcfce7" stroke="#475569" stroke-width="1.2"/>
+<text x="270" y="37" font-weight="700" font-size="13" fill="#0f172a">store</text>
+<text x="270" y="59" font-weight="700" fill="#0f172a">store_id</text>
+<text x="437" y="59" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="270" y="77" font-weight="400" fill="#0f172a">manager_staff_id</text>
+<text x="437" y="77" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="270" y="95" font-weight="400" fill="#0f172a">address_id</text>
+<text x="437" y="95" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<rect x="260" y="130" width="185" height="152" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M260,156 V135 a5,5 0 0 1 5,-5 H440 a5,5 0 0 1 5,5 V156 Z" fill="#dcfce7" stroke="#475569" stroke-width="1.2"/>
+<text x="270" y="147" font-weight="700" font-size="13" fill="#0f172a">staff</text>
+<text x="270" y="169" font-weight="700" fill="#0f172a">staff_id</text>
+<text x="437" y="169" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="270" y="187" font-weight="400" fill="#0f172a">first_name</text>
+<text x="270" y="205" font-weight="400" fill="#0f172a">last_name</text>
+<text x="270" y="223" font-weight="400" fill="#0f172a">address_id</text>
+<text x="437" y="223" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="270" y="241" font-weight="400" fill="#0f172a">email</text>
+<text x="270" y="259" font-weight="400" fill="#0f172a">store_id</text>
+<text x="270" y="277" font-weight="400" fill="#0f172a">username</text>
+<rect x="260" y="312" width="185" height="152" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M260,338 V317 a5,5 0 0 1 5,-5 H440 a5,5 0 0 1 5,5 V338 Z" fill="#dcfce7" stroke="#475569" stroke-width="1.2"/>
+<text x="270" y="329" font-weight="700" font-size="13" fill="#0f172a">customer</text>
+<text x="270" y="351" font-weight="700" fill="#0f172a">customer_id</text>
+<text x="437" y="351" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="270" y="369" font-weight="400" fill="#0f172a">store_id</text>
+<text x="270" y="387" font-weight="400" fill="#0f172a">first_name</text>
+<text x="270" y="405" font-weight="400" fill="#0f172a">last_name</text>
+<text x="270" y="423" font-weight="400" fill="#0f172a">email</text>
+<text x="270" y="441" font-weight="400" fill="#0f172a">address_id</text>
+<text x="437" y="441" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="270" y="459" font-weight="400" fill="#0f172a">active</text>
+<rect x="500" y="20" width="185" height="80" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M500,46 V25 a5,5 0 0 1 5,-5 H680 a5,5 0 0 1 5,5 V46 Z" fill="#fef3c7" stroke="#475569" stroke-width="1.2"/>
+<text x="510" y="37" font-weight="700" font-size="13" fill="#0f172a">inventory</text>
+<text x="510" y="59" font-weight="700" fill="#0f172a">inventory_id</text>
+<text x="677" y="59" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="510" y="77" font-weight="400" fill="#0f172a">film_id</text>
+<text x="677" y="77" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="510" y="95" font-weight="400" fill="#0f172a">store_id</text>
+<rect x="500" y="130" width="185" height="134" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M500,156 V135 a5,5 0 0 1 5,-5 H680 a5,5 0 0 1 5,5 V156 Z" fill="#fef3c7" stroke="#475569" stroke-width="1.2"/>
+<text x="510" y="147" font-weight="700" font-size="13" fill="#0f172a">rental</text>
+<text x="510" y="169" font-weight="700" fill="#0f172a">rental_id</text>
+<text x="677" y="169" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="510" y="187" font-weight="400" fill="#0f172a">rental_date</text>
+<text x="510" y="205" font-weight="400" fill="#0f172a">inventory_id</text>
+<text x="677" y="205" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="510" y="223" font-weight="400" fill="#0f172a">customer_id</text>
+<text x="677" y="223" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="510" y="241" font-weight="400" fill="#0f172a">return_date</text>
+<text x="510" y="259" font-weight="400" fill="#0f172a">staff_id</text>
+<text x="677" y="259" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<rect x="500" y="294" width="185" height="134" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M500,320 V299 a5,5 0 0 1 5,-5 H680 a5,5 0 0 1 5,5 V320 Z" fill="#fef3c7" stroke="#475569" stroke-width="1.2"/>
+<text x="510" y="311" font-weight="700" font-size="13" fill="#0f172a">payment</text>
+<text x="510" y="333" font-weight="700" fill="#0f172a">payment_id</text>
+<text x="677" y="333" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="510" y="351" font-weight="400" fill="#0f172a">customer_id</text>
+<text x="677" y="351" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="510" y="369" font-weight="400" fill="#0f172a">staff_id</text>
+<text x="677" y="369" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="510" y="387" font-weight="400" fill="#0f172a">rental_id</text>
+<text x="677" y="387" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="510" y="405" font-weight="400" fill="#0f172a">amount</text>
+<text x="510" y="423" font-weight="400" fill="#0f172a">payment_date</text>
+<rect x="740" y="20" width="185" height="62" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M740,46 V25 a5,5 0 0 1 5,-5 H920 a5,5 0 0 1 5,5 V46 Z" fill="#fce7f3" stroke="#475569" stroke-width="1.2"/>
+<text x="750" y="37" font-weight="700" font-size="13" fill="#0f172a">film_actor</text>
+<text x="750" y="59" font-weight="700" fill="#0f172a">actor_id</text>
+<text x="917" y="59" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">PK, FK</text>
+<text x="750" y="77" font-weight="700" fill="#0f172a">film_id</text>
+<text x="917" y="77" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">PK, FK</text>
+<rect x="740" y="112" width="185" height="224" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M740,138 V117 a5,5 0 0 1 5,-5 H920 a5,5 0 0 1 5,5 V138 Z" fill="#fce7f3" stroke="#475569" stroke-width="1.2"/>
+<text x="750" y="129" font-weight="700" font-size="13" fill="#0f172a">film</text>
+<text x="750" y="151" font-weight="700" fill="#0f172a">film_id</text>
+<text x="917" y="151" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="750" y="169" font-weight="400" fill="#0f172a">title</text>
+<text x="750" y="187" font-weight="400" fill="#0f172a">description</text>
+<text x="750" y="205" font-weight="400" fill="#0f172a">release_year</text>
+<text x="750" y="223" font-weight="400" fill="#0f172a">language_id</text>
+<text x="917" y="223" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="750" y="241" font-weight="400" fill="#0f172a">rental_duration</text>
+<text x="750" y="259" font-weight="400" fill="#0f172a">rental_rate</text>
+<text x="750" y="277" font-weight="400" fill="#0f172a">length</text>
+<text x="750" y="295" font-weight="400" fill="#0f172a">replacement_cost</text>
+<text x="750" y="313" font-weight="400" fill="#0f172a">rating</text>
+<text x="750" y="331" font-weight="400" fill="#0f172a">special_features</text>
+<rect x="740" y="366" width="185" height="62" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M740,392 V371 a5,5 0 0 1 5,-5 H920 a5,5 0 0 1 5,5 V392 Z" fill="#fce7f3" stroke="#475569" stroke-width="1.2"/>
+<text x="750" y="383" font-weight="700" font-size="13" fill="#0f172a">film_category</text>
+<text x="750" y="405" font-weight="700" fill="#0f172a">film_id</text>
+<text x="917" y="405" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">PK, FK</text>
+<text x="750" y="423" font-weight="700" fill="#0f172a">category_id</text>
+<text x="917" y="423" text-anchor="end" font-size="10" font-weight="700" fill="#1d4ed8">PK, FK</text>
+<rect x="980" y="20" width="185" height="80" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M980,46 V25 a5,5 0 0 1 5,-5 H1160 a5,5 0 0 1 5,5 V46 Z" fill="#fce7f3" stroke="#475569" stroke-width="1.2"/>
+<text x="990" y="37" font-weight="700" font-size="13" fill="#0f172a">actor</text>
+<text x="990" y="59" font-weight="700" fill="#0f172a">actor_id</text>
+<text x="1157" y="59" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="990" y="77" font-weight="400" fill="#0f172a">first_name</text>
+<text x="990" y="95" font-weight="400" fill="#0f172a">last_name</text>
+<rect x="980" y="112" width="185" height="62" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M980,138 V117 a5,5 0 0 1 5,-5 H1160 a5,5 0 0 1 5,5 V138 Z" fill="#fce7f3" stroke="#475569" stroke-width="1.2"/>
+<text x="990" y="129" font-weight="700" font-size="13" fill="#0f172a">language</text>
+<text x="990" y="151" font-weight="700" fill="#0f172a">language_id</text>
+<text x="1157" y="151" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="990" y="169" font-weight="400" fill="#0f172a">name</text>
+<rect x="980" y="366" width="185" height="62" rx="5" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+<path d="M980,392 V371 a5,5 0 0 1 5,-5 H1160 a5,5 0 0 1 5,5 V392 Z" fill="#fce7f3" stroke="#475569" stroke-width="1.2"/>
+<text x="990" y="383" font-weight="700" font-size="13" fill="#0f172a">category</text>
+<text x="990" y="405" font-weight="700" fill="#0f172a">category_id</text>
+<text x="1157" y="405" text-anchor="end" font-size="10" font-weight="700" fill="#b45309">PK</text>
+<text x="990" y="423" font-weight="400" fill="#0f172a">name</text>
+<text x="20" y="500" font-size="11" fill="#475569">PK = primary key, FK = foreign key (the arrow points to the referenced table). last_update columns and a few others are omitted.</text>
+<text x="20" y="516" font-size="11" fill="#475569">store_id in customer, staff and inventory also refers to store, but the database does not declare it as a foreign key.</text>
+</svg>

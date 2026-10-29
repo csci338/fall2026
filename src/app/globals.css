@@ -1319,6 +1319,30 @@ h2 .badge {
     gap: 0.5rem;
 }
 
+/* Expected-output toggle in labs: tighter above, roomier below */
+.prose details.expected-output {
+    margin-top: 0.25rem !important;
+    margin-bottom: 2.5rem !important;
+}
+
+/* Expected-output toggle in labs: blue text */
+.prose details.expected-output > summary {
+    color: #1d4ed8;
+}
+
+.prose details.expected-output > summary:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
+
+.dark .prose details.expected-output > summary {
+    color: #93c5fd;
+}
+
+.dark .prose details.expected-output > summary:hover {
+    color: #bfdbfe;
+}
+
 /* Level-specific sizes matching prose headings */
 .prose details.collapsible-h1 > summary {
     @apply text-4xl md:text-5xl;
