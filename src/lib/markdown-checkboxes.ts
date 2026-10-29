@@ -36,7 +36,8 @@ export function preprocessCheckboxes(markdownContent: string): {
     
       // Match lines that start with [ ] (with optional leading whitespace) OR list items with [ ]
       // This handles both: "[ ] content" and "- [ ] content" or "* [ ] content"
-      const checkboxMatch = line.match(/^(\s*)([-*+]|\d+\.)?\s*\[ \](.*)$/);
+      // The leading group also allows blockquote markers (e.g., "> [ ] content")
+      const checkboxMatch = line.match(/^(\s*(?:>\s*)*)([-*+]|\d+\.)?\s*\[ \](.*)$/);
       
       if (checkboxMatch) {
         const leadingWhitespace = checkboxMatch[1];

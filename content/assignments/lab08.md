@@ -17,6 +17,16 @@ The goals of this lab are as follows:
 1. Get experience interacting with a Postgres database from Python
 1. Get experience querying the database via an ORM
 
+### How this lab is organized
+Some sections are **practice**, which you can work through on your own or together in class. They help you get oriented, and you don't submit anything for them. The sections marked **Submit** are the ones that make up your lab grade. Look for the cues: the headings of the sections you submit have a blue <span class="badge submit">Required for submission</span> badge, and the practice sections have **yellow boxes**.
+
+| Section | Type | What you do |
+|--|--|--|
+| 3. SQL Practice | Practice | Explore the database in `psql` |
+| 4. SQL Tasks for the Lab | **Submit** | Write 9 SQL queries in `answers_sql.md` |
+| 5. SQLAlchemy Practice | Practice | Run and read `orm_samples.py` |
+| 6. SQLAlchemy Tasks for the Lab | **Submit** | Implement 7 functions in `answers_orm.py` |
+
 ## 2. Setup
 
 ### Version Control Stuff
@@ -44,9 +54,19 @@ docker compose up -d
 As you may recall, this command builds your Docker container *and* runs it. Keep your terminal running and do the remaining tasks on anther terminal.
 
 
-## 3. SQL Exercises
+## 3. SQL Practice (Not Submitted)
+{:.practice}
+> **Practice:** work through this section on your own or together in class. You don't submit anything from it. It gets you ready for the SQL tasks in section 4.
 
-### Run the Postgres SQL Client
+{% collapsible closed %}
+### 3.1. The DVD Rental Schema
+Here is a map of the tables in the `dvdrental` database and how they connect. Each arrow goes from a foreign key (FK) to the primary key (PK) it refers to. Keep it handy while you write your queries, especially for the JOIN questions. (Click the image to open it full size.)
+
+<a href="/images/labs/lab08/dvdrental-schema.svg" target="_blank"><img class="frame" style="width:100%" src="/images/labs/lab08/dvdrental-schema.svg" alt="Schema diagram of the dvdrental database showing the tables country, city, address, store, staff, customer, inventory, rental, payment, film, film_actor, film_category, actor, language, and category, and the foreign keys between them" /></a>
+
+
+{% collapsible closed %}
+### 3.2. Run the Postgres SQL Client
 
 In the new terminal window we'll run `psql` (the postgres SQL
 client) on the your running container.
@@ -80,23 +100,23 @@ postgres=# \c dvdrental
 dvdrental=# select first_name from customer;
 ```
 
-
 {% collapsible closed %}
-### Instructions for Using a GUI Client (e.g., DBeaver)
+### 3.3. Optional: DBeaver Configuration
 For those of you who would like to look at the data in a visual way, feel free to use DBeaver (which you can <a href="https://dbeaver.io/download/" target="_blank">download here</a>). Once downloaded and installed, you can preview the DVD Rental database by using the following connection information for a PostgreSQL connection:
 
 * host: **localhost**
-* database: **postgres**
+* database: *(leave blank)*
 * username: **postgres**
 * password: **postgres**
-* port: **5433**
+* port: **5434**
 
 Also, make sure that the "Show all databases" option is checked (as pictured in the screenshot below):
 
-<img class="medium frame" src="/images/labs/lab08/dbeaver-ss.png" />
+<a href="/images/labs/lab08/dbeaver-ss.png" target="_blank"><img class="w-full frame" src="/images/labs/lab08/dbeaver-ss.png" /></a>
 
 
-### Get Oriented: Explore the Database
+{% collapsible closed %}
+### 3.4. Get Oriented: Explore the Database
 Before writing your own queries, spend a few minutes looking around. For each exercise below, try to write the command yourself in `psql` (while connected to `dvdrental`). Then expand the answer to check your command and compare your output. You don't need to submit anything for this section.
 
 {:.info}
@@ -368,89 +388,425 @@ Two things to notice for later: (1) `address_id` is `not null` with no default, 
 
 </details>
 
-### The DVD Rental Schema
-Here is a map of the tables in the `dvdrental` database and how they connect. Each arrow goes from a foreign key (FK) to the primary key (PK) it refers to. Keep it handy while you write your queries, especially for the JOIN questions. (Click the image to open it full size.)
+<div class="practice">
 
-<a href="/images/labs/lab08/dvdrental-schema.svg" target="_blank"><img class="frame" style="width:100%" src="/images/labs/lab08/dvdrental-schema.svg" alt="Schema diagram of the dvdrental database showing the tables country, city, address, store, staff, customer, inventory, rental, payment, film, film_actor, film_category, actor, language, and category, and the foreign keys between them" /></a>
+**Before moving on**
 
-### Tutorial
+[ ] I can list the tables in the database and describe one of them
+[ ] I can write a `select` with `order by` and `limit`
+[ ] I know the names of the film categories and which `store_id` values exist
+
+</div>
+
+{:#sql-tasks}
+## 4. SQL Tasks for the Lab <span class="badge submit">Required for submission</span>
+**Submit:** the answers to this section go in `lab08/answers_sql.md`.
 
 Now that you're all set up, answer the 9 SQL questions below in the "SQL" section of your `lab08/answers_sql.md` file. Each question links to the one technique you need. If you want more examples, see the <a href="/resources/databases" target="_blank">Database cheatsheet</a>.
 
-{:.info .list-spaced}
-> ### SQL Questions
-> 1. **SELECT - Retrieving Data.** Write a query to list the titles and release years of all movies in the film table.<br>
->    *Learn:* [Select](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-select/)
-> 2. **WHERE - Filtering Data.** Write a query to find all customers whose last name starts with a capital 'S'.<br>
->    *Learn:* [Where](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-where/), [Like](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-like/)
-> 3. **ORDER BY - Sorting Results.** List all film titles and their rental durations, sorted by rental duration in descending order. If two films have the same rental duration, sort them alphabetically by title.<br>
->    *Tip:* the film table has 1,000 rows, so add `limit 20` while you're testing.<br>
->    *Learn:* [Order By](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-order-by/)
-> 4. **JOIN - Combining Tables.** Write a query to list all films along with their categories. Show the film title and category name.<br>
->    *Learn:* [Inner Join](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-inner-join/), [Table Aliases](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-alias/)
-> 5. **AGGREGATE FUNCTIONS - Counting and Grouping Rows.** Write a query to count how many films there are for each rating (G, PG, PG-13, R, NC-17). Show the count and the rating.<br>
->    *Learn:* [Group By](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-group-by/), [Count](https://www.postgresqltutorial.com/postgresql-aggregate-functions/postgresql-count-function/)
-> 6. **JOIN + AGGREGATE FUNCTIONS - Counting Rows.** Write a query to count how many films are in the Action category.<br>
->    *Hint:* `film` and `category` are connected through `film_category`, so you'll join all three tables (see the schema above) and filter on the category name.<br>
->    *Learn:* [Count](https://www.postgresqltutorial.com/postgresql-aggregate-functions/postgresql-count-function/), [Inner Join](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-inner-join/)
-> 7. **INSERT - Adding Data.** Insert a new customer into the customer table with a `first_name`, `last_name`, `email`, `store_id` (1 or 2), and `address_id` (use 1). Both IDs are required.<br>
->    *Learn:* [Insert](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-insert/)
-> 8. **UPDATE - Modifying Data.** Update the rental rate of *Academy Dinosaur* (`film_id` 1), increasing it by 10%.<br>
->    *Hint:* you can compute the new value from the old one, e.g., `set rental_rate = rental_rate * 1.10`. Run a `select` before and after to check your work, and only run the update once.<br>
->    *Learn:* [Update](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-update/)
-> 9. **DELETE - Removing Data.** Write a query to delete the rental with `rental_id` 1 from the `rental` table.<br>
->    *Note:* any payment for that rental is kept, but its `rental_id` is set to null.<br>
->    *Learn:* [Delete](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-delete/)
+{:.list-spaced}
+1. **SELECT - Retrieving Data.** Write a query to list the titles and release years of all movies in the film table.<br>
+   *Learn:* [Select](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-select/)
+2. **WHERE - Filtering Data.** Write a query to find all customers whose last name starts with a capital 'S'.<br>
+   *Learn:* [Where](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-where/), [Like](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-like/)
+3. **ORDER BY - Sorting Results.** List all film titles and their rental durations, sorted by rental duration in descending order. If two films have the same rental duration, sort them alphabetically by title.<br>
+   *Tip:* the film table has 1,000 rows, so add `limit 20` while you're testing.<br>
+   *Learn:* [Order By](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-order-by/)
+4. **JOIN - Combining Tables.** Write a query to list all films along with their categories. Show the film title and category name.<br>
+   *Learn:* [Inner Join](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-inner-join/), [Table Aliases](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-alias/)
+5. **AGGREGATE FUNCTIONS - Counting and Grouping Rows.** Write a query to count how many films there are for each rating (G, PG, PG-13, R, NC-17). Show the count and the rating.<br>
+   *Learn:* [Group By](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-group-by/), [Count](https://www.postgresqltutorial.com/postgresql-aggregate-functions/postgresql-count-function/)
+6. **JOIN + AGGREGATE FUNCTIONS - Counting Rows.** Write a query to count how many films are in the Action category.<br>
+   *Hint:* `film` and `category` are connected through `film_category`, so you'll join all three tables (see the schema above) and filter on the category name.<br>
+   *Learn:* [Count](https://www.postgresqltutorial.com/postgresql-aggregate-functions/postgresql-count-function/), [Inner Join](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-inner-join/)
+7. **INSERT - Adding Data.** Insert a new customer into the customer table with a `first_name`, `last_name`, `email`, `store_id` (1 or 2), and `address_id` (use 1). Both IDs are required.<br>
+   *Learn:* [Insert](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-insert/)
+8. **UPDATE - Modifying Data.** Update the rental rate of *Academy Dinosaur* (`film_id` 1), increasing it by 10%.<br>
+   *Hint:* you can compute the new value from the old one, e.g., `set rental_rate = rental_rate * 1.10`. Run a `select` before and after to check your work, and only run the update once.<br>
+   *Learn:* [Update](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-update/)
+9. **DELETE - Removing Data.** Write a query to delete the rental with `rental_id` 1 from the `rental` table.<br>
+   *Note:* any payment for that rental is kept, but its `rental_id` is set to null.<br>
+   *Learn:* [Delete](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-delete/)
 
-## 4. SQLAlchemy / Python Exercises
-Now, you're going to try connecting to your postgres database using python on your local computer.
+<div class="info">
 
-Open a terminal window, navigate to your `lab08` directory, and install the dependencies in the `pyproject.toml` file:
+**Before moving on**
+
+[ ] `answers_sql.md` has a query for each of the 9 SQL questions
+[ ] I ran each query in `psql` and it worked
+[ ] For the `update` and `delete` questions, I checked the result with a `select`
+
+</div>
+
+## 5. SQLAlchemy Practice (Not Submitted)
+{:.practice}
+> **Practice:** work through this section on your own or together in class. You don't submit anything from it. It gets you ready for the SQLAlchemy tasks in section 6.
+
+So far you've typed SQL directly into `psql`. Real applications usually talk to the database from code instead. In this section you'll connect to the same `dvdrental` database from Python using **SQLAlchemy**, an *object-relational mapper* (ORM). An ORM lets you work with rows as Python objects (a row in `film` becomes a `Film` object) and builds the SQL for you.
+
+{% collapsible closed %}
+### 5.1. Install and Run the Samples
+Open a terminal window (leave your Docker container running), navigate to your `lab08` directory, and install the dependencies listed in `pyproject.toml`:
 
 ```bash 
 poetry install
 ```
 
-You should now be able to run the `orm_samples.py` file as usual from your local terminal:
+Then run the samples file from your local terminal:
 
 ```bash 
 poetry run python orm_samples.py
 ```
 
-Take a look at `orm_samples.py` and try to understand what it does. Its code samples are very similar to the tasks below. Note that every database call is `await`ed (the queries are *asynchronous*). If you get stuck, see the <a href="/resources/databases" target="_blank">SQLAlchemy cheatsheet</a>.
+You should see output for ten numbered examples (film titles, a new actor being added and removed, and so on). If you get a connection error, make sure `docker compose up -d` is still running and that you're in the `lab08` directory.
 
-{:.info .list-spaced}
-> ### SQLAlchemy Questions
-> You will be implementing some python functions in `answers_orm.py`. Before you begin, run it to see what it does:<br><br>
-> `poetry run python answers_orm.py`<br><br>
-> Note that the first exercise has already been completed for you.
-> 1. **`print_titles_and_release_years`** (done for you) Print the titles and release years of the films in the film table.<br>
->    *Learn:* [Simple select](https://docs.sqlalchemy.org/en/20/orm/quickstart.html#simple-select)
-> 2. **`print_customers_with_last_names_starting_with`** Print all customers whose last name starts with the character passed into the function.<br>
->    *Note:* `istartswith` is case-insensitive, so unlike the SQL version, `"s"` and `"S"` both match last names starting with S.<br>
->    *Learn:* [istartswith](https://docs.sqlalchemy.org/en/20/core/sqlelement.html#sqlalchemy.sql.expression.ColumnElement.istartswith)
-> 3. **`print_film_titles_and_durations`** Print all film titles and their rental durations, sorted by rental duration in descending order. If two films have the same rental duration, sort them alphabetically by title.<br>
->    *Tip:* the film table has 1,000 rows, so add `.limit(20)` while you're testing.<br>
->    *Learn:* [Order by](https://docs.sqlalchemy.org/en/20/tutorial/data_select.html#order-by)
-> 4. **`print_film_titles_and_categories`** Print all films along with their categories. Show the film title and category name.<br>
->    *Learn:* [Select with join](https://docs.sqlalchemy.org/en/20/orm/quickstart.html#select-with-join)
-> 5. **`print_num_films_in_action_category`** Print the number of films in the Action category.<br>
->    *Hint:* `Film` and `Category` are connected through `FilmCategory`, so you'll join all three tables and filter on the category name.<br>
->    *Learn:* [Aggregate functions](https://docs.sqlalchemy.org/en/20/tutorial/data_select.html#aggregate-functions-with-group-by-having). Also see "COUNT aggregation" and "JOIN" in `orm_samples.py`.
-> 6. **`create_new_customer`** Create a new customer in the customer table (first name, last name, email, an existing store, and `address_id` 1) and return its `customer_id`.<br>
->    *Learn:* "CREATE" in `orm_samples.py` (`session.add`, `commit`, `refresh`)
-> 7. **`delete_customer_by_id`** Delete the customer with the given `customer_id`.<br>
->    *Learn:* "DELETE" in `orm_samples.py` (`session.get`, `session.delete`, `commit`)<br>
->    *Note:* many customers are referenced by other tables (e.g., address, store), so test with the customer you created in the previous exercise, which has no dependencies yet.
-> 8. **`update_customer_email`** Update a customer's email. Required arguments are the customer's id and the new email address.<br>
->    *Note:* the customer you created earlier was deleted in the previous exercise, so test with an existing customer (e.g., `customer_id` 1) or create a new one first.<br>
->    *Learn:* "UPDATE" in `orm_samples.py`
+<div class="practice">
+
+**Before moving on**
+
+[ ] `poetry install` finished without errors
+[ ] `poetry run python orm_samples.py` ran and printed the ten numbered examples
+
+</div>
+
+{% collapsible closed %}
+### 5.2. How `orm_samples.py` Works
+Before writing your own code, read through `orm_samples.py` alongside the notes below. Every task in section 6 is a small variation on one of these examples. The `models/` folder defines one Python class per table (`Film`, `Customer`, `Category`, ...) and each class attribute is a column (`Film.title`, `Customer.email`, ...).
+
+#### The basic pattern: build a query, then execute it
+
+```python
+result = await session.execute(
+    select(Film.title, Film.rental_rate)
+    .limit(5)
+)
+for title, rate in result:
+    print(f"  {title}: ${rate}")
+```
+
+* `select(...)` *describes* the query. It doesn't touch the database yet. The chained methods (`.where()`, `.order_by()`, `.join()`, `.limit()`) correspond to the SQL clauses of the same name.
+* `session.execute(...)` sends the query to Postgres and gives you back a `result`.
+* Looping over `result` gives you one row at a time. Each row unpacks into the columns you selected, in order.
+
+The SQL that SQLAlchemy sends for this is `select title, rental_rate from film limit 5;`.
+
+#### Why everything is `await`ed
+This lab uses SQLAlchemy's *asynchronous* mode: instead of freezing while it waits for the database, your program is allowed to do other work. Python requires two things from you in exchange:
+
+* Functions that talk to the database are declared `async def`.
+* Every call that actually reaches the database has to be `await`ed (`session.execute`, `session.commit`, `session.get`, `session.delete`, `session.refresh`).
+
+Calls that only *build* a query, like `select(...)` and `.where(...)`, are **not** awaited. If you forget an `await`, you'll usually see a warning like `coroutine ... was never awaited`.
+
+#### Getting results in different shapes
+How you read the result depends on what you selected:
+
+| You selected... | Example | Read it with... |
+|--|--|--|
+| Several columns | `select(Film.title, Film.rental_rate)` | `for title, rate in result:` |
+| One aggregate value | `select(func.count(Film.film_id))` | `result.scalar()` |
+| A whole table object | `select(Customer)` | `result.scalars()` (or `.scalars().all()` for a list), which gives you `Customer` objects with attributes like `c.first_name` |
+
+#### Ordering and counting
+`order_by(desc(Film.replacement_cost))` sorts descending (leave off `desc` for ascending, and pass several columns to break ties). `func.count(...)` is how you call SQL's `count()` and other aggregate functions.
+
+#### Joins
+```python
+select(Film.title, Language.name).join(Language)
+```
+When two tables are connected by a direct foreign key, as `film.language_id` is to `language`, SQLAlchemy can figure out the `ON` condition for you. When it can't (for example, `film` and `category` are only connected *through* the `film_category` table), you spell out the condition yourself: `.join(FilmCategory, Film.film_id == FilmCategory.film_id)`.
+
+#### Creating, reading, updating, and deleting objects
+Changing data works differently from querying it: you work with Python objects, and the *session* keeps track of what you changed.
+
+```python
+new_actor = Actor(first_name="Chris", last_name="Pine")
+session.add(new_actor)               # stage the new row
+await session.commit()               # actually INSERT it
+await session.refresh(new_actor)     # re-read it so database-generated values (like actor_id) are filled in
+
+actor = await session.get(Actor, new_actor.actor_id)   # SELECT by primary key (None if it doesn't exist)
+
+actor.first_name = "Christopher"     # just change the attribute...
+await session.commit()               # ...and commit to UPDATE
+
+await session.delete(actor)          # stage the delete
+await session.commit()               # actually DELETE it
+```
+
+Nothing is saved to the database until you `commit()`.
+
+#### Peeking at the generated SQL
+`show_sql_for_query(query)` at the bottom of `orm_samples.py` prints the SQL for a query. This is the best way to check that your Python is asking for what you think it is. You can compare it to the SQL you wrote earlier in the lab.
+
+<div class="practice">
+
+**Before moving on**
+
+[ ] I can explain why every database call is `await`ed
+[ ] I know when to read results with a `for` loop, `scalar()`, or `scalars()`
+[ ] I can describe what `add`, `commit`, and `refresh` each do
+
+</div>
+
+{:#sqlalchemy-tasks}
+## 6. SQLAlchemy Tasks for the Lab <span class="badge submit">Required for submission</span>
+**Submit:** your code for this section goes in `lab08/answers_orm.py`.
+
+Open `answers_orm.py`. It contains eight `async` functions: the first is finished for you, and you will implement the other seven (they print `TODO` until you fill them in). Each exercise below tells you what to implement and how it relates to the SQL you already wrote. Run the file after each exercise to check your work:
+
+```bash
+poetry run python answers_orm.py
+```
+
+**Tip:** `main()` at the bottom of the file calls all eight functions in order, so you'll see `TODO` for the ones you haven't done yet. You don't need to change `main()`. If you need more examples, see the <a href="/resources/databases" target="_blank">SQLAlchemy cheatsheet</a>.
+
+### Exercise 1. `print_titles_and_release_years` (done for you)
+This function prints the titles and release years of the first 20 films, ordered by title. Read it and compare it to the first example in `orm_samples.py`; it's the pattern you'll reuse in exercises 2 through 4. The SQL equivalent is:
+
+```sql
+select title, release_year from film order by title, release_year limit 20;
+```
+
+* *Learn:* <a href="https://docs.sqlalchemy.org/en/20/orm/quickstart.html#simple-select" target="_blank">Simple select</a>
+
+<details class="mb-4 expected-output">
+<summary>Show the expected output</summary>
+
+{% no-copy %}
+```text
+=== 1. Titles and Release Years ===
+(Already done for you)
+Academy Dinosaur (2006)
+Ace Goldfinger (2006)
+Adaptation Holes (2006)
+Affair Prejudice (2006)
+African Egg (2006)
+...
+```
+
+</details>
+
+### Exercise 2. `print_customers_with_last_names_starting_with`
+Print the customers whose last name starts with the character passed in as `start_char`, ordered by last name. This is the same idea as your `where ... like 'S%'` query, except you'll select whole `Customer` objects and print their `first_name` and `last_name`.
+
+* Hint: `Customer.last_name.istartswith(start_char)` builds the condition for you, and you pass it to `.where(...)`.
+* Hint: since you selected a whole table object, read the rows with `result.scalars()`.
+* Note: `istartswith` is case-insensitive, so unlike the SQL version, `'p'` and `'P'` both match last names starting with P.
+* *Learn:* <a href="https://docs.sqlalchemy.org/en/20/core/sqlelement.html#sqlalchemy.sql.expression.ColumnElement.istartswith" target="_blank">istartswith</a>
+
+<details class="mb-4 expected-output">
+<summary>Show a starting skeleton</summary>
+
+```python
+result = await session.execute(
+    select(Customer)
+    .where(Customer.last_name.istartswith(start_char))
+    .order_by(Customer.last_name)
+)
+for customer in result.scalars():
+    print(...)   # e.g., first name and last name
+```
+
+</details>
+
+<details class="mb-4 expected-output">
+<summary>Show the expected output</summary>
+
+The `'p'` call should list 28 customers; the first few are:
+
+{% no-copy %}
+```text
+Dan Paine
+Megan Palmer
+Frances Parker
+Wanda Patterson
+...
+```
+
+</details>
+
+<div class="info">
+
+**Before moving on**
+
+[ ] `print_customers_with_last_names_starting_with` prints customers for both `'A'` and `'p'`
+[ ] The customers are ordered by last name
+
+</div>
+
+### Exercise 3. `print_film_titles_and_durations`
+Print every film's title and rental duration, sorted by rental duration from longest to shortest. Films with the same duration should be sorted alphabetically by title.
+
+* Hint: `order_by` accepts more than one column. Wrap a column in `desc(...)` to sort it in descending order; `desc` is already imported for you.
+* Tip: the film table has 1,000 rows, so add `.limit(20)` while you're testing, then remove it when you're done.
+* *Learn:* <a href="https://docs.sqlalchemy.org/en/20/tutorial/data_select.html#order-by" target="_blank">Order by</a>
+
+<details class="mb-4 expected-output">
+<summary>Show the expected output</summary>
+
+{% no-copy %}
+```text
+Adaptation Holes 7
+Anonymous Human 7
+Argonauts Town 7
+Bikini Borrowers 7
+Blackout Private 7
+...
+```
+
+</details>
+
+<div class="info">
+
+**Before moving on**
+
+[ ] The films with the longest rental duration print first, with ties in alphabetical order
+[ ] I removed any `.limit(20)` I added for testing
+
+</div>
+
+### Exercise 4. `print_film_titles_and_categories`
+Print each film's title along with its category name, ordered by title. In SQL you joined `film`, `film_category`, and `category`. Do the same thing here.
+
+* Hint: `film` and `category` aren't connected directly, so SQLAlchemy can't guess the join for you. Use `select(Film.title, Category.name)` and join `FilmCategory` first, then `Category`, spelling out each condition: `.join(FilmCategory, Film.film_id == FilmCategory.film_id)`. The schema diagram in section 3.1 shows which columns line up.
+* Tip: add `.limit(20)` while testing.
+* *Learn:* <a href="https://docs.sqlalchemy.org/en/20/orm/quickstart.html#select-with-join" target="_blank">Select with join</a>
+
+<details class="mb-4 expected-output">
+<summary>Show the expected output</summary>
+
+{% no-copy %}
+```text
+Academy Dinosaur Documentary
+Ace Goldfinger Horror
+Adaptation Holes Documentary
+Affair Prejudice Horror
+African Egg Family
+...
+```
+
+</details>
+
+<div class="info">
+
+**Before moving on**
+
+[ ] Each film prints with its category name, ordered by title
+[ ] I joined through `FilmCategory`, spelling out each join condition
+
+</div>
+
+### Exercise 5. `print_num_films_in_action_category`
+Print how many films are in the Action category. This combines the `count` from the samples with the three-table join from exercise 4, plus a filter.
+
+* Hint: select `func.count(Film.film_id)`, join `FilmCategory` and `Category` as in exercise 4, then `.where(Category.name == "Action")`.
+* Hint: a single count comes back as a single value, so read it with `result.scalar()`.
+* *Learn:* <a href="https://docs.sqlalchemy.org/en/20/tutorial/data_select.html#aggregate-functions-with-group-by-having" target="_blank">Aggregate functions</a>. Also see "COUNT aggregation" and "JOIN" in `orm_samples.py`.
+
+<details class="mb-4 expected-output">
+<summary>Show the expected output</summary>
+
+The count should match what you get from the equivalent SQL query in `psql`.
+
+{% no-copy %}
+```text
+64
+```
+
+</details>
+
+<div class="info">
+
+**Before moving on**
+
+[ ] The function prints the same count I got from my SQL query in section 4
+[ ] I read the single count value with `result.scalar()`
+
+</div>
+
+### Exercise 6. `create_new_customer`
+Create a new customer from the arguments passed in and **return the new `customer_id`**. This is the ORM version of your `insert` statement.
+
+* Hint: build a `Customer(...)` object with `first_name`, `last_name`, `email`, and `store_id` from the arguments. The function doesn't take an address, so use `address_id=1`, as you did in SQL (the column is `not null`).
+* Hint: follow the "CREATE" example in `orm_samples.py`: `session.add(...)`, then `await session.commit()`, then `await session.refresh(...)`. The `customer_id` is generated by the database, so you can only read it from the object *after* the commit and refresh.
+* `main()` calls this with "John Doe" and prints the id it returns. Check that it's a number, not `None`.
+
+<details class="mb-4 expected-output">
+<summary>Show a starting skeleton</summary>
+
+```python
+customer = Customer(first_name=first_name, ..., address_id=1)
+session.add(customer)
+await session.commit()
+await session.refresh(customer)
+return customer.customer_id
+```
+
+</details>
+
+<div class="info">
+
+**Before moving on**
+
+[ ] `create_new_customer` returns a number (not `None`)
+[ ] `main()` prints `Created customer with ID: ...`
+
+</div>
+
+### Exercise 7. `delete_customer_by_id`
+Delete the customer whose id is passed in. `main()` passes the id of the customer you just created in exercise 6.
+
+* Hint: follow the "DELETE" example in `orm_samples.py`: fetch the object with `await session.get(Customer, customer_id)`, then `await session.delete(...)` and `await session.commit()`.
+* Hint: `session.get` returns `None` if there's no such customer, so check for that before deleting.
+* Note: most customers in the database are referenced by other tables (`rental`, `payment`), and Postgres will refuse to delete them. That's why we only delete the customer we created, which nothing refers to yet.
+
+<div class="info">
+
+**Before moving on**
+
+[ ] `delete_customer_by_id` handles a customer that doesn't exist (`session.get` returns `None`)
+[ ] In `psql`, a `select` for the deleted id returns 0 rows
+
+</div>
+
+### Exercise 8. `update_customer_email`
+Change the email address of the customer with the given id. `main()` updates customer 55 (Doris Reed).
+
+* Hint: follow the "UPDATE" example in `orm_samples.py`: get the customer with `session.get`, assign the new value to `customer.email`, and `await session.commit()`. You never write `update` yourself; the session notices what changed.
+* Check your work in `psql`: run `select email from customer where customer_id = 55;` before and after running `answers_orm.py`.
+* Note: this changes the data in your local database. That's fine, but if you run `main()` again it will just set the same email again.
+
+<details class="mb-4 expected-output">
+<summary>Show the expected result in psql</summary>
+
+{% no-copy %}
+```text
+ email
+--------------------
+ walter@example.com
+(1 row)
+```
+
+Before the update, the email was `doris.reed@sakilacustomer.org`.
+
+</details>
+
+<div class="info">
+
+**Before moving on**
+
+[ ] `select email from customer where customer_id = 55;` shows the new email in `psql`
+[ ] `poetry run python answers_orm.py` runs from start to finish with no `TODO` output or errors
+
+</div>
 
 ## What to Submit
-Before you submit, make sure you've completed the two sets of tasks:
+Only the sections marked <span class="badge submit">Required for submission</span> ([section 4](#sql-tasks) and [section 6](#sqlalchemy-tasks)) are graded. You don't need to submit anything from the practice sections. Before you submit, make sure that:
 
-* SQL tasks: you have written the SQL for the 9 SQL tasks in `answers_sql.md`
-* SQLAlchemy tasks: you have written and run the 8 SQLAlchemy-based functions (remember to `await` each database call) in `answers_orm.py`.
-{:.checkbox-list}
-
-When you're done, please push your `lab08-b` branch to GitHub and make a pull request. Please ensure that the destination (left-hand side) is pointing to the `main` branch of **your repo** and the source (right-hand side) is pointing to the `lab08-b` branch of **your repo**. Then, please paste a link to your PR in the Canvas.
+[ ] `answers_sql.md` has the SQL for all 9 SQL tasks ([section 4](#sql-tasks))
+[ ] `answers_orm.py` has the 7 remaining SQLAlchemy functions implemented, with every database call `await`ed ([section 6](#sqlalchemy-tasks))
+[ ] `poetry run python answers_orm.py` runs from start to finish with no `TODO` output or errors
+[ ] I committed both files and pushed my `lab08-b` branch to GitHub
+[ ] I made a pull request from `lab08-b` to `main` in **my repo**: the destination (left-hand side) is the `main` branch of my repo and the source (right-hand side) is my `lab08-b` branch
+[ ] I pasted a link to my pull request in Canvas

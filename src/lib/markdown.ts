@@ -471,14 +471,16 @@ export async function getPostData(id: string, subdirectory?: string): Promise<Po
     }
     
     // Look for next heading of equal or greater level (h1-h5)
-    const nextHeadingMatch = afterHeading.match(/<(h[1-5])[^>]*>/);
+    // Skip deeper headings (nested subsections) and stop at the first same-or-higher one
+    const headingTagRegex = /<(h[1-5])[^>]*>/g;
     let nextHeadingIndex: number | undefined = undefined;
-    if (nextHeadingMatch && nextHeadingMatch.index !== undefined) {
-      const nextHeadingTag = nextHeadingMatch[1];
-      const nextHeadingLevel = parseInt(nextHeadingTag.substring(1));
+    let nextHeadingMatch;
+    while ((nextHeadingMatch = headingTagRegex.exec(afterHeading)) !== null) {
+      const nextHeadingLevel = parseInt(nextHeadingMatch[1].substring(1));
       // Only consider if it's at same or higher level (lower or equal number)
       if (nextHeadingLevel <= headingLevel) {
         nextHeadingIndex = nextHeadingMatch.index;
+        break;
       }
     }
     
@@ -495,6 +497,13 @@ export async function getPostData(id: string, subdirectory?: string): Promise<Po
       sectionEnd = contentHtml.length;
     }
     
+    // If the boundary heading is the first thing inside a blockquote (e.g., "> ## 4. Tasks"),
+    // keep that blockquote's opening tag out of this section so the tags stay balanced
+    const trailingBlockquoteOpen = contentHtml.substring(headingEnd, sectionEnd).match(/<blockquote[^>]*>\s*$/);
+    if (trailingBlockquoteOpen) {
+      sectionEnd -= trailingBlockquoteOpen[0].length;
+    }
+
     // Extract the section content (everything after the heading until the boundary)
     const sectionContent = contentHtml.substring(headingEnd, sectionEnd);
     

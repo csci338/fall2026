@@ -52,6 +52,7 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
             excerpt={postData.excerpt}
             type={postData.type}
             num={postData.num}
+            includeExpandButton={postData.type === 'lab' && postData.content.includes('collapsible-h')}
           />
           { postData.due_date && <p className="mt-2 text-lg font-bold">Due {formatDate(postData.due_date)} at 11:59pm</p> }
           {isStyleGuideDemo && <StyleGuideStyles />}

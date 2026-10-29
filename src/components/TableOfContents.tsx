@@ -102,7 +102,12 @@ export default function TableOfContents({ maxLevel = 2 }: TableOfContentsProps) 
         if (level <= resolvedMaxLevel) {
           items.push({
             id: heading.id,
-            text: heading.textContent || '',
+            // Leave badges (e.g., "Required for submission") out of the nav label
+            text: Array.from(heading.childNodes)
+              .filter((node) => !(node instanceof HTMLElement && node.classList.contains('badge')))
+              .map((node) => node.textContent || '')
+              .join('')
+              .trim(),
             level: level
           });
         }
