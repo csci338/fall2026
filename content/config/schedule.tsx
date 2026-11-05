@@ -35,7 +35,7 @@ export const baseTopics = [
             { citation: "Chapter 1. What is Software Engineering?", url: "https://abseil.io/resources/swe-book/html/ch01.html" },
           ],
           optionalReadings: [
-            { citation: "Programming Readiness Modules", url: "/resources/programming-readiness" },
+            { citation: "Programming Readiness Modules", url: "/resources/programming-readiness-diagnostic" },
             { citation: "Configuring WSL", url: "/resources/wsl" },
             { citation: "Command line cheat sheet", url: "/resources/command-line" },
             { citation: "Configuring zsh/bash", url: "https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/" },
@@ -307,6 +307,15 @@ export const baseTopics = [
       id: 7,
       title: "Back-End: the MVC Design Pattern + AsyncIO",
       description: "As applications grow beyond simple scripts, structure and concurrency become essential. In this unit, we introduce the Model–View–Controller (MVC) design pattern as a way to organize server-side code so that data, presentation, and control logic stay separable and maintainable. We also explore AsyncIO in Python, which helps you write non-blocking back-end code that can handle many concurrent tasks efficiently -- an important foundation for responsive web services.",
+      discussionQuestions: [
+        { question: "What is a \"concern\" in software design? What does separation of concerns mean?" },
+        { question: "What is the Model-View-Controller (MVC) pattern? What does each part do, and what should the Model and View know about each other?" },
+        { question: "How can you tell if concerns in a codebase have been mixed together? (Hint: what happens when you add a new field, like a room number?)" },
+        { question: "What are the benefits of MVC for testing, for teamwork, and for changing an app over time?" },
+        { question: "What is blocking (synchronous) code? What problem does AsyncIO solve?" },
+        { question: "What do the <code>async</code> and <code>await</code> keywords do in Python? What is the event loop?" },
+        { question: "What is the difference between concurrency and parallelism? When is AsyncIO a good fit, and when is it not?" },
+      ],
       meetings: [
         {
           date: "Tu, Oct 20",
@@ -339,6 +348,15 @@ export const baseTopics = [
       id: 8,
       title: "Back-End: Databases & ORMs",
       description: "Most real applications need durable, queryable storage. In this unit, we introduce relational databases and SQL as the foundation for persisting application data, then turn to object-relational mappers (ORMs) such as SQLAlchemy. Understanding how to model data, query it effectively, and bridge between database tables and application objects is critical for building reliable back-end systems.",
+      discussionQuestions: [
+        { question: "What is a relational database? What are tables, rows, and columns? What are primary keys and foreign keys, and how do they connect tables?" },
+        { question: "What is SQL? What do <code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>, <code>ORDER BY</code>, and <code>LIMIT</code> do?" },
+        { question: "What is a join? When do you need to join more than two tables (e.g., films, film categories, and categories)?" },
+        { question: "What happens if you run an <code>UPDATE</code> or <code>DELETE</code> without a <code>WHERE</code> clause?" },
+        { question: "What is an object-relational mapper (ORM)? How do tables and columns map to classes and attributes in SQLAlchemy?" },
+        { question: "What are the advantages and disadvantages of using an ORM instead of writing SQL by hand? Why would you still need to know SQL?" },
+        { question: "In SQLAlchemy, what is the difference between building a query and executing it? What do <code>add</code>, <code>commit</code>, and <code>refresh</code> do, and why do database calls need <code>await</code>?" },
+      ],
       meetings: [
         {
           date: "Th, Oct 29",
@@ -379,24 +397,25 @@ export const baseTopics = [
       meetings: [
         {
           date: "Th, Nov 5",
-          topic: "Client-Side Engineering (Part I)",
+          topic: "Client-Side Engineering (Part I): Intro to Design",
           description: <>In this unit, we will explore some software engineering ideas that are specific to client-side engineering. To do this, we're going to learn some HTML, CSS, JavaScript, and React concepts <em>as a means of learning</em> various client-side software engineering principles</>,
           activities: [
-            { title: "Client-Side Engineering (Part I)", url: "https://docs.google.com/presentation/d/1l8UaFjXBidZNg-s3j-mYWcce-4iWU2nQ/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Client-Side Engineering (Part I)", url: "https://docs.google.com/presentation/d/1NVsn6rI5zCfbcsvmN7lnl3e8nNtLPy8r/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
           readings: [
+            { citation: "JavaScript vs Java: Quick Reference (read before class)", url: "/resources/javascript-java-comparison" },
             { citation: "Ask ChatGPT to answer the study questions (Be ready to have a conversation about the discussion questions, including what you learned from ChatGPT (and whether you think ChatGPT got it right).)", url: "https://chat.openai.com/" },
           ],
           optionalReadings: [
             { citation: "Design Systems", url: "/resources/design-systems" },
-            { citation: "Intro to JavaScript Programming", url: "https://csci344.github.io/resources/programming-review" },
+            { citation: "More JavaScript resources (higher-order array functions, spread & destructuring, fetch/async/await)", url: "https://csci344.github.io/spring2026/resources" },
           ],
         },
         {
           date: "Tu, Nov 10",
-          topic: "React",
+          topic: "Client-Side Engineering (Part II): React",
           activities: [
-            { title: "React", url: "https://docs.google.com/presentation/d/1hpqJ1g0SB3JeD8rqU8u82rf9wvX-uLXW/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "React", url: "https://docs.google.com/presentation/d/1Qi-_83nfl74Iu4MTA377vaDJUcp5s7hi/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
           optionalReadings: [
             { citation: "React Docs: Thinking in React", url: "https://beta.reactjs.org/learn/thinking-in-react" },
@@ -406,10 +425,19 @@ export const baseTopics = [
         },
         {
           date: "Th, Nov 12",
-          topic: "Communicating over HTTP",
+          topic: "Client-Side Engineering (Part III): Communicating over HTTP",
           activities: [
-            { title: "Communicating over HTTP", url: "https://docs.google.com/presentation/d/1RaREuV6tA5Q1enX4qUxoCMzUIgAwEdgn/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Communicating over HTTP", url: "https://docs.google.com/presentation/d/1HYHdRIMcUCgTvGywiULxLOv2XITYWEfg/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
+        },
+        {
+          date: "Tu, Nov 17",
+          topic: "Symposium - No Class",
+          holiday: true,
+        },
+        {
+          date: "Th, Nov 19",
+          topic: "Client-Side Engineering (Part IV): Design Systems & External Data Lab",
         },
       ],
     },
@@ -419,16 +447,6 @@ export const baseTopics = [
       title: "Back-End: Scaling Up",
       description: "Once an application works for a small number of users, the next challenge is making it work under growth. In this unit, we examine what it means to scale a back-end system, including strategies for handling more traffic, coordinating services, and thinking about infrastructure that can evolve with demand. These ideas matter as you move from class projects toward production-minded software.",
       meetings: [
-
-        {
-            date: "Tu, Nov 17",
-            topic: "Symposium - No Class",
-            holiday: true,
-        },
-        {
-          date: "Th, Nov 19",
-          topic: "Design Systems & External Data Lab",
-        },
         {
           date: "Tu, Nov 24",
           topic: "Introduction to Project 2",

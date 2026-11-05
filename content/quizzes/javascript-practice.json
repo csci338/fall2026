@@ -1,0 +1,192 @@
+{
+  "quizName": "JavaScript Essentials for React",
+  "start_date": "2026-11-05",
+  "notes": "Take after completing the in-class JavaScript Essentials activity (Nov 5).",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What does this code print?\n\n```javascript\nconsole.log(5 === \"5\");\nconsole.log(0 == false);\n```",
+      "options": [
+        "`false` then `false`",
+        "`true` then `true`",
+        "`false` then `true`",
+        "`true` then `false`"
+      ],
+      "correct": 2,
+      "explanation": "`===` is strict equality and does no type conversion, so the number `5` and the string `\"5\"` are not equal. `==` is loose equality and converts types, so `0 == false` is `true`. Prefer `===`."
+    },
+    {
+      "id": "q2",
+      "question": "What happens when you run this code?\n\n```javascript\nconsole.log(shout(\"hi\"));\nconst shout = (s) => s.toUpperCase();\n```",
+      "options": [
+        "It prints `HI`, because JavaScript hoists all functions",
+        "It prints `undefined`",
+        "It throws an error, because `shout` is used before it is defined",
+        "It prints `hi`"
+      ],
+      "correct": 2,
+      "explanation": "Function declarations (`function greet() {}`) are hoisted, so they can be called before they appear in the file. Arrow functions assigned to a `const` are not, so calling `shout` first throws a `ReferenceError`."
+    },
+    {
+      "id": "q3",
+      "question": "Which expressions are `true` only when `n` is divisible by both 3 and 5? Select all that apply.",
+      "options": [
+        "`n % 3 === 0 || n % 5 === 0`",
+        "`n % 3 === 0 && n % 5 === 0`",
+        "`n / 3 === 0 && n / 5 === 0`",
+        "`n % 15 === 0`"
+      ],
+      "correct": [
+        1,
+        3
+      ],
+      "explanation": "`%` gives the remainder, so `n % 3 === 0 && n % 5 === 0` checks both conditions directly, and `n % 15 === 0` is equivalent because a number divisible by both 3 and 5 is divisible by 15. The `||` version is true if *either* divides evenly. The `/` version uses division, not remainder, so it is only true when `n` is 0.",
+      "type": "select-all"
+    },
+    {
+      "id": "q4",
+      "question": "What does this print?\n\n```javascript\nconst title = \"Hey Jude\";\nconst artist = \"The Beatles\";\nconsole.log(`${title} by ${artist}`);\nconsole.log('${title} by ${artist}');\n```",
+      "options": [
+        "`Hey Jude by The Beatles`, then `${title} by ${artist}`",
+        "`Hey Jude by The Beatles` twice",
+        "`${title} by ${artist}`, then `Hey Jude by The Beatles`",
+        "`${title} by ${artist}` twice"
+      ],
+      "correct": 0,
+      "explanation": "Only backticks create a template literal that evaluates `${...}`. Text in single or double quotes is a plain string, so the `${...}` is printed as-is."
+    },
+    {
+      "id": "q5",
+      "question": "You want `formatDuration(125)` to return `\"2:05\"`. Which body is correct?",
+      "options": [
+        "```javascript\nreturn `${seconds / 60}:${seconds % 60}`;\n```",
+        "```javascript\nconst minutes = Math.floor(seconds / 60);\nconst secs = String(seconds % 60).padStart(2, \"0\");\nreturn `${minutes}:${secs}`;\n```",
+        "```javascript\nconst minutes = Math.floor(seconds / 60);\nconst secs = (seconds % 60).padStart(2, \"0\");\nreturn `${minutes}:${secs}`;\n```",
+        "```javascript\nreturn Math.floor(seconds / 60) + \":\" + seconds % 60;\n```"
+      ],
+      "correct": 1,
+      "explanation": "`Math.floor` rounds the minutes down, `%` gives the leftover seconds, and `padStart` pads the string with a leading zero. `padStart` is a *string* method, so the number must be converted with `String(...)` first (option 3 throws an error). Options 1 and 4 give `2.0833...:5` and `2:5`."
+    },
+    {
+      "id": "q6",
+      "question": "Which of these is equivalent to `function double(n) { return n * 2; }`?",
+      "options": [
+        "`const double = (n) => { n * 2 };`",
+        "`const double = (n) => n * 2;`",
+        "`const double = n => { return };`",
+        "`const double = => (n) n * 2;`"
+      ],
+      "correct": 1,
+      "explanation": "An arrow function with no braces returns the expression automatically (an *implicit return*). With braces you have to write `return` yourself, so option 1 returns `undefined`. The `=>` goes after the parameters."
+    },
+    {
+      "id": "q7",
+      "question": "You want an arrow function that returns an object with a `title` property. Which one works?",
+      "options": [
+        "`const makeSong = (t) => { title: t };`",
+        "`const makeSong = (t) => [title: t];`",
+        "`const makeSong = (t) => ({ title: t });`",
+        "`const makeSong = (t) => return { title: t };`"
+      ],
+      "correct": 2,
+      "explanation": "JavaScript reads `{` right after `=>` as the start of a function body, not an object. Wrapping the object in parentheses tells JavaScript it's an expression to return."
+    },
+    {
+      "id": "q8",
+      "question": "What does this print?\n\n```javascript\nconst song = { title: \"Hey Jude\", artist: \"The Beatles\", year: 1968 };\nconst copy = { ...song, title: \"Let It Be\" };\nconsole.log(song.title, copy.title, copy.artist);\n```",
+      "options": [
+        "`Let It Be` `Let It Be` `The Beatles`",
+        "`Hey Jude` `Hey Jude` `The Beatles`",
+        "`Hey Jude` `Let It Be` `undefined`",
+        "`Hey Jude` `Let It Be` `The Beatles`"
+      ],
+      "correct": 3,
+      "explanation": "Spread (`...song`) copies every property into a new object, and the properties listed after it override the copied ones. The original `song` is not changed."
+    },
+    {
+      "id": "q9",
+      "question": "What does `formatSong` return?\n\n```javascript\nconst formatSong = ({ title, artist }) => `${title} - ${artist}`;\nformatSong({ title: \"Respect\", artist: \"Aretha Franklin\", year: 1967 });\n```",
+      "options": [
+        "A `TypeError`, because the function has two parameters",
+        "`\"undefined - undefined\"`",
+        "`\"Respect - Aretha Franklin\"`",
+        "`\"[object Object]\"`"
+      ],
+      "correct": 2,
+      "explanation": "The curly braces in the parameter list *destructure* the single object argument, pulling out `title` and `artist` by name. Extra properties (like `year`) are ignored. React uses this pattern for props."
+    },
+    {
+      "id": "q10",
+      "question": "What are `a` and `b` after this code runs?\n\n```javascript\nconst nums = [1, 2, 3, 4];\nconst a = nums.filter((n) => n > 2);\nconst b = nums.find((n) => n > 2);\n```",
+      "options": [
+        "`a` is `[3, 4]` and `b` is `3`",
+        "`a` is `[3, 4]` and `b` is `[3]`",
+        "`a` is `3` and `b` is `[3, 4]`",
+        "`a` is `[3, 4]` and `b` is `[3, 4]`"
+      ],
+      "correct": 0,
+      "explanation": "`filter` returns a new array of *every* item that passes the test. `find` returns only the *first* matching item itself (not an array), or `undefined` if nothing matches."
+    },
+    {
+      "id": "q11",
+      "question": "What is the value of `nums` after this code runs?\n\n```javascript\nconst nums = [1, 2, 3];\nnums.map((n) => n * 2);\n```",
+      "options": [
+        "`[1, 2, 3]`",
+        "`[2, 4, 6]`",
+        "`undefined`",
+        "It throws an error, because `nums` is a `const`"
+      ],
+      "correct": 0,
+      "explanation": "`map` returns a *new* array and leaves the original untouched. Because the result wasn't saved in a variable, it was thrown away. Not changing the original is what lets React tell when your data has changed."
+    },
+    {
+      "id": "q12",
+      "question": "Given this code, which line gets the titles of only the songs shorter than 200 seconds?\n\n```javascript\nconst songs = [\n    { title: \"Hey Jude\", seconds: 431 },\n    { title: \"Yesterday\", seconds: 125 },\n    { title: \"Respect\", seconds: 147 },\n];\n```",
+      "options": [
+        "```javascript\nsongs.map((s) => s.seconds < 200).filter((s) => s.title);\n```",
+        "```javascript\nsongs.filter((s) => s.seconds < 200).map((s) => s.title);\n```",
+        "```javascript\nsongs.find((s) => s.seconds < 200).map((s) => s.title);\n```",
+        "```javascript\nsongs.map((s) => s.title).filter((s) => s.seconds < 200);\n```"
+      ],
+      "correct": 1,
+      "explanation": "First `filter` keeps the song objects that are short enough, then `map` pulls the `title` out of each one. In option 4, `map` has already turned the songs into strings, so `s.seconds` is `undefined`. In option 3, `find` returns a single object, which has no `map` method."
+    },
+    {
+      "id": "q13",
+      "question": "A file `utils.js` contains:\n\n```javascript\nexport const formatDuration = (seconds) => { /* ... */ };\nexport default function Playlist() { /* ... */ }\n```\n\nWhich import gets both of them?",
+      "options": [
+        "`import { Playlist, formatDuration } from \"./utils.js\";`",
+        "`import * Playlist, formatDuration from \"./utils.js\";`",
+        "`import { Playlist } from \"./utils.js\"; import formatDuration from \"./utils.js\";`",
+        "`import Playlist, { formatDuration } from \"./utils.js\";`"
+      ],
+      "correct": 3,
+      "explanation": "A *default* export is imported without braces, using any name you like. *Named* exports are imported in braces using their exact names. A file can have many named exports but only one default export."
+    },
+    {
+      "id": "q14",
+      "question": "What is wrong with this function?\n\n```javascript\nconst getUser = async () => {\n    const response = await fetch(\"https://jsonplaceholder.typicode.com/users/1\");\n    const data = response.json();\n    return data.name;\n};\n```",
+      "options": [
+        "`response.json()` also returns a promise, so it needs `await`",
+        "Nothing, `fetch` already returns the parsed data",
+        "`fetch` can't be used inside an arrow function",
+        "`await` can't be used inside an `async` function"
+      ],
+      "correct": 0,
+      "explanation": "Reading the body takes time too, so `response.json()` returns a promise. Without `await`, `data` is a promise and `data.name` is `undefined`. Write `const data = await response.json();`."
+    },
+    {
+      "id": "q15",
+      "question": "What does `getTodoTitles(1)` give back?\n\n```javascript\nconst getTodoTitles = async (userId) => {\n    const response = await fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`);\n    const todos = await response.json();\n    return todos.map((todo) => todo.title);\n};\n\nconst result = getTodoTitles(1);\n```",
+      "options": [
+        "An array of title strings, ready to use immediately",
+        "`undefined`, because the function is asynchronous",
+        "A promise that resolves to an array of title strings",
+        "A promise that resolves to an array of todo objects"
+      ],
+      "correct": 2,
+      "explanation": "An `async` function always returns a promise. To use the array, you need `await getTodoTitles(1)` (inside another async function) or `getTodoTitles(1).then((titles) => ...)`. The `map` turns each todo object into its title string."
+    }
+  ]
+}

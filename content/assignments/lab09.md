@@ -2,7 +2,7 @@
 title: Intro to client-side programming with React
 type: lab
 num: 9
-draft: 1
+draft: 0
 assigned_date: 2026-11-10
 due_date: 2026-11-16
 points: 6
@@ -20,19 +20,15 @@ points: 6
 ## 2. Setup
 
 ### Version Control Stuff
-Before you begin, get the latest code from <a href="https://github.com/csci338/class-exercises-fall2026" target="_blank">class-exercises-fall2026</a>. 
+For this lab, there is **no starter code** to get from the class repo. You will create everything yourself, inside your own copy of `class-exercises-fall2026`.
 * If you are a Windows user, you will do this lab (and all subsequent work in this class) using the WSL terminal.
 
-**On GitHub:**
-* Sync the latest changes from the class version of `class-exercises-fall2026` to your copy of the repo on GitHub.
-
-**On your local computer:**
+Begin by navigating to your `class-exercises-fall2026` directory on your local computer:
 * Make sure that all of your changes from the last lab are staged and committed.
 * Checkout your main branch: `git checkout main`
-* Pull down the latest changes: `git pull`
-    * If you did it correctly, you will notice that a new `lab09` folder has been created.
 * Create a new branch called lab09: `git checkout -b lab09-b`
 * Verify that you're on your new branch: `git branch`
+* Create a new, empty folder called `lab09`: `mkdir lab09`
 
 ### Starter Files
 1. Inside of your `lab09` folder, create 3 files: 
@@ -270,7 +266,9 @@ the component should output each of their names to the screen.
 **Hint:** you need to use `props` in your `Profile.jsx` file.
 
 
-#### Answer (don't look until you've tried it!)
+<details class="mb-4">
+<summary>Answer (don't look until you've tried it!)</summary>
+
 
 1. Here's the answer:
     ```jsx
@@ -306,6 +304,8 @@ the component should output each of their names to the screen.
 > - `{name}` in the JSX template uses curly braces to display the value of the `name` variable
 > - These are two different uses of curly braces - one for destructuring, one for JSX expressions
 
+</details>
+
 ### Challenge 2
 See if you can figure out how to get different people’s profile pics to show up: for instance, if I make different profile tags that look like this…
 
@@ -318,7 +318,9 @@ See if you can figure out how to get different people’s profile pics to show u
 
 …I should be able to see the student's name and image.
 
-#### Answer (don't look until you've tried it!)
+<details class="mb-4">
+<summary>Answer (don't look until you've tried it!)</summary>
+
 1. To get your component to understand data from the parent tag, you’ll have to “pass in” the property as an argument to Profile:
 
     ```jsx
@@ -351,6 +353,8 @@ See if you can figure out how to get different people’s profile pics to show u
     ```
 
 1. Feel free to style your card by editing your `Profile.css` file.
+
+</details>
 
 ## 6. Working with Data
 Components are often rendered "on-the-fly," in response to a user event or server request. 
@@ -425,7 +429,9 @@ See if you can modify your `App.jsx` file to iterate through the following array
 >
 > Think of it like this: If you have 4 people in your array, `map()` will run 4 times, creating 4 Profile components.
 
-#### Answer (don't look until you've tried it!)
+<details class="mb-4">
+<summary>Answer (don't look until you've tried it!)</summary>
+
 1. One way to generate components from an array is by using an embedded expression in the JSX return value:
     ```jsx
     import React from "react";
@@ -501,6 +507,8 @@ See if you can modify your `App.jsx` file to iterate through the following array
     }
     ```
 
+</details>
+
 #### Summary
 We have now seen an approach to generating components from data. But how do we get data from a server?! Great question! We will. But before we do that, we need to cover one more big idea: **state**
 
@@ -550,7 +558,7 @@ Let's talk through state concretely by looking at an example:
 
 1. ...and then add some `<ButtonCount />` tags to the bottom of your JSX object
 
-    ```jsx
+    ```html
     <ButtonCount />
     <ButtonCount />
     <ButtonCount />

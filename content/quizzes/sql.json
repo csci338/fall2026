@@ -1,0 +1,152 @@
+{
+  "quizName": "SQL Basics",
+  "start_date": "2026-10-29",
+  "notes": "Take after the SQL practice and tasks in Lab 8. Examples use the dvdrental database.",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What does this query return?\n\n```sql\nSELECT title, release_year FROM film;\n```",
+      "options": [
+        "Only the first row of the `film` table",
+        "Every column of the `film` table",
+        "Two columns, `title` and `release_year`, for every row in the `film` table",
+        "The number of rows in the `film` table"
+      ],
+      "correct": 2,
+      "explanation": "`SELECT` chooses the columns, `FROM` chooses the table, and with no `WHERE` or `LIMIT` you get every row."
+    },
+    {
+      "id": "q2",
+      "question": "Which query returns every customer whose last name starts with the letter S?",
+      "options": [
+        "```sql\nSELECT * FROM customer WHERE last_name LIKE 'S%';\n```",
+        "```sql\nSELECT * FROM customer WHERE last_name = 'S%';\n```",
+        "```sql\nSELECT * FROM customer HAVING last_name LIKE 'S';\n```",
+        "```sql\nSELECT last_name FROM customer ORDER BY 'S%';\n```"
+      ],
+      "correct": 0,
+      "explanation": "`LIKE` matches patterns, and `%` stands for \"any characters\". With `=`, the database looks for the literal text `S%`."
+    },
+    {
+      "id": "q3",
+      "question": "What does this query do?\n\n```sql\nSELECT title FROM film ORDER BY rental_duration DESC, title;\n```",
+      "options": [
+        "Lists titles alphabetically, then re-sorts them by rental duration ascending",
+        "Lists only the film with the highest rental duration",
+        "Lists titles with the shortest rental duration first",
+        "Lists titles from the longest rental duration to the shortest, using alphabetical order to break ties"
+      ],
+      "correct": 3,
+      "explanation": "`DESC` reverses the sort for `rental_duration`. Columns after the first break ties, and `title` has no direction so it's ascending (A to Z)."
+    },
+    {
+      "id": "q4",
+      "question": "A teammate runs `SELECT title FROM film LIMIT 5;`, and so do you. Are you guaranteed to see the same five films?",
+      "options": [
+        "Yes, `LIMIT` always returns the first five rows by title",
+        "No. Without an `ORDER BY`, SQL doesn't guarantee which rows come first",
+        "Yes, `LIMIT` always returns the five newest rows",
+        "No, because `LIMIT` picks five rows at random every time"
+      ],
+      "correct": 1,
+      "explanation": "A table has no inherent order. Use `ORDER BY` with `LIMIT` when you care *which* rows you get. (In practice, results are often stable, but you can't rely on it.)"
+    },
+    {
+      "id": "q5",
+      "question": "In the DVD rental database, `film` and `category` are connected only through the `film_category` table. To list each film's title with its category name, what do you need?",
+      "options": [
+        "Join `film` directly to `category`, because every table can join to every other",
+        "Join `film` to `film_category`, then join `film_category` to `category`",
+        "Use `GROUP BY` instead of a join",
+        "Select from `film_category` alone"
+      ],
+      "correct": 1,
+      "explanation": "When two tables are linked through a third (a many-to-many relationship), you join across the middle table: `film` → `film_category` → `category`, matching on the key columns."
+    },
+    {
+      "id": "q6",
+      "question": "What does this query return?\n\n```sql\nSELECT rating, COUNT(*) FROM film GROUP BY rating;\n```",
+      "options": [
+        "One row with the total number of films",
+        "One row per film, with its rating",
+        "An error, because `COUNT` can't be used with `GROUP BY`",
+        "One row per distinct rating, with the number of films that have that rating"
+      ],
+      "correct": 3,
+      "explanation": "`GROUP BY` collapses rows that share a value into one group, and the aggregate (`COUNT(*)`) is calculated for each group."
+    },
+    {
+      "id": "q7",
+      "question": "What is the difference between a primary key and a foreign key?",
+      "options": [
+        "A primary key uniquely identifies each row in its own table. A foreign key is a column that refers to the primary key of another table",
+        "A primary key refers to another table, and a foreign key uniquely identifies a row",
+        "They are the same thing, but foreign keys are stored in a different file",
+        "A primary key is the first column of every table, and a foreign key is the last"
+      ],
+      "correct": 0,
+      "explanation": "For example, `film.film_id` is the primary key of `film`, and `film_category.film_id` is a foreign key that points back to it. This is how rows in different tables are connected."
+    },
+    {
+      "id": "q8",
+      "question": "What does this statement do?\n\n```sql\nUPDATE film SET rental_rate = rental_rate * 1.1;\n```",
+      "options": [
+        "It raises the rental rate of the first film by 10%",
+        "It returns the new rental rates without changing the table",
+        "It raises the rental rate of **every** film by 10%, because there is no `WHERE` clause",
+        "It fails, because `UPDATE` requires a `WHERE` clause"
+      ],
+      "correct": 2,
+      "explanation": "`UPDATE` without a `WHERE` applies to every row. Always check the `WHERE` before running an `UPDATE` or `DELETE`. Adding `WHERE film_id = 1` would limit it to one film."
+    },
+    {
+      "id": "q9",
+      "question": "Which statement adds a new category named Mystery?",
+      "options": [
+        "```sql\nINSERT category SET name = \"Mystery\";\n```",
+        "```sql\nADD INTO category (name) VALUES ('Mystery');\n```",
+        "```sql\nUPDATE category SET name = 'Mystery';\n```",
+        "```sql\nINSERT INTO category (name) VALUES ('Mystery');\n```"
+      ],
+      "correct": 3,
+      "explanation": "`INSERT INTO table (columns) VALUES (values)` adds a row. (The `UPDATE` would rename *every* existing category, and Postgres doesn't accept the other forms.)"
+    },
+    {
+      "id": "q10",
+      "question": "What does `DELETE FROM rental WHERE rental_id = 1;` do?",
+      "options": [
+        "Removes only the row of the `rental` table whose `rental_id` is 1",
+        "Removes the `rental` table entirely",
+        "Removes every row from the `rental` table",
+        "Removes the `rental_id` column from the table"
+      ],
+      "correct": 0,
+      "explanation": "`DELETE` removes rows, and `WHERE` limits which ones. Removing a table is `DROP TABLE`, and without the `WHERE`, every row would be deleted."
+    },
+    {
+      "id": "q11",
+      "question": "In PostgreSQL, why does this query fail?\n\n```sql\nSELECT * FROM customer WHERE last_name = \"Smith\";\n```",
+      "options": [
+        "`last_name` can't be compared with `=`",
+        "`SELECT *` is not allowed with `WHERE`",
+        "In Postgres, double quotes are for identifiers like column names. Text values use single quotes: `'Smith'`",
+        "String values must be written in all lowercase"
+      ],
+      "correct": 2,
+      "explanation": "Postgres reads `\"Smith\"` as a column or table name, so it complains that no such column exists. Use `'Smith'` for string values."
+    },
+    {
+      "id": "q12",
+      "question": "You are in the `psql` shell connected to the `dvdrental` database. Which command lists all the tables in it?",
+      "options": [
+        "`\\l`",
+        "`\\dt`",
+        "`\\q`",
+        "`\\du`"
+      ],
+      "correct": 1,
+      "explanation": "`\\dt` lists tables, `\\d <table_name>` describes one table's columns, `\\l` lists databases, `\\du` lists users, and `\\q` exits."
+    }
+  ]
+}

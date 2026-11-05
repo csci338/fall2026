@@ -447,41 +447,8 @@ li:has(input[type="checkbox"]) {
     );
   }
 
-  /* Enhanced code blocks */
-  pre {
-    @apply p-4 my-6 overflow-x-auto;
-    background: var(--card);
-  }
-
-  .dark pre {
-    background: #1e293b;
-    border-color: #334155;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  pre code {
-    @apply bg-transparent p-0;
-    color: var(--foreground);
-  }
-
-  .dark pre code {
-    color: #e2e8f0;
-  }
-
-  /* Inline code with better styling */
-  code:not(pre code) {
-    @apply px-2 py-1 text-sm;
-    background: var(--card);
-    border: 1px solid var(--border);
-    font-size: 0.875em;
-    color: var(--foreground);
-  }
-
-  .dark code:not(pre code) {
-    background: #1e293b;
-    border-color: #334155;
-    color: #e2e8f0;
-  }
+  /* Code blocks: no overrides here, so they use the same .hljs styling
+     as resource pages (see "Syntax highlighting styles" below). */
 
   /* Better list spacing and styling - more compact */
   ul,
@@ -774,6 +741,17 @@ code {
 .dark code {
   background-color: #1e293b !important;
   color: #e2e8f0 !important;
+}
+
+/* Inline code (single backticks): bold text, no background or border.
+   Applies everywhere (resources, activities, labs, callouts, dark mode).
+   Code blocks (pre > code) are styled by .hljs instead. */
+:not(pre) > code,
+.dark :not(pre) > code {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  font-weight: 700;
 }
 
 /* Ensure code tags in prose content are dark-friendly */

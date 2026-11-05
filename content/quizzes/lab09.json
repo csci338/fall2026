@@ -1,0 +1,164 @@
+{
+  "quizName": "Lab 9: Intro to React",
+  "start_date": "2026-11-10",
+  "notes": "Take after completing Lab 9",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "In Lab 9, what does `npm init -y` do?",
+      "options": [
+        "Downloads React from the internet",
+        "Creates a `package.json` file listing the project's scripts and dependencies",
+        "Starts the Vite development server",
+        "Creates the `src` folder and an `App.jsx` file"
+      ],
+      "correct": 1,
+      "explanation": "`npm init -y` creates `package.json`. The `npm install` commands are what download libraries like Vite and React, and `npm run dev` starts the server."
+    },
+    {
+      "id": "q2",
+      "question": "After you add `\"dev\": \"vite dev\"` to the `scripts` section of `package.json`, what happens when you run `npm run dev`?",
+      "options": [
+        "The app is built into static files for deployment",
+        "All of your dependencies are installed",
+        "Your tests are run",
+        "A local development server starts, with hot reload and bundling enabled"
+      ],
+      "correct": 3,
+      "explanation": "Adding the script means `npm run dev` runs `vite dev`, which serves your app locally. With hot reload, the browser updates when you save a file."
+    },
+    {
+      "id": "q3",
+      "question": "What does `main.jsx` do in this lab?",
+      "options": [
+        "It finds the `<div id=\"app\">` in the HTML and renders the `App` component into it",
+        "It defines the `Profile` component",
+        "It stores the list of people",
+        "It installs React and ReactDOM"
+      ],
+      "correct": 0,
+      "explanation": "`createRoot(document.getElementById(\"app\"))` creates a React root inside the div, and `root.render(<App />)` injects the `App` component there. `index.html` loads `main.jsx` with a `<script>` tag."
+    },
+    {
+      "id": "q4",
+      "question": "What is the purpose of `<>...</>` in `App.jsx`?",
+      "options": [
+        "It marks a comment in JSX",
+        "It imports a component from another file",
+        "It's a React Fragment: it lets you return multiple elements without adding an extra wrapper `<div>` to the page",
+        "It turns the elements inside into a list"
+      ],
+      "correct": 2,
+      "explanation": "A component has to return a single parent element. A fragment groups siblings together without adding anything to the DOM."
+    },
+    {
+      "id": "q5",
+      "question": "You created `Profile.jsx` with `export default function Profile() { ... }`. What do you need in `App.jsx` before you can write `<Profile />`?",
+      "options": [
+        "`import { Profile } from \"./Profile.jsx\";`",
+        "`require(\"Profile\");`",
+        "`import Profile from \"./Profile.jsx\";`",
+        "Nothing, because React finds components automatically"
+      ],
+      "correct": 2,
+      "explanation": "A default export is imported without braces, using the path to the file. Without the import, `Profile` isn't defined in `App.jsx`."
+    },
+    {
+      "id": "q6",
+      "question": "Given this tag, how should `Profile.jsx` receive and display the name?\n\n```jsx\n<Profile name=\"Anita\" />\n```",
+      "options": [
+        "```jsx\nexport default function Profile({ name }) {\n    return <h3>{name}</h3>;\n}\n```",
+        "```jsx\nexport default function Profile(name) {\n    return <h3>{name}</h3>;\n}\n```",
+        "```jsx\nexport default function Profile({ name }) {\n    return <h3>name</h3>;\n}\n```",
+        "```jsx\nexport default function Profile() {\n    return <h3>{name}</h3>;\n}\n```"
+      ],
+      "correct": 0,
+      "explanation": "React passes all of a tag's attributes in a single `props` object. `{ name }` in the parameter list *destructures* it to pull out `name`, and `{name}` in the JSX displays the value. Without braces, `name` would be displayed as the literal text \"name\". Without the destructuring, `name` is undefined (or is the whole props object)."
+    },
+    {
+      "id": "q7",
+      "question": "What does `<h3>{name}</h3>` display, compared to `<h3>name</h3>`?",
+      "options": [
+        "Both display the value of the `name` variable",
+        "The first displays the literal word \"name\", and the second displays the value",
+        "The first causes an error, and the second displays the value",
+        "The first displays the value of the `name` variable (such as \"Anita\"), and the second displays the literal word \"name\""
+      ],
+      "correct": 3,
+      "explanation": "In JSX, curly braces switch from markup to a JavaScript expression. Anything outside the braces is plain text."
+    },
+    {
+      "id": "q8",
+      "question": "Which JSX attribute is used to give an element a CSS class?",
+      "options": [
+        "`class`",
+        "`className`",
+        "`cssClass`",
+        "`style-class`"
+      ],
+      "correct": 1,
+      "explanation": "In JSX, you write `className=\"profile\"` because `class` is already a reserved word in JavaScript. The lab's `Profile` component uses `<section className=\"profile\">`."
+    },
+    {
+      "id": "q9",
+      "question": "What does this code produce if `people` is an array of 4 objects?\n\n```jsx\npeople.map((person) => {\n    return <Profile name={person.name} picture={person.image_url} />;\n})\n```",
+      "options": [
+        "A single `Profile` component that contains all 4 people",
+        "The original `people` array, changed to hold components",
+        "Nothing, because `map` only works on numbers",
+        "A new array of 4 `Profile` components, one for each person"
+      ],
+      "correct": 3,
+      "explanation": "`map` runs the function once per item and returns a new array of the results. React renders each component in the array. The original `people` array isn't changed."
+    },
+    {
+      "id": "q10",
+      "question": "Which `onClick` is correct for calling `addOne` when a button is clicked?",
+      "options": [
+        "`<button onClick={addOne}>`",
+        "`<button onClick={addOne()}>`",
+        "`<button onClick=\"addOne\">`",
+        "`<button onClick=addOne>`"
+      ],
+      "correct": 0,
+      "explanation": "In JSX you pass the function itself in curly braces, with no parentheses, and React calls it when the click happens. With `addOne()`, the function would be called during rendering instead of waiting for the click."
+    },
+    {
+      "id": "q11",
+      "question": "What does this line do?\n\n```jsx\nconst [count, setCount] = useState(0);\n```",
+      "options": [
+        "It creates two separate state variables, `count` and `setCount`, both starting at 0",
+        "It creates a state variable `count` that starts at 0, and a function `setCount` that changes it and redraws the component",
+        "It sets `count` to 0 every time the component redraws",
+        "It makes `count` a constant that can't change"
+      ],
+      "correct": 1,
+      "explanation": "`useState(0)` returns an array with the current value and a setter function. The square brackets are array destructuring that picks out both. Calling the setter updates the value and redraws the component."
+    },
+    {
+      "id": "q12",
+      "question": "Why does the lab use `setCount(count + 1)` instead of just `count = count + 1` (or `count++`)?",
+      "options": [
+        "`setCount` is faster than the `=` operator",
+        "JavaScript doesn't allow adding to numbers without a function",
+        "Only the setter function updates the state *and* triggers a redraw of the component",
+        "The `=` operator works but makes the code harder to read"
+      ],
+      "correct": 2,
+      "explanation": "React doesn't watch regular variables. Calling the setter from `useState` tells React the state changed so it can redraw. (Since `count` is declared with `const`, reassigning it would throw an error anyway.)"
+    },
+    {
+      "id": "q13",
+      "question": "You add six `<ButtonCount />` tags to `App.jsx`, then click the third button 5 times. What do the buttons show?",
+      "options": [
+        "Only the third button shows 5. Each component has its own independent state",
+        "All six buttons show 5",
+        "The third button and every button after it show 5",
+        "Every button shows 1, because only the latest click counts"
+      ],
+      "correct": 0,
+      "explanation": "Each `<ButtonCount />` is a separate instance of the component, and each one has its own `useState`. Clicking one doesn't change the others."
+    }
+  ]
+}

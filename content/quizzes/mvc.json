@@ -1,0 +1,152 @@
+{
+  "quizName": "MVC: Model-View-Controller",
+  "start_date": "2026-10-27",
+  "notes": "Take after Lab 7 (MVC). Covers separation of concerns and the roles of the Model, View, and Controller.",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "In the Model-View-Controller (MVC) pattern, what is the main benefit of *separation of concerns*?",
+      "options": [
+        "The app runs faster because each part runs on a separate computer",
+        "Every file in the project can be written in a different language",
+        "A change to one concern (such as page styling) doesn't force changes to the others (such as the matching rules)",
+        "The app no longer needs any tests"
+      ],
+      "correct": 2,
+      "explanation": "Separation of concerns gives each job its own place, so you can restyle the page without risking the search logic, two teammates can work in different files, and each part can be tested on its own."
+    },
+    {
+      "id": "q2",
+      "question": "In the course search app (Lab 7), which part is responsible for knowing whether a particular course matches a search for the title \"data\"?",
+      "options": [
+        "The Model (`Course.matches_title` in `models.py`)",
+        "The View (`index.html`)",
+        "The Controller (`server.py`)",
+        "The browser"
+      ],
+      "correct": 0,
+      "explanation": "The Model holds the data and the rules for it, so the question \"does this course match?\" belongs on the `Course` itself. The Controller just asks each `Course`, and the View only displays the results."
+    },
+    {
+      "id": "q3",
+      "question": "What is the job of the Controller?",
+      "options": [
+        "To store the data and define what a course is",
+        "To lay out the page, the colors, and the buttons",
+        "To download raw data from a remote server",
+        "To take the request, use the Model to get what is needed, and hand the result to the View"
+      ],
+      "correct": 3,
+      "explanation": "The Controller sits in the middle: \"The user asked for X. What do I get, and what do I show?\" It connects the Model and the View, which never talk to each other directly."
+    },
+    {
+      "id": "q4",
+      "question": "Which statement describes the rules that make MVC work?",
+      "options": [
+        "The View decides which rows of data to keep, and the Model builds the HTML",
+        "The Model knows nothing about how it is displayed, and the View knows nothing about how the data is stored or filtered",
+        "The Model and View talk to each other directly, and the Controller only handles errors",
+        "The Controller contains all of the code, and the Model and View are just folders"
+      ],
+      "correct": 1,
+      "explanation": "Keeping the Model and View ignorant of each other is what lets you change one without touching the other. The Controller is the only part that knows about both."
+    },
+    {
+      "id": "q5",
+      "question": "A user submits the search form, and the browser requests `/?title=data`. Which part receives that request first?",
+      "options": [
+        "The Model (`Course`)",
+        "The Controller (`home()` in `server.py`)",
+        "The View (`index.html`)",
+        "The CSS file"
+      ],
+      "correct": 1,
+      "explanation": "The Controller receives the request, reads the `title` parameter, gets the courses, and decides what to show. It then hands the matching courses to the View."
+    },
+    {
+      "id": "q6",
+      "question": "You want to add a \"room number\" to the course search. According to the lab's test for separation, which parts should you have to change?",
+      "options": [
+        "Only the Controller",
+        "Only the View",
+        "All three parts, plus the data download code",
+        "The Model (a course has a room) and the View (the page shows it)"
+      ],
+      "correct": 3,
+      "explanation": "If a change leaks into places that have nothing to do with it, the concerns were mixed together. A new piece of data changes what a course *is* (Model) and how it's *shown* (View). The Controller only passes things along."
+    },
+    {
+      "id": "q7",
+      "question": "Your teammate wants to change the table colors and move the search box to the top of the page. Which part should they edit?",
+      "options": [
+        "Only the View",
+        "Only the Model",
+        "Only the Controller",
+        "The Model and the Controller"
+      ],
+      "correct": 0,
+      "explanation": "How data looks is the View's concern. If restyling the page forces changes to the matching logic, the concerns were tangled together."
+    },
+    {
+      "id": "q8",
+      "question": "Why is it easier to write a test for `Course.matches_title` when it lives in the Model than when it is tangled into a function that also downloads data and builds HTML?",
+      "options": [
+        "Tests can only be written for classes, never for functions",
+        "The Model automatically tests itself",
+        "You can call it with a small sample course and check the result, with no network or web page involved",
+        "Tests for the Model run in the browser"
+      ],
+      "correct": 2,
+      "explanation": "A Model method depends only on the data it's given, so a test can create a `Course` and check the answer directly. Mixed-together code can't be tested without also running the download and rendering steps."
+    },
+    {
+      "id": "q9",
+      "question": "In the course search app, the Controller doesn't know *how* to match a department. It just asks each `Course`. Why is this a good design?",
+      "options": [
+        "It makes the Controller run faster",
+        "It means the View can call the database directly",
+        "It removes the need for a Model",
+        "If the matching rule changes later, only `models.py` has to change"
+      ],
+      "correct": 3,
+      "explanation": "Putting the rule in one place (the Model) means the Controller and View don't need to change when the rule does. That is exactly what separation of concerns buys you."
+    },
+    {
+      "id": "q10",
+      "question": "The lab's `/api?title=data` endpoint returns the same results as the home page, but as JSON. What does this show you?",
+      "options": [
+        "The Controller's results can be used without the View, because the two are separate",
+        "The View is stored inside the database",
+        "The Model only works when the View is present",
+        "JSON is the same thing as HTML"
+      ],
+      "correct": 0,
+      "explanation": "Because the Controller produces the data and the View only formats it, you can swap the View (HTML page or JSON) without changing how the data is found."
+    },
+    {
+      "id": "q11",
+      "question": "In the lab, `unca_api.py` is *not* one of the three MVC parts. What does it do?",
+      "options": [
+        "It lays out the web page",
+        "It handles incoming requests from the browser",
+        "It downloads the raw course data from UNCA and turns each record into a `Course`",
+        "It decides which courses match a search"
+      ],
+      "correct": 2,
+      "explanation": "`unca_api.py` is a helper that gets raw data and builds `Course` objects. Matching is the Model's job, handling requests is the Controller's, and display is the View's."
+    },
+    {
+      "id": "q12",
+      "question": "In Project 1's Textual app, which file plays the Controller role?",
+      "options": [
+        "The filter functions like `matches_title`",
+        "`app.py`, which connects the filters to the screen",
+        "The Textual screen definitions",
+        "The test files"
+      ],
+      "correct": 1,
+      "explanation": "A filter like `matches_title` knew nothing about the screen, and the screen knew nothing about how titles were matched. `app.py` connected them, which is the Controller's job."
+    }
+  ]
+}

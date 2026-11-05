@@ -1,0 +1,164 @@
+{
+  "quizName": "ORMs and SQLAlchemy",
+  "start_date": "2026-11-03",
+  "notes": "Take after the SQLAlchemy practice and tasks in Lab 8. Covers async queries, sessions, and CRUD.",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What problem does an object-relational mapper (ORM) such as SQLAlchemy solve?",
+      "options": [
+        "It replaces the database, so you don't need Postgres",
+        "It makes every query faster than hand-written SQL",
+        "It lets you work with database tables and rows as Python classes and objects instead of writing SQL strings by hand",
+        "It converts Python code into JavaScript"
+      ],
+      "correct": 2,
+      "explanation": "An ORM is a bridge between the database's tables and your application's objects. It still talks to a real database like Postgres, and it generates SQL for you."
+    },
+    {
+      "id": "q2",
+      "question": "In the lab's SQLAlchemy models, how do tables and columns map to Python?",
+      "options": [
+        "Each table is a Python class (like `Film`), and each column is a class attribute (like `Film.title`)",
+        "Each row is a Python class, and each table is an attribute",
+        "Each database is a function, and each table is a variable",
+        "Each column is a separate file in the `models/` folder"
+      ],
+      "correct": 0,
+      "explanation": "The `models/` folder defines one class per table. A query like `select(Film.title)` refers to the `title` column through the class attribute."
+    },
+    {
+      "id": "q3",
+      "question": "What does this line do?\n\n```python\nquery = select(Film.title).limit(5)\n```",
+      "options": [
+        "It runs the query and stores the five titles in `query`",
+        "It inserts five rows into the `film` table",
+        "It opens a connection and keeps it open",
+        "It builds a description of the query. Nothing is sent to the database yet"
+      ],
+      "correct": 3,
+      "explanation": "`select(...)` and its chained methods only *describe* the query. It reaches Postgres when you call `session.execute(...)`."
+    },
+    {
+      "id": "q4",
+      "question": "Which of these needs `await` in the lab's async SQLAlchemy code?",
+      "options": [
+        "`select(Film.title)`",
+        "`session.execute(query)`",
+        "`query.where(Film.rating == \"PG\")`",
+        "`query.limit(5)`"
+      ],
+      "correct": 1,
+      "explanation": "Only calls that actually reach the database are awaited (`execute`, `commit`, `get`, `delete`, `refresh`). Building a query with `select`, `where`, `order_by`, and `limit` is not awaited."
+    },
+    {
+      "id": "q5",
+      "question": "You forget an `await` in front of `session.execute(...)`. What are you most likely to see?",
+      "options": [
+        "The query runs twice",
+        "A warning like `coroutine ... was never awaited`, and no results",
+        "A SQL syntax error from Postgres",
+        "Nothing different, because `await` is optional"
+      ],
+      "correct": 1,
+      "explanation": "Without `await`, you get a coroutine object back instead of a result, and Python warns that it was never awaited. The query is never actually run."
+    },
+    {
+      "id": "q6",
+      "question": "Why does this lab use SQLAlchemy's *asynchronous* mode?",
+      "options": [
+        "So the database stores data more safely",
+        "So queries are guaranteed to return in order",
+        "So the code doesn't need a session",
+        "So the program can do other work instead of freezing while it waits for the database"
+      ],
+      "correct": 3,
+      "explanation": "Waiting on the database is slow compared to running Python code. With `async` and `await`, the program can handle other tasks during the wait. That's why database functions are `async def`."
+    },
+    {
+      "id": "q7",
+      "question": "You run `result = await session.execute(select(func.count(Film.film_id)))`. How do you get the number out of `result`?",
+      "options": [
+        "`result.scalar()`",
+        "`for title, rate in result:`",
+        "`result.scalars().all()`",
+        "`result.count()`"
+      ],
+      "correct": 0,
+      "explanation": "A single aggregate value comes back as one row with one column, and `scalar()` gives you that value. A `for` loop is for several columns, and `scalars()` is for whole objects."
+    },
+    {
+      "id": "q8",
+      "question": "You run `result = await session.execute(select(Customer))`. How do you get a list of `Customer` objects?",
+      "options": [
+        "`result.scalar()`",
+        "`list(result.rows)`",
+        "`result.scalars().all()`",
+        "`result.count()`"
+      ],
+      "correct": 2,
+      "explanation": "When you select a whole table object, `scalars()` gives you the `Customer` objects themselves, so you can use attributes like `c.first_name`. `.all()` collects them into a list."
+    },
+    {
+      "id": "q9",
+      "question": "What do `add`, `commit`, and `refresh` each do when you create a new object?\n\n```python\nnew_actor = Actor(first_name=\"Chris\", last_name=\"Pine\")\nsession.add(new_actor)\nawait session.commit()\nawait session.refresh(new_actor)\n```",
+      "options": [
+        "`add` inserts the row, `commit` closes the connection, and `refresh` deletes the object",
+        "`add` and `commit` do the same thing, and `refresh` rolls back the insert",
+        "`add` sends the query, `commit` waits for the result, and `refresh` reconnects",
+        "`add` stages the new row, `commit` actually inserts it, and `refresh` re-reads it so database-generated values like `actor_id` are filled in"
+      ],
+      "correct": 3,
+      "explanation": "Nothing is saved until `commit()`. The id is generated by the database, so `refresh()` is how you read it back into the Python object."
+    },
+    {
+      "id": "q10",
+      "question": "What happens when you run this code?\n\n```python\ncustomer = await session.get(Customer, 1)\ncustomer.email = \"new@example.com\"\n```\n\n(No other code runs afterward.)",
+      "options": [
+        "The email in the database is unchanged, because the change was never committed",
+        "The email in the database is updated immediately",
+        "Python raises an error, because attributes can't be changed",
+        "The customer row is deleted and recreated"
+      ],
+      "correct": 0,
+      "explanation": "The session tracks the change to the object, but nothing is written to the database until you `await session.commit()`."
+    },
+    {
+      "id": "q11",
+      "question": "What does `await session.get(Customer, 9999)` return if no customer has that primary key?",
+      "options": [
+        "An empty list",
+        "It raises a `KeyError`",
+        "`None`",
+        "A `Customer` object filled with blanks"
+      ],
+      "correct": 2,
+      "explanation": "`session.get` looks up a row by primary key and returns `None` when nothing is found, so check for `None` before using the result."
+    },
+    {
+      "id": "q12",
+      "question": "`film` and `category` are only connected through the `film_category` table. How do you write the join in SQLAlchemy?",
+      "options": [
+        "SQLAlchemy always works it out, so `.join(Category)` is enough",
+        "Spell out each join condition, like `.join(FilmCategory, Film.film_id == FilmCategory.film_id)`",
+        "Joins aren't possible in an ORM",
+        "Use `.join()` with no arguments and no tables"
+      ],
+      "correct": 1,
+      "explanation": "When two tables share a direct foreign key (like `film.language_id`), SQLAlchemy can infer the `ON` condition. When they don't, you provide it yourself."
+    },
+    {
+      "id": "q13",
+      "question": "Why might you print the SQL that SQLAlchemy generates for a query?",
+      "options": [
+        "To check that your Python is asking for what you think it is, and compare it with SQL you wrote by hand",
+        "Because SQLAlchemy won't run a query until you print it",
+        "To make the query run faster",
+        "To convert the query into JavaScript"
+      ],
+      "correct": 0,
+      "explanation": "Seeing the generated SQL is the best way to debug an ORM query. It also shows how the ORM's methods (`where`, `order_by`, `join`) map onto SQL clauses."
+    }
+  ]
+}
