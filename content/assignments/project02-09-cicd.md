@@ -2,7 +2,7 @@
 title: Continuous Integration on GitHub
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 hide_from_list: 1
@@ -130,8 +130,10 @@ jobs:
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `.github/workflows/pr.yml` file exists.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `.github/workflows/pr.yml` file exists.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -183,7 +185,9 @@ git push
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify your GitHub Actions workflow runs successfully on push.
+>
+> {:.checkbox-list}
+> - [ ] Verify your GitHub Actions workflow runs successfully on push.
 
 ## 4. Understanding Workflow Results
 

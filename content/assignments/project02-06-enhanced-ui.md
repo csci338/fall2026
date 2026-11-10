@@ -2,7 +2,7 @@
 title: Enhanced Frontend
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 hide_from_list: 1
@@ -151,8 +151,10 @@ span {
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `Todos.jsx` component is created and imported in `App.jsx`.
-> * **Test it now:** Make sure your Docker containers are running (`docker compose up -d`), then visit http://localhost:5173. You should see any existing todos displayed in the list. If you don't have any todos yet, that's okay - you'll create some in the next section.
+>
+> {:.checkbox-list}
+> - [ ] Verify your `Todos.jsx` component is created and imported in `App.jsx`.
+> - [ ] **Test it now:** (Tip: open your browser's developer tools, Network tab; you should see a `todos` request returning status 200.) Make sure your Docker containers are running (`docker compose up -d`), then visit http://localhost:5173. You should see any existing todos displayed in the list. If you don't have any todos yet, that's okay - you'll create some in the next section.
 
 ## 2. Build the CREATE Feature (Add New Todos)
 
@@ -293,8 +295,10 @@ Add to `ui/src/globals.css`:
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `CreateTodo.jsx` component is created and imported in `App.jsx`.
-> * **Test it now:** Visit http://localhost:5173 and try creating a new todo. Note: The new todo won't appear in the list yet (we'll fix this in the next section), but you should see the form and be able to submit it. Check your browser's developer console (F12) for any errors.
+>
+> {:.checkbox-list}
+> - [ ] Verify your `CreateTodo.jsx` component is created and imported in `App.jsx`.
+> - [ ] **Test it now:** Visit http://localhost:5173 and try creating a new todo. Note: The new todo won't appear in the list yet (we'll fix this in the next section), but you should see the form and be able to submit it. Check your browser's developer console (F12) for any errors.
 
 ## 3. Connect Components Together (Component Communication)
 
@@ -470,8 +474,10 @@ export default function CreateTodo({ API_URL, onTodoCreated }) {  // Add onTodoC
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your component communication is set up correctly.
-> * **Test it now:** Visit http://localhost:5173 and create a new todo. The new todo should automatically appear in the list immediately after you submit the form! If it doesn't, check your browser's developer console (F12) for errors and verify your containers are running.
+>
+> {:.checkbox-list}
+> - [ ] Verify your component communication is set up correctly.
+> - [ ] **Test it now:** Visit http://localhost:5173 and create a new todo. The new todo should automatically appear in the list immediately after you submit the form! If it doesn't, check your browser's developer console (F12) for errors and verify your containers are running.
 
 ## 4. Add DELETE Feature
 
@@ -577,8 +583,10 @@ button:hover {
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your delete functionality is implemented.
-> * **Test it now:** Visit http://localhost:5173, create a test todo if needed, then click the "Delete" button. The todo should immediately disappear from the list. Test this with multiple todos to ensure it works correctly.
+>
+> {:.checkbox-list}
+> - [ ] Verify your delete functionality is implemented.
+> - [ ] **Test it now:** Visit http://localhost:5173, create a test todo if needed, then click the "Delete" button. The todo should immediately disappear from the list. Test this with multiple todos to ensure it works correctly.
 
 ## 5. Final Testing
 
@@ -587,6 +595,7 @@ Now that all features are implemented, test your complete application:
 1. **READ:** Visit http://localhost:5173 - todos should load automatically when the page opens
 2. **CREATE:** Fill out the form, click "Create TODO", verify it appears automatically in the list
 3. **DELETE:** Click "Delete" on a todo, verify it immediately disappears from the list
+4. **PERSISTENCE:** Create a todo, then refresh the page (or run `docker compose restart`). The todo should still be there; this proves it's stored in the database, not just in React's memory.
 
 **Make sure your Docker containers are running:**
 ```bash
@@ -600,8 +609,10 @@ If you encounter any issues, check:
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * **Test all CRUD operations:** Make sure READ, CREATE, and DELETE all work correctly in your browser.
-> * Verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] **Test all CRUD operations:** Make sure READ, CREATE, and DELETE all work correctly in your browser.
+> - [ ] Verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -681,7 +692,9 @@ Go ahead and commit / push your changes to git / GitHub.
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify that all your new code is on GitHub.
+>
+> {:.checkbox-list}
+> - [ ] Verify that all your new code is on GitHub.
 
 ---
 

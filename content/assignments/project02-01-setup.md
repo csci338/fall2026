@@ -2,7 +2,7 @@
 title: Setup & Git
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 heading_max_level: 3
@@ -11,7 +11,7 @@ hide_from_list: 1
 
 ## 1. Create Project Structure
 
-Create the following folder structure:
+You are going to make a brand new git repository (i.e., don't put this inside of another folder that also has a `.git` repository). Create the following folder structure:
 
 ```sh
 project02-fall2026
@@ -24,7 +24,9 @@ project02-fall2026
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify your folder structure matches the above.
+>
+> {:.checkbox-list}
+> - [ ] Verify your folder structure matches the above.
 
 ## 2. Initialize Git Repository
 Initialize a git repo at the root of your `project02-fall2026` folder:
@@ -62,7 +64,9 @@ Thumbs.db
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify your `.gitignore` file exists and contains the above patterns.
+>
+> {:.checkbox-list}
+> - [ ] Verify your `.gitignore` file exists and contains the above patterns.
 
 ## 3. Create README.md
 
@@ -119,8 +123,10 @@ See the project documentation for detailed setup and development instructions.
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `README.md` file exists in the root directory with the basic content above.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `README.md` file exists in the root directory with the basic content above.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -162,7 +168,9 @@ git push -u origin main
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify your local repository is connected to GitHub and your initial commit is pushed.
+>
+> {:.checkbox-list}
+> - [ ] Verify your local repository is connected to GitHub and your initial commit is pushed.
 
 ## 5. Git Workflow Basics
 
@@ -177,7 +185,9 @@ git push
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Make sure you understand the Git workflow for committing and pushing code regularly throughout development.
+>
+> {:.checkbox-list}
+> - [ ] Make sure you understand the Git workflow for committing and pushing code regularly throughout development.
 
 ---
 

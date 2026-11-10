@@ -2,7 +2,7 @@
 title: "'Starter' Frontend"
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 hide_from_list: 1
@@ -74,8 +74,10 @@ Dependencies will be installed automatically when you build your containers (`np
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `package.json` file exists and contains all the required dependencies listed above.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `package.json` file exists and contains all the required dependencies listed above.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -142,8 +144,10 @@ export default defineConfig({
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `vite.config.js` file exists in the `ui/` directory.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `vite.config.js` file exists in the `ui/` directory.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -186,8 +190,10 @@ Create `ui/index.html`:
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `index.html` file exists in the `ui/` directory.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `index.html` file exists in the `ui/` directory.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -239,8 +245,10 @@ main();
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `main.jsx` file exists in the `ui/src/` directory.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `main.jsx` file exists in the `ui/src/` directory.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -295,8 +303,10 @@ export default function App() {
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `App.jsx` file exists in the `ui/src/` directory.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `App.jsx` file exists in the `ui/src/` directory.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -370,8 +380,10 @@ export default function App() {
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `globals.css` file exists and is imported in `App.jsx`.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `globals.css` file exists and is imported in `App.jsx`.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -391,125 +403,7 @@ export default function App() {
 >     └── vite.config.js
 > ```
 
-## 7. Configure Linters and Formatters
-
-The frontend uses two linting and formatting tools:
-
-{:.compact}
-- **ESLint** - JavaScript/React linter (finds code quality issues)
-- **Prettier** - Code formatter (ensures consistent code style)
-
-### 7.1. Configure ESLint
-
-Create `ui/.eslintrc.cjs`:
-
-```javascript
-module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-  ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
-  rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
-    'react/prop-types': 'off', // Disable prop-types as we're not using TypeScript
-  },
-};
-```
-
-**What this does:**
-
-{:.compact}
-- Enables ESLint for browser and ES2020 environment
-- Extends recommended React rules
-- Configures React hooks linting
-- Disables prop-types (since we're not using TypeScript)
-- Warns about React Refresh best practices
-
-### 7.2. Configure Prettier
-
-Create `ui/.prettierrc`:
-
-```json
-{
-  "semi": true,
-  "trailingComma": "es5",
-  "singleQuote": true,
-  "printWidth": 80,
-  "tabWidth": 4,
-  "useTabs": false,
-  "arrowParens": "always",
-  "endOfLine": "lf"
-}
-```
-
-**What this does:**
-
-{:.compact}
-- Uses semicolons
-- Single quotes for strings
-- 80 character line width
-- 4 spaces for indentation
-- Consistent line endings (LF)
-
-### 7.3. Create Prettier Ignore File
-
-Create `ui/.prettierignore`:
-
-```
-node_modules
-dist
-build
-coverage
-*.lock
-package-lock.json
-```
-
-**What this does:**
-
-{:.compact}
-- Tells Prettier to skip formatting these files/directories
-
-{:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your linter configuration files exist:
->   - `ui/.eslintrc.cjs`
->   - `ui/.prettierrc`
->   - `ui/.prettierignore`
-> * Also verify that your file structure looks like the one below:
->
-> ```sh
-> project02-fall2026
-> ├── .env
-> ├── .git/
-> ├── backend/
-> │   └── ...
-> ├── database/
-> │   └── ...
-> └── ui/
->     ├── .eslintrc.cjs        # new
->     ├── .prettierignore      # new
->     ├── .prettierrc          # new
->     ├── index.html
->     ├── package.json
->     ├── src/
->     │   ├── App.jsx
->     │   ├── globals.css
->     │   └── main.jsx
->     └── vite.config.js
-> ```
-
-## 8. Create A Dockerfile to Build the Frontend Server
+## 7. Create A Dockerfile to Build the Frontend Server
 
 Create `ui/Dockerfile`:
 
@@ -536,10 +430,32 @@ EXPOSE 5173
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 ```
 
+### 7.1. Test Your Frontend Image
+
+This is the best check of everything in this step. Make sure Docker Desktop is running, then from the project root:
+
+```bash
+# Build the image. This runs `npm install`, so it validates package.json
+docker build -t todo-ui ./ui
+
+# Run it (Ctrl+C to stop)
+docker run --rm -p 5173:5173 todo-ui
+```
+
+**What you should see:** the terminal shows Vite's `Local: http://localhost:5173/` message, and visiting <a href="http://localhost:5173" target="_blank">http://localhost:5173</a> in your browser shows the **TODO List** header and "Your app will go here!".
+
+**If something fails:**
+- Build fails at `npm install`: `package.json` probably has a typo or invalid JSON (check commas and quotes).
+- A blank page or a Vite error overlay: read the message; it names the file (`main.jsx`, `App.jsx`, `index.html`, `vite.config.js`) and line.
+- `port is already allocated`: stop whatever is using port 5173.
+
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `Dockerfile` exists in the `ui/` directory.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `Dockerfile` exists in the `ui/` directory.
+> - [ ] Verify the build and run test above succeeded.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -550,9 +466,6 @@ CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 > ├── database/
 > │   └── ...
 > └── ui/
->     ├── .eslintrc.cjs       
->     ├── .prettierignore      
->     ├── .prettierrc          
 >     ├── Dockerfile           # new
 >     ├── index.html
 >     ├── package.json
@@ -563,7 +476,7 @@ CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 >     └── vite.config.js
 > ```
 
-## 9. Summary
+## 8. Summary
 
 You now have a working React app with:
 
@@ -574,7 +487,6 @@ You now have a working React app with:
 - Basic component (App.jsx)
 - Styling (globals.css)
 - HTML structure (index.html)
-- Linting
 - A Dockerfile to build the UI container
 
 **What you've learned:**
@@ -586,19 +498,19 @@ You now have a working React app with:
 - How to import and use CSS
 - Component structure
 - How to configure Vite as a build tool and development server
-- How to set up ESLint for code quality checking
-- How to configure Prettier for consistent code formatting
 - How to create a Dockerfile to containerize your frontend application
 
 
 **Next:** In Part 6 (coming in future steps), you'll add the Todos and CreateTodo components to make it functional.
 
-## 10. Commit and Push
+## 9. Commit and Push
 Go ahead and commit / push your changes to git / GitHub. 
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify that all your new code is on GitHub.
+>
+> {:.checkbox-list}
+> - [ ] Verify that all your new code is on GitHub.
 
 ---
 

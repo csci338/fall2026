@@ -2,7 +2,7 @@
 title: Tips
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 hide_from_list: 1
@@ -12,6 +12,12 @@ hide_from_list: 1
 
 ### Issue: "Command not found: poetry"
 **Solution:** Make sure you've run `poetry install` in the backend directory.
+
+### Issue: `docker build` fails at `poetry install` (backend) or `npm install` (frontend)
+**Solution:** Check `pyproject.toml` / `package.json` for typos, missing commas or quotes, and wrong versions. Read the first error in the build output, not the last.
+
+### Issue: `Cannot connect to the Docker daemon`
+**Solution:** Docker Desktop isn't running. Start it and wait for it to say it's running.
 
 ### Issue: "Module not found" errors
 **Solution:** Verify all dependencies are installed and versions match exactly.

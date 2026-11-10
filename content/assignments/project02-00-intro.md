@@ -2,7 +2,7 @@
 title: Introduction to the Project
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 heading_max_level: 3
@@ -39,7 +39,9 @@ Throughout this semester, you've worked with individual pieces of a full-stack s
 
 ### Development Architecture (Local)
 
-```
+
+{% no-copy %}
+```bash
 ┌─────────────────────────────────────────────────────────────┐
 │                    Your Laptop (Development)                │
 │                                                             │
@@ -81,7 +83,8 @@ Throughout this semester, you've worked with individual pieces of a full-stack s
 
 ### Production Architecture (Railway)
 
-```
+{% no-copy %}
+```bash
 ┌─────────────────────────────────────────────────────────────┐
 │                      Internet Users                         │
 │                                                             │

@@ -427,7 +427,7 @@ export const baseTopics = [
           date: "Th, Nov 12",
           topic: "Client-Side Engineering (Part III): Communicating over HTTP",
           activities: [
-            { title: "Communicating over HTTP", url: "https://docs.google.com/presentation/d/1HYHdRIMcUCgTvGywiULxLOv2XITYWEfg/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
+            { title: "Communicating over HTTP", url: "https://docs.google.com/presentation/d/1HYHdRIMcUCgTvGywiULxLOv2XITYWEfg/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
           ],
         },
         {
@@ -439,6 +439,13 @@ export const baseTopics = [
           date: "Th, Nov 19",
           topic: "Client-Side Engineering (Part IV): Design Systems & External Data Lab",
         },
+        {
+          date: "Tu, Nov 24",
+          topic: "Introduction to Project 2",
+          activities: [
+            { title: "Introduction to Project 2", draft: 1 },
+          ],
+        },
       ],
     },
 
@@ -447,13 +454,6 @@ export const baseTopics = [
       title: "Back-End: Scaling Up",
       description: "Once an application works for a small number of users, the next challenge is making it work under growth. In this unit, we examine what it means to scale a back-end system, including strategies for handling more traffic, coordinating services, and thinking about infrastructure that can evolve with demand. These ideas matter as you move from class projects toward production-minded software.",
       meetings: [
-        {
-          date: "Tu, Nov 24",
-          topic: "Introduction to Project 2",
-          activities: [
-            { title: "Introduction to Project 2", draft: 1 },
-          ],
-        },
         {
           date: "Th, Nov 26",
           topic: "Thanksgiving Break",

@@ -2,7 +2,7 @@
 title: Backend + Frontend Extensions
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 hide_from_list: 1
@@ -11,12 +11,6 @@ hide_from_list: 1
 At this point, you should have a **working TODO application** with a single Todo model (SQLAlchemy), CRUD endpoints (FastAPI), and a basic React frontend. Your task is to enhance this application by completing:
 * One required backend enhancement
 * One required frontend enhancement
-
-{:.info}
-> ## Example
-> Here is one example of how Sarah added a `Category` model (backend) and combined it with the `Mantine` React components (frontend) to create this App: 
-> * Frontend: <a href="https://project02-fall2026-production-88d7.up.railway.app/" target="_blank">https://project02-fall2026-production-88d7.up.railway.app/</a>
-> * Backend: <a href="https://project02-fall2026-production-88d7.up.railway.app/docs" target="_blank">https://project02-fall2026-production-88d7.up.railway.app/docs</a>.
 
 You may also complete the extra credit (see the [extra credit section](#ec) below) to earn additional points.
 
@@ -89,7 +83,7 @@ In addition to your required backend enhancement, you must integrate widgets and
 > - **Icons** - Replace any text-based buttons or labels with icons from the library's icon set (e.g., use Ant Design's `@ant-design/icons` or MUI's `@mui/icons-material`)
 
 
-{:#ec.info}
+
 ## 3. Optional Enhancements
 
 **Extra Credit:** Each of the enhancements listed below can earn your extra credit points, which will be applied to your Project 2 grade. You can complete as many extra credit enhancements as you'd like from the list below:
@@ -196,10 +190,10 @@ Create a Category or Tag model and establish a relationship with Todo (many-to-o
 {:.info}
 > ## <i class="fa-regular fa-circle-check"></i> 4. Before you move on 
 > Make sure you have completed:
-> 
+>
 > {:.checkbox-list}
-> - The required [backend enhancements](#backend) (either option 1 or 2)
-> - The required [frontend enhancements](#frontend)
+> - [ ] The required [backend enhancements](#backend) (either option 1 or 2)
+> - [ ] The required [frontend enhancements](#frontend)
 >
 > [Extra credit enhancements](#ec) (2.1-2.9) are optional but can earn you additional points (point values noted in the task).
 

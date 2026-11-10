@@ -11,10 +11,8 @@ points: 100
 
 This guide will walk you through building a complete full-stack application from scratch. Follow each section in order, and verify your work at each checkpoint.
 
-<blockquote class="info">
-{% collapsible %}
+{% collapsible closed %}
 ## Collaboration & AI Policy
-
 
 **You may:**
 - Work in **pairs** or individually on this assignment -- your choice. 
@@ -34,9 +32,9 @@ This guide will walk you through building a complete full-stack application from
 
 **Remember:** The goal is for you to learn and demonstrate your understanding. If you can't explain how your code works, you haven't learned it. All submitted code must be your own work, even if you received help understanding concepts or debugging issues.
 
-</blockquote>
 
-## Table of Contents
+{% collapsible closed %}
+## Your Tasks
 
 ### Part 1. Build Your System
 1. [Introduction](/assignments/project02-00-intro)
@@ -49,47 +47,45 @@ This guide will walk you through building a complete full-stack application from
 ### Part 2. Get React to Communicate with FastAPI
 1. [Implement Frontend <> Backend Communication](/assignments/project02-06-enhanced-ui)
 1. [Before Moving On: How to work with your containers](/assignments/project02-07-working-with-your-containers)
-1. [Add Continuous Integration on GitHub](/assignments/project02-08-cicd)
+1. [Linters and Formatters](/assignments/project02-08-linters)
+1. [Add Continuous Integration on GitHub](/assignments/project02-09-cicd)
 
 ### Part 3. Extending the App
-1. [Backend + Frontend Extensions](/assignments/project02-09-enhancements) (complete all required tasks)
+1. [Backend + Frontend Extensions](/assignments/project02-10-enhancements) (complete all required tasks)
 
 ### Part 4. Deployment
-1. [Railway Deployment](/assignments/project02-10-railway)
+1. [Railway Deployment](/assignments/project02-11-railway)
 
 
+{% collapsible closed %}
 ## What To Submit
 
-### Before You Submit
 
 Before submitting, verify you have completed all of the following:
 
-**<span class="badge info">20 pts</span> Part 1: Build Your System**
-- Project setup with Git repository 
-- Database container created and configured
-- Backend API with CRUD endpoints working
-- Basic React frontend running
-- Docker containers built and running locally
-{:.checkbox-list}
+**Part 1: Build Your System <span class="badge info">20 pts</span>**
+- [ ] Project setup with Git repository 
+- [ ] Database container created and configured
+- [ ] Backend API with CRUD endpoints working
+- [ ] Basic React frontend running
+- [ ] Docker containers built and running locally
 
-**<span class="badge info">25 pts</span> Part 2: React ↔ FastAPI Communication**
-- Frontend successfully communicates with backend API
-- Can create, read, update, and delete items from the UI
-- GitHub Actions CI/CD pipeline configured and passing
-{:.checkbox-list}
+**Part 2: React ↔ FastAPI Communication <span class="badge info">25 pts</span>**
+- [ ] Frontend successfully communicates with backend API
+- [ ] Can create, read, update, and delete items from the UI
+- [ ] GitHub Actions CI/CD pipeline configured and passing
 
-**<span class="badge info">35 pts</span> Part 3: Required Enhancements**
-- One required backend enhancement (Option 1 or Option 2)
-- One required frontend enhancement (component library integration)
-{:.checkbox-list}
+**Part 3: Required Enhancements <span class="badge info">35 pts</span>**
+- [ ] One required backend enhancement (Option 1 or Option 2)
+- [ ] One required frontend enhancement (component library integration)
 
-**<span class="badge info">20 pts</span> Part 4: Deployment**
-- Application deployed to Railway
-- Production database configured
-- Application accessible via public URL
-{:.checkbox-list}
+**Part 4: Deployment <span class="badge info">20 pts</span>**
+- [ ] Application deployed to Railway
+- [ ] Production database configured
+- [ ] Application accessible via public URL
 
-**Optional:** Complete any [extra credit enhancements](project02-09-enhancements#ec) for additional points.
+
+**Optional:** Complete any [extra credit enhancements](project02-10-enhancements#ec) for additional points.
 
 
 ### Submit

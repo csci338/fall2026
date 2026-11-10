@@ -2,7 +2,7 @@
 title: Database
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 heading_max_level: 2
@@ -27,7 +27,8 @@ The containers communicate with each other through Docker's internal networking,
 
 **Architecture Diagram:**
 
-```
+{% no-copy %}
+```bash
 ┌─────────────────────────────────────────────────────────────┐
 │                    Your Laptop                              │
 │                                                             │
@@ -84,19 +85,21 @@ git checkout -b system-setup
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify that you're on your new branch -- not main.
+>
+> {:.checkbox-list}
+> - [ ] Verify that you're on your new branch -- not main.
 
 ## 3. Create Database Dockerfile
 
 Create `database/Dockerfile` with the following **exact** content:
 
 ```dockerfile
-FROM postgres:15
+FROM postgres:18
 ENV POSTGRES_PASSWORD=postgres
 ```
 
 **Why this works:**
-- Uses PostgreSQL 15 (stable version)
+- Uses PostgreSQL 18 (most recent, stable version)
 - Sets default password for development
 - PostgreSQL will create databases as needed
 
@@ -121,8 +124,11 @@ DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/todo_db
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `.env` file exists at the project root and contains the DATABASE_URL.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your `.env` file exists at the project root and contains the DATABASE_URL.
+> - [ ] Verify git is ignoring it: `git check-ignore -v .env` should print the `.gitignore` rule that matches. (If it prints nothing, fix your `.gitignore` before going further -- you do not want to commit secrets.)
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -138,12 +144,47 @@ DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/todo_db
 >     └── src/
 > ```
 
-## 5. Push your new branch
+## 5. Test Your Database Container
+
+Let's make sure the database actually works before building anything on top of it. Make sure Docker Desktop is running, then from the project root:
+
+```bash
+# Build the image from your Dockerfile
+docker build -t todo-db ./database
+
+# Start a throwaway container from it
+docker run -d --name todo_db_test -e POSTGRES_DB=todo_db -p 5433:5432 todo-db
+
+# Wait a few seconds, then ask Postgres if it's ready
+docker exec todo_db_test pg_isready -U postgres -d todo_db
+```
+
+**What you should see:** `/var/run/postgresql:5432 - accepting connections`
+
+If you see "no response", wait a few more seconds and try again (Postgres takes a moment to start). Then clean up the test container:
+
+```bash
+docker rm -f todo_db_test
+```
+
+{:.info}
+> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+>
+> {:.checkbox-list}
+> - [ ] Verify that `pg_isready` reported `accepting connections`.
+> - [ ] Verify that `docker ps -a` no longer lists `todo_db_test`.
+>
+> Troubleshooting: `Cannot connect to the Docker daemon` means Docker Desktop isn't running. `port is already allocated` means something else is using port 5433.
+
+## 6. Push your new branch
 Go ahead and push your new branch to GitHub. 
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify that your new branch is on GitHub.
+>
+> {:.checkbox-list}
+> - [ ] Verify that your new branch is on GitHub.
+>
 > Don't worry about making a PR or merging anything yet. We'll address that later.
 
 ---

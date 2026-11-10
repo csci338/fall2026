@@ -2,7 +2,7 @@
 title: Working with Your Containers
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 hide_from_list: 1
@@ -56,23 +56,7 @@ docker exec -it todo_backend poetry install
 
 ### 2. Always run the linters on the correct container:
 
-**Frontend (ESLint and Prettier):**
-```bash
-# Check for linting and formatting issues
-docker exec -it todo_frontend npm run check
-
-# Automatically fix linting and formatting issues
-docker exec -it todo_frontend npm run fix
-```
-
-**Backend (Black, isort, flake8):**
-```bash
-# Run all checks (doesn't modify files)
-docker exec -it todo_backend bash scripts/check.sh
-
-# Automatically fix formatting issues
-docker exec -it todo_backend bash scripts/fix.sh
-```
+You'll set up the linters and formatters in the next step. Once you have, you'll run them *inside* the `todo_frontend` and `todo_backend` containers using `docker exec` (just like the package installs above).
 
 ### 3. Query your database
 

@@ -2,7 +2,7 @@
 title: Backend
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 heading_max_level: 3
@@ -100,8 +100,10 @@ class Todo(Base):
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your model files exist and match the code above.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify your model files exist and match the code above.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -641,10 +643,47 @@ EXPOSE 8000
 CMD ["poetry", "run", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
+### 4.1. Test Your Backend Image
+
+Let's verify your `pyproject.toml`, `Dockerfile`, and `server.py` before involving a database. Make sure Docker Desktop is running, then from the project root:
+
+```bash
+# 1. Build the image. This runs `poetry install`, so it validates pyproject.toml
+docker build -t todo-backend ./backend
+
+# 2. Check that the dependencies were installed
+docker run --rm todo-backend python -c "import fastapi, sqlalchemy, asyncpg; print('deps OK')"
+
+# 3. Check that server.py has no syntax or import errors
+#    (--env-file passes your .env file's DATABASE_URL into the container)
+docker run --rm --env-file .env todo-backend python -c "import server; print('server.py OK')"
+
+# 4. Check that all of your routes were registered
+docker run --rm --env-file .env todo-backend python -c "import server; print(sorted({r.path for r in server.app.routes}))"
+```
+
+**What you should see:**
+- Step 1 finishes without errors
+- Step 2 prints `deps OK`
+- Step 3 prints `server.py OK`
+- Step 4 lists paths including `/todos` and `/todos/{todo_id}`
+
+(Importing `server.py` doesn't connect to the database, so it's fine that the database isn't running yet. We'll test the full API in a later step.)
+
+**If something fails:**
+- Build fails during `poetry install`: check `pyproject.toml` for typos and make sure the versions match exactly.
+- `create_async_engine` complains about a `None` URL: your `.env` file is missing or you ran the command from outside the project root.
+- `ModuleNotFoundError`: a dependency is missing or misspelled in `pyproject.toml`.
+- `SyntaxError` / `ImportError` / `NameError`: the traceback shows the file and line number in `server.py`.
+- A route is missing from step 4: you may have skipped one of the endpoint sections (3.9 - 3.12).
+
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify your `server.py` and `Dockerfile` exist in the `backend/` directory.
-> * Also verify that your file structure looks like the one below:
+>
+> {:.checkbox-list}
+> - [ ] Verify the four commands above all succeeded.
+> - [ ] Verify your `server.py` and `Dockerfile` exist in the `backend/` directory.
+> - [ ] Also verify that your file structure looks like the one below:
 >
 > ```sh
 > project02-fall2026
@@ -664,138 +703,14 @@ CMD ["poetry", "run", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8
 >     └── src/
 > ```
 
-## 5. Configuring Linters and Formatters
-
-Linters and formatters help maintain code quality and consistency. This section shows you how to configure them for both backend and frontend.
-
-The backend uses three tools:
-- **Black** - Code formatter
-- **isort** - Import sorter
-- **flake8** - Linter
-
-### 5.1. Configure Black and isort in pyproject.toml
-
-Add these sections to your `backend/pyproject.toml` file (add them after the `[build-system]` section):
-
-```toml
-[tool.black]
-line-length = 88
-target-version = ['py311']
-
-[tool.isort]
-profile = "black"
-line_length = 88
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-ensure_newline_before_comments = true
-```
-
-**What this does:**
-- `[tool.black]` - Configures Black formatter (88 char line length, Python 3.9+)
-- `[tool.isort]` - Configures isort to work with Black's style
-
-### 5.2. Configure flake8
-
-Create `backend/.flake8` with the following content:
-
-```ini
-[flake8]
-# Black allows for 88 chars per line. Let's make flake8 do that too!
-max-line-length = 88
-
-# some flake8 errors to ignore (b/c Black says they're OK):
-ignore = W291, W293, W503 
-
-exclude =
-    .venv
-```
-
-**What this does:**
-- Sets line length to 88 (matches Black)
-- Ignores whitespace errors that Black handles
-- Excludes virtual environment from linting
-
-### 5.3. Create Helper Scripts
-To make running linters easier, create a new directory within `backend` called `scripts`. Within `scripts`:
-
-
-**Create `backend/scripts/check.sh`:**
-```bash
-#!/bin/bash
-
-echo 'Running flake8...'
-poetry run flake8
-
-echo 'Running isort...'
-poetry run isort . --check-only   # run the Python import sorter
-
-echo 'Running black...'
-poetry run black . --check        # runs the Python formatter
-
-echo '✨✨✨✨✨ Completed checks ✨✨✨✨✨'
-```
-
-**Create `backend/scripts/fix.sh`:**
-```bash
-#!/bin/bash
-# Running this file will modify all unformatted python files in this project.
-# Run from project root directory: $ bash backend/scripts/fix.sh
-
-poetry run isort .      # run the Python import sorter
-poetry run black .      # runs the Python formatter
-```
-
-**Using the scripts:**
-
-When you eventually create the Docker backend container, you can run the linter as follows:
-
-```bash
-# Check code quality (doesn't modify files)
-bash scripts/check.sh
-
-# Fix formatting issues (modifies files)
-bash scripts/fix.sh
-```
-
-**What each script does:**
-- `check.sh` - Runs all checks (flake8, isort, black) without modifying files
-- `fix.sh` - Automatically fixes formatting issues (isort and black)
-
-{:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> * Verify all your backend files are created correctly.
-> * Also verify that your file structure looks like the one below:
->
-> ```sh
-> project02-fall2026
-> ├── .env
-> ├── .git/
-> ├── backend/
-> │   ├── models/
-> │   │   ├── __init__.py
-> │   │   ├── base.py
-> │   │   └── todo.py
-> │   ├── scripts/
-> │   │   ├── check.sh      # new
-> │   │   └── fix.sh        # new
-> │   ├── .flake8           # new
-> │   ├── Dockerfile
-> │   ├── pyproject.toml    # updated with linter stuff
-> │   └── server.py
-> ├── database/
-> │   └── Dockerfile
-> └── ui/
->     └── src/
-> ```
-
-## 6. Commit and Push
+## 5. Commit and Push
 Go ahead and commit / push your changes to git / GitHub. 
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify that all your new code is on GitHub.
+>
+> {:.checkbox-list}
+> - [ ] Verify that all your new code is on GitHub.
 
 ---
 

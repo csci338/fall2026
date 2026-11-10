@@ -2,7 +2,7 @@
 title: Docker Compose File + Build Your Containers
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 hide_from_list: 1
@@ -113,6 +113,21 @@ docker compose up -d
   - Backend API: <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
   - Backend Docs: <a href="http://localhost:8000/docs" target="_blank">http://localhost:8000/docs</a>
 
+### Check that everything started
+
+```bash
+# All three services should be "running" (and the db "healthy")
+docker compose ps
+
+# The backend should say "Application startup complete"
+docker compose logs backend --tail 20
+
+# The tables should exist in the database (created when the backend started up)
+docker exec todo_db psql -U postgres -d todo_db -c "\dt"
+```
+
+The last command should list a `todos` table. If any container is missing or exited, run `docker compose logs <service>` (where `<service>` is `db`, `backend` or `frontend`) to see why.
+
 ### Verify your backend endpoints
 Test all endpoints from the command line:
 
@@ -120,7 +135,7 @@ Test all endpoints from the command line:
 # Make sure Docker is running (docker compose up)
 # The server should already be running at http://localhost:8000
 
-# Test GET all
+# Test GET all (should return [] the first time)
 curl http://localhost:8000/todos
 
 # Test POST
@@ -147,9 +162,13 @@ curl -X DELETE http://localhost:8000/todos/1
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
 > Verify that all three containers are running:
-> - Check that you can access http://localhost:5173 (frontend)
-> - Check that you can access http://localhost:8000/docs (backend API documentation)
-> - Verify your containers are running with: `docker ps`
+>
+> {:.checkbox-list}
+> - [ ] Check that you can access http://localhost:5173 (frontend)
+> - [ ] Check that you can access http://localhost:8000/docs (backend API documentation)
+> - [ ] Verify your containers are running with: `docker ps`
+> - [ ] Verify that `docker exec todo_db psql -U postgres -d todo_db -c "\dt"` lists a `todos` table
+> - [ ] Verify that the `curl` POST / GET / PATCH / DELETE commands above all returned sensible responses
 
 
 ## Commit and Push
@@ -157,7 +176,9 @@ Go ahead and commit / push your changes to git / GitHub.
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify that all your new code is on GitHub.
+>
+> {:.checkbox-list}
+> - [ ] Verify that all your new code is on GitHub.
 
 ---
 

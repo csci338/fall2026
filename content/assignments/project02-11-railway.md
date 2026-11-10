@@ -2,7 +2,7 @@
 title: Cloud Deployment
 type: partial
 num: 2
-draft: 1
+draft: 0
 assigned_date: 2026-11-14
 due_date: 2026-12-04
 heading_max_level: 2
@@ -46,8 +46,10 @@ fetch(`${API_URL}/api/todos`)
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on
 > Verify that:
-> - Your `App.jsx` (or wherever you define your API URL) uses the environment variable
-> - All your `fetch()` calls use the `API_URL` constant instead of hardcoded URLs
+>
+> {:.checkbox-list}
+> - [ ] Your `App.jsx` (or wherever you define your API URL) uses the environment variable
+> - [ ] All your `fetch()` calls use the `API_URL` constant instead of hardcoded URLs
 
 ## 2. Create a Production Dockerfile
 
@@ -160,7 +162,9 @@ This Dockerfile uses a **multi-stage build** to create a single container that r
 
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
-> Verify your production Dockerfile is in the root directory.
+>
+> {:.checkbox-list}
+> - [ ] Verify your production Dockerfile is in the root directory.
 
 
 
@@ -196,9 +200,11 @@ Once the service has been built, click on the PostgreSQL service you just create
 {:.info}
 > #### <i class="fa-regular fa-circle-check"></i> Before you move on 
 > Verify you have:
-> - A PostgreSQL database created in Railway
-> - The `DATABASE_URL` connection string copied
-> - The connection string modified to use `postgresql+asyncpg://`
+>
+> {:.checkbox-list}
+> - [ ] A PostgreSQL database created in Railway
+> - [ ] The `DATABASE_URL` connection string copied
+> - [ ] The connection string modified to use `postgresql+asyncpg://`
 
 ## 6. Create a Web Service
 Now that you've created your database container, you're ready to create your web server, which will host your Backend and your Frontend on the same box. To do this, you will add a second service to your project:
@@ -229,10 +235,12 @@ Now that you've created your database container, you're ready to create your web
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
 > Verify your application is:
-> - Deployed on Railway
-> - Connected to the PostgreSQL database
-> - Accessible via a public URL
-> - Test it by visiting your Railway URL
+>
+> {:.checkbox-list}
+> - [ ] Deployed on Railway
+> - [ ] Connected to the PostgreSQL database
+> - [ ] Accessible via a public URL
+> - [ ] Test it by visiting your Railway URL
 
 
 ## 7. Verify Deployment
@@ -257,10 +265,12 @@ Test your deployed application:
 {:.info}
 > ### <i class="fa-regular fa-circle-check"></i> Before you move on 
 > Verify your deployed application:
-> - Loads correctly in the browser
-> - Has working API endpoints
-> - Successfully performs all CRUD operations
-> - Is accessible from any device with internet access
+>
+> {:.checkbox-list}
+> - [ ] Loads correctly in the browser
+> - [ ] Has working API endpoints
+> - [ ] Successfully performs all CRUD operations
+> - [ ] Is accessible from any device with internet access
 
 ---
 

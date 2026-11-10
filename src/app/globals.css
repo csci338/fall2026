@@ -217,7 +217,7 @@ blockquote .hljs, blockquote code {
 }
 
   
-.info,
+.info:not(.badge),
 div.info,
 blockquote.info {
   @apply bg-[#a3e6ff44] p-4 dark:!bg-sky-950 !border-l-12 !border-[#8eddff];
@@ -1105,6 +1105,10 @@ h2 .badge {
 .badge.info {
   background-color: #e0f2fe;
   color: #0c4a6e;
+  border-radius: 0.375rem;
+  padding: 0.15rem 0.65rem;
+  margin-right: 0.35rem;
+  white-space: nowrap;
 }
 
 .badge.person-a {

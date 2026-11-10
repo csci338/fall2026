@@ -6,6 +6,9 @@ draft: 0
 assigned_date: 2026-11-10
 due_date: 2026-11-16
 points: 6
+collapsible_headings:
+  level: 2
+  closed: true
 ---
 
 <!--  -->
@@ -70,7 +73,7 @@ When you’re done, preview your HTML page in the browser. If you did it correct
 
 ## 3. Convert your code to a React project
 
-Now that you’ve created your starter files, you’re going to convert our app into a React app. You will do this from the command line (Windows users use GitBash, Mac users use Terminal):
+Now that you’ve created your starter files, you’re going to convert your app into a React app. You will do this from the command line (Windows users use GitBash, Mac users use Terminal):
 
 1. From the command line, navigate into your **lab09** folder. You can also open the VS Code Integrated terminal. 
 2. Verify that you’re in the correct folder by typing **pwd**
@@ -212,7 +215,7 @@ Say we want to make a card for each student in this class with their name, major
 
 1. You can now make new <Profile /> tags. Let's add a few to your `App.jsx` file underneath your `<p>Hello React!</p>` message:
 
-    ```jsx
+    ```html
     <p>Hello React!</p>
     <Profile />
     <Profile />
@@ -256,7 +259,7 @@ Say we want to make a card for each student in this class with their name, major
 Can you get your `Profile.jsx` component to display the “name” attribute? In other words, if I make different profile tags that look like this, 
 the component should output each of their names to the screen.
 
-```jsx
+```html
 <Profile name="Anita" />
 <Profile name="Ben" />
 <Profile name="Adwaina" />
@@ -309,7 +312,7 @@ the component should output each of their names to the screen.
 ### Challenge 2
 See if you can figure out how to get different people’s profile pics to show up: for instance, if I make different profile tags that look like this…
 
-```jsx
+```html
 <Profile name="Anita" picture="https://picsum.photos/id/216/100/100" />
 <Profile name="Ben" picture="https://picsum.photos/id/217/100/100" />
 <Profile name="Adwaina" picture="https://picsum.photos/id/218/100/100" />
