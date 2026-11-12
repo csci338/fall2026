@@ -427,7 +427,7 @@ export const baseTopics = [
           date: "Th, Nov 12",
           topic: "Client-Side Engineering (Part III): Communicating over HTTP",
           activities: [
-            { title: "Communicating over HTTP", url: "https://docs.google.com/presentation/d/1HYHdRIMcUCgTvGywiULxLOv2XITYWEfg/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 1 },
+            { title: "Communicating over HTTP", url: "https://docs.google.com/presentation/d/1HYHdRIMcUCgTvGywiULxLOv2XITYWEfg/edit?usp=sharing&ouid=113376576186080604800&rtpof=true&sd=true", draft: 0 },
           ],
         },
         {
