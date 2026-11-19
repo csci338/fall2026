@@ -1,0 +1,168 @@
+{
+  "quizName": "REST: GET, POST, PATCH, DELETE",
+  "start_date": "2026-11-12",
+  "notes": "Take before starting Project 2 (FastAPI + React). Covers what each HTTP method means, status codes, and RESTful URL design.",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You want to retrieve the film with id 42 without changing anything on the server. Which HTTP method should you use?",
+      "options": [
+        "`POST /films/42`",
+        "`GET /films/42`",
+        "`PATCH /films/42`",
+        "`DELETE /films/42`"
+      ],
+      "correct": 1,
+      "explanation": "`GET` is for reading. It is *safe*: a GET request should never change data on the server."
+    },
+    {
+      "id": "q2",
+      "question": "Which request is the conventional RESTful way to **create** a new film?",
+      "options": [
+        "`GET /films/new`",
+        "`PATCH /films`",
+        "`POST /films` with the new film's data in the request body",
+        "`DELETE /films` with the new film's data"
+      ],
+      "correct": 2,
+      "explanation": "`POST` to the collection URL (`/films`) creates a new resource, and the server usually assigns the id. The data goes in the request body."
+    },
+    {
+      "id": "q3",
+      "question": "A film already exists and you only want to change its `title`, leaving every other field alone. Which request fits best?",
+      "options": [
+        "`POST /films/42` with only the `title`",
+        "`GET /films/42?title=New Title`",
+        "`PATCH /films/42` with `{\"title\": \"New Title\"}`",
+        "`DELETE /films/42`, then `POST /films`"
+      ],
+      "correct": 2,
+      "explanation": "`PATCH` applies a *partial* update to an existing resource. (`PUT` replaces the whole resource, so you would have to send every field.)"
+    },
+    {
+      "id": "q4",
+      "question": "What does the following request do?\n\n```http\nDELETE /films/42\n```",
+      "options": [
+        "Removes the film with id 42",
+        "Returns the film with id 42 and marks it as deleted in your browser",
+        "Creates a film with id 42",
+        "Replaces film 42 with an empty film"
+      ],
+      "correct": 0,
+      "explanation": "`DELETE` asks the server to remove the resource identified by the URL. There is usually no request body."
+    },
+    {
+      "id": "q5",
+      "question": "Which of these methods typically send data to the server in a **request body**? Select all that apply.",
+      "options": [
+        "`GET`",
+        "`POST`",
+        "`PATCH`",
+        "`DELETE`"
+      ],
+      "correct": [
+        1,
+        2
+      ],
+      "explanation": "`POST` (the new resource) and `PATCH` (the fields to change) carry a JSON body. `GET` and `DELETE` identify what they act on through the URL, so they normally have no body.",
+      "type": "select-all"
+    },
+    {
+      "id": "q6",
+      "question": "Why is this endpoint a bad design?\n\n```http\nGET /films/42/delete\n```",
+      "options": [
+        "URLs should never contain the word `films`",
+        "`GET` requests must always include a body",
+        "It is fine; `GET` is the most common method",
+        "`GET` is supposed to be safe. Browsers, caches, and link prefetchers may issue GET requests on their own, which could delete data by accident"
+      ],
+      "correct": 3,
+      "explanation": "Use the method to express the action (`DELETE /films/42`) instead of putting a verb in the URL. Because `GET` is assumed to be harmless, tools freely repeat or pre-load it."
+    },
+    {
+      "id": "q7",
+      "question": "Which URL design is the most RESTful way to get all films with a PG rating?",
+      "options": [
+        "`GET /getPGFilms`",
+        "`GET /films?rating=PG`",
+        "`POST /films/search/PG`",
+        "`GET /films/rating/PG/delete-none`"
+      ],
+      "correct": 1,
+      "explanation": "URLs name *resources* (nouns), and query parameters filter or sort a collection. The method (`GET`) says what you're doing."
+    },
+    {
+      "id": "q8",
+      "question": "A `POST` request successfully creates a new film. Which status code is the most appropriate response?",
+      "options": [
+        "`200 OK`",
+        "`201 Created`",
+        "`404 Not Found`",
+        "`500 Internal Server Error`"
+      ],
+      "correct": 1,
+      "explanation": "`201 Created` specifically means a new resource was created. (`200` isn't wrong in practice, but `201` is the convention.)"
+    },
+    {
+      "id": "q9",
+      "question": "You send `GET /films/99999` and no film with that id exists. What should a well-designed API return?",
+      "options": [
+        "`200 OK` with an empty page",
+        "`201 Created`",
+        "`404 Not Found`",
+        "`301 Moved Permanently`"
+      ],
+      "correct": 2,
+      "explanation": "`404 Not Found` means the resource you asked for doesn't exist. `4xx` codes mean the *client* made the mistake; `5xx` codes mean the server failed."
+    },
+    {
+      "id": "q10",
+      "question": "You call `DELETE /films/42` twice in a row. The first call succeeds. Which statement describes REST best practice?",
+      "options": [
+        "`DELETE` is *idempotent*: after one or more calls, the end state is the same (film 42 is gone), even if the second call reports `404`",
+        "The second call will delete a different film",
+        "`DELETE` is not allowed to be called twice",
+        "The second call should create film 42 again"
+      ],
+      "correct": 0,
+      "explanation": "Idempotent means repeating the request doesn't change the result beyond the first call. `POST`, by contrast, is *not* idempotent: calling it twice usually creates two records."
+    },
+    {
+      "id": "q11",
+      "question": "In FastAPI, which decorator would you use for an endpoint that updates only some fields of an existing film?",
+      "options": [
+        "`@router.get(\"/films/{film_id}\")`",
+        "`@router.post(\"/films/{film_id}\")`",
+        "`@router.patch(\"/films/{film_id}\")`",
+        "`@router.update(\"/films/{film_id}\")`"
+      ],
+      "correct": 2,
+      "explanation": "FastAPI decorators are named after the HTTP method: `get`, `post`, `patch`, `put`, and `delete`. There is no `update` decorator."
+    },
+    {
+      "id": "q12",
+      "question": "You send JSON in a `POST` request body, but the server responds with `422 Unprocessable Entity`. What is the most likely cause?",
+      "options": [
+        "The server is down",
+        "The URL doesn't exist",
+        "You used the wrong browser",
+        "The JSON is missing a required field or has a field of the wrong type, so the server's validation rejected it"
+      ],
+      "correct": 3,
+      "explanation": "FastAPI returns `422` when the request body fails validation against the Pydantic model. The response body usually says which field was wrong, so read it."
+    },
+    {
+      "id": "q13",
+      "question": "When you send a JSON body with `POST` or `PATCH`, which request header tells the server how to interpret it?",
+      "options": [
+        "`Accept: text/html`",
+        "`Content-Type: application/json`",
+        "`Authorization: json`",
+        "`Cache-Control: json`"
+      ],
+      "correct": 1,
+      "explanation": "`Content-Type` describes the format of the body you are *sending*. Without it, many servers won't parse the JSON."
+    }
+  ]
+}

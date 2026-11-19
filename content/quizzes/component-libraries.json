@@ -1,0 +1,157 @@
+{
+  "quizName": "Using Component Libraries (antd & MUI)",
+  "start_date": "2026-11-19",
+  "notes": "Take after Lab 10. Covers importing and configuring antd/MUI components, props, forms, and customization.",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the main benefit of using a component library such as Ant Design (`antd`) or MUI?",
+      "options": [
+        "It makes your app run faster than plain HTML",
+        "You get ready-made, consistent, accessible UI components (buttons, forms, carousels, etc.) instead of building and styling each from scratch",
+        "It replaces React, so you don't need to learn it",
+        "It removes the need to write any CSS or JavaScript"
+      ],
+      "correct": 1,
+      "explanation": "Component libraries save time and give a consistent look and accessibility features. They are built *on top of* React, and you still write your own logic and layout."
+    },
+    {
+      "id": "q2",
+      "question": "You ran `npm install antd`. Which line correctly imports the `Button` and `Carousel` components?",
+      "options": [
+        "`import antd.Button, antd.Carousel;`",
+        "`import Button from \"./antd\";`",
+        "`import { Button, Carousel } from \"antd\";`",
+        "`const Button = require(\"Ant Design\");`"
+      ],
+      "correct": 2,
+      "explanation": "antd exports each component by name, so use named imports from the package name (`\"antd\"`)."
+    },
+    {
+      "id": "q3",
+      "question": "What are **props** in the following code?\n\n```jsx\n<Button type=\"primary\" size=\"large\">Search</Button>\n```",
+      "options": [
+        "`type` and `size`: the inputs you pass to configure the component",
+        "Only `Search`",
+        "`Button`, which is the prop name",
+        "The CSS file that styles it"
+      ],
+      "correct": 0,
+      "explanation": "Props are the attributes you give a component. Each library documents the props available (and their allowed values) on every component's page. The text between the tags is the `children` prop."
+    },
+    {
+      "id": "q4",
+      "question": "Where should you look first to find out how to make an antd `Input` disabled or to change its size?",
+      "options": [
+        "Stack Overflow, always",
+        "The component's page in the official docs, specifically the examples and the **API** (props) table",
+        "The `node_modules` folder's compiled code",
+        "Trial and error with random props"
+      ],
+      "correct": 1,
+      "explanation": "The docs' API table lists every prop, its type, its default, and what it does. The examples show typical usage you can copy and adapt."
+    },
+    {
+      "id": "q5",
+      "question": "In the antd `Form` below, what is the purpose of `name=\"q\"`?\n\n```jsx\n<Form onFinish={handleSubmit}>\n    <Form.Item label=\"Search\" name=\"q\">\n        <Input />\n    </Form.Item>\n    <Button htmlType=\"submit\">Go</Button>\n</Form>\n```",
+      "options": [
+        "It sets the text shown to the user",
+        "It makes the input required",
+        "It is the CSS class for styling",
+        "It is the key under which the input's value appears in the object passed to `handleSubmit`, e.g., `{ q: \"Beyonce\" }`"
+      ],
+      "correct": 3,
+      "explanation": "`name` links the field to the form's internal data. When the form is submitted, `onFinish` receives an object keyed by each `Form.Item`'s `name`."
+    },
+    {
+      "id": "q6",
+      "question": "The antd button in a form does nothing when clicked. Which prop is most likely missing?",
+      "options": [
+        "`htmlType=\"submit\"`",
+        "`color=\"blue\"`",
+        "`onHover`",
+        "`isSubmit={true}`"
+      ],
+      "correct": 0,
+      "explanation": "antd's `type` prop controls the *visual* style (`primary`, `dashed`, ...). `htmlType` controls the underlying HTML button type; `submit` is what triggers the form's `onFinish`."
+    },
+    {
+      "id": "q7",
+      "question": "Your form has an antd `<InputNumber min={1} max={20} />` named `limit`. What type of value will `values.limit` be in `onFinish`?",
+      "options": [
+        "A string, like `\"5\"`",
+        "A number, like `5`",
+        "An array",
+        "A boolean"
+      ],
+      "correct": 1,
+      "explanation": "`InputNumber` gives you a number, whereas `Input` gives you a string. This matters when you do math or build a URL."
+    },
+    {
+      "id": "q8",
+      "question": "You use antd's `Carousel` and want one slide per item in an array. Which approach follows the pattern from the lab?",
+      "options": [
+        "```jsx\n<Carousel>\n    {tracks.map(track => <div key={track.id}>...</div>)}\n</Carousel>\n```",
+        "```jsx\n<Carousel tracks={tracks} />\n```",
+        "```jsx\n<Carousel>for (t of tracks) { <div/> }</Carousel>\n```",
+        "```jsx\n<Carousel>{tracks.length}</Carousel>\n```"
+      ],
+      "correct": 0,
+      "explanation": "Library components take children. Use `.map()` to turn each data item into a child element, and give each one a unique `key`. `for` loops don't produce values inside JSX."
+    },
+    {
+      "id": "q9",
+      "question": "In MUI, how do you typically install the library and use a `Button`?",
+      "options": [
+        "`npm install antd`, then `import { Button } from \"antd\"`",
+        "`npm install @mui/material @emotion/react @emotion/styled`, then `import Button from \"@mui/material/Button\"` (or `import { Button } from \"@mui/material\"`)",
+        "`npm install mui`, then `<mui.Button>`",
+        "Download a ZIP file and copy it into `src`"
+      ],
+      "correct": 1,
+      "explanation": "MUI is published as `@mui/material` and needs its styling engine (Emotion) as a peer dependency. The usage pattern is the same as antd's: install, import, then pass props."
+    },
+    {
+      "id": "q10",
+      "question": "Which ways can you customize a third-party component's appearance? Select all that apply.",
+      "options": [
+        "Pass built-in props documented for the component (e.g., `size`, `type`)",
+        "Pass a `style` or `className` prop",
+        "Use the library's theming option (e.g., antd's `ConfigProvider`, MUI's `ThemeProvider`) to change defaults for the whole app",
+        "Edit the library's code inside `node_modules`"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Props, `style`/`className`, and theming are the supported ways. Editing `node_modules` is a bad idea because your changes vanish on the next `npm install` and aren't part of your repo.",
+      "type": "select-all"
+    },
+    {
+      "id": "q11",
+      "question": "Do you need a `useState` variable for each antd `Form.Item` input to know what the user typed?",
+      "options": [
+        "Yes, antd forms don't work without state for every field",
+        "No. The antd `Form` manages the field values for you and gives them to `onFinish` when the form is submitted",
+        "Only for `Input`, not for `InputNumber`",
+        "No, because React doesn't need state for forms"
+      ],
+      "correct": 1,
+      "explanation": "antd's `Form` keeps its own internal state. You use `useState` for *your* data, such as the tracks returned from the server, which React needs to know about so it can redraw."
+    },
+    {
+      "id": "q12",
+      "question": "What is a real **trade-off** of relying on a third-party component library?",
+      "options": [
+        "Components can't be used with React",
+        "You can't change anything about the components",
+        "Libraries are never maintained",
+        "Added dependency and bundle size, a learning curve for the library's API, and your app's look and behavior is constrained by what the library supports"
+      ],
+      "correct": 3,
+      "explanation": "Libraries speed you up but come with costs: bigger bundles, breaking changes between versions, and limits on customization. Weigh that against the time saved building and testing common components yourself."
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "quizName": "Using fetch in React",
+  "start_date": "2026-11-19",
+  "notes": "Take after Lab 10. Covers fetch, async/await, useState, and useEffect for loading data.",
+  "draft": 0,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What does this line give you?\n\n```javascript\nconst response = await fetch(\"https://www.apitutor.org/spotify/simple/v1/search?q=beyonce&type=track&limit=2\");\n```",
+      "options": [
+        "The array of tracks, ready to use",
+        "A `Response` object. You still need to read its body (e.g., `await response.json()`)",
+        "A string of HTML",
+        "A Promise that never resolves"
+      ],
+      "correct": 1,
+      "explanation": "`fetch` resolves to a `Response` describing the HTTP reply (status, headers, body stream). Calling `response.json()` (which is also asynchronous) parses the body into JavaScript data."
+    },
+    {
+      "id": "q2",
+      "question": "Which code correctly gets the parsed JSON data?",
+      "options": [
+        "```javascript\nconst data = fetch(url).json();\n```",
+        "```javascript\nconst data = await fetch(url);\n```",
+        "```javascript\nconst response = await fetch(url);\nconst data = response.json;\n```",
+        "```javascript\nconst response = await fetch(url);\nconst data = await response.json();\n```"
+      ],
+      "correct": 3,
+      "explanation": "Two awaits: one for the response to arrive, and one for the body to be read and parsed. `fetch(url)` alone returns a Promise (no `.json()` method), and `response.json` without `()` is just the function."
+    },
+    {
+      "id": "q3",
+      "question": "Your request to the server returns `404 Not Found`. What does `fetch` do?",
+      "options": [
+        "It throws an error that `try/catch` will catch",
+        "It returns `null`",
+        "It resolves normally. You must check `response.ok` (or `response.status`) yourself",
+        "It automatically retries three times"
+      ],
+      "correct": 2,
+      "explanation": "`fetch` only rejects on *network* failures. An HTTP error status like `404` or `500` is still a successful round trip, so check `response.ok` before using the data."
+    },
+    {
+      "id": "q4",
+      "question": "What does this code print, and in what order?\n\n```javascript\nasync function load() {\n    console.log(\"A\");\n    await fetch(url);\n    console.log(\"B\");\n}\n\nload();\nconsole.log(\"C\");\n```",
+      "options": [
+        "`A`, `B`, `C`",
+        "`B`, `A`, `C`",
+        "`A`, `C`, `B`",
+        "`C`, `A`, `B`"
+      ],
+      "correct": 2,
+      "explanation": "`fetch` is asynchronous. `load()` runs until it reaches `await` (printing `A`), then JavaScript pauses that function and keeps running the rest of your code (`C`). The function resumes and prints `B` only after the response arrives."
+    },
+    {
+      "id": "q5",
+      "question": "You write this component:\n\n```jsx\nfunction App() {\n    const [tracks, setTracks] = useState([]);\n\n    async function loadTracks() {\n        const response = await fetch(url);\n        const data = await response.json();\n        setTracks(data);\n    }\n    loadTracks();\n\n    return <div>{tracks.length} tracks</div>;\n}\n```\n\nWhat happens?",
+      "options": [
+        "It fetches once and displays the number of tracks",
+        "It never fetches, because `fetch` must be inside a button",
+        "React throws an error because `fetch` is not allowed in components",
+        "It sends request after request in an endless loop: each `setTracks` re-renders `App`, which fetches again"
+      ],
+      "correct": 3,
+      "explanation": "Calling `setTracks` triggers a re-render, which runs the function body (and the `fetch`) again. Side effects like network requests belong in an event handler or in `useEffect`, not directly in the component body."
+    },
+    {
+      "id": "q6",
+      "question": "You want to load a list of tracks **once**, when the component first appears on screen. Which is the right tool?",
+      "options": [
+        "```jsx\nuseEffect(() => {\n    // fetch and call setTracks\n}, []);\n```",
+        "```jsx\nuseEffect(() => {\n    // fetch and call setTracks\n});\n```",
+        "```jsx\nconst tracks = fetch(url);\n```",
+        "```jsx\nuseState(fetch(url));\n```"
+      ],
+      "correct": 0,
+      "explanation": "`useEffect` runs *after* a render. The empty dependency array `[]` means \"only after the first render\". Without the array, the effect runs after every render."
+    },
+    {
+      "id": "q7",
+      "question": "What does `[query]` do in this effect?\n\n```jsx\nuseEffect(() => {\n    fetchData(query);\n}, [query]);\n```",
+      "options": [
+        "It runs the effect only once, ignoring `query`",
+        "It runs the effect after the first render, and again whenever `query` changes",
+        "It runs the effect every second",
+        "It prevents `query` from changing"
+      ],
+      "correct": 1,
+      "explanation": "The dependency array lists values the effect uses. React re-runs the effect after any render where one of them changed."
+    },
+    {
+      "id": "q8",
+      "question": "Your app has a form with a **Search** button. When should the `fetch` happen?",
+      "options": [
+        "In the form's submit handler (e.g., `onFinish`), since the request is a response to a user action",
+        "Inside `useEffect` with no dependency array",
+        "In `main.jsx`, before React starts",
+        "In the JSX itself, as `{fetch(url)}`"
+      ],
+      "correct": 0,
+      "explanation": "Requests triggered by a user action belong in the event handler. Use `useEffect` for fetches that should happen because the component appeared or because some state/prop changed."
+    },
+    {
+      "id": "q9",
+      "question": "Which statement about `useEffect` and `async` is correct?",
+      "options": [
+        "You can pass an `async` function directly: `useEffect(async () => {...}, [])`",
+        "`useEffect` can't be used with `fetch`",
+        "Define an `async` function *inside* the effect (or outside it) and call it, because an effect callback shouldn't itself return a Promise",
+        "`async` functions can only be used in `main.jsx`"
+      ],
+      "correct": 2,
+      "explanation": "React expects an effect to return nothing or a cleanup function. An `async` function always returns a Promise, so the common pattern is to declare an inner `async function load() {...}` and call `load()`."
+    },
+    {
+      "id": "q10",
+      "question": "Which `fetch` call correctly sends a new film to the server as JSON?",
+      "options": [
+        "```javascript\nfetch(url, { method: \"POST\", body: film });\n```",
+        "```javascript\nfetch(url, {\n    method: \"POST\",\n    headers: { \"Content-Type\": \"application/json\" },\n    body: JSON.stringify(film)\n});\n```",
+        "```javascript\nfetch(url + \"?film=\" + film);\n```",
+        "```javascript\nfetch(url, { method: \"GET\", body: JSON.stringify(film) });\n```"
+      ],
+      "correct": 1,
+      "explanation": "You need the method, a `Content-Type` header telling the server it's JSON, and a body that is a *string* (`JSON.stringify` converts the object). `GET` requests don't have bodies."
+    },
+    {
+      "id": "q11",
+      "question": "After fetching, you write `tracks = data;` inside your function (where `tracks` came from `useState`). What is wrong?",
+      "options": [
+        "Nothing. React notices the change and re-renders",
+        "`tracks` must be a string",
+        "`data` can't be assigned to a variable",
+        "Reassigning doesn't tell React anything changed (and the `const` can't be reassigned). Call `setTracks(data)` so React re-renders"
+      ],
+      "correct": 3,
+      "explanation": "State can only be updated through its setter function. `setTracks(data)` stores the new value *and* schedules a re-render."
+    },
+    {
+      "id": "q12",
+      "question": "You wrote `const [tracks, setTracks] = useState();` (no initial value) and render `tracks.map(...)`. What is the problem?",
+      "options": [
+        "On the first render `tracks` is `undefined`, so `.map` throws \"Cannot read properties of undefined\" before the data arrives",
+        "`.map` can't be used in JSX",
+        "`useState` requires a string",
+        "There is no problem; React waits for the data"
+      ],
+      "correct": 0,
+      "explanation": "The first render happens *before* the fetch finishes. Initialize list state as an empty array (`useState([])`) so there is something valid to map over."
+    },
+    {
+      "id": "q13",
+      "question": "Which are good practices when loading data in a React component? Select all that apply.",
+      "options": [
+        "Track a `loading` (and possibly `error`) state so the UI can show something while waiting or on failure",
+        "Check `response.ok` before calling `response.json()`",
+        "Wrap the request in `try/catch` to handle network failures",
+        "Call `fetch` in the component body so it's always up to date"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Network requests take time and can fail, so plan for loading and error states. Fetching in the component body is the bug from earlier questions: it re-runs on every render.",
+      "type": "select-all"
+    }
+  ]
+}
