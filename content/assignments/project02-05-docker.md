@@ -160,7 +160,7 @@ curl -X DELETE http://localhost:8000/todos/1
 
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 > Verify that all three containers are running:
 >
 > {:.checkbox-list}
@@ -175,7 +175,7 @@ curl -X DELETE http://localhost:8000/todos/1
 Go ahead and commit / push your changes to git / GitHub. 
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify that all your new code is on GitHub.

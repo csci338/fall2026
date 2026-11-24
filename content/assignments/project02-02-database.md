@@ -84,7 +84,7 @@ git checkout -b system-setup
 - Makes it easier to review changes before merging
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify that you're on your new branch -- not main.
@@ -123,7 +123,7 @@ DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/todo_db
 
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `.env` file exists at the project root and contains the DATABASE_URL.
@@ -168,7 +168,7 @@ docker rm -f todo_db_test
 ```
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify that `pg_isready` reported `accepting connections`.
@@ -180,7 +180,7 @@ docker rm -f todo_db_test
 Go ahead and push your new branch to GitHub. 
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify that your new branch is on GitHub.

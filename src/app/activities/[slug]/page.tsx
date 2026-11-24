@@ -45,6 +45,7 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
     
     const { heading_max_level } = postData;
     const isStyleGuideDemo = slug === 'style-guide-demo';
+    const isFinalStudyGuide = slug === 'final-study-guide';
     const quizData = getQuizData(slug);
     
     return (
@@ -58,10 +59,14 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
           title={postData.title} 
           excerpt={postData.excerpt}
           type={postData.type}
+          includeExpandButton={isFinalStudyGuide}
         />
         { postData.due_date && <p className="mt-2 text-lg font-bold">Due {formatDate(postData.due_date)} at 11:59pm</p> }
         {isStyleGuideDemo && <StyleGuideStyles />}
-        <MarkdownContent content={postData.content} className="activity-content" />
+        <MarkdownContent
+          content={postData.content}
+          className={isFinalStudyGuide ? 'activity-content final-study-guide' : 'activity-content'}
+        />
         {quizData && quizData.draft !== 1 && (
           <ResourceQuiz key={`quiz-${slug}`} quizData={quizData} resourceSlug={slug} variant="desktop" />
         )}

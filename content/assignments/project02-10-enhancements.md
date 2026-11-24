@@ -188,7 +188,7 @@ Create a Category or Tag model and establish a relationship with Todo (many-to-o
 {:.compact}
 
 {:.info}
-> ## <i class="fa-regular fa-circle-check"></i> 4. Before you move on 
+> ## 4. Before you move on
 > Make sure you have completed:
 >
 > {:.checkbox-list}

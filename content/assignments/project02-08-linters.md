@@ -232,7 +232,7 @@ docker exec -it todo_frontend npm run check
 **Prove it works:** add a stray unused variable (e.g. `const x = 1;`) to `ui/src/App.jsx` and run the check again; ESLint should complain. Run `docker exec -it todo_frontend npm run fix`, and remove your test line.
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify `docker exec -it todo_backend bash scripts/check.sh` passes.
@@ -263,7 +263,7 @@ docker exec -it todo_frontend npm run check
 Go ahead and commit / push your changes to git / GitHub.
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify that all your new code is on GitHub.

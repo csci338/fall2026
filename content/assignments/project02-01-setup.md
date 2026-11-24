@@ -23,7 +23,7 @@ project02-fall2026
 ```
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your folder structure matches the above.
@@ -63,7 +63,7 @@ Thumbs.db
 ```
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `.gitignore` file exists and contains the above patterns.
@@ -122,7 +122,7 @@ See the project documentation for detailed setup and development instructions.
 - Makes your repository more professional and easier to understand
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `README.md` file exists in the root directory with the basic content above.
@@ -167,7 +167,7 @@ git push -u origin main
 **Note:** Make sure you have SSH keys set up with GitHub. If you haven't done this yet, follow the instructions from Lab 2 to set up SSH key authentication.
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your local repository is connected to GitHub and your initial commit is pushed.
@@ -184,7 +184,7 @@ git push
 ```
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Make sure you understand the Git workflow for committing and pushing code regularly throughout development.

@@ -6,7 +6,7 @@ import ExpandableSectionHeading from './ExpandableSectionHeading';
 import { PageHeaderPortal } from './PageHeaderPortal';
 
 // Section-level collapsibles ({% collapsible %}); excludes answer reveals like "Show the answer"
-const COLLAPSIBLE_SECTIONS = '.assignment-page details[class*="collapsible-h"]';
+const COLLAPSIBLE_SECTIONS = ':is(.assignment-page, .activity-content) details[class*="collapsible-h"]';
 
 function getCollapsibleSections(): HTMLDetailsElement[] {
   return Array.from(document.querySelectorAll<HTMLDetailsElement>(COLLAPSIBLE_SECTIONS));

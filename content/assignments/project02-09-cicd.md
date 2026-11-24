@@ -129,7 +129,7 @@ jobs:
 - Fails if code doesn't meet quality standards
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `.github/workflows/pr.yml` file exists.
@@ -184,7 +184,7 @@ git push
    - Commit and push again
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your GitHub Actions workflow runs successfully on push.
@@ -205,7 +205,7 @@ git push
 4. Commit and push again
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 > Make sure you understand how to read and fix workflow results.
 >
 > **Backend**:

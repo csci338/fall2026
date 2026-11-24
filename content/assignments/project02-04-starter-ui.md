@@ -73,7 +73,7 @@ Create `ui/package.json` - This file defines your project dependencies and scrip
 Dependencies will be installed automatically when you build your containers (`npm install` will run during the build process).
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `package.json` file exists and contains all the required dependencies listed above.
@@ -143,7 +143,7 @@ export default defineConfig({
 ```
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `vite.config.js` file exists in the `ui/` directory.
@@ -189,7 +189,7 @@ Create `ui/index.html`:
 - Loads `main.jsx` as a module (Vite handles the rest)
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `index.html` file exists in the `ui/` directory.
@@ -244,7 +244,7 @@ main();
 - Works with Vite's module system
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `main.jsx` file exists in the `ui/src/` directory.
@@ -302,7 +302,7 @@ export default function App() {
 - **Export default** - Makes this component available to import
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `App.jsx` file exists in the `ui/src/` directory.
@@ -379,7 +379,7 @@ export default function App() {
 - Centers content with max-width
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `globals.css` file exists and is imported in `App.jsx`.
@@ -450,7 +450,7 @@ docker run --rm -p 5173:5173 todo-ui
 - `port is already allocated`: stop whatever is using port 5173.
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `Dockerfile` exists in the `ui/` directory.
@@ -507,7 +507,7 @@ You now have a working React app with:
 Go ahead and commit / push your changes to git / GitHub. 
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify that all your new code is on GitHub.

@@ -8,6 +8,8 @@ interface ResourceData {
   id: string;
   title: string;
   group?: string;
+  featured?: boolean;
+  featuredOrder?: number;
   section: 'resources' | 'activities';
 }
 
@@ -33,13 +35,15 @@ export default async function QuickLinksNav() {
   // Get all resource files from content/resources directory
   const allResources = getAllPosts('resources');
   
-  // Filter resources that have quicklink: 1 and are not drafts
+  // Collect regular and featured resource links.
   const quickLinkResources: ResourceData[] = allResources
-    .filter(resource => resource.quicklink === 1 && resource.draft !== 1)
+    .filter(resource => (resource.quicklink === 1 || resource.featured_quicklink === 1) && resource.draft !== 1)
     .map(resource => ({
       id: resource.id,
       title: resource.title,
       group: resource.group,
+      featured: resource.featured_quicklink === 1,
+      featuredOrder: resource.featured_quicklink_order,
       section: 'resources' as const,
     }));
 
@@ -63,14 +67,16 @@ export default async function QuickLinksNav() {
     return a.title.localeCompare(b.title);
   });
 
-  // Include activities that have quicklink: 1 (listed after resources, by date)
+  // Collect activity links after resource links, ordered by date.
   const allActivities = getAllPosts('activities');
   const quickLinkActivities: ResourceData[] = allActivities
-    .filter(activity => activity.quicklink === 1 && activity.draft !== 1 && !activity.excluded && activity.no_render !== 1)
+    .filter(activity => (activity.quicklink === 1 || activity.featured_quicklink === 1) && activity.draft !== 1 && !activity.excluded && activity.no_render !== 1)
     .sort((a, b) => (a.date || '').localeCompare(b.date || '') || a.title.localeCompare(b.title))
     .map(activity => ({
       id: activity.id,
       title: activity.title,
+      featured: activity.featured_quicklink === 1,
+      featuredOrder: activity.featured_quicklink_order,
       section: 'activities' as const,
     }));
 
@@ -209,6 +215,11 @@ export default async function QuickLinksNav() {
   });
 
   // Pass all data to client - filtering will happen client-side
-  return <QuickLinksNavClient resources={[...quickLinkResources, ...quickLinkActivities]} assignments={allAssignments} readings={allReadings} topics={topics} />;
+  const featuredOrder = (link: ResourceData) =>
+    (link.featured ? link.featuredOrder : undefined) ?? Number.MAX_SAFE_INTEGER;
+  const quickLinks = [...quickLinkResources, ...quickLinkActivities]
+    .sort((a, b) => featuredOrder(a) - featuredOrder(b));
+
+  return <QuickLinksNavClient resources={quickLinks} assignments={allAssignments} readings={allReadings} topics={topics} />;
 }
 

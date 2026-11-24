@@ -2,7 +2,7 @@
 title: More Programming Practice in Python
 type: activity
 draft: 0
-quicklink: 1
+featured_quicklink: 1
 start_date: 2026-09-15
 date: 2026-09-15
 ---

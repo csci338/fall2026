@@ -135,6 +135,8 @@ export interface PostData {
   toc?: boolean;
   heading_max_level?: number;
   quicklink?: number;
+  featured_quicklink?: number;
+  featured_quicklink_order?: number;
   quizzes?: string[];
   no_render?: number;
   hide_from_list?: number;

@@ -294,7 +294,7 @@ ol ul li {
     @apply !mb-0;
 }
   
-.extra-list-spacing li {
+.extra-list-spacing > li {
     @apply !mb-12;
 }
   
@@ -1173,6 +1173,11 @@ h2 .badge {
   border-color: #4b5563; /* gray-600 */
 }
 
+a.badge:any-link {
+  background-color: var(--link);
+  color: #fff;
+}
+
 /* Download button styling */
 .button, .nu-button {
   @apply inline-flex items-center gap-2 px-4 py-2 font-medium !text-black dark:!text-white bg-gray-200 dark:bg-gray-800;
@@ -1332,6 +1337,10 @@ h2 .badge {
 
 .prose details.collapsible-h2 > summary {
     @apply text-2xl md:text-3xl font-bold;
+}
+
+.prose.final-study-guide details.collapsible-h2 > summary {
+    @apply text-xl md:text-2xl;
 }
 
 .prose details.collapsible-h3 > summary {

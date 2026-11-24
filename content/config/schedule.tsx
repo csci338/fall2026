@@ -1,3 +1,12 @@
+const finalExamStudyMaterials = [
+    { title: "Final Exam Study Guide", url: "/activities/final-study-guide", draft: 0 },
+    { title: "Sample Final Exam (with answer key)", url: "/activities/sample-final-exam", draft: 0 },
+    { title: "React 101", url: "/resources/react-101", draft: 0 },
+    { title: "Programming Practice", url: "/resources/programming-readiness-diagnostic", draft: 0 },
+    { title: "Quizzes", url: "/quizzes", draft: 0 },
+    { title: "Python Practice", url: "/activities/python-practice", draft: 0 },
+];
+
 export const baseTopics = [
     {
       id: 1,
@@ -439,13 +448,6 @@ export const baseTopics = [
           date: "Th, Nov 19",
           topic: "Client-Side Engineering (Part IV): Design Systems & External Data Lab",
         },
-        {
-          date: "Tu, Nov 24",
-          topic: "Introduction to Project 2",
-          activities: [
-            { title: "Introduction to Project 2", draft: 1 },
-          ],
-        },
       ],
     },
 
@@ -455,19 +457,20 @@ export const baseTopics = [
       description: "Once an application works for a small number of users, the next challenge is making it work under growth. In this unit, we examine what it means to scale a back-end system, including strategies for handling more traffic, coordinating services, and thinking about infrastructure that can evolve with demand. These ideas matter as you move from class projects toward production-minded software.",
       meetings: [
         {
-          date: "Th, Nov 26",
-          topic: "Thanksgiving Break",
-          holiday: true,
-        },
-        {
-          date: "Tu, Dec 1",
-          topic: "Scaling an App",
+          date: "Tu, Nov 24",
+          topic: "Scaling an App and Project 2",
           activities: [
-            { title: "Scaling an App", url: "https://docs.google.com/presentation/d/1XUxfaWeoV7K7REbVr2kYpL5SjERiKpGe5J02BMzMTaM/edit?usp=sharing", draft: 1 },
+            { title: "Scaling an App", url: "https://docs.google.com/presentation/d/1zpnuMgcsSiiCOl3br40uzUgLNzi-PmCY0qLkkQLVdCw/edit?usp=sharing", draft: 0 },
+            { title: "Project 2", url: "/assignments/project02", draft: 0 },
           ],
           optionalReadings: [
             { citation: "Kubernetes Basics (Tutorial)", url: "https://kubernetes.io/docs/tutorials/kubernetes-basics/" },
           ],
+        },
+        {
+          date: "Th, Nov 26",
+          topic: "Thanksgiving Break",
+          holiday: true,
         },
       ],
     },
@@ -478,8 +481,14 @@ export const baseTopics = [
       description: "",
       meetings: [
         {
+          date: "Tu, Dec 1",
+          topic: "Course Review for the Final Exam",
+          activities: finalExamStudyMaterials,
+        },
+        {
           date: "Tu, Dec 8",
           topic: "Final Exam",
+          activities: finalExamStudyMaterials,
         },
       ],
     },

@@ -3,12 +3,15 @@ title: Programming Practice
 group: Programming
 group_order: 2
 order: 2
-quicklink: 1
+featured_quicklink: 1
+featured_quicklink_order: 4
 quizzes:
   - programming-readiness-diagnostic
 ---
 
 This page lists resources to help you practice your programming skills. The quizzes on this site run entirely in your browser and are stored only on your computer – nothing is sent to a server or tracked.
+
+For React practice, see [React 101](/resources/react-101).
 
 ## 1. Take the tracing quiz
 

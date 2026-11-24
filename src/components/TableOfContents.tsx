@@ -23,8 +23,7 @@ export default function TableOfContents({ maxLevel = 2 }: TableOfContentsProps) 
     let lastItemsHash = '';
     
     const performScan = () => {
-      // Build selector based on maxLevel
-      const headingSelectors = [];
+      const headingSelectors = ['details.mb-4 > summary'];
       for (let i = 2; i <= resolvedMaxLevel; i++) {
         headingSelectors.push(`h${i}`);
       }
@@ -37,47 +36,22 @@ export default function TableOfContents({ maxLevel = 2 }: TableOfContentsProps) 
       const resourcesLayout = document.querySelector('[data-resources-layout]');
       const searchRoot = contentMain || scrollContainer || resourcesLayout || document;
       
-      // Find all heading elements within the search root
-      const allHeadings = searchRoot.querySelectorAll(selector);
       const headings: Array<{ element: Element; level: number }> = [];
-      
-      allHeadings.forEach((heading) => {
-        if (heading.closest('[data-toc="true"]')) return;
-        const instructorNotesSection = heading.closest('[data-instructor-notes="true"]');
-        if (!instructorNotesSection) {
-          const level = parseInt(heading.tagName.charAt(1));
+      searchRoot.querySelectorAll(selector).forEach((heading) => {
+        if (heading.closest('[data-toc="true"], [data-instructor-notes="true"]')) return;
+
+        const level = heading.tagName === 'SUMMARY'
+          ? Number(heading.parentElement?.className.match(/\bcollapsible-h([1-5])\b/)?.[1] ?? 3)
+          : Number(heading.tagName.charAt(1));
+        if (level >= 2 && level <= resolvedMaxLevel) {
           headings.push({ element: heading, level });
         }
-      });
-      
-      // Also find collapsible summary elements (h3 headings converted to details/summary)
-      // These are summary tags inside details elements with mb-4 class
-      if (resolvedMaxLevel >= 3) {
-        const collapsibleSummaries = searchRoot.querySelectorAll('details.mb-4 > summary');
-        collapsibleSummaries.forEach((summary) => {
-          const details = summary.closest('details');
-          const instructorNotesSection = details?.closest('[data-instructor-notes="true"]');
-          if (!instructorNotesSection && details) {
-            headings.push({ element: summary, level: 3 });
-          }
-        });
-      }
-      
-      // Sort headings by their position in the document to maintain correct order
-      const sortedHeadings = headings.sort((a, b) => {
-        const pos = a.element.compareDocumentPosition(b.element);
-        if (pos & Node.DOCUMENT_POSITION_FOLLOWING) {
-          return -1; // a comes before b
-        } else if (pos & Node.DOCUMENT_POSITION_PRECEDING) {
-          return 1; // a comes after b
-        }
-        return 0; // same position (shouldn't happen)
       });
       
       const items: TocItem[] = [];
       const usedIds = new Set<string>();
 
-      sortedHeadings.forEach((headingData, index) => {
+      headings.forEach((headingData, index) => {
         const heading = headingData.element;
         const level = headingData.level;
         let id = heading.id;
@@ -122,7 +96,7 @@ export default function TableOfContents({ maxLevel = 2 }: TableOfContentsProps) 
 
       // Clean up old observer
       if (intersectionObserver) {
-        sortedHeadings.forEach((headingData) => intersectionObserver!.unobserve(headingData.element));
+        intersectionObserver.disconnect();
       }
 
       // Set up new intersection observer
@@ -149,14 +123,14 @@ export default function TableOfContents({ maxLevel = 2 }: TableOfContentsProps) 
         }
       );
 
-      sortedHeadings.forEach((headingData) => intersectionObserver!.observe(headingData.element));
+      headings.forEach((headingData) => intersectionObserver!.observe(headingData.element));
     };
     
     // Initial scan
     performScan();
     
     // Do an early scan after a short delay to catch quiz that loads quickly
-    setTimeout(performScan, 500);
+    const earlyScan = setTimeout(performScan, 500);
     
     // Re-scan periodically to catch dynamically added headings (like quiz)
     // Use a shorter interval for faster detection
@@ -164,11 +138,8 @@ export default function TableOfContents({ maxLevel = 2 }: TableOfContentsProps) 
 
     return () => {
       clearInterval(interval);
-      if (intersectionObserver) {
-        // Clean up observer on unmount
-        const allHeadings = document.querySelectorAll('h2, h3, h4, h5, h6, details.mb-4 > summary');
-        allHeadings.forEach((heading) => intersectionObserver!.unobserve(heading));
-      }
+      clearTimeout(earlyScan);
+      intersectionObserver?.disconnect();
     };
   }, [resolvedMaxLevel]);
 

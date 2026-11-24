@@ -44,7 +44,7 @@ fetch(`${API_URL}/api/todos`)
 ```
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on
+> ### Before you move on
 > Verify that:
 >
 > {:.checkbox-list}
@@ -161,7 +161,7 @@ This Dockerfile uses a **multi-stage build** to create a single container that r
 - Make sure your `server.py` has code to serve static files in production
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your production Dockerfile is in the root directory.
@@ -198,7 +198,7 @@ Once the service has been built, click on the PostgreSQL service you just create
    - Replace `postgresql://` with `postgresql+asyncpg://` in your connection string
 
 {:.info}
-> #### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> #### Before you move on
 > Verify you have:
 >
 > {:.checkbox-list}
@@ -233,7 +233,7 @@ Now that you've created your database container, you're ready to create your web
    - Your app will be available at: `https://your-app-name.up.railway.app`
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 > Verify your application is:
 >
 > {:.checkbox-list}
@@ -263,7 +263,7 @@ Test your deployed application:
    - Verify all operations work correctly
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 > Verify your deployed application:
 >
 > {:.checkbox-list}

@@ -112,6 +112,13 @@ export function scrollToAnchor(
   // Find the target element (try within container first, then document-wide)
   const element = findElementById(targetId, scrollContainer);
   if (!element) return;
+
+  // Reveal the anchor before measuring its scroll position.
+  let section = element.closest('details');
+  while (section) {
+    section.open = true;
+    section = section.parentElement?.closest('details') ?? null;
+  }
   
   // Check if container can actually scroll (CSS alone is not enough — a flex
   // child without min-h-0 can report overflow:auto while not overflowing).

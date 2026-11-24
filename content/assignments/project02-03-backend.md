@@ -99,7 +99,7 @@ class Todo(Base):
 
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your model files exist and match the code above.
@@ -678,7 +678,7 @@ docker run --rm --env-file .env todo-backend python -c "import server; print(sor
 - A route is missing from step 4: you may have skipped one of the endpoint sections (3.9 - 3.12).
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify the four commands above all succeeded.
@@ -707,7 +707,7 @@ docker run --rm --env-file .env todo-backend python -c "import server; print(sor
 Go ahead and commit / push your changes to git / GitHub. 
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify that all your new code is on GitHub.

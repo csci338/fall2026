@@ -78,7 +78,7 @@ This project is large, and AI tools can produce a lot of plausible-looking code 
 1. [Linters and Formatters](/assignments/project02-08-linters)
 1. [Add Continuous Integration on GitHub](/assignments/project02-09-cicd)
 
-### Part 3. Extending the App
+### Part 3. Extending the App <span class="badge info">this part will take the longest</span>
 1. [Backend + Frontend Extensions](/assignments/project02-10-enhancements) (complete all required tasks)
 
 ### Part 4. Deployment

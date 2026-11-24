@@ -150,7 +150,7 @@ span {
 - React re-renders, showing the todos
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `Todos.jsx` component is created and imported in `App.jsx`.
@@ -294,7 +294,7 @@ Add to `ui/src/globals.css`:
 - But the Todos component doesn't know to refresh!
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your `CreateTodo.jsx` component is created and imported in `App.jsx`.
@@ -473,7 +473,7 @@ export default function CreateTodo({ API_URL, onTodoCreated }) {  // Add onTodoC
 5. `fetchTodos()` called → New list fetched → UI updates!
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your component communication is set up correctly.
@@ -582,7 +582,7 @@ button:hover {
 - Todo no longer appears
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify your delete functionality is implemented.
@@ -608,7 +608,7 @@ If you encounter any issues, check:
 - Frontend logs: `docker logs todo_frontend`
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] **Test all CRUD operations:** Make sure READ, CREATE, and DELETE all work correctly in your browser.
@@ -691,7 +691,7 @@ How It All Works Together:
 Go ahead and commit / push your changes to git / GitHub. 
 
 {:.info}
-> ### <i class="fa-regular fa-circle-check"></i> Before you move on 
+> ### Before you move on
 >
 > {:.checkbox-list}
 > - [ ] Verify that all your new code is on GitHub.

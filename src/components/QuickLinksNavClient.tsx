@@ -10,6 +10,7 @@ interface ResourceData {
   id: string;
   title: string;
   group?: string;
+  featured?: boolean;
   section: 'resources' | 'activities';
 }
 
@@ -108,14 +109,22 @@ export default function QuickLinksNavClient({ resources, assignments, readings }
 
   return (
     <div className="quick-links-nav h-full overflow-y-auto p-4 hidden lg:block">
-      {/* Quick Links Section */}
-      {(resources.length > 0) && (
-        <div className="mb-6 bg-gray-100 dark:bg-gray-800 p-4">
-          <h2 className="!text-lg !font-normal text-gray-800 dark:text-gray-100 !m-0 !mb-4">Quick Links</h2>
-          <div className="space-y-2">
-            {resources.map((resource) => {
-              return (
-                <div key={resource.id}>
+      {[
+        { title: 'Featured Quick Links', featured: true },
+        { title: 'Quick Links', featured: false },
+      ].map(({ title, featured }) => {
+        const links = resources.filter(resource => Boolean(resource.featured) === featured);
+        if (links.length === 0) return null;
+
+        return (
+          <div key={title} className={clsx(
+            'mb-6 p-4',
+            featured ? 'bg-amber-100 dark:bg-amber-950' : 'bg-gray-100 dark:bg-gray-800'
+          )}>
+            <h2 className="!text-lg !font-normal text-gray-800 dark:text-gray-100 !m-0 !mb-4">{title}</h2>
+            <div className="space-y-2">
+              {links.map(resource => (
+                <div key={`${resource.section}/${resource.id}`}>
                   <Link
                     href={`/${resource.section}/${resource.id}`}
                     className="!border-0 !text-sm text-gray-800 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 block"
@@ -123,11 +132,11 @@ export default function QuickLinksNavClient({ resources, assignments, readings }
                     {resource.title}
                   </Link>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })}
 
       {/* Upcoming Due Dates Section */}
       {upcomingAssignments.length > 0 && (
