@@ -230,6 +230,35 @@ git push
 > 
 > Then, stage, commit, push and try again!
 
+## 5. Merge Your `react-fastapi-b` Branch
+This is a good chance to see your CI workflow in action: GitHub will show your checks on the pull request.
+
+Your work on the `react-fastapi-b` branch is done, so let's merge it into `main`.
+
+1. Make sure everything is committed and pushed:
+
+   ```bash
+   git status
+   git push
+   ```
+
+2. On GitHub, you should see a yellow banner for `react-fastapi-b` with a **Compare & pull request** button. Click it (or go to the **Pull requests** tab → **New pull request**, base: `main`, compare: `react-fastapi-b`).
+3. Give the PR a short title and a description in your own words, then click **Create pull request**.
+4. Wait for any checks to pass, then click **Merge pull request** → **Confirm merge**.
+5. Back in your terminal, switch to `main` and pull down the merged changes:
+
+   ```bash
+   git checkout main
+   git pull
+   ```
+
+{:.info}
+> ### Before you move on
+>
+> {:.checkbox-list}
+> - [ ] Verify that your pull request shows as **Merged** on GitHub.
+> - [ ] Verify that `git branch` shows you're on `main` and that your latest changes are there.
+
 ---
 
 [← Back to Project 2 Instructions](project02)

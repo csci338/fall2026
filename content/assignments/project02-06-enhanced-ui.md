@@ -10,6 +10,22 @@ hide_from_list: 1
 
 Now that you have a working app, let's add the features that make it functional: displaying todos, creating new ones, and deleting them.
 
+## Create a New Branch
+
+Part 2 covers steps 6-9 (connecting the frontend to the backend, working with your containers, linters, and CI). You'll do all of this on a new branch. Make sure you've merged `system-setup` into `main` first, then run:
+
+```bash
+git checkout main
+git pull
+git checkout -b react-fastapi-b
+```
+
+{:.info}
+> ### Before you move on
+>
+> {:.checkbox-list}
+> - [ ] Verify that `git branch` shows you're on `react-fastapi-b` -- not main.
+
 ## 1. Build the READ Feature (Display Todos)
 
 We'll create a component that fetches and displays todos from the backend.

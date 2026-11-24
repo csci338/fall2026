@@ -14,6 +14,22 @@ At this point, you should have a **working TODO application** with a single Todo
 
 You may also complete the extra credit (see the [extra credit section](#ec) below) to earn additional points.
 
+## Create a New Branch
+
+Do all of the work on this page on a new branch. Make sure you've merged `react-fastapi-b` into `main` first, then run:
+
+```bash
+git checkout main
+git pull
+git checkout -b enhancements
+```
+
+{:.info}
+> ### Before you move on
+>
+> {:.checkbox-list}
+> - [ ] Verify that `git branch` shows you're on `enhancements` -- not main.
+
 {:#backend}
 ## 1. Required Backend Enhancement
 
@@ -197,5 +213,35 @@ Create a Category or Tag model and establish a relationship with Todo (many-to-o
 >
 > [Extra credit enhancements](#ec) (2.1-2.9) are optional but can earn you additional points (point values noted in the task).
 
+## 5. Commit, Push and Merge Your `enhancements` Branch
+Commit your changes first (`git add .`, `git commit -m "..."`).
+
+Your work on the `enhancements` branch is done, so let's merge it into `main`.
+
+1. Make sure everything is committed and pushed:
+
+   ```bash
+   git status
+   git push
+   ```
+
+2. On GitHub, you should see a yellow banner for `enhancements` with a **Compare & pull request** button. Click it (or go to the **Pull requests** tab → **New pull request**, base: `main`, compare: `enhancements`).
+3. Give the PR a short title and a description in your own words, then click **Create pull request**.
+4. Wait for any checks to pass, then click **Merge pull request** → **Confirm merge**.
+5. Back in your terminal, switch to `main` and pull down the merged changes:
+
+   ```bash
+   git checkout main
+   git pull
+   ```
+
+{:.info}
+> ### Before you move on
+>
+> {:.checkbox-list}
+> - [ ] Verify that your pull request shows as **Merged** on GitHub.
+> - [ ] Verify that `git branch` shows you're on `main` and that your latest changes are there.
+
+---
 
 [← Back to Project 2 Instructions](project02)

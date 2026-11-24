@@ -180,6 +180,33 @@ Go ahead and commit / push your changes to git / GitHub.
 > {:.checkbox-list}
 > - [ ] Verify that all your new code is on GitHub.
 
+## Merge Your `system-setup` Branch
+Your work on the `system-setup` branch is done, so let's merge it into `main`.
+
+1. Make sure everything is committed and pushed:
+
+   ```bash
+   git status
+   git push
+   ```
+
+2. On GitHub, you should see a yellow banner for `system-setup` with a **Compare & pull request** button. Click it (or go to the **Pull requests** tab → **New pull request**, base: `main`, compare: `system-setup`).
+3. Give the PR a short title and a description in your own words, then click **Create pull request**.
+4. Wait for any checks to pass, then click **Merge pull request** → **Confirm merge**.
+5. Back in your terminal, switch to `main` and pull down the merged changes:
+
+   ```bash
+   git checkout main
+   git pull
+   ```
+
+{:.info}
+> ### Before you move on
+>
+> {:.checkbox-list}
+> - [ ] Verify that your pull request shows as **Merged** on GitHub.
+> - [ ] Verify that `git branch` shows you're on `main` and that your latest changes are there.
+
 ---
 
 [← Back to Project 2 Instructions](project02)
